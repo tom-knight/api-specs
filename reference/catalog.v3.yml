@@ -2350,7 +2350,6 @@ paths:
               data:
                 type: array
                 items:
-                  allOf:
                     - $ref: '#/definitions/productVariant_Full'
               meta:
                 $ref: '#/definitions/metaCollection_Full'
@@ -20304,9 +20303,9 @@ definitions:
     allOf:
       - $ref: '#/definitions/product_Base'
       - type: object
-        properties:
-          variants:
-            $ref: '#/definitions/productVariant_Post_Product'
+      - type: array
+        items:
+          $ref: '#/definitions/productVariant_Post_Product'
     title: product_Post
   product_Put:
     description: The model for a PUT to update a product.
@@ -20323,6 +20322,8 @@ definitions:
       - type: object
         properties:
           variants:
+          type: array
+          items:
             $ref: '#/definitions/productVariant_Put_Product'
     title: product_Put
   catalogSummary_Full:
@@ -21148,7 +21149,7 @@ definitions:
             type: string
             description: Legacy template setting which controls if the option set shows up to the side of or below the product image and description.
       - properties:
-          variants:
+          array:
             $ref: '#/definitions/productVariant_Full'
         type: object
     title: product_Full
