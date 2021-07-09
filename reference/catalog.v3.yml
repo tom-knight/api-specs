@@ -2530,6 +2530,8 @@ paths:
             properties:
               data:
                 allOf:
+                  type: array
+                  items:
                   - $ref: '#/definitions/productVariant_Full'
               meta:
                 type: object
@@ -21150,6 +21152,7 @@ definitions:
             description: Legacy template setting which controls if the option set shows up to the side of or below the product image and description.
       - properties:
           array:
+          items:
             $ref: '#/definitions/productVariant_Full'
         type: object
     title: product_Full
