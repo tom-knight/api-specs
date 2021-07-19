@@ -340,7 +340,7 @@ paths:
       operationId: putHooksAdmin
       summary: Update Email Notifications
       description: |
-        Update email addresses to which notification emails will be sent when any domain associated with the API user is blacklisted or when a webhook is deactivated. Supports "upsert" functionality in the case that no email address exists yet.
+        Update email addresses to which notification emails will be sent when any domain associated with the API user is blacklisted or when a webhook is deactivated. Supports `upsert` functionality in the case that no email address exists yet.
 
         <!-- type:info -->
 
