@@ -20,7 +20,7 @@ Manage a shopper's cart and checkout and fetch order data via client-side JavaSc
 
 ### GraphQL
 
-Use GraphQL to query data for headless storefronts and BigCommerce [Stencil](https://developer.bigcommerce.com/stencil-docs/getting-started/about-stencil) powered storefronts.
+Use GraphQL to query data for headless storefronts and BigCommerce [Stencil](https://developer.bigcommerce.com/stencil-docs/getting-started/about-stencil) powered storefronts. For a complete set of GraphQL types, queries, mutations, and parameters, see [Storefront GraphQL API Reference](https://developer.bigcommerce.com/graphql-api-reference).
 
 [Learn more about the GraphQL Storefront API](https://developer.bigcommerce.com/api-docs/storefront/graphql/graphql-storefront-api-overview)
 
