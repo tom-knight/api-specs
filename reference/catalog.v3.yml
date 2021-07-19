@@ -8478,7 +8478,7 @@ paths:
                     - rule_id: 82
                       modifier_id: 221
                       modifier_value_id: 175
-                      variant_id: {}
+                      variant_id: 125
                       combination_id: 0
                 - id: 83
                   product_id: 195
@@ -8497,7 +8497,7 @@ paths:
                     - rule_id: 83
                       modifier_id: 221
                       modifier_value_id: 174
-                      variant_id: {}
+                      variant_id: 125
                       combination_id: 0
               meta:
                 pagination:
@@ -9728,7 +9728,7 @@ paths:
                   quantity_min: 4
                   quantity_max: 0
                   type: price
-                  amount: 1.25
+                  amount: 2
               meta:
                 pagination:
                   total: 2
@@ -13171,7 +13171,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: linen
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13182,7 +13182,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: linen
                   image_url: ''
                   search_keywords: ''
                   custom_url:
