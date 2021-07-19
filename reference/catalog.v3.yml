@@ -2652,22 +2652,22 @@ paths:
                 product_id: 192
                 sku: SMIT-2
                 sku_id: 350
-                price: {}
+                price: 20
                 calculated_price: 25
-                sale_price: {}
-                retail_price: {}
+                sale_price: 20
+                retail_price: 30
                 map_price: {}
-                weight: {}
+                weight: 1
                 calculated_weight: 1
-                width: {}
-                height: {}
-                depth: {}
+                width: 1
+                height: 2 
+                depth: 1
                 is_free_shipping: false
-                fixed_cost_shipping_price: {}
+                fixed_cost_shipping_price: 7
                 purchasing_disabled: false
                 purchasing_disabled_message: ''
                 image_url: ''
-                cost_price: {}
+                cost_price: 20
                 upc: ''
                 mpn: ''
                 gtin: ''
@@ -2773,7 +2773,7 @@ paths:
                 retail_price: 89
                 sale_price: 85
                 sku: OTS
-                sku_id: null
+                sku_id: 221
                 upc: ''
                 weight: 1
                 width: 2
