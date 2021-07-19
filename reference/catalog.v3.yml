@@ -2367,11 +2367,11 @@ paths:
                   map_price: {}
                   weight: 2
                   calculated_weight: 2
-                  width: {}
-                  height: {}
-                  depth: {}
+                  width: 1
+                  height: 2
+                  depth: 1
                   is_free_shipping: false
-                  fixed_cost_shipping_price: {}
+                  fixed_cost_shipping_price: 7
                   purchasing_disabled: false
                   purchasing_disabled_message: ''
                   image_url: ''
