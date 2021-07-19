@@ -2362,10 +2362,10 @@ paths:
                   sku_id: 348
                   price: 10
                   calculated_price: 10
-                  sale_price: {}
-                  retail_price: {}
+                  sale_price: 20
+                  retail_price: 30
                   map_price: {}
-                  weight: {}
+                  weight: 2
                   calculated_weight: 2
                   width: {}
                   height: {}
