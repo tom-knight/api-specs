@@ -4,10 +4,17 @@ info:
   description: |
     Create and manage webhooks to get notified when specific events occur on stores. For more information, [see Webhooks Overview](https://developer.bigcommerce.com/api-docs/store-management/webhooks/overview).
 
+     <div class="HubBlock--callout">
+     <div class="CalloutBlock--info">
+     <div class="HubBlock-content">
     <!-- type:info -->
 
     > ### Note
     > * Webhooks endpoints are available on both the V2 and V3 REST API.
+
+    </div>
+    </div>
+    </div>
   version: ''
   contact: {}
 servers:
@@ -27,11 +34,19 @@ paths:
       description: |-
         Returns a list of all webhooks on a store associated to the `client_id` used to authenticate the request.
 
+        <div class="HubBlock--callout">
+        <div class="CalloutBlock--info">
+        <div class="HubBlock-content">
+
         <!-- type:info -->
 
         > ### Note
         > * Webhooks endpoints are available on both the V2 and V3 REST API. 
         > * BigCommerce determines the `client_id` from the `access_token`.
+
+        </div>
+        </div>
+        </div>
       parameters:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Content-Type'
@@ -104,10 +119,19 @@ paths:
       description: |
         Returns a webhook by ID.
 
+
         <!-- type:info -->
+
+        <div class="HubBlock--callout">
+        <div class="CalloutBlock--info">
+        <div class="HubBlock-content">
 
         > ### Note
         > * Webhooks endpoints are available on both the V2 and V3 REST API.
+
+        </div>
+        </div>
+        </div>
       parameters:
         - $ref: '#/components/parameters/WebhookId'
         - $ref: '#/components/parameters/Accept'
@@ -237,10 +261,17 @@ paths:
       description: |-
         List all notification emails, webhooks and blacklisted domains associated with the API user.
 
+        <div class="HubBlock--callout">
+        <div class="CalloutBlock--info">
+        <div class="HubBlock-content">
         <!-- type:info -->
 
         > ### Note
         > * Webhooks endpoints are available on both the V2 and V3 REST API.
+
+        </div>
+        </div>
+        </div>
       parameters:
         - name: active
           in: query
@@ -341,10 +372,17 @@ paths:
       description: |
         Update email addresses to which notification emails will be sent when any domain associated with the API user is blacklisted or when a webhook is deactivated. Supports `upsert` functionality in the case that no email address exists yet.
 
+        <div class="HubBlock--callout">
+        <div class="CalloutBlock--info">
+        <div class="HubBlock-content">
         <!-- type:info -->
 
         > ### Note
         > * Webhooks endpoints are available on both the V2 and V3 REST API.
+
+        </div>
+        </div>
+        </div>
       requestBody:
         description: List of notification emails.
         content:
