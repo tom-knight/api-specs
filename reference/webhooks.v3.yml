@@ -347,7 +347,7 @@ paths:
                         - id: 0
                           client_id: string
                           store_hash: string
-                          scope: /scope/produst/created
+                          scope: /store/product/created
                           destination: string
                           headers:
                             property1: string
@@ -367,7 +367,7 @@ paths:
                       - id: 0
                         client_id: string
                         store_hash: string
-                        scope: /scope/produst/created
+                        scope: /store/product/created
                         destination: string
                         headers:
                           property1: string
@@ -501,8 +501,8 @@ components:
         scope:
           description: The event that the webhook is subscribed to.
           type: string
-          example: /scope/produst/created
-          pattern: '/scope/{domain}/{action}'
+          example: /store/order/updated
+          pattern: /scope/{domain}/{action}
         destination:
           description: 'URL to which the webhook is sent. URL must be active, return a 200 response, and be served on port 443 (custom ports not supported).'
           type: string
@@ -532,8 +532,8 @@ components:
         scope:
           description: The scope for which events will be triggered.
           type: string
-          example: /scope/produst/created
-          pattern: '/scope/{domain}/{action}'
+          example: store/order/updated
+          pattern: /scope/{domain}/{action}
         destination:
           description: 'URL must be active, return a 200 response, and be served on port 443 (custom ports not currently supported).'
           type: string
