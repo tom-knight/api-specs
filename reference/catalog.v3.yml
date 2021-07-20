@@ -13215,7 +13215,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: 'chemex'
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13226,7 +13226,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: 'kinfolk'
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13237,7 +13237,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: 'iris'
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13248,7 +13248,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: 'journal'
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13259,7 +13259,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: 'openhouse'
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13270,7 +13270,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: 'journal'
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -14766,16 +14766,16 @@ paths:
                   sku_id: 330
                   price: 15.99
                   calculated_price: 15.99
-                  sale_price: {}
-                  retail_price: {}
+                  sale_price: 20
+                  retail_price: 30
                   map_price: {}
                   weight: 15
                   calculated_weight: 15
                   width: 4
-                  height: {}
-                  depth: {}
+                  height: 2
+                  depth: 2
                   is_free_shipping: false
-                  fixed_cost_shipping_price: {}
+                  fixed_cost_shipping_price: 7
                   purchasing_disabled: false
                   purchasing_disabled_message: ''
                   image_url: ''
@@ -14801,16 +14801,16 @@ paths:
                   sku_id: 331
                   price: 555
                   calculated_price: 555
-                  sale_price: {}
-                  retail_price: {}
+                  sale_price: 20
+                  retail_price: 30
                   map_price: {}
-                  weight: {}
+                  weight: 15
                   calculated_weight: 15
-                  width: {}
-                  height: {}
-                  depth: {}
+                  width: 4
+                  height: 2
+                  depth: 2
                   is_free_shipping: false
-                  fixed_cost_shipping_price: {}
+                  fixed_cost_shipping_price: 7
                   purchasing_disabled: false
                   purchasing_disabled_message: ''
                   image_url: ''
@@ -14834,7 +14834,7 @@ paths:
                   product_id: 184
                   sku: LAR-RED
                   sku_id: 332
-                  price: {}
+                  price: 255
                   calculated_price: 253.99
                   sale_price: {}
                   retail_price: {}
@@ -17678,13 +17678,13 @@ definitions:
                 format: date
                 description: |
                   (date) The earliest date allowed to be entered on the date option, as an ISO-8601 formatted string.
-                example: '2018-08-31T05:00:00+00:00'
+                example: '2018-08-31'
               date_latest_value:
                 type: string
                 format: date
                 description: |
                   (date) The latest date allowed to be entered on the date option, as an ISO-8601 formatted string.
-                example: '2019-01-01T05:00:00+00:00'
+                example: '2019-01-01'
               file_types_mode:
                 type: string
                 description: |
@@ -17699,14 +17699,14 @@ definitions:
                   (file) The type of files allowed to be uploaded if the `file_type_option` is set to `specific`. Values:
                     `images` - Allows upload of image MIME types (`bmp`, `gif`, `jpg`, `jpeg`, `jpe`, `jif`, `jfif`, `jfi`, `png`, `wbmp`, `xbm`, `tiff`). `documents` - Allows upload of document MIME types (`txt`, `pdf`, `rtf`, `doc`, `docx`, `xls`, `xlsx`, `accdb`, `mdb`, `one`, `pps`, `ppsx`, `ppt`, `pptx`, `pub`, `odt`, `ods`, `odp`, `odg`, `odf`).
                     `other` - Allows file types defined in the `file_types_other` array.
-                example: 'images, documents, other'
+                example: [images, documents, other]
                 items:
                   type: string
               file_types_other:
                 type: array
                 description: |
                   (file) A list of other file types allowed with the file upload option.
-                example: pdf
+                example: [pdf, txt]
                 items:
                   type: string
               file_max_size:
