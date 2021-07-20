@@ -1407,8 +1407,7 @@ paths:
               meta: {}
         '400':
           description: |-
-            Bad Request. 
-            If the server allows only requests that match a limited list of common browser user agents, the server might return a generic 400 status code. For example, suppose your server sends a request to the Ruby UserAgent, and the Ruby UserAgent is not on the list of approved user agents. You will receive a 400 response unless you add it to the list.
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
           schema:
             type: object
             properties: {}
@@ -1735,8 +1734,7 @@ paths:
               meta: {}
         '400':
           description: |
-            Bad Request
-            If the server allows only requests that match a limited list of common browser user agents, the server might return a generic 400 status code. For example, suppose your server sends a request to the Ruby UserAgent, and the Ruby UserAgent is not on the list of approved user agents. You will receive a 400 response unless you add it to the list.
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.  
           schema:
             type: object
             properties: {}
@@ -2377,10 +2375,10 @@ paths:
                   sku_id: 348
                   price: 10
                   calculated_price: 10
-                  sale_price: {}
-                  retail_price: {}
+                  sale_price: 25
+                  retail_price: 35
                   map_price: {}
-                  weight: {}
+                  weight: 2
                   calculated_weight: 2
                   width: {}
                   height: {}
@@ -3632,8 +3630,7 @@ paths:
               meta: {}
         '400':
           description: |-
-            Bad Request
-            If the server allows only requests that match a limited list of common browser user agents, the server might return a generic 400 status code. For example, suppose your server sends a request to the Ruby UserAgent, and the Ruby UserAgent is not on the list of approved user agents. You will receive a 400 response unless you add it to the list.
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
           schema:
             type: object
             properties: {}
@@ -4472,14 +4469,14 @@ paths:
                           (file) The type of files allowed to be uploaded if the `file_type_option` is set to `specific`. Values:
                             `images` - Allows upload of image MIME types (`bmp`, `gif`, `jpg`, `jpeg`, `jpe`, `jif`, `jfif`, `jfi`, `png`, `wbmp`, `xbm`, `tiff`). `documents` - Allows upload of document MIME types (`txt`, `pdf`, `rtf`, `doc`, `docx`, `xls`, `xlsx`, `accdb`, `mdb`, `one`, `pps`, `ppsx`, `ppt`, `pptx`, `pub`, `odt`, `ods`, `odp`, `odg`, `odf`).
                             `other` - Allows file types defined in the `file_types_other` array.
-                        example: 'images, documents, other'
+                        example: [images, documents, other]
                         items:
                           type: string
                       file_types_other:
                         type: array
                         description: |
                           (file) A list of other file types allowed with the file upload option.
-                        example: pdf
+                        example: [pdf, txt]
                         items:
                           type: string
                       file_max_size:
@@ -8356,8 +8353,7 @@ paths:
               meta: {}
         '400':
           description: |-
-            Bad Request
-            If the server allows only requests that match a limited list of common browser user agents, the server might return a generic 400 status code. For example, suppose your server sends a request to the Ruby UserAgent, and the Ruby UserAgent is not on the list of approved user agents. You will receive a 400 response unless you add it to the list.
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
           schema:
             type: object
             properties: {}
@@ -8505,7 +8501,7 @@ paths:
                     - rule_id: 82
                       modifier_id: 221
                       modifier_value_id: 175
-                      variant_id: {}
+                      variant_id: 125
                       combination_id: 0
                 - id: 83
                   product_id: 195
@@ -8524,7 +8520,7 @@ paths:
                     - rule_id: 83
                       modifier_id: 221
                       modifier_value_id: 174
-                      variant_id: {}
+                      variant_id: 125
                       combination_id: 0
               meta:
                 pagination:
@@ -9755,7 +9751,7 @@ paths:
                   quantity_min: 4
                   quantity_max: 0
                   type: price
-                  amount: 1.25
+                  amount: 1
               meta:
                 pagination:
                   total: 2
@@ -12932,8 +12928,7 @@ paths:
               meta: {}
         '400':
           description: |-
-            Bad Request
-            If the server allows only requests that match a limited list of common browser user agents, the server might return a generic 400 status code. For example, suppose your server sends a request to the Ruby UserAgent, and the Ruby UserAgent is not on the list of approved user agents. You will receive a 400 response unless you add it to the list.
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
           schema:
             type: object
             properties: {}
@@ -14514,8 +14509,7 @@ paths:
               meta: {}
         '400':
           description: |-
-            Bad Request
-            If the server allows only requests that match a limited list of common browser user agents, the server might return a generic 400 status code. For example, suppose your server sends a request to the Ruby UserAgent, and the Ruby UserAgent is not on the list of approved user agents. You will receive a 400 response unless you add it to the list.
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
           schema:
             type: object
             properties: {}
@@ -26061,16 +26055,16 @@ responses:
             sku_id: 348
             price: 10
             calculated_price: 10
-            sale_price: {}
-            retail_price: {}
+            sale_price: 20
+            retail_price: 30
             map_price: {}
-            weight: {}
+            weight: 2
             calculated_weight: 2
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 4
+            depth: 2
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 7
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26090,22 +26084,22 @@ responses:
             product_id: 192
             sku: SMIT-1
             sku_id: 349
-            price: {}
+            price: 30
             calculated_price: 25
-            sale_price: {}
-            retail_price: {}
+            sale_price: 25
+            retail_price: 30
             map_price: {}
-            weight: {}
+            weight: 2
             calculated_weight: 1
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 4
+            depth: 2
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 7
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
-            cost_price: {}
+            cost_price: 30
             upc: ''
             mpn: ''
             gtin: ''
@@ -26336,7 +26330,7 @@ responses:
           purchasing_disabled: false
           purchasing_disabled_message: ''
           image_url: ''
-          cost_price: {}
+          cost_price: 20
           upc: ''
           mpn: ''
           gtin: ''
@@ -26570,7 +26564,7 @@ responses:
               example: 83.07978261
               description: Average price of all variants
             lowest_variant_price:
-              type: string
+              type: number
               example: '7'
               description: Lowest priced variant in the store
             oldest_variant_date:
@@ -28262,9 +28256,9 @@ responses:
           - product_id: 123
             sort_order: 0
           - product_id: 14
-            sort_order: null
+            sort_order: 2
           - product_id: 16
-            sort_order: null
+            sort_order: 4
         meta:
           pagination:
             total: 4
