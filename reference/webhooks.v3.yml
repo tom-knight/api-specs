@@ -131,9 +131,8 @@ paths:
       tags:
         - Webhooks
       parameters:
-        - schema:
-            type: string
-          in: header
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Content-Type'
     parameters: []
   '/hooks/{webhook_id}':
     get:
