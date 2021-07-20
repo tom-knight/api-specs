@@ -335,7 +335,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Webhooks Admin
-        - Beta
     put:
       operationId: putHooksAdmin
       summary: Update Email Notifications
