@@ -532,7 +532,7 @@ components:
         scope:
           description: The scope for which events will be triggered.
           type: string
-          example: store/order/updated
+          example: /store/order/updated
           pattern: /scope/{domain}/{action}
         destination:
           description: 'URL must be active, return a 200 response, and be served on port 443 (custom ports not currently supported).'
