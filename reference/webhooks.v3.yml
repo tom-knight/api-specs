@@ -67,6 +67,25 @@ paths:
                     properties:
                       pagination:
                         $ref: '#/components/schemas/Pagination'
+              examples:
+                Example:
+                  value:
+                    data:
+                      - id: 18048287
+                        client_id: m9r6keqmo7h7f23btnpwernbez1kglkl
+                        store_hash: sftg45fsd
+                        created_at: 1561488106
+                        updated_at: 1561488106
+                        scope: '`store/order/*`'
+                        destination: 'https://665b65a6.ngrok.io/webhooks`'
+                        is_active: true
+                        headers:
+                          custom: string
+                    meta:
+                      pagination:
+                        offset: 0
+                        limit: 0
+                        total_items: 0
         '400':
           description: Bad request.
         '401':
@@ -111,6 +130,10 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Webhooks
+      parameters:
+        - schema:
+            type: string
+          in: header
     parameters: []
   '/hooks/{webhook_id}':
     get:
@@ -316,7 +339,7 @@ paths:
                   meta:
                     type: object
               examples:
-                V3:
+                Example - V3:
                   value:
                     data:
                       emails:
@@ -337,7 +360,7 @@ paths:
                         - destination: string
                           time_left: 0
                     meta: {}
-                V2:
+                Example - V2:
                   value:
                     emails:
                       - user@example.com
@@ -414,13 +437,13 @@ paths:
                   meta:
                     type: object
               examples:
-                V3:
+                Example - V3:
                   value:
                     data:
                       emails:
                         - email2@bigcommerce.com
                     meta: {}
-                V2:
+                Example - V2:
                   value:
                     emails:
                       - email2@bigcommerce.com
@@ -482,7 +505,7 @@ components:
           example: /scope/produst/created
           pattern: '/scope/{domain}/{action}'
         destination:
-          description: URL to which the webhook is sent.
+          description: 'URL to which the webhook is sent. URL must be active, return a 200 response, and be served on port 443 (custom ports not supported).'
           type: string
           format: url
         headers:
@@ -490,6 +513,9 @@ components:
           type: object
           additionalProperties:
             type: string
+          properties:
+            custom:
+              type: string
         is_active:
           description: Identifies whether webhook is active.
           type: boolean
@@ -510,7 +536,7 @@ components:
           example: /scope/produst/created
           pattern: '/scope/{domain}/{action}'
         destination:
-          description: Destination url.
+          description: 'URL must be active, return a 200 response, and be served on port 443 (custom ports not currently supported).'
           type: string
           format: url
         headers:
@@ -518,9 +544,16 @@ components:
           type: object
           additionalProperties:
             type: string
+          properties:
+            custom:
+              type: string
         is_active:
           description: Identifies whether webhook is active.
           type: boolean
+      required:
+        - scope
+        - destination
+        - is_active
     WebhookResponse:
       type: object
       properties:
