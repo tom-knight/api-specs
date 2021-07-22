@@ -26775,7 +26775,7 @@ responses:
             height: 3
             depth: 3
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26799,18 +26799,18 @@ responses:
             product_id: 184
             sku: LAR-RED
             sku_id: 332
-            price: {}
+            price: 253.99
             calculated_price: 253.99
-            sale_price: {}
-            retail_price: {}
+            sale_price: 253.99
+            retail_price: 253.99
             map_price: {}
-            weight: {}
+            weight: 15
             calculated_weight: 15
-            width: {}
-            height: {}
-            depth: {}
+            width: 4
+            height: 4
+            depth: 4
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26834,7 +26834,7 @@ responses:
             product_id: 184
             sku: SMA-GRE
             sku_id: 333
-            price: {}
+            price: 249
             calculated_price: 249
             sale_price: {}
             retail_price: {}
