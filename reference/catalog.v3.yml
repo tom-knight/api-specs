@@ -26836,16 +26836,16 @@ responses:
             sku_id: 333
             price: 249
             calculated_price: 249
-            sale_price: {}
-            retail_price: {}
+            sale_price: 249
+            retail_price: 249
             map_price: {}
-            weight: {}
+            weight: 15
             calculated_weight: 15
-            width: {}
-            height: {}
-            depth: {}
+            width: 4
+            height: 4
+            depth: 4
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26869,16 +26869,16 @@ responses:
             product_id: 184
             sku: MED-GRE
             sku_id: 334
-            price: {}
+            price: 249
             calculated_price: 249
-            sale_price: {}
-            retail_price: {}
+            sale_price: 249
+            retail_price: 249
             map_price: {}
-            weight: {}
+            weight: 15
             calculated_weight: 15
-            width: {}
-            height: {}
-            depth: {}
+            width: 5
+            height: 5
+            depth: 5
             is_free_shipping: false
             fixed_cost_shipping_price: {}
             purchasing_disabled: false
