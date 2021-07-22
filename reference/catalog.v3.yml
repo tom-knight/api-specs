@@ -17971,13 +17971,13 @@ definitions:
                 format: date
                 description: |
                   (date) The earliest date allowed to be entered on the date option, as an ISO-8601 formatted string.
-                example: '2018-08-31T05:00:00+00:00'
+                example: '2018-08-31'
               date_latest_value:
                 type: string
                 format: date
                 description: |
                   (date) The latest date allowed to be entered on the date option, as an ISO-8601 formatted string.
-                example: '2019-01-01T05:00:00+00:00'
+                example: '2019-01-01'
               file_types_mode:
                 type: string
                 description: |
@@ -17992,14 +17992,14 @@ definitions:
                   (file) The type of files allowed to be uploaded if the `file_type_option` is set to `specific`. Values:
                     `images` - Allows upload of image MIME types (`bmp`, `gif`, `jpg`, `jpeg`, `jpe`, `jif`, `jfif`, `jfi`, `png`, `wbmp`, `xbm`, `tiff`). `documents` - Allows upload of document MIME types (`txt`, `pdf`, `rtf`, `doc`, `docx`, `xls`, `xlsx`, `accdb`, `mdb`, `one`, `pps`, `ppsx`, `ppt`, `pptx`, `pub`, `odt`, `ods`, `odp`, `odg`, `odf`).
                     `other` - Allows file types defined in the `file_types_other` array.
-                example: 'images, documents, other'
+                example: [images, documents, other]
                 items:
                   type: string
               file_types_other:
                 type: array
                 description: |
                   (file) A list of other file types allowed with the file upload option.
-                example: pdf
+                example: [pdf,txt]
                 items:
                   type: string
               file_max_size:
