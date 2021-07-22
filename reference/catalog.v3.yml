@@ -26880,7 +26880,7 @@ responses:
             height: 5
             depth: 5
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26904,18 +26904,18 @@ responses:
             product_id: 184
             sku: LAR-GRE
             sku_id: 335
-            price: {}
+            price: 253.99
             calculated_price: 253.99
-            sale_price: {}
-            retail_price: {}
+            sale_price: 253.99
+            retail_price: 253.99
             map_price: {}
-            weight: {}
+            weight: 15
             calculated_weight: 15
-            width: {}
-            height: {}
-            depth: {}
+            width: 4
+            height: 2
+            depth: 2
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26939,18 +26939,18 @@ responses:
             product_id: 184
             sku: SMA-BLU
             sku_id: 336
-            price: {}
+            price: 249
             calculated_price: 249
-            sale_price: {}
-            retail_price: {}
+            sale_price: 249
+            retail_price: 249
             map_price: {}
-            weight: {}
+            weight: 15
             calculated_weight: 15
-            width: {}
-            height: {}
-            depth: {}
+            width: 4
+            height: 4
+            depth: 4
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26974,7 +26974,7 @@ responses:
             product_id: 184
             sku: MED-BLU
             sku_id: 337
-            price: {}
+            price: 249
             calculated_price: 249
             sale_price: {}
             retail_price: {}
@@ -28233,9 +28233,9 @@ responses:
           - product_id: 123
             sort_order: 0
           - product_id: 14
-            sort_order: null
+            sort_order: 5
           - product_id: 16
-            sort_order: null
+            sort_order: 9
         meta:
           pagination:
             total: 4
