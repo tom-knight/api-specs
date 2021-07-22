@@ -14901,9 +14901,9 @@ paths:
                   product_id: 184
                   sku: SMA-GRE
                   sku_id: 333
-                  price: {}
+                  price: 249
                   calculated_price: 249
-                  sale_price: {}
+                  sale_price: 249
                   retail_price: {}
                   map_price: {}
                   weight: {}
@@ -26731,16 +26731,16 @@ responses:
             sku_id: 330
             price: 15.99
             calculated_price: 15.99
-            sale_price: {}
-            retail_price: {}
+            sale_price: 15.99
+            retail_price: 15.99
             map_price: {}
             weight: 15
             calculated_weight: 15
             width: 4
-            height: {}
-            depth: {}
+            height: 4
+            depth: 3
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26766,14 +26766,14 @@ responses:
             sku_id: 331
             price: 555
             calculated_price: 555
-            sale_price: {}
-            retail_price: {}
+            sale_price: 555
+            retail_price: 555
             map_price: {}
-            weight: {}
+            weight: 15
             calculated_weight: 15
-            width: {}
-            height: {}
-            depth: {}
+            width: 4
+            height: 3
+            depth: 3
             is_free_shipping: false
             fixed_cost_shipping_price: {}
             purchasing_disabled: false
