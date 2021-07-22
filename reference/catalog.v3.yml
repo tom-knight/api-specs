@@ -16668,16 +16668,16 @@ paths:
                   sku_id: 348
                   price: 10
                   calculated_price: 10
-                  sale_price: {}
-                  retail_price: {}
+                  sale_price: 10
+                  retail_price: 10
                   map_price: {}
-                  weight: {}
+                  weight: 2
                   calculated_weight: 2
-                  width: {}
-                  height: {}
-                  depth: {}
+                  width: 2
+                  height: 4
+                  depth: 4
                   is_free_shipping: false
-                  fixed_cost_shipping_price: {}
+                  fixed_cost_shipping_price: 5
                   purchasing_disabled: false
                   purchasing_disabled_message: ''
                   image_url: ''
