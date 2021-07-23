@@ -27075,18 +27075,18 @@ responses:
             product_id: 158
             sku: SKU-E628145D
             sku_id: 343
-            price: {}
+            price: 49.99
             calculated_price: 49.99
-            sale_price: {}
-            retail_price: {}
+            sale_price: 49.99
+            retail_price: 59.99
             map_price: {}
-            weight: {}
+            weight: 1
             calculated_weight: 1
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 4
+            depth: 4
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 10
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -27106,22 +27106,22 @@ responses:
             product_id: 158
             sku: SKU-E898ABC0
             sku_id: 344
-            price: {}
+            price: 49.99
             calculated_price: 49.99
-            sale_price: {}
-            retail_price: {}
+            sale_price: 49.99
+            retail_price: 49.99
             map_price: {}
-            weight: {}
+            weight: 1
             calculated_weight: 1
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 4
+            depth: 4
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 10
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
-            cost_price: {}
+            cost_price: 49.99
             upc: ''
             mpn: ''
             gtin: ''
@@ -27139,16 +27139,16 @@ responses:
             sku_id: 348
             price: 10
             calculated_price: 10
-            sale_price: {}
-            retail_price: {}
+            sale_price: 10
+            retail_price: 20
             map_price: {}
-            weight: {}
+            weight: 2
             calculated_weight: 2
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 4
+            depth: 4
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 10
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -27168,22 +27168,22 @@ responses:
             product_id: 192
             sku: SMIT-1
             sku_id: 349
-            price: {}
+            price: 25
             calculated_price: 25
-            sale_price: {}
-            retail_price: {}
+            sale_price: 25
+            retail_price: 35
             map_price: {}
-            weight: {}
+            weight: 1
             calculated_weight: 1
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 4
+            depth: 2
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 10
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
-            cost_price: {}
+            cost_price: 49.99
             upc: ''
             mpn: ''
             gtin: ''
@@ -27199,22 +27199,22 @@ responses:
             product_id: 192
             sku: SMIT-2
             sku_id: 350
-            price: {}
+            price: 25
             calculated_price: 25
-            sale_price: {}
-            retail_price: {}
+            sale_price: 25
+            retail_price: 35
             map_price: {}
-            weight: {}
+            weight: 1
             calculated_weight: 1
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 2
+            depth: 2
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 10
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
-            cost_price: {}
+            cost_price: 49.99
             upc: ''
             mpn: ''
             gtin: ''
