@@ -26032,16 +26032,16 @@ responses:
             sku_id: 348
             price: 10
             calculated_price: 10
-            sale_price: {}
-            retail_price: {}
+            sale_price: 10
+            retail_price: 10
             map_price: {}
-            weight: {}
+            weight: 2
             calculated_weight: 2
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 4
+            depth: 2
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 7
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -26061,22 +26061,22 @@ responses:
             product_id: 192
             sku: SMIT-1
             sku_id: 349
-            price: {}
+            price: 25
             calculated_price: 25
-            sale_price: {}
-            retail_price: {}
+            sale_price: 25
+            retail_price: 35
             map_price: {}
-            weight: {}
+            weight: 1
             calculated_weight: 1
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 2
+            depth: 2
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 7
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
-            cost_price: {}
+            cost_price: 25
             upc: ''
             mpn: ''
             gtin: ''
@@ -26092,22 +26092,22 @@ responses:
             product_id: 192
             sku: SMIT-2
             sku_id: 350
-            price: {}
+            price: 25
             calculated_price: 25
-            sale_price: {}
-            retail_price: {}
+            sale_price: 25
+            retail_price: 35
             map_price: {}
-            weight: {}
+            weight: 1
             calculated_weight: 1
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 4
+            depth: 4
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 10
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
-            cost_price: {}
+            cost_price: 25
             upc: ''
             mpn: ''
             gtin: ''
@@ -26292,22 +26292,22 @@ responses:
           product_id: 192
           sku: SMIT-2
           sku_id: 350
-          price: {}
+          price: 25
           calculated_price: 25
-          sale_price: {}
-          retail_price: {}
+          sale_price: 25
+          retail_price: 35
           map_price: {}
-          weight: {}
+          weight: 1
           calculated_weight: 1
-          width: {}
-          height: {}
-          depth: {}
+          width: 2
+          height: 4
+          depth: 4
           is_free_shipping: false
-          fixed_cost_shipping_price: {}
+          fixed_cost_shipping_price: 9
           purchasing_disabled: false
           purchasing_disabled_message: ''
           image_url: ''
-          cost_price: {}
+          cost_price: 25
           upc: ''
           mpn: ''
           gtin: ''
@@ -26541,7 +26541,7 @@ responses:
               example: 83.07978261
               description: Average price of all variants
             lowest_variant_price:
-              type: string
+              type: number
               example: '7'
               description: Lowest priced variant in the store
             oldest_variant_date:
@@ -26563,7 +26563,7 @@ responses:
           inventory_value: 702350.03
           highest_variant_price: 555
           average_variant_price: 74.40055556
-          lowest_variant_price: 7
+          lowest_variant_price: 70
           oldest_variant_date: '2018-08-15'
           newest_variant_date: '2018-09-07'
           primary_category_id: 23
@@ -26976,16 +26976,16 @@ responses:
             sku_id: 337
             price: 249
             calculated_price: 249
-            sale_price: {}
-            retail_price: {}
+            sale_price: 249
+            retail_price: 249
             map_price: {}
-            weight: {}
+            weight: 15
             calculated_weight: 15
-            width: {}
-            height: {}
-            depth: {}
+            width: 5
+            height: 5
+            depth: 5
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 7
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -27009,18 +27009,18 @@ responses:
             product_id: 184
             sku: LAR-BLU
             sku_id: 338
-            price: {}
+            price: 253.99
             calculated_price: 253.99
-            sale_price: {}
-            retail_price: {}
+            sale_price: 253.99
+            retail_price: 253.99
             map_price: {}
-            weight: {}
+            weight: 15
             calculated_weight: 15
-            width: {}
-            height: {}
-            depth: {}
+            width: 5
+            height: 5
+            depth: 5
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
@@ -27044,22 +27044,22 @@ responses:
             product_id: 158
             sku: SKU-A0C8A203
             sku_id: 342
-            price: {}
+            price: 49.99
             calculated_price: 49.99
-            sale_price: {}
-            retail_price: {}
+            sale_price: 49.99
+            retail_price: 49.99
             map_price: {}
-            weight: {}
+            weight: 1
             calculated_weight: 1
-            width: {}
-            height: {}
-            depth: {}
+            width: 2
+            height: 2
+            depth: 2
             is_free_shipping: false
-            fixed_cost_shipping_price: {}
+            fixed_cost_shipping_price: 5
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
-            cost_price: {}
+            cost_price: 49.99
             upc: ''
             mpn: ''
             gtin: ''
@@ -27090,7 +27090,7 @@ responses:
             purchasing_disabled: false
             purchasing_disabled_message: ''
             image_url: ''
-            cost_price: {}
+            cost_price: 25
             upc: ''
             mpn: ''
             gtin: ''
