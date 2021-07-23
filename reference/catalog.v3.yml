@@ -19760,11 +19760,11 @@ definitions:
       id:
         type: integer
         description: '`option_value` ID.'
-        example: 146 (Red)
+        example: 146
       option_id:
         type: integer
         description: '`option` ID.'
-        example: 151 (Color)
+        example: 151
   productVariantOptionValue_Post:
     type: object
     description: The model for a POST to create option values on a variant.
@@ -20811,13 +20811,13 @@ definitions:
         format: date
         description: |
           (date) The earliest date allowed to be entered on the date option, as an ISO-8601 formatted string.
-        example: '2018-08-31T05:00:00+00:00'
+        example: '2018-08-31'
       date_latest_value:
         type: string
         format: date
         description: |
           (date) The latest date allowed to be entered on the date option, as an ISO-8601 formatted string.
-        example: '2019-01-01T05:00:00+00:00'
+        example: '2019-01-01'
       file_types_mode:
         type: string
         description: |
@@ -21841,7 +21841,7 @@ definitions:
         type: integer
         description: |
           The total rating for the product.
-        example: 3.2
+        example: 3
       reviews_count:
         type: integer
         description: |
@@ -22474,7 +22474,7 @@ responses:
             page_title: ''
             meta_keywords:
               - ''
-            meta_description: {}
+            meta_description: ''
             image_url: ''
             search_keywords: ''
             custom_url:
@@ -22485,7 +22485,7 @@ responses:
             page_title: ''
             meta_keywords:
               - ''
-            meta_description: {}
+            meta_description: ''
             image_url: ''
             search_keywords: ''
             custom_url:
@@ -23137,7 +23137,7 @@ responses:
             quantity_min: 4
             quantity_max: 0
             type: price
-            amount: 1.25
+            amount: 1
         meta:
           pagination:
             total: 2
