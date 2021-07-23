@@ -27229,7 +27229,7 @@ responses:
           - id: 325
             product_id: 157
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 66
             calculated_price: 66
             sale_price: 0
@@ -27256,7 +27256,7 @@ responses:
           - id: 330
             product_id: 159
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 34
             calculated_price: 34
             sale_price: 0
@@ -27283,7 +27283,7 @@ responses:
           - id: 331
             product_id: 160
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 28
             calculated_price: 28
             sale_price: 0
@@ -27310,7 +27310,7 @@ responses:
           - id: 332
             product_id: 161
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 109
             calculated_price: 109
             sale_price: 0
@@ -27337,7 +27337,7 @@ responses:
           - id: 333
             product_id: 162
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 89
             calculated_price: 89
             sale_price: 0
@@ -27364,7 +27364,7 @@ responses:
           - id: 334
             product_id: 163
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 32
             calculated_price: 32
             sale_price: 0
@@ -27391,7 +27391,7 @@ responses:
           - id: 335
             product_id: 164
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 8
             calculated_price: 8
             sale_price: 0
@@ -27418,7 +27418,7 @@ responses:
           - id: 336
             product_id: 165
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 10.95
             calculated_price: 10.95
             sale_price: 0
@@ -27445,7 +27445,7 @@ responses:
           - id: 337
             product_id: 166
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 28
             calculated_price: 28
             sale_price: 0
@@ -27472,7 +27472,7 @@ responses:
           - id: 338
             product_id: 167
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 225
             calculated_price: 225
             sale_price: 0
@@ -27499,7 +27499,7 @@ responses:
           - id: 339
             product_id: 168
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 55
             calculated_price: 55
             sale_price: 0
@@ -27526,7 +27526,7 @@ responses:
           - id: 340
             product_id: 169
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 44.95
             calculated_price: 44.95
             sale_price: 0
@@ -27553,7 +27553,7 @@ responses:
           - id: 341
             product_id: 170
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 25
             calculated_price: 25
             sale_price: 0
@@ -27580,7 +27580,7 @@ responses:
           - id: 342
             product_id: 171
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 70
             calculated_price: 70
             sale_price: 0
@@ -27607,7 +27607,7 @@ responses:
           - id: 343
             product_id: 172
             sku: ''
-            sku_id: {}
+            sku_id: 253
             price: 48
             calculated_price: 48
             sale_price: 0
