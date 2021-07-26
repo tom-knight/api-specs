@@ -8381,7 +8381,9 @@ paths:
                 image_url: 'https://cdn8.bigcommerce.com/s-id30h7ohwf/product_images/attribute_rule_images/85_source_1536863430.png'
               meta: {}
         '400':
-          description: Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
+          description: |-
+            Bad Request. 
+            The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
           schema:
             type: object
             properties: {}
