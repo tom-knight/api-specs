@@ -2393,8 +2393,7 @@ paths:
               data:
                 type: array
                 items:
-                  allOf:
-                    - $ref: '#/definitions/productVariant_Full'
+                  - $ref: '#/definitions/productVariant_Full'
               meta:
                 $ref: '#/definitions/metaCollection_Full'
           examples:
@@ -2573,8 +2572,7 @@ paths:
             title: Variant Response
             properties:
               data:
-                allOf:
-                  - $ref: '#/definitions/productVariant_Full'
+                - $ref: '#/definitions/productVariant_Full'
               meta:
                 type: object
                 description: Empty meta object; may be used later.
