@@ -2572,7 +2572,8 @@ paths:
             title: Variant Response
             properties:
               data:
-                - $ref: '#/definitions/productVariant_Full'
+                allOf:
+                  - $ref: '#/definitions/productVariant_Full'
               meta:
                 type: object
                 description: Empty meta object; may be used later.
