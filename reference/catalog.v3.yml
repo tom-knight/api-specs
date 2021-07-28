@@ -20373,6 +20373,8 @@ definitions:
       - type: object
         properties:
           variants:
+            type: array
+            items:
             $ref: '#/definitions/productVariant_Put_Product'
     title: product_Put
   catalogSummary_Full:
