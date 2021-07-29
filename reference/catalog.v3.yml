@@ -1270,6 +1270,7 @@ paths:
                 -H 'X-Auth-Token: {X-Auth-Token:}' \
                 -H 'content-type: multipart/form-data; boundary=-WebKitFormBoundary7MA4YWxkTrZu0gW' \
                 -F image_file=@/Users/user.name/Documents/docs_images/product-image.png
+          description: ''
         - in: header
           type: string
           name: Accept
@@ -1282,7 +1283,7 @@ paths:
           required: true
       responses:
         '200':
-          description: ''
+          description: Success
           schema:
             description: |
               Response payload for the BigCommerce API.
@@ -1405,6 +1406,11 @@ paths:
                 url_tiny: 'https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.66.100.png?c=2'
                 date_modified: '2018-09-13T15:57:07+00:00'
               meta: {}
+        '400':
+          description: 'Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.'
+          schema:
+            type: object
+            properties: {}
         '404':
           description: |
             The product ID does not exist.
@@ -1424,10 +1430,36 @@ paths:
               instance:
                 type: string
             title: Not Found
+        '422':
+          description: |-
+            Unprocessable Entity. 
+
+            May occur if the `Content-Type` header is set to `multipart/form-data` rather than `application/json` when creating a product image using `image_url`.
+          schema:
+            description: ''
+            type: object
+            properties:
+              status:
+                type: number
+              title:
+                type: string
+                minLength: 1
+              type:
+                type: string
+                minLength: 1
+            required:
+              - status
+              - title
+              - type
+          examples:
+            Example:
+              status: 422
+              title: image_url must be present if uploading by url
+              type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
       summary: Create a Product Image
       consumes:
-        - multipart/form-data
         - application/json
+        - multipart/form-data
       tags:
         - Product Images
   '/catalog/products/{product_id}/images/{image_id}':
@@ -1726,6 +1758,17 @@ paths:
                 url_tiny: 'https://cdn8.bigcommerce.com/s-id30h7ohwf/products/158/images/485/product-image__98178.1536854227.66.100.png?c=2'
                 date_modified: '2018-09-13T15:57:07+00:00'
               meta: {}
+        '201':
+          description: Created
+          schema:
+            type: object
+            properties: {}
+        '400':
+          description: |-
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
+          schema:
+            type: object
+            properties: {}
         '404':
           description: |
             The resource was not found.
@@ -3616,6 +3659,12 @@ paths:
               data:
                 image_url: 'https://cdn8.bigcommerce.com/s-id30h7ohwf/product_images/attribute_rule_images/85_source_1536863430.png'
               meta: {}
+        '400':
+          description: |-
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
+          schema:
+            type: object
+            properties: {}
         '404':
           description: |
             The resource was not found.
@@ -8333,6 +8382,12 @@ paths:
               data:
                 image_url: 'https://cdn8.bigcommerce.com/s-id30h7ohwf/product_images/attribute_rule_images/85_source_1536863430.png'
               meta: {}
+        '400':
+          description: |-
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
+          schema:
+            type: object
+            properties: {}
         '404':
           description: |
             The resource was not found.
@@ -12902,6 +12957,12 @@ paths:
               data:
                 image_url: 'https://cdn11.bigcommerce.com/s-{store_hash}/product_images/k/group_1545334669__76009.png'
               meta: {}
+        '400':
+          description: |-
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
+          schema:
+            type: object
+            properties: {}
         '404':
           description: |
             The resource was not found.
@@ -14477,6 +14538,12 @@ paths:
               data:
                 image_url: 'https://cdn11.bigcommerce.com/s-{store_hash}/product_images/k/group_1545334669__76009.png'
               meta: {}
+        '400':
+          description: |-
+            Bad Request. The requested resource could not be downloaded and may be invalid. Possible reasons include malformed request syntax or the file host blocking requests.
+          schema:
+            type: object
+            properties: {}
         '404':
           description: The resource was not found.
           schema:
@@ -16930,7 +16997,7 @@ paths:
         required: true
         description: The ID of the `Category` to which the resource belongs.
     get:
-      summary: Get Product Sort Order (Beta)
+      summary: Get Product Sort Order
       responses:
         '200':
           $ref: '#/responses/ProductSortOrderResponse'
@@ -16944,17 +17011,6 @@ paths:
         * Data pairs are displayed in ascending order based on products' `sort_order` values.
         * `null` values are allowed for products without specified `sort_order` values.
         * Products with `sort_order` value of `null` will be displayed after products with valid numerical values.
-
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
-        > This endpoint is in beta.
-
-        </div>
-        </div>
-        </div>
       parameters:
         - type: string
           in: header
@@ -16969,7 +17025,7 @@ paths:
       tags:
         - Product Sort Order
     put:
-      summary: Update Product Sort Order (Beta)
+      summary: Update Product Sort Order
       operationId: updatesortorder
       responses:
         '200':
@@ -16978,19 +17034,7 @@ paths:
           $ref: '#/responses/Error404Response'
         '422':
           $ref: '#/responses/Error422Response'
-      description: |-
-        Updates *Sort Order* of products within a specific category.
-
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
-        > This endpoint is in beta.
-
-        </div>
-        </div>
-        </div>
+      description: Updates sort order of products within a specific category.
       parameters:
         - type: string
           in: header
@@ -20306,7 +20350,9 @@ definitions:
       - type: object
         properties:
           variants:
-            $ref: '#/definitions/productVariant_Post_Product'
+            type: array
+            items:
+              $ref: '#/definitions/productVariant_Post_Product'
     title: product_Post
   product_Put:
     description: The model for a PUT to update a product.
