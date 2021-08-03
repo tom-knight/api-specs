@@ -940,7 +940,7 @@ definitions:
             id:
               type: number
               description: 'ID of the applied discount. '
-              example: coupon
+              example: 10
             discounted_amount:
               type: number
               description: The discounted amount.
@@ -1004,7 +1004,7 @@ definitions:
                             id:
                               type: number
                               description: ID of the applied discount. Will return
-                              example: coupon
+                              example: 10
                             discounted_amount:
                               type: number
                               description: The discounted amount.
@@ -1019,7 +1019,7 @@ definitions:
                               description: Required in a /POST request.
                               properties:
                                 coupon_code:
-                                  type: object
+                                  type: string
                                   example: KV56053388J
                                   description: The coupon code
                                   properties:
@@ -1176,7 +1176,7 @@ definitions:
                             id:
                               type: number
                               description: ID of the applied discount. Will return
-                              example: coupon
+                              example: 10
                             discounted_amount:
                               type: number
                               description: The discounted amount.
@@ -1191,7 +1191,7 @@ definitions:
                               description: Required in a /POST request.
                               properties:
                                 coupon_code:
-                                  type: object
+                                  type: string
                                   example: KV56053388J
                                   description: The coupon code
                                   properties:
@@ -1467,8 +1467,8 @@ definitions:
                         description: Required in a /POST request.
                         properties:
                           coupon_code:
-                            type: object
-                            example: KV56053388J
+                            type: string
+                            example: 'KV56053388J'
                             description: The coupon code
                             properties:
                               id:
@@ -1642,8 +1642,8 @@ definitions:
                         description: Required in a /POST request.
                         properties:
                           coupon_code:
-                            type: object
-                            example: KV56053388J
+                            type: string
+                            example: 'KV56053388J'
                             description: The coupon code
                             properties:
                               id:
@@ -1936,8 +1936,8 @@ definitions:
                   description: Required in a /POST request.
                   properties:
                     coupon_code:
-                      type: object
-                      example: KV56053388J
+                      type: string
+                      example: 'KV56053388J'
                       description: The coupon code
                       properties:
                         id:
@@ -2110,8 +2110,8 @@ definitions:
                   description: Required in a /POST request.
                   properties:
                     coupon_code:
-                      type: object
-                      example: KV56053388J
+                      type: string
+                      example: 'KV56053388J'
                       description: The coupon code
                       properties:
                         id:
@@ -2282,8 +2282,8 @@ definitions:
               description: Required in a /POST request.
               properties:
                 coupon_code:
-                  type: object
-                  example: KV56053388J
+                  type: string
+                  example: 'KV56053388J'
                   description: The coupon code
                   properties:
                     id:
