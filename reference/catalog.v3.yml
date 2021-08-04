@@ -2392,8 +2392,7 @@ paths:
               data:
                 type: array
                 items:
-                  allOf:
-                    - $ref: '#/definitions/productVariant_Full'
+                  - $ref: '#/definitions/productVariant_Full'
               meta:
                 $ref: '#/definitions/metaCollection_Full'
           examples:
@@ -20364,7 +20363,9 @@ definitions:
       - type: object
         properties:
           variants:
-            $ref: '#/definitions/productVariant_Put_Product'
+            type: array
+            items:
+              $ref: '#/definitions/productVariant_Put_Product'
     title: product_Put
   catalogSummary_Full:
     type: object
