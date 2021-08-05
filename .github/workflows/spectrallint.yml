@@ -1,0 +1,15 @@
+name: spectral-lint
+on: [pull_request]
+jobs:
+  remark:
+    name: runner / spectral-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: spectral-lint
+        uses: markcmurphy/action-yamllint@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          level: warning
+          filter_mode: added
