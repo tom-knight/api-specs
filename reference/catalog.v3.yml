@@ -2392,7 +2392,8 @@ paths:
               data:
                 type: array
                 items:
-                  - $ref: '#/definitions/productVariant_Full'
+                  allOf:
+                    - $ref: '#/definitions/productVariant_Full'
               meta:
                 $ref: '#/definitions/metaCollection_Full'
           examples:
