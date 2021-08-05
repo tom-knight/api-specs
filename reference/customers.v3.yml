@@ -526,7 +526,7 @@ paths:
               type: integer
       responses:
         '200':
-          $ref: '#/components/responses/AddressCollectionResponse'
+          $ref: '#/components/responses/AddressCollectionResp'
       tags:
         - Customer Addresses
     post:
@@ -3000,7 +3000,7 @@ components:
           type: integer
           format: int32
         value:
-          description: 'Attribute value. This will always be a string, regardless of the attribute''s type.'
+          description: "Attribute value. This will always be a string, regardless of the attribute's type."
           type: string
           minLength: 0
           maxLength: 255
@@ -3552,7 +3552,7 @@ components:
           example: string
           minLength: 0
           maxLength: 255
-          description: 'Attribute value. This will always be a string, regardless of the attribute''s type.'
+          description: "Attribute value. This will always be a string, regardless of the attribute's type."
     customerChannelIds:
       type: array
       title: customerChannelIds
