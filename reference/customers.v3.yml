@@ -526,7 +526,7 @@ paths:
               type: integer
       responses:
         '200':
-          $ref: '#/components/responses/AddressCollectionResp'
+          $ref: '#/components/responses/AddressCollectionResponse'
       tags:
         - Customer Addresses
     post:
@@ -562,7 +562,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/address_Post'
+                $ref: '#/components/schemas/address_Postal'
         required: true
         x-examples:
           application/json:
