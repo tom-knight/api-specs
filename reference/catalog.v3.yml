@@ -20375,7 +20375,7 @@ definitions:
           variants:
             type: array
             items:
-            $ref: '#/definitions/productVariant_Put_Product'
+              - $ref: '#/definitions/productVariant_Put_Product'
     title: product_Put
   catalogSummary_Full:
     type: object
