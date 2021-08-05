@@ -129,7 +129,7 @@ paths:
       description: Upserts new redirect data across all storefronts.
       responses:
         '201':
-          $ref: ''
+          description: ''
           schema:
             type: object
             properties:

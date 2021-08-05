@@ -648,7 +648,7 @@ components:
             tax_inclusive:
               type: boolean
               description: 'Note: **Tax Inclusive** and **Tax Exclusive** prices cannot be added together.'
-              default: 'false'
+              default: false
           required:
             - amount
             - tax_inclusive
@@ -660,7 +660,7 @@ components:
         tax_exempt:
           type: boolean
           description: Flag whether or not this item is always tax exempt. For example, gift certificate purchases and order-level refunds are tax exempt. Tax exempt items are included in the request for auditing purposes.
-          default: 'false'
+          default: false
         type:
           type: string
           description: |-

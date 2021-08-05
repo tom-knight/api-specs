@@ -37,13 +37,17 @@ paths:
         </div>
       parameters:
         - name: filter
-          in: query
           schema:
             type: string
             enum:
               - customerAccount
               - shippingAddress
               - billingAddress
+          required: true
+        - type: string
+          in: query
+          name: filter
+          required: true
       responses:
         '200':
           description: Returns an object with form fields groups.

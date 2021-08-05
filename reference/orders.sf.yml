@@ -7,7 +7,7 @@ info:
 host: '{$$.env.store_domain}'
 basePath: /api/storefront
 tags:
-  - Order
+  - Orders
 schemes:
   - https
 consumes:
@@ -32,7 +32,7 @@ paths:
         </div>
       summary: Get Order
       tags:
-        - Order
+        - Orders
       operationId: OrdersByOrderIdGet
       produces:
         - application/json
