@@ -2393,8 +2393,7 @@ paths:
               data:
                 type: array
                 items:
-                  allOf:
-                    - $ref: '#/definitions/productVariant_Full'
+                  $ref: '#/definitions/productVariant_Full'
               meta:
                 $ref: '#/definitions/metaCollection_Full'
           examples:
@@ -2542,11 +2541,7 @@ paths:
           in: body
           required: true
           schema:
-            description: |
-              The model for a POST to create variants on a product.
-            allOf:
-              - $ref: '#/definitions/productVariant_Post'
-            title: Variant Post
+            $ref: '#/definitions/productVariant_Post'
           x-examples:
             application/json:
               cost_price: 3
@@ -2565,6 +2560,7 @@ paths:
               option_values:
                 - id: 255
                   option_id: 270
+          description: ''  
       responses:
         '200':
           description: ''
@@ -2573,8 +2569,7 @@ paths:
             title: Variant Response
             properties:
               data:
-                allOf:
-                  - $ref: '#/definitions/productVariant_Full'
+                $ref: '#/definitions/productVariant_Full'
               meta:
                 type: object
                 description: Empty meta object; may be used later.
@@ -3982,7 +3977,10 @@ paths:
                           (file) The type of files allowed to be uploaded if the `file_type_option` is set to `specific`. Values:
                             `images` - Allows upload of image MIME types (`bmp`, `gif`, `jpg`, `jpeg`, `jpe`, `jif`, `jfif`, `jfi`, `png`, `wbmp`, `xbm`, `tiff`). `documents` - Allows upload of document MIME types (`txt`, `pdf`, `rtf`, `doc`, `docx`, `xls`, `xlsx`, `accdb`, `mdb`, `one`, `pps`, `ppsx`, `ppt`, `pptx`, `pub`, `odt`, `ods`, `odp`, `odg`, `odf`).
                             `other` - Allows file types defined in the `file_types_other` array.
-                        example: 'images, documents, other'
+                        example: 
+                          - images
+                          - documents
+                          - other
                         items:
                           type: string
                       file_types_other:
@@ -4500,7 +4498,10 @@ paths:
                           (file) The type of files allowed to be uploaded if the `file_type_option` is set to `specific`. Values:
                             `images` - Allows upload of image MIME types (`bmp`, `gif`, `jpg`, `jpeg`, `jpe`, `jif`, `jfif`, `jfi`, `png`, `wbmp`, `xbm`, `tiff`). `documents` - Allows upload of document MIME types (`txt`, `pdf`, `rtf`, `doc`, `docx`, `xls`, `xlsx`, `accdb`, `mdb`, `one`, `pps`, `ppsx`, `ppt`, `pptx`, `pub`, `odt`, `ods`, `odp`, `odg`, `odf`).
                             `other` - Allows file types defined in the `file_types_other` array.
-                        example: 'images, documents, other'
+                        example: 
+                          - images
+                          - documents
+                          - other
                         items:
                           type: string
                       file_types_other:
@@ -4785,7 +4786,10 @@ paths:
                               (file) The type of files allowed to be uploaded if the `file_type_option` is set to `specific`. Values:
                                 `images` - Allows upload of image MIME types (`bmp`, `gif`, `jpg`, `jpeg`, `jpe`, `jif`, `jfif`, `jfi`, `png`, `wbmp`, `xbm`, `tiff`). `documents` - Allows upload of document MIME types (`txt`, `pdf`, `rtf`, `doc`, `docx`, `xls`, `xlsx`, `accdb`, `mdb`, `one`, `pps`, `ppsx`, `ppt`, `pptx`, `pub`, `odt`, `ods`, `odp`, `odg`, `odf`).
                                 `other` - Allows file types defined in the `file_types_other` array.
-                            example: 'images, documents, other'
+                            example: 
+                              - images
+                              - documents
+                              - other
                             items:
                               type: string
                           file_types_other:
@@ -5885,7 +5889,10 @@ paths:
                           (file) The type of files allowed to be uploaded if the `file_type_option` is set to `specific`. Values:
                             `images` - Allows upload of image MIME types (`bmp`, `gif`, `jpg`, `jpeg`, `jpe`, `jif`, `jfif`, `jfi`, `png`, `wbmp`, `xbm`, `tiff`). `documents` - Allows upload of document MIME types (`txt`, `pdf`, `rtf`, `doc`, `docx`, `xls`, `xlsx`, `accdb`, `mdb`, `one`, `pps`, `ppsx`, `ppt`, `pptx`, `pub`, `odt`, `ods`, `odp`, `odg`, `odf`).
                             `other` - Allows file types defined in the `file_types_other` array.
-                        example: 'images, documents, other'
+                        example: 
+                          - images
+                          - documents
+                          - other
                         items:
                           type: string
                       file_types_other:
@@ -13220,7 +13227,6 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: ''
                   image_url: 'https://cdn8.bigcommerce.com/s-jrah6gmn/product_images/q/apihqggzm__53766.jpg'
                   search_keywords: ''
                   custom_url:
@@ -13231,7 +13237,6 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13242,7 +13247,6 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13253,7 +13257,6 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13264,7 +13267,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: description
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13275,7 +13278,6 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13286,7 +13288,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: description
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13297,7 +13299,6 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13308,7 +13309,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: description
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13319,7 +13320,6 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -13330,7 +13330,7 @@ paths:
                   page_title: ''
                   meta_keywords:
                     - ''
-                  meta_description: {}
+                  meta_description: description
                   image_url: ''
                   search_keywords: ''
                   custom_url:
@@ -19596,7 +19596,7 @@ definitions:
   productVariant_Post_Product:
     description: |
       The model for a POST to create variants on a product.
-    type: array
+    type: object
     items:
     allOf:
       - $ref: '#/definitions/productVariant_Base'
@@ -21199,10 +21199,10 @@ definitions:
           option_set_display:
             type: string
             description: Legacy template setting which controls if the option set shows up to the side of or below the product image and description.
-      - properties:
           variants:
-            $ref: '#/definitions/productVariant_Full'
-        type: object
+            type: array
+            items:
+              $ref: '#/definitions/productVariant_Full'
     title: product_Full
   productImage_Full:
     title: productImage_Full
