@@ -5626,6 +5626,11 @@ paths:
                   colors:
                     - '#123c91, #FFFF00, #397a44'
                 is_default: false
+        '404':
+          description: No option(s) were found with this query.
+          schema:
+            type: "https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes"
+            properties: {}
         '422':
           description: |
             The `OptionValue` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
@@ -22003,22 +22008,23 @@ definitions:
     type: object
   productSortOrder:
     title: productSortOrder
-    type: object
+    type: array
     description: The relative priority of the product among other products inside the category.
-    properties:
-      product_id:
-        type: integer
-        example: 99
-        minimum: 1
-        description: The ID of the associated product.
-      sort_order:
-        type: integer
-        example: 4
-        minimum: 0
-        x-nullable: true
-    required:
-      - product_id
-      - sort_order
+    items:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          description: The ID of the associated product.
+          example: 99
+          minimum: 1
+        sort_order:
+          type: integer
+          example: 4
+          minimum: 0
+      required:
+        - product_id
+        - sort_order
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
