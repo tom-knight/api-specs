@@ -562,7 +562,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/address_Postal'
+                $ref: '#/components/schemas/address_Post'
         required: true
         x-examples:
           application/json:
