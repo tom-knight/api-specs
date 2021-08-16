@@ -69,10 +69,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/blogTags'
               example:
-                - tag: Blog
+                - "tag": "Blog"
                   post_ids:
                     - 1
-                - tag: cupcakes
+                - "tag": "cupcakes"
                   post_ids:
                     - 2
   /blog/posts:
@@ -188,7 +188,7 @@ paths:
                   is_published: true
                   published_date:
                     date: 2018-05-18T08:26:42.000Z
-                    timezone_type: 1
+                    timezone_type: '1'
                     timezone: '+00:00'
                   published_date_iso8601: 2018-05-18T13:26:42+0000
                   meta_description: Cupcakes post 2
@@ -374,7 +374,7 @@ paths:
                 is_published: true
                 published_date:
                   date: 2018-05-18T08:26:42.000Z
-                  timezone_type: 1
+                  timezone_type: '1'
                   timezone: '+00:00'
                 published_date_iso8601: 2018-05-18T13:26:42.000Z
                 meta_description: Welcome Post
@@ -473,7 +473,7 @@ paths:
                 is_published: true
                 published_date:
                   date: 2018-05-18T08:26:42.000Z
-                  timezone_type: 1
+                  timezone_type: '1'
                   timezone: '+00:00'
                 published_date_iso8601: 2018-05-18T13:26:42.000Z
                 meta_description: Welcome Post
@@ -555,7 +555,7 @@ paths:
                 is_published: true
                 published_date:
                   date: 2018-05-18T08:26:42.000Z
-                  timezone_type: 1
+                  timezone_type: '1'
                   timezone: '+00:00'
                 published_date_iso8601: 2018-05-18T13:26:42.000Z
                 meta_description: Welcome Post
@@ -1035,7 +1035,7 @@ paths:
                   path: /smith-journal-13/
                   forward:
                     type: product
-                    ref: '111'
+                    ref: 111
                   url: >-
                     http://store-url.mybigcommerce.com/towels/bath-towels/hand-towels/
             Response Schema:
@@ -1323,7 +1323,7 @@ paths:
                 path: /smith-journal-13/
                 forward:
                   type: product
-                  ref: 111
+                  ref: '111'
                 url: >-
                   http://store-url.mybigcommerce.com/towels/bath-towels/hand-towels/
         required: true
@@ -1649,7 +1649,11 @@ components:
           description: >-
             Is an array of category IDs and should be supplied only if `type` is
             specific.
-          example: 18,19,23,34
+          example: 
+            - 18
+            - 19
+            - 23
+            - 34
           items:
             type: string
     timeZone:
