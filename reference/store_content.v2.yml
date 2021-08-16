@@ -69,10 +69,10 @@ paths:
                 items:
                   $ref: '#/components/schemas/blogTags'
               example:
-                - "tag": "Blog"
+                - tag: Blog
                   post_ids:
                     - 1
-                - "tag": "cupcakes"
+                - tag: cupcakes
                   post_ids:
                     - 2
   /blog/posts:
@@ -188,7 +188,7 @@ paths:
                   is_published: true
                   published_date:
                     date: 2018-05-18T08:26:42.000Z
-                    timezone_type: '1'
+                    timezone_type: 1
                     timezone: '+00:00'
                   published_date_iso8601: 2018-05-18T13:26:42+0000
                   meta_description: Cupcakes post 2
@@ -374,7 +374,7 @@ paths:
                 is_published: true
                 published_date:
                   date: 2018-05-18T08:26:42.000Z
-                  timezone_type: '1'
+                  timezone_type: 1
                   timezone: '+00:00'
                 published_date_iso8601: 2018-05-18T13:26:42.000Z
                 meta_description: Welcome Post
@@ -473,7 +473,7 @@ paths:
                 is_published: true
                 published_date:
                   date: 2018-05-18T08:26:42.000Z
-                  timezone_type: '1'
+                  timezone_type: 1
                   timezone: '+00:00'
                 published_date_iso8601: 2018-05-18T13:26:42.000Z
                 meta_description: Welcome Post
@@ -555,7 +555,7 @@ paths:
                 is_published: true
                 published_date:
                   date: 2018-05-18T08:26:42.000Z
-                  timezone_type: '1'
+                  timezone_type: 1
                   timezone: '+00:00'
                 published_date_iso8601: 2018-05-18T13:26:42.000Z
                 meta_description: Welcome Post
@@ -1035,7 +1035,7 @@ paths:
                   path: /smith-journal-13/
                   forward:
                     type: product
-                    ref: 111
+                    ref: '111'
                   url: >-
                     http://store-url.mybigcommerce.com/towels/bath-towels/hand-towels/
             Response Schema:
@@ -1323,7 +1323,7 @@ paths:
                 path: /smith-journal-13/
                 forward:
                   type: product
-                  ref: '111'
+                  ref: 111
                 url: >-
                   http://store-url.mybigcommerce.com/towels/bath-towels/hand-towels/
         required: true
@@ -1523,169 +1523,6 @@ components:
             or product number. Manual redirects will have the url that is being
             directed to.
           example: 111
-    customer_Full:
-      title: customer_Full
-      required:
-        - email
-        - first_name
-        - last_name
-      type: object
-      properties:
-        id:
-          type: integer
-          description: >-
-            Unique numeric ID of this customer. This is a READ-ONLY field; do
-            not set or modify its value in a POST or PUT request.
-          example: 1
-        _authentication:
-          type: object
-          properties:
-            force_reset:
-              type: string
-            password:
-              type: string
-            password_confirmation:
-              type: string
-          description: >-
-            Not returned in any responses, but accepts up to two fields allowing
-            you to set the customer’s password. If a password is not supplied,
-            it is generated automatically. For further information about using
-            this object, please see the Customers resource documentation.
-        company:
-          type: string
-          description: The name of the company for which the customer works.
-          example: BigCommerce
-        first_name:
-          type: string
-          description: First name of the customer.
-          example: Jane
-        last_name:
-          type: string
-          description: Last name of the customer.
-          example: Doe
-        email:
-          type: string
-          description: Email address of the customer.
-          example: janedoe@example.com
-        phone:
-          type: string
-          description: Phone number of the customer.
-          example: '1234567890'
-        date_created:
-          type: string
-          description: >-
-            Date on which the customer registered from the storefront or was
-            created in the control panel. This is a READ-ONLY field; do not set
-            or modify its value in a POST or PUT request.
-          format: date-time
-        date_modified:
-          type: string
-          description: >
-            Date on which the customer updated their details in the storefront
-            or was updated in the control panel. This is a READ-ONLY field; do
-            not set or modify its value in a POST or PUT request.
-          format: date-time
-        store_credit:
-          type: string
-          description: >-
-            The amount of credit the customer has. (Float, Float as String,
-            Integer)
-          example: '0'
-        registration_ip_address:
-          type: string
-          description: The customer’s IP address when they signed up.
-          example: 12.345.678.910
-        customer_group_id:
-          type: integer
-          description: The group to which the customer belongs.
-          example: 2
-        notes:
-          type: string
-          description: Store-owner notes on the customer.
-        tax_exempt_category:
-          type: string
-          description: >-
-            If applicable, the tax-exempt category of the shopper's customer
-            account. You can apply a tax-exempt category to multiple customers.
-            This code should match the exemption codes provided by the
-            third-party integration.
-        accepts_marketing:
-          type: boolean
-          description: >
-            Records whether the customer would like to receive marketing content
-            from this store. READ-ONLY.This is a READ-ONLY field; do not set or
-            modify its value in a POST or PUT request.
-          example: true
-        addresses:
-          $ref: '#/components/schemas/addresses'
-        form_fields:
-          type: array
-          description: >-
-            Array of custom fields. This is a READ-ONLY field; do not set or
-            modify its value in a POST or PUT request.
-          items:
-            $ref: '#/components/schemas/formField'
-        reset_pass_on_login:
-          type: boolean
-          description: Force a password change on next login.
-          example: false
-    categoryAccessLevel:
-      title: categoryAccessLevel
-      type: object
-      properties:
-        type:
-          type: string
-          description: >-
-            + `all` - Customers can access all categories
-             + `specific`  - Customers can access a specific list of categories
-            + `none` - Customers are prevented from viewing any of the
-            categories in this group.
-          enum:
-            - all
-            - specific
-            - none
-        categories:
-          type: array
-          description: >-
-            Is an array of category IDs and should be supplied only if `type` is
-            specific.
-          example: 
-            - 18
-            - 19
-            - 23
-            - 34
-          items:
-            type: string
-    timeZone:
-      title: timeZone
-      type: object
-      properties:
-        name:
-          type: string
-          description: >-
-            a string identifying the time zone, in the format:
-            <Continent-name>/<City-name>.
-          example: America/Chicago
-        raw_offset:
-          type: integer
-          description: >-
-            a negative or positive number, identifying the offset from UTC/GMT,
-            in seconds, during winter/standard time.
-          example: -21600
-        dst_offset:
-          type: integer
-          description: >-
-            "-/+" offset from UTC/GMT, in seconds, during summer/daylight saving
-            time.
-          example: -18000
-        dst_correction:
-          type: boolean
-          description: >-
-            a boolean indicating whether this time zone observes daylight saving
-            time.
-          example: true
-        date_format:
-          $ref: '#/components/schemas/dateFormat'
     count_Response:
       title: count_Response
       type: object
@@ -1696,26 +1533,6 @@ components:
           example: 27
       example:
         count: 27
-    dateFormat:
-      title: dateFormat
-      type: object
-      properties:
-        display:
-          type: string
-          description: 'string that defines dates’ display format, in the pattern: M jS Y'
-          example: M jS Y
-        export:
-          type: string
-          description: >-
-            string that defines the CSV export format for orders, customers, and
-            products, in the pattern: M jS Y
-          example: M jS Y
-        extended_display:
-          type: string
-          description: >-
-            string that defines dates’ extended-display format, in the pattern:
-            M jS Y @ g:i A.
-          example: M jS Y @ g:i A
     blogTags:
       title: blogTags
       type: array
@@ -1808,23 +1625,6 @@ components:
           type: string
           format: time
           example: '+00:00'
-    authentication:
-      type: object
-      properties:
-        force_reset:
-          type: string
-        password:
-          type: string
-        password_confirmation:
-          type: string
-      description: >-
-        Not returned in any responses, but accepts up to two fields allowing you
-        to set the customer’s password. If a password is not supplied, it is
-        generated automatically. For further information about using this
-        object, please see the Customers resource documentation.
-    customer_Base:
-      title: customer_Base
-      type: object
     page_Base:
       title: page_Base
       required:
