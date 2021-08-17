@@ -122,6 +122,9 @@ components:
           nullable: true
         consents:
           type: array
+          items:
+            type: string
+            enum: ['marketing_newsletter', 'abandoned_cart']
           description: |
             The collection of consents the shopper is subscribing to.
       description: Subscription properties.
