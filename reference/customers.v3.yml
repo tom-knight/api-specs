@@ -554,6 +554,21 @@ paths:
               type: array
               items:
                 $ref: '#/components/schemas/address_Post'
+            examples:
+              example-1:
+                value:
+                  - first_name: string
+                    last_name: string
+                    company: string
+                    address1: string
+                    address2: string
+                    city: string
+                    state_or_province: New South Wales
+                    postal_code: string
+                    country_code: AU
+                    phone: string
+                    address_type: residential
+                    customer_id: 1
         required: true
         x-examples:
           application/json:
