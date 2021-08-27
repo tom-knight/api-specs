@@ -821,7 +821,7 @@ paths:
                   value:
                     privacy_settings:
                       ask_shopper_for_tracking_consent: true
-                      policy_url: 'https://bigcommmerce.com/policy'
+                      policy_url: 'https://bigcommerce.com/policy'
                     customer_group_settings:
                       guest_customer_group_id: 1
                       default_customer_group_id: 1
@@ -858,10 +858,11 @@ paths:
                   value:
                     privacy_settings:
                       ask_shopper_for_tracking_consent: true
-                      policy_url: 'https://bigcommmerce.com/policy'
+                      policy_url: 'https://bigcommerce.com/policy'
+                      ask_shopper_for_tracking_consent_on_checkout: false
                     customer_group_settings:
-                      guest_customer_group_id: 1
-                      default_customer_group_id: 1
+                      guest_customer_group_id: 0
+                      default_customer_group_id: 0
   '/customers/settings/channels/{channel_id}':
     get:
       tags:
@@ -922,6 +923,16 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerChannelSettingsObject'
+            examples:
+              example-1:
+                value:
+                  privacy_settings:
+                    ask_shopper_for_tracking_consent: true
+                    policy_url: 'https://bigcommerce.com/policy'
+                  customer_group_settings:
+                    guest_customer_group_id: 0
+                    default_customer_group_id: 0
+                  allow_global_logins: true
         required: true
         description: ''
       responses:
@@ -937,10 +948,19 @@ paths:
                     privacy_settings:
                       ask_shopper_for_tracking_consent: true
                       policy_url: 'https://bigcommmerce.com/policy'
+                      ask_shopper_for_tracking_consent_on_checkout: null
                     customer_group_settings:
-                      guest_customer_group_id: 1
-                      default_customer_group_id: 1
+                      guest_customer_group_id: 0
+                      default_customer_group_id: 0
                     allow_global_logins: true
+                example-2:
+                  value:
+                    privacy_settings:
+                      ask_shopper_for_tracking_consent: true
+                      policy_url: 'https://bigcommerce.com/policy'
+                    customer_group_settings:
+                      guest_customer_group_id: 0
+                      default_customer_group_id: 0
     parameters:
       - schema:
           type: integer
@@ -3688,7 +3708,7 @@ components:
               description: Determines if a customer requires consent for tracking privacy.
             policy_url:
               type: string
-              example: 'https://bigcommmerce.com/policy'
+              example: 'https://bigcommerce.com/policy'
               description: The URL for a website's privacy policy
         customer_group_settings:
           type: object
@@ -3702,6 +3722,15 @@ components:
               type: integer
               example: 0
               description: The ID for a default customer group
+      x-examples:
+        example-1:
+          value:
+            privacy_settings:
+              ask_shopper_for_tracking_consent: true
+              policy_url: 'https://bigcommmerce.com/policy'
+            customer_group_settings:
+              guest_customer_group_id: 0
+              default_customer_group_id: 0
     CustomerChannelSettingsObject:
       title: CustomerChannelSettingsObject
       type: object
