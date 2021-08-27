@@ -3708,7 +3708,7 @@ components:
               description: Determines if a customer requires consent for tracking privacy.
             policy_url:
               type: string
-              example: 'https://bigcommerce.com/policy'
+              example: 'https://bigcommerce.com/policy
               description: The URL for a website's privacy policy
         customer_group_settings:
           type: object
