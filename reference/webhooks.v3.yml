@@ -115,7 +115,7 @@ security:
 x-stoplight:
   docs:
     includeDownloadLink: true
-    showModels: false
+    showModels: true
 servers:
   - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
     variables:
@@ -385,6 +385,7 @@ components:
           type: string
         type:
           type: string
+      x-internal: true
     errorDetailed_Full:
       type: object
       title: errorDetailed_Full
@@ -394,6 +395,7 @@ components:
           additionalProperties:
             type: string
           title: DetailedErrors
+      x-internal: true
     webhook_Base:
       type: object
       title: webhook_Base
@@ -405,7 +407,7 @@ components:
         destination:
           type: string
           example: 'https://665b65a6.ngrok.io/webhooks`'
-          description: URL must be active, return a 200 response, and be served on port 443 (custom ports not currently supported).
+          description: 'URL must be active, return a 200 response, and be served on port 443 (custom ports not currently supported).'
         is_active:
           type: boolean
           example: true
@@ -421,6 +423,7 @@ components:
         - destination
         - is_active
         - headers
+      x-internal: true
     webhook_Full:
       allOf:
         - type: object
@@ -447,6 +450,7 @@ components:
               description: Updated time
         - $ref: '#/components/schemas/webhook_Base'
       title: webhook_Full
+      x-internal: true
     Pagination:
       type: object
       description: |
@@ -461,3 +465,88 @@ components:
         total_items:
           type: integer
           description: Total number of items.
+      x-internal: true
+    store_cart_created:
+      description: |-
+        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+
+        ### example callback:
+
+        ```json
+        {
+          "created_at": 1561482670,
+          "store_id": "1025646",
+          "producer": "stores/{store_hash}",
+          "scope": "store/cart/created",
+          "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
+          "data": {
+            "type": "cart",
+            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+          }
+        }
+        ```
+
+        ### callback schema:
+      x-examples:
+        example-1:
+          $ref: '#/components/examples/store-cart-created'
+      title: store/cart/created
+      allOf:
+        - $ref: '#/components/schemas/webhook_callback_base'
+        - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
+          properties:
+            data:
+              type: object
+              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
+              properties:
+                type:
+                  type: string
+                  description: can be `cart` or `cart_line_item`
+                id:
+                  type: string
+                  description: ID of the cart
+      x-tags:
+        - created
+      type: object
+    webhook_callback_base:
+      description: ''
+      x-examples:
+        example-1:
+          created_at: 1561482670
+          store_id: '1025646'
+          producer: 'stores/{store_hash}'
+          scope: store/cart/created
+          hash: 352e4afc6dd3fc85ea26bfdf3f91852604d57528
+      title: ''
+      allOf:
+        - properties:
+            created_at:
+              type: integer
+              example: 1561482670
+              description: Hook creation date as a Unix timestamp.
+              readOnly: true
+            store_id:
+              type: string
+              minLength: 1
+              example: '1025646'
+              description: A numerical identifier that is unique to each store.
+            producer:
+              type: string
+              minLength: 1
+              example: 'stores/{store_hash}'
+              description: Will always follow the pattern `stores/store_hash`. This is the store that created the webhook.
+            scope:
+              type: string
+              minLength: 1
+              example: store/cart/created
+              description: 'The [event](/api-docs/getting-started/webhooks/webhook-events) registered when the webhook was created.'
+            hash:
+              type: string
+              minLength: 1
+              example: 352e4afc6dd3fc85ea26bfdf3f91852604d57528
+              description: The payload data JSON encoded then passed through SH1 encryption.
+      type: object
+  examples:
+    store-cart-created:
+      value:
+        description: Example shared example
