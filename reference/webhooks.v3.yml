@@ -182,20 +182,16 @@ components:
               $ref: '#/components/schemas/webhook_Full'
           examples:
             v2:
-              value: 
-                [
-                  {
-                    "id": 18048287,
-                    "client_id": "m9r6keqmo7h7f23btnp3anbez1kglkl",
-                    "store_hash": "anbez1k",
-                    "scope": "store/order/*",
-                    "destination": "https://665b65a6.ngrok.io/webhooks",
-                    "headers": {},
-                    "is_active": true,
-                    "created_at": 1561488106,
-                    "updated_at": 1561488106
-                  }
-                ]
+              value:
+                - id: 18048287
+                  client_id: m9r6keqmo7h7f23btnp3anbez1kglkl
+                  store_hash: anbez1k
+                  scope: store/order/*
+                  destination: 'https://665b65a6.ngrok.io/webhooks'
+                  headers: {}
+                  is_active: true
+                  created_at: 1561488106
+                  updated_at: 1561488106
     502_GatewayError:
       description: 'If something happens during the request that causes it to fail, a 502 response will be returned. A new request should be made; however, it could fail.'
       content:
@@ -373,7 +369,7 @@ components:
   schemas:
     store_cart_*:
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all cart events. This will also subscribe you to cart/lineItem.
 
         ### example callback:
 
@@ -395,7 +391,7 @@ components:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
-      title: store/cart/created
+      title: store/cart/*
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -458,7 +454,7 @@ components:
     store_cart_updated:
       title: store/cart/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        This webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or when an existing item is deleted. The payload will include the ID of the cart being updated. <br> This webhook also fires along with the cart created hook, because the first product being added to an empty cart triggers an update. It will also fire for the following events: <br> - Logging into customer account after creating a cart (email is inherited from customer account email) <br>- Entering email address via guest checkout <br> -Changing the email in guest checkout
 
         ### example callback:
 
@@ -500,7 +496,7 @@ components:
     store_cart_deleted:
       title: store/cart/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        This webhook will fire whenever a cart is deleted. This will occur either when all items have been removed from a cart and it is auto-deleted, or when the cart is explicitly removed via a `DELETE` request by an API consumer. This ends the lifecycle of the cart. The  `store/cart/updated`  webhook will also fire when the last item is removed.
 
         ### example callback:
 
@@ -542,7 +538,7 @@ components:
     store_cart_couponApplied:
       title: store/cart/couponApplied
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        This webhook will fire whenever a new coupon code is applied to a cart. It will include the ID of the coupon code.
 
         ### example callback:
 
@@ -584,7 +580,7 @@ components:
     store_cart_abandoned:
       title: store/cart/abandoned
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        This webhook will fire once after a cart is abandoned. A cart is considered abandoned if no changes have been made for at least one hour after the last modified property. This hook is available for all store plans, regardless of whether the Abandoned Cart Saver feature is enabled.
 
         ### example callback:
 
@@ -626,7 +622,7 @@ components:
     store_cart_converted:
       title: store/cart/converted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        This hook fires when a cart is converted into an order, which is typically after the payment step of checkout on the storefront. At this point, the cart is no longer accessible and has been deleted. This hook returns both the cart ID and order ID for correlation purposes.
 
         ### example callback:
 
@@ -668,7 +664,7 @@ components:
     store_cart_lineItem_*:
       title: store/cart/lineItem/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all cart line item events. This webhook will fire when a change occurs to line items in the cart. This can be when items are added to a cart, removed or updated.(Ex. change to quantity, product options or price).
 
         ### example callback:
 
@@ -710,7 +706,7 @@ components:
     store_cart_lineItem_created:
       title: store/cart/lineItem/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        When a new item is added to the cart
 
         ### example callback:
 
@@ -752,7 +748,7 @@ components:
     store_cart_lineItem_updated:
       title: store/cart/lineItem/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        When an item’s quantity has changed or the product options change.
 
         ### example callback:
 
@@ -794,7 +790,7 @@ components:
     store_cart_lineItem_deleted:
       title: store/cart/lineItem/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        When an item is deleted from the cart
 
         ### example callback:
 
@@ -836,7 +832,7 @@ components:
     store_category_*:
       title: store/category/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all store/category events
 
         ### example callback:
 
@@ -878,7 +874,7 @@ components:
     store_category_created:
       title: store/category/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Category is created   
 
         ### example callback:
 
@@ -920,7 +916,7 @@ components:
     store_category_updated:
       title: store/category/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Category is updated
 
         ### example callback:
 
@@ -962,7 +958,7 @@ components:
     store_category_deleted:
       title: store/category/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Category is deleted
 
         ### example callback:
 
@@ -1004,7 +1000,7 @@ components:
     store_channel_*:
       title: store/channel/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all `store/channel` events. 
 
         ### example callback:
 
@@ -1046,7 +1042,7 @@ components:
     store_channel_created:
       title: store/channel/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Fires when a channel is created via control panel or API
 
         ### example callback:
 
@@ -1088,7 +1084,7 @@ components:
     store_channel_updated:
       title: store/channel/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Fires when a channel is updated via control panel or API
 
         ### example callback:
 
@@ -1130,7 +1126,7 @@ components:
     store_customer_*:
       title: store/customer/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all store/customer events
 
         ### example callback:
 
@@ -1172,7 +1168,7 @@ components:
     store_customer_created:
       title: store/customer/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        A new customer is created
 
         ### example callback:
 
@@ -1214,7 +1210,7 @@ components:
     store_customer_updated:
       title: store/customer/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Customer is updated. Does not currently track changes to the customer address.
 
         ### example callback:
 
@@ -1256,7 +1252,7 @@ components:
     store_customer_deleted:
       title: store/customer/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Customer is deleted
 
         ### example callback:
 
@@ -1298,7 +1294,7 @@ components:
     store_customer_address_created:
       title: store/customer/address/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Customer address is created
 
         ### example callback:
 
@@ -1340,7 +1336,7 @@ components:
     store_customer_address_updated:
       title: store/customer/address/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Customer address is updated
 
         ### example callback:
 
@@ -1382,7 +1378,7 @@ components:
     store_customer_address_deleted:
       title: store/customer/address/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Customer address is deleted
 
         ### example callback:
 
@@ -1424,7 +1420,7 @@ components:
     store_customer_payment_instrument_default_updated:
       title: store/customer/payment/instrument/default/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Customer default payment instrument is updated
 
         ### example callback:
 
@@ -1466,7 +1462,7 @@ components:
     store_order_*:
       title: store/order/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all store/order events
 
         ### example callback:
 
@@ -1508,7 +1504,7 @@ components:
     store_order_created:
       title: store/order/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Fires if an order is created using the control panel, an app or via the API.
 
         ### example callback:
 
@@ -1550,7 +1546,7 @@ components:
     store_order_updated:
       title: store/order/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Fires when an already created order is updated. Any changes to an existing order will fire this webhook.Updates can include changing the status, updating a coupon or changing an address.
 
         ### example callback:
 
@@ -1592,7 +1588,7 @@ components:
     store_order_archived:
       title: store/order/archived
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Order is archived
 
         ### example callback:
 
@@ -1634,7 +1630,7 @@ components:
     store_order_statusUpdated:
       title: store/order/statusUpdated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        This will only fire if the order status has changed. Such as Pending to Awaiting Payment
 
         ### example callback:
 
@@ -1676,7 +1672,7 @@ components:
     store_order_message_created:
       title: store/order/message/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Order message is created by customer or in control panel
 
         ### example callback:
 
@@ -1718,7 +1714,7 @@ components:
     store_order_refund_created:
       title: store/order/message/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        A refund has been submitted against an order
 
         ### example callback:
 
@@ -1760,7 +1756,7 @@ components:
     store_product_*:
       title: store/product/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all store/product events
 
         ### example callback:
 
@@ -1802,7 +1798,7 @@ components:
     store_product_deleted:
       title: store/product/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Product is deleted
 
         ### example callback:
 
@@ -1844,7 +1840,7 @@ components:
     store_product_created:
       title: store/product/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        A new product is created
 
         ### example callback:
 
@@ -1886,7 +1882,7 @@ components:
     store_product_updated:
       title: store/product/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Occurs when product details are edited.
 
         ### example callback:
 
@@ -1928,7 +1924,7 @@ components:
     store_product_inventory_updated:
       title: store/product/inventory/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Product inventory is updated.
 
         ### example callback:
 
@@ -1970,7 +1966,7 @@ components:
     store_product_inventory_order_updated:
       title: store/product/inventory/order/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Fires if a product’s inventory is decremented or incremented, including when an order is placed. Webhook responds to inventory updates made using the control panel, CSV import, API or an app.
 
         ### example callback:
 
@@ -2012,7 +2008,7 @@ components:
     store_shipment_*:
       title: store/shipment/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all store/shipment events
 
         ### example callback:
 
@@ -2054,7 +2050,7 @@ components:
     store_shipment_created:
       title: store/shipment/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Shipment is created
 
         ### example callback:
 
@@ -2096,7 +2092,7 @@ components:
     store_shipment_updated:
       title: store/shipment/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Shipment is updated
 
         ### example callback:
 
@@ -2138,7 +2134,7 @@ components:
     store_shipment_deleted:
       title: store/shipment/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Shipment is deleted
 
         ### example callback:
 
@@ -2180,7 +2176,7 @@ components:
     store_sku_*:
       title: store/sku/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all store/sku events
 
         ### example callback:
 
@@ -2222,7 +2218,7 @@ components:
     store_sku_created:
       title: store/sku/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        A new SKU is created
 
         ### example callback:
 
@@ -2264,7 +2260,7 @@ components:
     store_sku_updated:
       title: store/sku/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        SKU is updated
 
         ### example callback:
 
@@ -2306,7 +2302,7 @@ components:
     store_sku_deleted:
       title: store/sku/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        SKU is deleted
 
         ### example callback:
 
@@ -2348,7 +2344,7 @@ components:
     store_sku_inventory_updated:
       title: store/sku/inventory/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        SKU is updated
 
         ### example callback:
 
@@ -2390,7 +2386,7 @@ components:
     store_sku_inventory_order_updated:
       title: store/sku/inventory/order/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        This will fire when the inventory is updated via API, the control panel, when an order is placed and when an order is refunded and the inventory is returned to stock. This hook will fire based on a store's Inventory settings.
 
         ### example callback:
 
@@ -2432,7 +2428,7 @@ components:
     store_app_uninstalled:
       title: store/app/uninstalled
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Occurs when a client store is cancelled and uninstalled from the platform
 
         ### example callback:
 
@@ -2474,7 +2470,7 @@ components:
     store_information_updated:
       title: store/information/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Occurs when changes are made to store settings.
 
         ### example callback:
 
@@ -2516,7 +2512,7 @@ components:
     store_subscriber_*:
       title: store/subscriber/*
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscribe to all store/subscriber events
 
         ### example callback:
 
@@ -2558,7 +2554,7 @@ components:
     store_subscriber_created:
       title: store/subscriber/created
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscriber is created 
 
         ### example callback:
 
@@ -2600,7 +2596,7 @@ components:
     store_subscriber_updated:
       title: store/subscriber/updated
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscriber is updated 
 
         ### example callback:
 
@@ -2642,7 +2638,7 @@ components:
     store_subscriber_deleted:
       title: store/subscriber/deleted
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        Subscriber is deleted
 
         ### example callback:
 
@@ -2681,7 +2677,6 @@ components:
       x-tags:
         - created
       type: object
-    # ! end
     error_Full:
       type: object
       title: error_Full
