@@ -368,47 +368,9 @@ components:
         * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
   schemas:
     store_cart_*:
-      description: |-
-        Subscribe to all cart events. This will also subscribe you to cart/lineItem.
-
-        ### example callback:
-
-        ```json
-        {
-          "created_at": 1561482670,
-          "store_id": "1025646",
-          "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
-          "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
-          "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
-          }
-        }
-        ```
-
-        ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      description: |
+        Subscribe to all cart events. This will also subscribe you to cart/lineItem. See individual events for callbacks.
       title: store/cart/*
-      allOf:
-        - $ref: '#/components/schemas/webhook_callback_base'
-        - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-          properties:
-            data:
-              type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-              properties:
-                type:
-                  type: string
-                  description: can be `cart` or `cart_line_item`
-                id:
-                  type: string
-                  description: ID of the cart
-      x-tags:
-        - created
-      type: object
     store_cart_created:
       description: |-
         This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
@@ -440,7 +402,7 @@ components:
           properties:
             data:
               type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
+              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook.'
               properties:
                 type:
                   type: string
@@ -454,7 +416,7 @@ components:
     store_cart_updated:
       title: store/cart/updated
       description: |-
-        This webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or when an existing item is deleted. The payload will include the ID of the cart being updated. <br> This webhook also fires along with the cart created hook, because the first product being added to an empty cart triggers an update. It will also fire for the following events: <br> - Logging into customer account after creating a cart (email is inherited from customer account email) <br>- Entering email address via guest checkout <br> -Changing the email in guest checkout
+        This webhook is fired whenever a cart is modified through the changes in its line items. Eg. when a new item is added to a cart or an existing item’s quantity is updated. This hook also fires when the email is changed during guest checkout or when an existing item is deleted. The payload will include the ID of the cart being updated. <br><br>This webhook also fires along with the cart created hook, because the first product being added to an empty cart triggers an update. It will also fire for the following events: <ul><li>Logging into customer account after creating a cart (email is inherited from customer account email)</li><li>Entering email address via guest checkout</li><li>Changing the email in guest checkout</li></ul><br>Fields that trigger event:<ul><li>Quantity</li><li>Item Price</li></ul>
 
         ### example callback:
 
@@ -463,7 +425,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/cart/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
@@ -482,7 +444,7 @@ components:
           properties:
             data:
               type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
+              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook.'
               properties:
                 type:
                   type: string
@@ -505,7 +467,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/cart/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
@@ -524,7 +486,7 @@ components:
           properties:
             data:
               type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
+              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook.'
               properties:
                 type:
                   type: string
@@ -533,14 +495,14 @@ components:
                   type: string
                   description: ID of the cart
       x-tags:
-        - created
+        - deleted
       type: object
     store_cart_couponApplied:
       title: store/cart/couponApplied
       description: |-
         This webhook will fire whenever a new coupon code is applied to a cart. It will include the ID of the coupon code.
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -551,12 +513,13 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "id": "09346904-4175-44fd-be53-f7e598531b6c",
+            "couponId": 1
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -574,6 +537,9 @@ components:
                 id:
                   type: string
                   description: ID of the cart
+                couponId:
+                  type: string
+                  description: ID of the coupon
       x-tags:
         - created
       type: object
@@ -616,8 +582,6 @@ components:
                 id:
                   type: string
                   description: ID of the cart
-      x-tags:
-        - created
       type: object
     store_cart_converted:
       title: store/cart/converted
@@ -635,7 +599,8 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "id": "09346904-4175-44fd-be53-f7e598531b6c",
+            "orderId": 252
           }
         }
         ```
@@ -654,10 +619,16 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `cart`
+                  default: cart
                 id:
                   type: string
                   description: ID of the cart
+                  example: 09346904-4175-44fd-be53-f7e598531b6c
+                orderId:
+                  type: string
+                  description: ID of the order created
+                  example: '252'
       x-tags:
         - created
       type: object
@@ -2501,7 +2472,7 @@ components:
               description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
               properties:
                 type:
-                  type: string
+                  type: number
                   description: can be `cart` or `cart_line_item`
                 id:
                   type: string
@@ -2810,6 +2781,28 @@ components:
               example: 352e4afc6dd3fc85ea26bfdf3f91852604d57528
               description: The payload data JSON encoded then passed through SH1 encryption.
       type: object
+    test:
+      description: ''
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              minLength: 1
+            id:
+              type: number
+          required:
+            - type
+            - id
+      required:
+        - data
+      x-examples:
+        example-1:
+          data:
+            type: order
+            id: 250
   examples:
     store-cart-created:
       value:
