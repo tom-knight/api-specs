@@ -1764,7 +1764,7 @@ components:
         - created
       type: object
     store_order_refund_created:
-      title: store/order/message/created
+      title: store/order/refund/created
       description: |-
         A refund has been submitted against an order
 
@@ -1775,11 +1775,14 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/order/refund/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "order",
+            "id": 250,
+            "refund": {
+              "refund_id": 3
+            }
           }
         }
         ```
@@ -1798,54 +1801,22 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"order"`
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the order
+                refund:
+                  type: object
+                  properties:
+                    refund_id:
+                      type: integer
+                      description: ID of the refund submitted against the order
       x-tags:
         - created
       type: object
     store_product_*:
       title: store/product/*
-      description: |-
-        Subscribe to all store/product events
-
-        ### example callback:
-
-        ```json
-        {
-          "created_at": 1561482670,
-          "store_id": "1025646",
-          "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
-          "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
-          "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
-          }
-        }
-        ```
-
-        ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
-      allOf:
-        - $ref: '#/components/schemas/webhook_callback_base'
-        - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-          properties:
-            data:
-              type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-              properties:
-                type:
-                  type: string
-                  description: can be `cart` or `cart_line_item`
-                id:
-                  type: string
-                  description: ID of the cart
-      x-tags:
-        - created
+      description: Subscribe to all store/product events
       type: object
     store_product_deleted:
       title: store/product/deleted
@@ -1859,11 +1830,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/product/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "product",
+            "id": 205
           }
         }
         ```
@@ -1882,10 +1853,13 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"product"`
+                  default: '"product"'
+                  example: '"product"'
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the product
+                  example: 205
       x-tags:
         - created
       type: object
@@ -1901,11 +1875,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/product/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "product",
+            "id": 205
           }
         }
         ```
@@ -1924,17 +1898,24 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"product"`
+                  default: '"product"'
+                  example: '"product"'
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the product
+                  example: 205
       x-tags:
         - created
       type: object
     store_product_updated:
       title: store/product/updated
       description: |-
-        Occurs when product details are edited.
+        Occurs when product details are edited. 
+
+        Fields that trigger event<ul><li>Product Type</li><li>Search Keywords</li><li>Related Products</li><li>Warranty Information</li><li>Page Title</li><li>Meta Description</li><li>Gift Wrapping options</li><li>Bin Picking Number (BPN)</li><li>Fixed Shipping Price</li><li>Free Shipping</li><li>Open Graph Sharing Type</li><li>Availability Text</li><li>Purchasability</li><li>Release Date</li><li>Remove pre-order status on this date</li><li>Preorder Message</li><li>Inventory Stock</li><li>Inventory Low Stock</li><li>Track inventory</li><li>Product UPC/EAN</li><li>SKU</li><li>Cost</li><li>Tax Class</li><li>Weight</li><li>Width</li><li>Height</li><li>Depth</li><li>Condition</li><li>Show condition on storefront</li><li>Brand</li><li>Default Price</li><li>Sale Price</li><li>MSRP</li><li>Product Name</li><li>Description</li><li>Visible on Storefront</li><li>Sort Order</li><li>Categories</li><li>Product URL</li><li>Set as a Featured Product on my Storefront</li></ul>
+
+        Fields that do not trigger event<ul><li>Manufacturer Part Number (MPN)</li><li>Global Trade Number (GTN)</li><li>Tax Provider Tax Code</li><li>Product Image</li><li>Product Image Description</li><li>Product Files</li><li>Customs Information</li></ul>
 
         ### example callback:
 
@@ -1943,11 +1924,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/product/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "product",
+            "id": 205
           }
         }
         ```
@@ -1966,17 +1947,20 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"product"`
+                  default: '"product"'
+                  example: '"product"'
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the product
+                  example: 205
       x-tags:
         - created
       type: object
     store_product_inventory_updated:
       title: store/product/inventory/updated
       description: |-
-        Product inventory is updated.
+        Product inventory is updated. <br><br>Fields that trigger event: <ul><li>Inventory Stock</li></ul>Fields that do not trigger event: <ul><li>Track Inventory</li><li>Inventory Low Stock</li></ul>
 
         ### example callback:
 
@@ -1985,11 +1969,16 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/product/inventory/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "product",
+            "id": 167,
+            "inventory": {
+              "product_id": 167,
+              "method": "absolute",
+              "value": 2
+            }
           }
         }
         ```
@@ -2008,17 +1997,35 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"product"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the product
+                inventory:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                      description: ID of the product
+                    method:
+                      type: string
+                      enum:
+                        - '"absolute"'
+                        - '"relative"'
+                      description: |-
+                        How the inventory was adjusted. Value will be one of the following:
+                        - `absolute` - inventory updated by an order
+                        - `relative` - inventory updated using the API or the control panel
+                    value:
+                      type: integer
+                      description: 'the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `2`'
       x-tags:
         - created
       type: object
     store_product_inventory_order_updated:
       title: store/product/inventory/order/updated
       description: |-
-        Fires if a product’s inventory is decremented or incremented, including when an order is placed. Webhook responds to inventory updates made using the control panel, CSV import, API or an app.
+        Fires if a product’s inventory is decremented or incremented, including when an order is placed. Webhook responds to inventory updates made using the control panel, CSV import, API or an app.<br><br>Fields that trigger event: <ul><li>Quantity</li></ul>
 
         ### example callback:
 
@@ -2027,11 +2034,16 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/product/inventory/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "product",
+            "id": 167,
+            "inventory": {
+              "product_id": 167,
+              "method": "absolute",
+              "value": 2
+            }
           }
         }
         ```
@@ -2050,54 +2062,34 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"product"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the product
+                inventory:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                      description: ID of the product
+                    method:
+                      type: string
+                      enum:
+                        - '"absolute"'
+                        - '"relative"'
+                      description: |-
+                        How the inventory was adjusted. Value will be one of the following:
+                        - `absolute` - inventory updated by an order
+                        - `relative` - inventory updated using the API or the control panel
+                    value:
+                      type: integer
+                      description: 'the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `2`'
       x-tags:
         - created
       type: object
     store_shipment_*:
       title: store/shipment/*
-      description: |-
-        Subscribe to all store/shipment events
-
-        ### example callback:
-
-        ```json
-        {
-          "created_at": 1561482670,
-          "store_id": "1025646",
-          "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
-          "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
-          "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
-          }
-        }
-        ```
-
-        ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
-      allOf:
-        - $ref: '#/components/schemas/webhook_callback_base'
-        - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-          properties:
-            data:
-              type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-              properties:
-                type:
-                  type: string
-                  description: can be `cart` or `cart_line_item`
-                id:
-                  type: string
-                  description: ID of the cart
-      x-tags:
-        - created
+      description: Subscribe to all store/shipment events
       type: object
     store_shipment_created:
       title: store/shipment/created
@@ -2111,11 +2103,12 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/shipment/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "shipment",
+            "id": 12,
+            "orderId": 251
           }
         }
         ```
@@ -2134,10 +2127,13 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"shipment"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the shipment
+                orderId:
+                  type: integer
+                  description: ID of the order
       x-tags:
         - created
       type: object
@@ -2146,6 +2142,8 @@ components:
       description: |-
         Shipment is updated
 
+        Fields that trigger event:<ul><li>Shipping Tracking Number</li></ul>
+
         ### example callback:
 
         ```json
@@ -2153,11 +2151,12 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/shipment/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "shipment",
+            "id": 12,
+            "orderId": 251
           }
         }
         ```
@@ -2176,10 +2175,13 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"shipment"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the shipment
+                orderId:
+                  type: integer
+                  description: ID of the order
       x-tags:
         - created
       type: object
@@ -2195,11 +2197,12 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/shipment/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "shipment",
+            "id": 12,
+            "orderId": 251
           }
         }
         ```
@@ -2218,54 +2221,19 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"shipment"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the shipment
+                orderId:
+                  type: integer
+                  description: ID of the order
       x-tags:
         - created
       type: object
     store_sku_*:
       title: store/sku/*
-      description: |-
-        Subscribe to all store/sku events
-
-        ### example callback:
-
-        ```json
-        {
-          "created_at": 1561482670,
-          "store_id": "1025646",
-          "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
-          "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
-          "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
-          }
-        }
-        ```
-
-        ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
-      allOf:
-        - $ref: '#/components/schemas/webhook_callback_base'
-        - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-          properties:
-            data:
-              type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-              properties:
-                type:
-                  type: string
-                  description: can be `cart` or `cart_line_item`
-                id:
-                  type: string
-                  description: ID of the cart
-      x-tags:
-        - created
+      description: Subscribe to all store/sku events
       type: object
     store_sku_created:
       title: store/sku/created
@@ -2279,11 +2247,15 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/sku/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "sku",
+            "id": 461,
+            "sku": {
+              "product_id": 206,
+              "variant_id": 509
+            }
           }
         }
         ```
@@ -2302,10 +2274,19 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"sku"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the SKU
+                sku:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                      description: ID of the product
+                    variant_id:
+                      type: integer
+                      description: ID of the variant
       x-tags:
         - created
       type: object
@@ -2321,11 +2302,15 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/sku/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "sku",
+            "id": 461,
+            "sku": {
+              "product_id": 206,
+              "variant_id": 509
+            }
           }
         }
         ```
@@ -2344,10 +2329,19 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"sku"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the SKU
+                sku:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                      description: ID of the product
+                    variant_id:
+                      type: integer
+                      description: ID of the variant
       x-tags:
         - created
       type: object
@@ -2363,11 +2357,15 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/sku/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "sku",
+            "id": 461,
+            "sku": {
+              "product_id": 206,
+              "variant_id": 509
+            }
           }
         }
         ```
@@ -2386,10 +2384,19 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"sku"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the SKU
+                sku:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                      description: ID of the product
+                    variant_id:
+                      type: integer
+                      description: ID of the variant
       x-tags:
         - created
       type: object
@@ -2408,16 +2415,20 @@ components:
           "scope": "store/cart/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "sku",
+            "id": 461,
+            "inventory": {
+              "product_id": 167,
+              "method": "absolute",
+              "value": 2,
+              "variant_id": 509
+            }
           }
         }
         ```
 
         ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2428,17 +2439,43 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `sku`
+                  example: sku
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the SKU
+                  example: 461
+                inventory:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                      description: ID of the product
+                      example: 167
+                    method:
+                      type: string
+                      description: |-
+                        How the inventory was adjusted. Value will be one of the following:
+                        - `absolute` - inventory updated by an order
+                        - `relative` - inventory updated using the API or the control panel
+                      enum:
+                        - absolute
+                        - relative
+                    value:
+                      type: integer
+                      description: 'the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `2`'
+                      example: 2
+                    variant_id:
+                      type: integer
+                      description: ID of the variant
+                      example: 509
       x-tags:
         - created
       type: object
     store_sku_inventory_order_updated:
       title: store/sku/inventory/order/updated
       description: |-
-        This will fire when the inventory is updated via API, the control panel, when an order is placed and when an order is refunded and the inventory is returned to stock. This hook will fire based on a store's Inventory settings.
+        This will fire when the inventory is updated via API, the control panel, when an order is placed and when an order is refunded and the inventory is returned to stock. This hook will fire based on a store's Inventory settings. <br><br>Fields that trigger event:<ul><li>Quantity</li></ul>
 
         ### example callback:
 
@@ -2447,19 +2484,23 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/sku/inventory/order/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "sku",
+            "id": 461,
+            "inventory": {
+              "product_id": 167,
+              "method": "absolute",
+              "value": 2,
+              "variant_id": 509
+            }
           }
         }
         ```
 
         ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2470,10 +2511,36 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `sku`
+                  example: sku
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the SKU
+                  example: 461
+                inventory:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                      description: ID of the product
+                      example: 167
+                    method:
+                      type: string
+                      description: |-
+                        How the inventory was adjusted. Value will be one of the following:
+                        - `absolute` - inventory updated by an order
+                        - `relative` - inventory updated using the API or the control panel
+                      enum:
+                        - absolute
+                        - relative
+                    value:
+                      type: integer
+                      description: 'the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `2`'
+                      example: 2
+                    variant_id:
+                      type: integer
+                      description: ID of the variant
+                      example: 509
       x-tags:
         - created
       type: object
@@ -2489,11 +2556,10 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/app/uninstalled",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "store"
           }
         }
         ```
@@ -2512,17 +2578,17 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
-                id:
-                  type: string
-                  description: ID of the cart
+                  description: will always be `store`
       x-tags:
         - created
       type: object
     store_information_updated:
       title: store/information/updated
       description: |-
-        Occurs when changes are made to store settings.
+        Occurs when changes are made to store settings. 
+
+        Fields that trigger event
+        <ul><li>Store Name</li><li>Store Address</li><li>Store Country</li><li>Address Type</li><li>Email</li><li>Phone</li></ul>
 
         ### example callback:
 
@@ -2531,19 +2597,16 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/information/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "store"
           }
         }
         ```
 
         ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2553,55 +2616,15 @@ components:
               description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
               properties:
                 type:
-                  type: number
-                  description: can be `cart` or `cart_line_item`
-                id:
                   type: string
-                  description: ID of the cart
+                  description: ''
+                  example: store
       x-tags:
         - created
       type: object
     store_subscriber_*:
       title: store/subscriber/*
-      description: |-
-        Subscribe to all store/subscriber events
-
-        ### example callback:
-
-        ```json
-        {
-          "created_at": 1561482670,
-          "store_id": "1025646",
-          "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
-          "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
-          "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
-          }
-        }
-        ```
-
-        ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
-      allOf:
-        - $ref: '#/components/schemas/webhook_callback_base'
-        - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-          properties:
-            data:
-              type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-              properties:
-                type:
-                  type: string
-                  description: can be `cart` or `cart_line_item`
-                id:
-                  type: string
-                  description: ID of the cart
-      x-tags:
-        - created
+      description: Subscribe to all `store/subscriber` events
       type: object
     store_subscriber_created:
       title: store/subscriber/created
@@ -2615,19 +2638,17 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/subscriber/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "subscriber",
+            "id": 5
           }
         }
         ```
 
         ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2638,10 +2659,12 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `subscriber`
+                  example: subscriber
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the subscriber
+                  example: 5
       x-tags:
         - created
       type: object
@@ -2657,19 +2680,17 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/subscriber/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "subscriber",
+            "id": 5
           }
         }
         ```
 
         ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2680,10 +2701,12 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `subscriber`
+                  example: subscriber
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the subscriber
+                  example: 5
       x-tags:
         - created
       type: object
@@ -2699,19 +2722,17 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/subscriber/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "subscriber",
+            "id": 5
           }
         }
         ```
 
         ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2722,10 +2743,12 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `subscriber`
+                  example: subscriber
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the subscriber
+                  example: 5
       x-tags:
         - created
       type: object
@@ -2862,28 +2885,6 @@ components:
               example: 352e4afc6dd3fc85ea26bfdf3f91852604d57528
               description: The payload data JSON encoded then passed through SH1 encryption.
       type: object
-    test:
-      description: ''
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              minLength: 1
-            id:
-              type: number
-          required:
-            - type
-            - id
-      required:
-        - data
-      x-examples:
-        example-1:
-          data:
-            type: order
-            id: 250
   examples:
     store-cart-created:
       value:
