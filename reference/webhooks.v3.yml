@@ -371,6 +371,7 @@ components:
       description: |
         Subscribe to all cart events. This will also subscribe you to cart/lineItem. See individual events for callbacks.
       title: store/cart/*
+      x-examples: {}
     store_cart_created:
       description: |-
         This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
@@ -509,7 +510,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/cart/couponApplied",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
@@ -555,7 +556,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/cart/abandoned",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
@@ -595,7 +596,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/cart/converted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
@@ -690,7 +691,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/cart/lineItem/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
@@ -736,7 +737,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/cart/lineItem/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
@@ -782,7 +783,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/cart/lineItem/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
@@ -916,7 +917,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/category/created",
+          "scope": "store/category/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "category",
@@ -960,7 +961,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/category/created",
+          "scope": "store/category/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "category",
@@ -1096,7 +1097,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/channel/created",
+          "scope": "store/channel/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "channel",
@@ -1229,11 +1230,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/customer/created",
+          "scope": "store/customer/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "customer",
-            "id": "32"
+            "id": 32
           }
         }
         ```
@@ -1257,7 +1258,7 @@ components:
                   example: '"customer"'
                   readOnly: true
                 id:
-                  type: string
+                  type: integer
                   description: ID of the customer
                   example: '32'
       x-tags:
@@ -1275,11 +1276,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/customer/created",
+          "scope": "store/customer/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "customer",
-            "id": "32"
+            "id": 32
           }
         }
         ```
@@ -1303,7 +1304,7 @@ components:
                   example: '"customer"'
                   readOnly: true
                 id:
-                  type: string
+                  type: integer
                   description: ID of the customer
                   example: '32'
       x-tags:
@@ -1374,7 +1375,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/customer/address/created",
+          "scope": "store/customer/address/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "customer",
@@ -1427,7 +1428,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/customer/address/created",
+          "scope": "store/customer/address/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "customer",
@@ -1484,7 +1485,7 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "customer",
-            "id": "32"
+            "id": 32
           }
         }
         ```
@@ -1508,7 +1509,7 @@ components:
                   example: '"customer"'
                   readOnly: true
                 id:
-                  type: string
+                  type: integer
                   description: ID of the customer
                   example: '32'
       x-tags:
@@ -1577,7 +1578,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/order/created",
+          "scope": "store/order/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "order",
@@ -1622,7 +1623,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/order/created",
+          "scope": "store/order/archived",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "order",
@@ -1875,7 +1876,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/product/deleted",
+          "scope": "store/product/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "product",
@@ -1924,7 +1925,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/product/deleted",
+          "scope": "store/product/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "product",
@@ -2034,7 +2035,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/product/inventory/updated",
+          "scope": "store/product/inventory/order/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "product",
@@ -2197,7 +2198,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/shipment/created",
+          "scope": "store/shipment/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "shipment",
@@ -2302,7 +2303,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/sku/created",
+          "scope": "store/sku/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "sku",
@@ -2357,7 +2358,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/sku/created",
+          "scope": "store/sku/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "sku",
@@ -2412,7 +2413,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/sku/inventory/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "sku",
@@ -2680,7 +2681,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/subscriber/created",
+          "scope": "store/subscriber/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "subscriber",
@@ -2722,7 +2723,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/subscriber/created",
+          "scope": "store/subscriber/deleted",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "subscriber",
