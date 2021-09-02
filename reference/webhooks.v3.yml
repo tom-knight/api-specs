@@ -648,7 +648,8 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "id": "09346904-4175-44fd-be53-f7e598531b6c",
+            "cartId": "b0386708-fef3-45de-9d8b-fbe3031450a4"
           }
         }
         ```
@@ -669,6 +670,9 @@ components:
                   type: string
                   description: can be `cart` or `cart_line_item`
                 id:
+                  type: string
+                  description: ID of the cart
+                cartId:
                   type: string
                   description: ID of the cart
       x-tags:
@@ -690,7 +694,8 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "id": "09346904-4175-44fd-be53-f7e598531b6c",
+            "cartId": "b0386708-fef3-45de-9d8b-fbe3031450a4"            
           }
         }
         ```
@@ -713,13 +718,16 @@ components:
                 id:
                   type: string
                   description: ID of the cart
+                cartId:
+                  type: string
+                  description: ID of the cart
       x-tags:
         - created
       type: object
     store_cart_lineItem_updated:
       title: store/cart/lineItem/updated
       description: |-
-        When an item’s quantity has changed or the product options change.
+        When an item’s quantity has changed or the product options change.<br><br>Fields that trigger event:<ul><li>Quantity</li><li>Item Price</li></ul>
 
         ### example callback:
 
@@ -732,7 +740,8 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "id": "09346904-4175-44fd-be53-f7e598531b6c",
+            "cartId": "b0386708-fef3-45de-9d8b-fbe3031450a4"            
           }
         }
         ```
@@ -753,6 +762,9 @@ components:
                   type: string
                   description: can be `cart` or `cart_line_item`
                 id:
+                  type: string
+                  description: ID of the cart
+                cartId:
                   type: string
                   description: ID of the cart
       x-tags:
@@ -774,7 +786,8 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "id": "09346904-4175-44fd-be53-f7e598531b6c",
+            "cartId": "b0386708-fef3-45de-9d8b-fbe3031450a4"
           }
         }
         ```
@@ -795,6 +808,9 @@ components:
                   type: string
                   description: can be `cart` or `cart_line_item`
                 id:
+                  type: string
+                  description: ID of the cart
+                cartId:
                   type: string
                   description: ID of the cart
       x-tags:
@@ -812,11 +828,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/category/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "category",
+            "id": "42"
           }
         }
         ```
@@ -835,10 +851,12 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"category"`
+                  default: '"category"'
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the category
+                  example: '42'
       x-tags:
         - created
       type: object
@@ -854,11 +872,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/category/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "category",
+            "id": "42"
           }
         }
         ```
@@ -877,35 +895,37 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"category"`
+                  default: '"category"'
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the category
+                  example: '42'
       x-tags:
         - created
       type: object
     store_category_updated:
       title: store/category/updated
       description: |-
-        Category is updated
+        Category is updated <br><br>Fields that trigger event:<ul><li>Url</li><li>Name</li><li>Redirect old URLs</li><li>Description</li><li>Parent Category</li><li>Template Layout File</li><li>Sort Order</li><li>Default Product Sort</li><li>Category Image</li><li>Page Title</li><li>Meta Keywords</li><li>Meta Description</li><li>Search Keywords</li><li>Google Product Category</li><li>Enable Google Shopping</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/category/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "category",
+            "id": "42"
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -919,13 +939,15 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"category"`
+                  default: '"category"'
                 id:
                   type: string
-                  description: ID of the cart
-      x-tags:
-        - created
+                  description: ID of the category
+                  example: '42'
       type: object
+      x-tags:
+        - updated
     store_category_deleted:
       title: store/category/deleted
       description: |-
@@ -938,11 +960,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/category/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "category",
+            "id": "42"
           }
         }
         ```
@@ -961,35 +983,37 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"category"`
+                  default: '"category"'
                 id:
                   type: string
-                  description: ID of the cart
-      x-tags:
-        - created
+                  description: ID of the category
+                  example: '42'
       type: object
+      x-tags:
+        - deleted
     store_channel_*:
       title: store/channel/*
       description: |-
         Subscribe to all `store/channel` events. 
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/channel/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "channel",
+            "id": "173331"
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1003,10 +1027,13 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"channel"`
+                  default: '"channel"'
+                  example: '"channel"'
+                  readOnly: true
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the channel
       x-tags:
         - created
       type: object
@@ -1015,23 +1042,23 @@ components:
       description: |-
         Fires when a channel is created via control panel or API
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/channel/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "channel",
+            "id": "173331"
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1045,35 +1072,40 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"channel"`
+                  default: '"channel"'
+                  example: '"channel"'
+                  readOnly: true
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the channel
       x-tags:
         - created
       type: object
     store_channel_updated:
       title: store/channel/updated
       description: |-
-        Fires when a channel is updated via control panel or API
+        Fires when a channel is updated via control panel or API. 
 
-        ### example callback:
+        Fields that trigger event:<ul><li>name</li><li>external_id</li><li>status</li><li>is_listable_from_ui</li><li>is_visible</li><li>is_enabled (to be deprecated)</li><li>config_meta</li></ul>
+
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/channel/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "channel",
+            "id": "173331"
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1087,10 +1119,13 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"channel"`
+                  default: '"channel"'
+                  example: '"channel"'
+                  readOnly: true
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the channel
       x-tags:
         - created
       type: object
