@@ -1176,23 +1176,23 @@ components:
       description: |-
         A new customer is created
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/customer/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "customer",
+            "id": "32"
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1207,9 +1207,13 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  default: '"customer"'
+                  example: '"customer"'
+                  readOnly: true
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the customer
+                  example: '32'
       x-tags:
         - created
       type: object
@@ -1218,23 +1222,23 @@ components:
       description: |-
         Customer is updated. Does not currently track changes to the customer address.
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/customer/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "customer",
+            "id": "32"
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1249,9 +1253,13 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  default: '"customer"'
+                  example: '"customer"'
+                  readOnly: true
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the customer
+                  example: '32'
       x-tags:
         - created
       type: object
@@ -1260,23 +1268,23 @@ components:
       description: |-
         Customer is deleted
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/customer/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "customer",
+            "id": "32"
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1291,9 +1299,13 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  default: '"customer"'
+                  example: '"customer"'
+                  readOnly: true
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the customer
+                  example: '32'
       x-tags:
         - created
       type: object
@@ -1302,23 +1314,26 @@ components:
       description: |-
         Customer address is created
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/customer/address/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "customer",
+            "id": 60,
+            "address": {
+              "customer_id": 32
+            }
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1332,10 +1347,18 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"customer"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the customer address
+                  example: 60
+                address:
+                  type: object
+                  properties:
+                    customer_id:
+                      type: integer
+                      description: ID of the customer
+                      example: 32
       x-tags:
         - created
       type: object
@@ -1344,23 +1367,26 @@ components:
       description: |-
         Customer address is updated
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/customer/address/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "customer",
+            "id": 60,
+            "address": {
+              "customer_id": 32
+            }
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1374,10 +1400,18 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"customer"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the customer address
+                  example: 60
+                address:
+                  type: object
+                  properties:
+                    customer_id:
+                      type: integer
+                      description: ID of the customer
+                      example: 32
       x-tags:
         - created
       type: object
@@ -1386,23 +1420,26 @@ components:
       description: |-
         Customer address is deleted
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/customer/address/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "customer",
+            "id": 60,
+            "address": {
+              "customer_id": 32
+            }
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1416,10 +1453,18 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"customer"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the customer address
+                  example: 60
+                address:
+                  type: object
+                  properties:
+                    customer_id:
+                      type: integer
+                      description: ID of the customer
+                      example: 32
       x-tags:
         - created
       type: object
@@ -1428,23 +1473,23 @@ components:
       description: |-
         Customer default payment instrument is updated
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/customer/payment/instrument/default/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "customer",
+            "id": "32"
           }
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1459,53 +1504,19 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  default: '"customer"'
+                  example: '"customer"'
+                  readOnly: true
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the customer
+                  example: '32'
       x-tags:
         - created
       type: object
     store_order_*:
       title: store/order/*
-      description: |-
-        Subscribe to all store/order events
-
-        ### example callback:
-
-        ```json
-        {
-          "created_at": 1561482670,
-          "store_id": "1025646",
-          "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
-          "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
-          "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
-          }
-        }
-        ```
-
-        ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
-      allOf:
-        - $ref: '#/components/schemas/webhook_callback_base'
-        - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-          properties:
-            data:
-              type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-              properties:
-                type:
-                  type: string
-                  description: can be `cart` or `cart_line_item`
-                id:
-                  type: string
-                  description: ID of the cart
-      x-tags:
-        - created
+      description: Subscribe to all store/order events
       type: object
     store_order_created:
       title: store/order/created
@@ -1519,11 +1530,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/order/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "order",
+            "id": 250
           }
         }
         ```
@@ -1542,17 +1553,22 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"order"`
+                  default: '"order"'
+                  example: '"order"'
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the order
+                  example: 250
       x-tags:
         - created
       type: object
     store_order_updated:
       title: store/order/updated
       description: |-
-        Fires when an already created order is updated. Any changes to an existing order will fire this webhook.Updates can include changing the status, updating a coupon or changing an address.
+        Fires when an already created order is updated. Any changes to an existing order will fire this webhook.Updates can include changing the status, updating a coupon or changing an address. 
+
+        Fields that trigger event: <ul><li>Product Type</li><li>Search Keywords</li><li>Related Products</li><li>Warranty Information</li><li>Page Title</li><li>Meta Description</li><li>Gift Wrapping options</li><li>Bin Picking Number (BPN)</li><li>Fixed Shipping Price</li><li>Free Shipping</li><li>Open Graph Sharing Type</li><li>Availability Text</li><li>Purchasability</li><li>Release Date</li><li>Remove pre-order status on this date</li></ul>
 
         ### example callback:
 
@@ -1561,11 +1577,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/order/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "order",
+            "id": 250
           }
         }
         ```
@@ -1584,10 +1600,13 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"order"`
+                  default: '"order"'
+                  example: '"order"'
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the order
+                  example: 250
       x-tags:
         - created
       type: object
@@ -1603,11 +1622,11 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/order/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "order",
+            "id": 250
           }
         }
         ```
@@ -1626,17 +1645,20 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"order"`
+                  default: '"order"'
+                  example: '"order"'
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the order
+                  example: 250
       x-tags:
         - created
       type: object
     store_order_statusUpdated:
       title: store/order/statusUpdated
       description: |-
-        This will only fire if the order status has changed. Such as Pending to Awaiting Payment
+        This will only fire if the order status has changed, such as `Pending` to `Awaiting Payment`
 
         ### example callback:
 
@@ -1645,11 +1667,15 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/order/statusUpdated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+            "type": "order",
+            "id": 250,
+            "status": {
+              "previous_status_id": 1,
+              "new_status_id": 11
+            }
           }
         }
         ```
@@ -1668,10 +1694,21 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: Will always be `"order"`
                 id:
-                  type: string
-                  description: ID of the cart
+                  type: integer
+                  description: ID of the order
+                status:
+                  type: object
+                  properties:
+                    previous_status_id:
+                      type: integer
+                      description: Previous status ID
+                      example: 1
+                    new_status_id:
+                      type: integer
+                      description: Updated status ID
+                      example: 11
       x-tags:
         - created
       type: object
@@ -1687,11 +1724,14 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/cart/created",
+          "scope": "store/order/message/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
-          "data": {
-            "type": "cart",
-            "id": "09346904-4175-44fd-be53-f7e598531b6c"
+         "data": {
+            "type": "order",
+            "id": 250,
+            "message": {
+              "order_message_id": 3
+            }
           }
         }
         ```
@@ -1710,10 +1750,16 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
+                  description: will always be `"order"`
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the order
+                message:
+                  type: object
+                  properties:
+                    order_message_id:
+                      type: integer
+                      description: ID of the message on the order
       x-tags:
         - created
       type: object
