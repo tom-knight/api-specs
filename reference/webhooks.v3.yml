@@ -475,7 +475,7 @@ components:
       description: |-
         This webhook will fire whenever a cart is deleted. This will occur either when all items have been removed from a cart and it is auto-deleted, or when the cart is explicitly removed via a `DELETE` request by an API consumer. This ends the lifecycle of the cart. The  `store/cart/updated`  webhook will also fire when the last item is removed.
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -491,7 +491,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -563,7 +563,7 @@ components:
       description: |-
         This webhook will fire once after a cart is abandoned. A cart is considered abandoned if no changes have been made for at least one hour after the last modified property. This hook is available for all store plans, regardless of whether the Abandoned Cart Saver feature is enabled.
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -579,7 +579,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -603,7 +603,7 @@ components:
       description: |-
         This hook fires when a cart is converted into an order, which is typically after the payment step of checkout on the storefront. At this point, the cart is no longer accessible and has been deleted. This hook returns both the cart ID and order ID for correlation purposes.
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -620,7 +620,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -652,7 +652,7 @@ components:
       description: |-
         Subscribe to all cart line item events. This webhook will fire when a change occurs to line items in the cart. This can be when items are added to a cart, removed or updated.(Ex. change to quantity, product options or price).
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -669,7 +669,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -698,7 +698,7 @@ components:
       description: |-
         When a new item is added to the cart
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -715,7 +715,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -744,7 +744,7 @@ components:
       description: |-
         When an item’s quantity has changed or the product options change.<br><br>Fields that trigger event:<ul><li>Quantity</li><li>Item Price</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -761,7 +761,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -790,7 +790,7 @@ components:
       description: |-
         When an item is deleted from the cart
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -807,7 +807,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -836,7 +836,7 @@ components:
       description: |-
         Subscribe to all store/category events
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -852,7 +852,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -880,7 +880,7 @@ components:
       description: |-
         Category is created   
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -896,7 +896,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -968,7 +968,7 @@ components:
       description: |-
         Category is deleted
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -984,7 +984,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1149,7 +1149,7 @@ components:
       description: |-
         Subscribe to all store/customer events
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1165,7 +1165,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1538,7 +1538,7 @@ components:
       description: |-
         Fires if an order is created using the control panel, an app or via the API.
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1554,7 +1554,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1585,7 +1585,7 @@ components:
 
         Fields that trigger event: <ul><li>Product Type</li><li>Search Keywords</li><li>Related Products</li><li>Warranty Information</li><li>Page Title</li><li>Meta Description</li><li>Gift Wrapping options</li><li>Bin Picking Number (BPN)</li><li>Fixed Shipping Price</li><li>Free Shipping</li><li>Open Graph Sharing Type</li><li>Availability Text</li><li>Purchasability</li><li>Release Date</li><li>Remove pre-order status on this date</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1601,7 +1601,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1630,7 +1630,7 @@ components:
       description: |-
         Order is archived
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1646,7 +1646,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1675,7 +1675,7 @@ components:
       description: |-
         This will only fire if the order status has changed, such as `Pending` to `Awaiting Payment`
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1695,7 +1695,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1732,7 +1732,7 @@ components:
       description: |-
         Order message is created by customer or in control panel
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1751,7 +1751,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1783,7 +1783,7 @@ components:
       description: |-
         A refund has been submitted against an order
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1802,7 +1802,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1838,7 +1838,7 @@ components:
       description: |-
         Product is deleted
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1854,7 +1854,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1883,7 +1883,7 @@ components:
       description: |-
         A new product is created
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1899,7 +1899,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1932,7 +1932,7 @@ components:
 
         Fields that do not trigger event<ul><li>Manufacturer Part Number (MPN)</li><li>Global Trade Number (GTN)</li><li>Tax Provider Tax Code</li><li>Product Image</li><li>Product Image Description</li><li>Product Files</li><li>Customs Information</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1948,7 +1948,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -1977,7 +1977,7 @@ components:
       description: |-
         Product inventory is updated. <br><br>Fields that trigger event: <ul><li>Inventory Stock</li></ul>Fields that do not trigger event: <ul><li>Track Inventory</li><li>Inventory Low Stock</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -1998,7 +1998,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2042,7 +2042,7 @@ components:
       description: |-
         Fires if a product’s inventory is decremented or incremented, including when an order is placed. Webhook responds to inventory updates made using the control panel, CSV import, API or an app.<br><br>Fields that trigger event: <ul><li>Quantity</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2063,7 +2063,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2111,7 +2111,7 @@ components:
       description: |-
         Shipment is created
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2128,7 +2128,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2159,7 +2159,7 @@ components:
 
         Fields that trigger event:<ul><li>Shipping Tracking Number</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2176,7 +2176,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2205,7 +2205,7 @@ components:
       description: |-
         Shipment is deleted
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2222,7 +2222,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2255,7 +2255,7 @@ components:
       description: |-
         A new SKU is created
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2275,7 +2275,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2310,7 +2310,7 @@ components:
       description: |-
         SKU is updated
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2330,7 +2330,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2365,7 +2365,7 @@ components:
       description: |-
         SKU is deleted
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2385,7 +2385,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2420,7 +2420,7 @@ components:
       description: |-
         SKU is updated
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2442,7 +2442,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
@@ -2492,7 +2492,7 @@ components:
       description: |-
         This will fire when the inventory is updated via API, the control panel, when an order is placed and when an order is refunded and the inventory is returned to stock. This hook will fire based on a store's Inventory settings. <br><br>Fields that trigger event:<ul><li>Quantity</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2514,7 +2514,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
@@ -2564,7 +2564,7 @@ components:
       description: |-
         Occurs when a client store is cancelled and uninstalled from the platform
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2579,7 +2579,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples:
         example-1:
           $ref: '#/components/examples/store-cart-created'
@@ -2605,7 +2605,7 @@ components:
         Fields that trigger event
         <ul><li>Store Name</li><li>Store Address</li><li>Store Country</li><li>Address Type</li><li>Email</li><li>Phone</li></ul>
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2620,7 +2620,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
@@ -2646,7 +2646,7 @@ components:
       description: |-
         Subscriber is created 
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2662,7 +2662,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
@@ -2688,7 +2688,7 @@ components:
       description: |-
         Subscriber is updated 
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2704,7 +2704,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
@@ -2730,7 +2730,7 @@ components:
       description: |-
         Subscriber is deleted
 
-        ### example callback:
+        ### Example callback:
 
         ```json
         {
@@ -2746,7 +2746,7 @@ components:
         }
         ```
 
-        ### callback schema:
+        ### Callback schema:
       x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
