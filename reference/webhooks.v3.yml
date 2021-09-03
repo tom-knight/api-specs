@@ -373,9 +373,13 @@ components:
       x-examples: {}
     store_cart_created:
       description: |-
-        This webhook will fire whenever a new cart is created, either via a storefront shopper adding their first item to the cart, or when a new cart is created via an API consumer. If it is from the storefront, then it fires when the first product is added to a new session.(The cart did not exist before). For the API it means a `POST` to `/carts` (V3 and Storefront API). The `store/cart/updated` hook will also fire.
+        This webhook fires on new cart creation when any of the following occur:
+        - a storefront shopper adding their first product to a cart during a new session
+        - a successful `POST` request to `/carts` using either the [storefront](https://developer.bigcommerce.com/api-reference/storefront/carts/cart/createacart) or [server-to-server](https://developer.bigcommerce.com/api-reference/store-management/carts/cart/createacart) API 
 
-        ### example callback:
+        Cart creation also fires the `store/cart/updated` webhook.
+
+        ### Example callback:
 
         ```json
         {
@@ -391,10 +395,8 @@ components:
         }
         ```
 
-        ### callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+        ### Callback schema:
+      x-examples: {}
       title: store/cart/created
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
@@ -407,9 +409,14 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  example: cart
+                  enum:
+                    - cart
+                    - cart_line_item
                 id:
                   type: string
                   description: ID of the cart
+                  example: 09346904-4175-44fd-be53-f7e598531b6c
       x-tags:
         - created
       type: object
