@@ -368,8 +368,7 @@ components:
         * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
   schemas:
     store_cart_*:
-      description: |
-        Subscribe to all cart events. This will also subscribe you to cart/lineItem. See individual events for callbacks.
+      description: "Subscribes to the following events:\n- `store/cart/created`\n- `store/cart/updated`\n- `store/cart/deleted`\n- `store/cart/couponApplied`\n- `store/cart/abandoned`\n- `store/cart/converted`\n- `store/cart/lineItem`\n\t\t\t\nSee individual events for more information.\n"
       title: store/cart/*
       x-examples: {}
     store_cart_created:
