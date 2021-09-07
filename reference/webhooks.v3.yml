@@ -492,9 +492,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -506,9 +504,11 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  example: cart
                 id:
                   type: string
                   description: ID of the cart
+                  example: 09346904-4175-44fd-be53-f7e598531b6c
       x-tags:
         - deleted
       type: object
@@ -535,9 +535,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -549,12 +547,15 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  example: cart
                 id:
                   type: string
                   description: ID of the cart
+                  example: 09346904-4175-44fd-be53-f7e598531b6c
                 couponId:
-                  type: string
+                  type: integer
                   description: ID of the coupon
+                  example: 1
       x-tags:
         - created
       type: object
@@ -580,9 +581,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -594,9 +593,11 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  example: cart
                 id:
                   type: string
                   description: ID of the cart
+                  example: 09346904-4175-44fd-be53-f7e598531b6c
       type: object
     store_cart_converted:
       title: store/cart/converted
@@ -621,9 +622,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -641,7 +640,7 @@ components:
                   description: ID of the cart
                   example: 09346904-4175-44fd-be53-f7e598531b6c
                 orderId:
-                  type: string
+                  type: integer
                   description: ID of the order created
                   example: '252'
       x-tags:
@@ -716,9 +715,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -730,19 +727,26 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  example: cart
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the line item
+                  example: 09346904-4175-44fd-be53-f7e598531b6c
                 cartId:
                   type: string
                   description: ID of the cart
+                  example: b0386708-fef3-45de-9d8b-fbe3031450a4
       x-tags:
         - created
       type: object
     store_cart_lineItem_updated:
       title: store/cart/lineItem/updated
       description: |-
-        When an item’s quantity has changed or the product options change.<br><br>Fields that trigger event:<ul><li>Quantity</li><li>Item Price</li></ul>
+        When an item’s quantity has changed or the product options change.
+
+        Fields that trigger event:
+        - Quantity
+        - Item Price
 
         ### Example callback:
 
@@ -762,9 +766,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -776,15 +778,18 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  example: cart
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the line item
+                  example: 09346904-4175-44fd-be53-f7e598531b6c
                 cartId:
                   type: string
                   description: ID of the cart
-      x-tags:
-        - created
+                  example: b0386708-fef3-45de-9d8b-fbe3031450a4
       type: object
+      x-tags:
+        - updated
     store_cart_lineItem_deleted:
       title: store/cart/lineItem/deleted
       description: |-
@@ -808,9 +813,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -822,15 +825,18 @@ components:
                 type:
                   type: string
                   description: can be `cart` or `cart_line_item`
+                  example: cart
                 id:
                   type: string
-                  description: ID of the cart
+                  description: ID of the line item
+                  example: 09346904-4175-44fd-be53-f7e598531b6c
                 cartId:
                   type: string
                   description: ID of the cart
-      x-tags:
-        - created
+                  example: b0386708-fef3-45de-9d8b-fbe3031450a4
       type: object
+      x-tags:
+        - deleted
     store_category_*:
       title: store/category/*
       description: |-
@@ -876,7 +882,8 @@ components:
         - created
       type: object
     store_category_created:
-      title: store/category/created
+      title: store/category/created      
+      type: object
       description: |-
         Category is created   
 
@@ -891,34 +898,18 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "category",
-            "id": "42"
+            "id": 42
           }
         }
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
-        - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-          properties:
-            data:
-              type: object
-              description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
-              properties:
-                type:
-                  type: string
-                  description: will always be `"category"`
-                  default: '"category"'
-                id:
-                  type: string
-                  description: ID of the category
-                  example: '42'
+        - $ref: '#/components/schemas/callback_category_data'
       x-tags:
         - created
-      type: object
     store_category_updated:
       title: store/category/updated
       description: |-
@@ -2900,6 +2891,23 @@ components:
               example: 352e4afc6dd3fc85ea26bfdf3f91852604d57528
               description: The payload data JSON encoded then passed through SH1 encryption.
       type: object
+    callback_category_data:
+      title: callback_category_data
+      type: object
+      description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
+      properties:
+        data:
+          type: object
+          description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
+          properties:
+            type:
+              type: string
+              description: will always be `category`
+              default: category
+            id:
+              type: integer
+              description: ID of the category
+              example: '42'
   examples:
     store-cart-created:
       value:
