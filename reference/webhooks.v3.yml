@@ -890,7 +890,7 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "category",
-            "id": "42"
+            "id": 42
           }
         }
         ```
@@ -909,15 +909,15 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"category"`
-                  default: '"category"'
+                  description: will always be `category`
+                  default: category
                 id:
-                  type: string
+                  type: integer
                   description: ID of the category
                   example: '42'
-      type: object
       x-tags:
         - updated
+      type: object
     store_category_deleted:
       title: store/category/deleted
       description: |-
@@ -953,15 +953,16 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"category"`
-                  default: '"category"'
+                  description: will always be `category`
+                  default: category
+                  example: category
                 id:
-                  type: string
+                  type: integer
                   description: ID of the category
                   example: '42'
-      type: object
       x-tags:
         - deleted
+      type: object
     store_channel_*:
       title: store/channel/*
       description: 'Subscribe to all `store/channel` events. '
@@ -985,15 +986,13 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "channel",
-            "id": "173331"
+            "id": 173331
           }
         }
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1004,13 +1003,14 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"channel"`
-                  default: '"channel"'
-                  example: '"channel"'
+                  description: will always be `channel`
+                  default: channel
+                  example: channel
                   readOnly: true
                 id:
-                  type: string
+                  type: integer
                   description: ID of the channel
+                  example: 173331
       x-tags:
         - created
       type: object
@@ -1032,15 +1032,13 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "channel",
-            "id": "173331"
+            "id": 173331
           }
         }
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1051,20 +1049,21 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"channel"`
-                  default: '"channel"'
-                  example: '"channel"'
+                  description: will always be `channel`
+                  default: channel
+                  example: channel
                   readOnly: true
                 id:
-                  type: string
+                  type: integer
                   description: ID of the channel
+                  example: 173331
       x-tags:
         - created
       type: object
     store_customer_*:
       title: store/customer/*
       description: |
-        Subscribe to all store/customer events
+        Subscribe to all `store/customer` events
       x-examples: {}
       allOf: []
       x-tags:
@@ -1085,15 +1084,13 @@ components:
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "customer",
-            "id": "32"
+            "id": 32
           }
         }
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1104,14 +1101,14 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
-                  default: '"customer"'
-                  example: '"customer"'
+                  description: will always be `customer`
+                  default: customer
+                  example: customer
                   readOnly: true
                 id:
-                  type: string
+                  type: integer
                   description: ID of the customer
-                  example: '32'
+                  example: 32
       x-tags:
         - created
       type: object
@@ -1137,9 +1134,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1150,14 +1145,14 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
-                  default: '"customer"'
-                  example: '"customer"'
+                  description: will always be `customer`
+                  default: customer
+                  example: customer
                   readOnly: true
                 id:
                   type: integer
                   description: ID of the customer
-                  example: '32'
+                  example: 32
       x-tags:
         - created
       type: object
@@ -1183,9 +1178,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1196,14 +1189,14 @@ components:
               properties:
                 type:
                   type: string
-                  description: can be `cart` or `cart_line_item`
-                  default: '"customer"'
-                  example: '"customer"'
+                  description: will always be `customer`
+                  default: customer
+                  example: customer
                   readOnly: true
                 id:
                   type: integer
                   description: ID of the customer
-                  example: '32'
+                  example: 32
       x-tags:
         - created
       type: object
