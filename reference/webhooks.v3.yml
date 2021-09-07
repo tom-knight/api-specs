@@ -25,6 +25,7 @@ paths:
             examples:
               Example:
                 value:
+                  headers: {}
                   scope: '{$$.env.scope}'
                   destination: '{$$.env.destination}'
                   is_active: true
@@ -642,7 +643,7 @@ components:
                 orderId:
                   type: integer
                   description: ID of the order created
-                  example: '252'
+                  example: 252
       x-tags:
         - created
       type: object
@@ -914,7 +915,7 @@ components:
                 id:
                   type: integer
                   description: ID of the category
-                  example: '42'
+                  example: 42
       x-tags:
         - updated
       type: object
@@ -959,14 +960,13 @@ components:
                 id:
                   type: integer
                   description: ID of the category
-                  example: '42'
+                  example: 42
       x-tags:
         - deleted
       type: object
     store_channel_*:
       title: store/channel/*
       description: 'Subscribe to all `store/channel` events. '
-      x-examples: {}
       allOf: []
       x-tags:
         - created
@@ -1398,7 +1398,7 @@ components:
                 id:
                   type: integer
                   description: ID of the customer
-                  example: '32'
+                  example: 32
       x-tags:
         - created
       type: object
@@ -1686,7 +1686,7 @@ components:
                 id:
                   type: integer
                   description: ID of the order
-                  example: '250'
+                  example: 250
                 refund:
                   type: object
                   properties:
@@ -2790,7 +2790,7 @@ components:
             id:
               type: integer
               description: ID of the category
-              example: '42'
+              example: 42
   examples:
     store-cart-created:
       value:
