@@ -1225,9 +1225,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1238,7 +1236,8 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"customer"`
+                  description: will always be `customer`
+                  example: customer
                 id:
                   type: integer
                   description: ID of the customer address
@@ -1278,9 +1277,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1291,7 +1288,8 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"customer"`
+                  description: will always be `customer`
+                  example: customer
                 id:
                   type: integer
                   description: ID of the customer address
@@ -1331,9 +1329,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1344,7 +1340,8 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"customer"`
+                  description: will always be `customer`
+                  example: customer
                 id:
                   type: integer
                   description: ID of the customer address
@@ -1431,9 +1428,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1444,9 +1439,9 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"order"`
-                  default: '"order"'
-                  example: '"order"'
+                  description: will always be `order`
+                  default: order
+                  example: order
                 id:
                   type: integer
                   description: ID of the order
@@ -1478,9 +1473,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1491,9 +1484,9 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"order"`
-                  default: '"order"'
-                  example: '"order"'
+                  description: will always be `order`
+                  default: order
+                  example: order
                 id:
                   type: integer
                   description: ID of the order
@@ -1521,11 +1514,8 @@ components:
           }
         }
         ```
-
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1536,9 +1526,9 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"order"`
-                  default: '"order"'
-                  example: '"order"'
+                  description: will always be `order`
+                  default: order
+                  example: order
                 id:
                   type: integer
                   description: ID of the order
@@ -1572,9 +1562,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1585,10 +1573,12 @@ components:
               properties:
                 type:
                   type: string
-                  description: Will always be `"order"`
+                  description: Will always be `order`
+                  example: order
                 id:
                   type: integer
                   description: ID of the order
+                  example: 250
                 status:
                   type: object
                   properties:
@@ -1628,9 +1618,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1641,16 +1629,19 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"order"`
+                  description: will always be `order`
+                  example: order
                 id:
-                  type: string
+                  type: integer
                   description: ID of the order
+                  example: 250
                 message:
                   type: object
                   properties:
                     order_message_id:
                       type: integer
                       description: ID of the message on the order
+                      example: 3
       x-tags:
         - created
       type: object
@@ -1679,9 +1670,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1692,16 +1681,19 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"order"`
+                  description: will always be `order`
+                  example: order
                 id:
-                  type: string
+                  type: integer
                   description: ID of the order
+                  example: '250'
                 refund:
                   type: object
                   properties:
                     refund_id:
                       type: integer
                       description: ID of the refund submitted against the order
+                      example: 3
       x-tags:
         - created
       type: object
@@ -1731,9 +1723,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1744,9 +1734,9 @@ components:
               properties:
                 type:
                   type: string
-                  description: Will always be `"product"`
-                  default: '"product"'
-                  example: '"product"'
+                  description: Will always be `product`
+                  default: product
+                  example: product
                 id:
                   type: integer
                   description: ID of the product
@@ -1776,9 +1766,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1789,9 +1777,9 @@ components:
               properties:
                 type:
                   type: string
-                  description: Will always be `"product"`
-                  default: '"product"'
-                  example: '"product"'
+                  description: Will always be `product`
+                  default: product
+                  example: product
                 id:
                   type: integer
                   description: ID of the product
@@ -1825,9 +1813,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1838,9 +1824,9 @@ components:
               properties:
                 type:
                   type: string
-                  description: Will always be `"product"`
-                  default: '"product"'
-                  example: '"product"'
+                  description: Will always be `product`
+                  default: product
+                  example: product
                 id:
                   type: integer
                   description: ID of the product
@@ -1875,9 +1861,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1888,28 +1872,32 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"product"`
+                  description: will always be `product`
+                  example: product
                 id:
                   type: integer
                   description: ID of the product
+                  example: 167
                 inventory:
                   type: object
                   properties:
                     product_id:
                       type: integer
                       description: ID of the product
+                      example: 167
                     method:
                       type: string
-                      enum:
-                        - '"absolute"'
-                        - '"relative"'
                       description: |-
                         How the inventory was adjusted. Value will be one of the following:
                         - `absolute` - inventory updated by an order
                         - `relative` - inventory updated using the API or the control panel
+                      enum:
+                        - absolute
+                        - relative
                     value:
                       type: integer
                       description: 'the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `2`'
+                      example: 2
       x-tags:
         - created
       type: object
@@ -1939,10 +1927,8 @@ components:
         }
         ```
 
-        ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+         ### Callback schema:
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -1953,28 +1939,32 @@ components:
               properties:
                 type:
                   type: string
-                  description: will always be `"product"`
+                  description: will always be `product`
+                  example: product
                 id:
                   type: integer
                   description: ID of the product
+                  example: 167
                 inventory:
                   type: object
                   properties:
                     product_id:
                       type: integer
                       description: ID of the product
+                      example: 167
                     method:
                       type: string
-                      enum:
-                        - '"absolute"'
-                        - '"relative"'
                       description: |-
                         How the inventory was adjusted. Value will be one of the following:
                         - `absolute` - inventory updated by an order
                         - `relative` - inventory updated using the API or the control panel
+                      enum:
+                        - absolute
+                        - relative
                     value:
                       type: integer
                       description: 'the number of items that the inventory changed by. This can be negative if the inventory is decreased `-3` or positive if an item is returned to the inventory from an order, `2`'
+                      example: 2
       x-tags:
         - created
       type: object
@@ -2005,9 +1995,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2018,13 +2006,16 @@ components:
               properties:
                 type:
                   type: string
-                  description: Will always be `"shipment"`
+                  description: Will always be `shipment`
+                  example: shipment
                 id:
                   type: integer
                   description: ID of the shipment
+                  example: 12
                 orderId:
                   type: integer
                   description: ID of the order
+                  example: 251
       x-tags:
         - created
       type: object
@@ -2053,9 +2044,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2066,13 +2055,16 @@ components:
               properties:
                 type:
                   type: string
-                  description: Will always be `"shipment"`
+                  description: Will always be `shipment`
+                  example: shipment
                 id:
                   type: integer
                   description: ID of the shipment
+                  example: 12
                 orderId:
                   type: integer
                   description: ID of the order
+                  example: 251
       x-tags:
         - created
       type: object
@@ -2099,9 +2091,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2112,13 +2102,16 @@ components:
               properties:
                 type:
                   type: string
-                  description: Will always be `"shipment"`
+                  description: Will always be `shipment`
+                  example: shipment
                 id:
                   type: integer
                   description: ID of the shipment
+                  example: 12
                 orderId:
                   type: integer
                   description: ID of the order
+                  example: 251
       x-tags:
         - created
       type: object
@@ -2152,9 +2145,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2166,18 +2157,22 @@ components:
                 type:
                   type: string
                   description: Will always be `"sku"`
+                  example: sku
                 id:
                   type: integer
                   description: ID of the SKU
+                  example: 461
                 sku:
                   type: object
                   properties:
                     product_id:
                       type: integer
                       description: ID of the product
+                      example: 206
                     variant_id:
                       type: integer
                       description: ID of the variant
+                      example: 509
       x-tags:
         - created
       type: object
@@ -2207,9 +2202,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2221,18 +2214,22 @@ components:
                 type:
                   type: string
                   description: Will always be `"sku"`
+                  example: sku
                 id:
                   type: integer
                   description: ID of the SKU
+                  example: 461
                 sku:
                   type: object
                   properties:
                     product_id:
                       type: integer
                       description: ID of the product
+                      example: 206
                     variant_id:
                       type: integer
                       description: ID of the variant
+                      example: 509
       x-tags:
         - created
       type: object
@@ -2262,9 +2259,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2276,18 +2271,22 @@ components:
                 type:
                   type: string
                   description: Will always be `"sku"`
+                  example: sku
                 id:
                   type: integer
                   description: ID of the SKU
+                  example: 461
                 sku:
                   type: object
                   properties:
                     product_id:
                       type: integer
                       description: ID of the product
+                      example: 206
                     variant_id:
                       type: integer
                       description: ID of the variant
+                      example: 509
       x-tags:
         - created
       type: object
@@ -2456,9 +2455,7 @@ components:
         ```
 
         ### Callback schema:
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/store-cart-created'
+      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/webhook_callback_base'
         - description: 'A lightweight description of the [event](/api-docs/getting-started/webhooks/webhook-events) that triggered the webhook. Will vary depending on the event registered.'
@@ -2470,6 +2467,7 @@ components:
                 type:
                   type: string
                   description: will always be `store`
+                  example: store
       x-tags:
         - created
       type: object
