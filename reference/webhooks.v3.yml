@@ -50,6 +50,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Content-Type'
+        - $ref: "#/components/parameters/FilterPageParam"
+        - $ref: "#/components/parameters/FilterLimitParam"
+        - $ref: "#/components/parameters/IsActive"
+        - $ref: "#/components/parameters/FilterByScope"
+        - $ref: "#/components/parameters/FilterByDestination"
   '/hooks/{id}':
     get:
       responses:
@@ -127,6 +132,66 @@ servers:
         default: '{$$.env.store_hash}'
 components:
   parameters:
+    WebhookId:
+      name: webhook_id
+      in: path
+      description: The ID of a Webhook.
+      required: true
+      schema:
+        type: integer
+    IsActive:
+      name: is_active
+      in: query
+      description: |
+        Enables user to filter for webhooks that are active or not.
+      schema:
+        type: boolean
+    FilterByScope:
+      name: scope
+      in: query
+      description: |
+        Enables user to filter for webhooks by scope.
+      schema:
+        type: string
+    FilterByDestination:
+      name: destination
+      in: query
+      description: |
+        Enables user to filter for webhooks by destination.
+      schema:
+        type: string
+    FilterPageParam:
+      name: page
+      in: query
+      description: |
+        Page number.
+      required: false
+      schema:
+        type: integer
+    FilterLimitParam:
+      name: limit
+      in: query
+      description: |
+        Items count per page.
+      required: false
+      schema:
+        type: integer
+    FilterMaxCreatedAtParam:
+      name: created_at:max
+      in: query
+      description: |
+        Maximum value for returned data.
+      required: false
+      schema:
+        type: string
+    FilterMinCreatedAtParam:
+      name: created_at:min
+      in: query
+      description: |
+        Minimum value for returned data.
+      required: false
+      schema:
+        type: string
     Accept:
       in: header
       name: Accept
@@ -452,12 +517,25 @@ components:
       description: |
         Data about the response, including pagination and collection totals.
       properties:
-        offset:
+        total:
           type: integer
-          description: Offset.
-        limit:
+        count:
           type: integer
-          description: Total number of items in the result set.
-        total_items:
+        per_page:
           type: integer
-          description: Total number of items.
+        current_page:
+          type: integer
+        total_pages:
+          type: integer
+        links:
+          type: object
+          properties:
+            previous:
+              type: string
+              description: Link to the previous page returned in the response.
+            current:
+              type: string
+              description: Link to the current page returned in the response.
+            next:
+              type: string
+              description: Link to the next page returned in the response.
