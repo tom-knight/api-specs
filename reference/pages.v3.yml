@@ -183,7 +183,7 @@ paths:
         description: ''
         required: true
       responses:
-        '200':
+        '201':
           description: |+
 
           content:
@@ -437,6 +437,11 @@ components:
       allOf:
         - type: object
           properties:
+            channel_id:
+              type: integer
+              description: |
+                The Id of the channel where this page should be shown.
+              example: 1
             email:
               type: string
               description: 'Where the page’s type is a contact form: contact email address that receives messages sent via the form. Must be unique.'
@@ -487,11 +492,6 @@ components:
               description: |
                 Relative URL on the storefront for this page.
               example: /my-store-page
-            channel_id:
-              type: integer
-              description: |
-                The Id of the channel where this page should be shown.
-              example: 1
         - $ref: '#/components/schemas/PageBase'
       title: ''
       description: ''
@@ -595,10 +595,196 @@ components:
             id:
               type: integer
               description: ID of the page.
+    is_homepage:
+      type: boolean
+      description: |
+        Determines whether this page is the storefront’s home page.
+    name:
+      type: string
+      description: |
+        The name of the page. Must be unique.
+      minLength: 1
+      maxLength: 100
+      example: My Store Page
+    is_visible:
+      type: boolean
+      description: |
+        Determines the visibility of the page in the storefront’s navigation menu.
+    parent_id:
+      type: integer
+      description: |
+        ID of any parent Web page.
+      example: 0
+    sort_order:
+      type: integer
+      description: |
+        Determines the order in which the page is displayed on the storefront. (Lower integers specify earlier display.)
+      example: 0
+    type:
+      type: string
+      description: |-
+        Determines the type of the page.
+
+        |Value|Description|
+        |-|-|
+        |`contact_form`|when the store’s contact form is used|
+        |`link`|link to another web address|
+        |`page`|free-text page|
+        |`raw`|raw page|
+        |`rss_feed`|syndicated content from an RSS feed|
+      example: page
+    is_customers_only:
+      type: boolean
+      description: |
+        If `true`, this will be displayed as a home page.
+    email:
+      type: string
+      description: 'Where the page’s type is a contact form: contact email address that receives messages sent via the form. Must be unique.'
+      maxLength: 255
+    meta_title:
+      type: string
+    body:
+      type: string
+      description: |
+        HTML or variable that populates this page’s  element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
+      example: <div>Hello World!</div>
+    feed:
+      type: string
+      description: |
+        The URL of the RSS feed. Required in a `POST` request if the page type is `rss_feed`.
+    link:
+      type: string
+      description: |
+        Required in a `POST` request to create a link if the page type is `link`.
+    contact_fields:
+      type: string
+      description: |
+        Where the page’s type is `contact_form`: comma-separated list of keywords representing the fields enabled in the control panel for storefront display. Possible fields include:
+
+        |Field|Description|
+        |-|-|
+        |`fullname`|Full name of the customer submitting the form|
+        |`phone`|Customer’s phone number, as submitted on the form|
+        |`companyname`|Customer’s submitted company name|
+        |`orderno`|Customer’s submitted order number|
+        |`rma`|Customer’s submitted RMA (Return Merchandise Authorization) number|
+      example: 'fullname,companyname,phone,orderno,rma'
+    meta_keywords:
+      type: string
+      description: |
+        Comma-separated list of SEO-relevant keywords to include in the page’s  element.
+    meta_description:
+      type: string
+      description: |
+        Description contained within this page’s  element.
+    search_keywords:
+      type: string
+      description: |
+        Comma-separated list of keywords that shoppers can use to locate this page when searching the store.
+      example: page
+    url:
+      type: string
+      description: |
+        Relative URL on the storefront for this page.
+      example: /my-store-page
+    channel_id:
+      type: integer
+      description: |
+        The Id of the channel where this page should be shown.
+      example: 1
   securitySchemes:
     X-Auth-Token:
       name: X-Auth-Token
       type: apiKey
       in: header
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            description: ''
+            type: object
+            x-examples:
+              example-1:
+                data:
+                  channel_id: 1
+                  content_type: text/html
+                  description: null
+                  email: null
+                  id: 20
+                  is_customers_only: false
+                  is_homepage: false
+                  is_visible: false
+                  meta_description: string
+                  meta_keywords: null
+                  meta_title: My Content page
+                  name: Content Page Two
+                  parent_id: 0
+                  search_keywords: string
+                  sort_order: 0
+                  type: page
+                  url: /my-content-page-two
+                meta: {}
+            properties:
+              data:
+                type: object
+                properties:
+                  channel_id:
+                    $ref: '#/components/schemas/channel_id'
+                  content_type:
+                    type: string
+                    minLength: 1
+                  description: {}
+                  email:
+                    $ref: '#/components/schemas/email'
+                  id: {}
+                  is_customers_only:
+                    $ref: '#/components/schemas/is_customers_only'
+                  is_homepage:
+                    $ref: '#/components/schemas/is_homepage'
+                  is_visible:
+                    $ref: '#/components/schemas/is_visible'
+                  meta_description:
+                    $ref: '#/components/schemas/meta_description'
+                  meta_keywords:
+                    $ref: '#/components/schemas/meta_keywords'
+                  meta_title:
+                    $ref: '#/components/schemas/meta_title'
+                  name:
+                    $ref: '#/components/schemas/name'
+                  parent_id:
+                    $ref: '#/components/schemas/parent_id'
+                  search_keywords:
+                    $ref: '#/components/schemas/search_keywords'
+                  sort_order:
+                    $ref: '#/components/schemas/sort_order'
+                  type:
+                    $ref: '#/components/schemas/type'
+                  url:
+                    $ref: '#/components/schemas/url'
+              meta:
+                type: object
+          examples:
+            example-1:
+              data:
+                channel_id: 0
+                content_type: string
+                description: null
+                email: string
+                id: 0
+                is_customers_only: true
+                is_homepage: true
+                is_visible: true
+                meta_description: string
+                meta_keywords: null
+                meta_title: string
+                name: My Store Page
+                parent_id: 0
+                search_keywords: page
+                sort_order: 0
+                type: string
+                url: /my-store-page
+              meta: {}
 security:
   - X-Auth-Token: []
