@@ -184,32 +184,7 @@ paths:
         required: true
       responses:
         '201':
-          description: |+
-
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PageResponse'
-              examples:
-                example-1:
-                  value:
-                    data:
-                      email: string
-                      meta_title: string
-                      body: <div>Hello World!</div>
-                      meta_keywords: string
-                      meta_description: string
-                      search_keywords: page
-                      url: /my-content-page
-                      channel_id: 1
-                      name: Content Page
-                      is_visible: true
-                      parent_id: 0
-                      sort_order: 0
-                      type: page
-                      is_homepage: true
-                      is_customers_only: true
-                    id: 1
+          $ref: '#/components/responses/201'
         '422':
           description: |
             The `Page` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
@@ -692,6 +667,20 @@ components:
       description: |
         The Id of the channel where this page should be shown.
       example: 1
+    id:
+      title: id
+      type: integer
+      description: |
+        The unique numeric ID of the page.
+      example: 1
+    content_type:
+      title: content_type
+      type: string
+      description: The original media type of the page.
+    description:
+      title: description
+      type: string
+      description: A description of the page.
   securitySchemes:
     X-Auth-Token:
       name: X-Auth-Token
@@ -733,12 +722,13 @@ components:
                   channel_id:
                     $ref: '#/components/schemas/channel_id'
                   content_type:
-                    type: string
-                    minLength: 1
-                  description: {}
+                    $ref: '#/components/schemas/content_type'
+                  description:
+                    $ref: '#/components/schemas/description'
                   email:
                     $ref: '#/components/schemas/email'
-                  id: {}
+                  id:
+                    $ref: '#/components/schemas/id'
                   is_customers_only:
                     $ref: '#/components/schemas/is_customers_only'
                   is_homepage:
@@ -766,25 +756,25 @@ components:
               meta:
                 type: object
           examples:
-            example-1:
+            example:
               data:
-                channel_id: 0
-                content_type: string
+                channel_id: 1
+                content_type: text/html
                 description: null
-                email: string
-                id: 0
-                is_customers_only: true
-                is_homepage: true
-                is_visible: true
+                email: null
+                id: 20
+                is_customers_only: false
+                is_homepage: false
+                is_visible: false
                 meta_description: string
                 meta_keywords: null
-                meta_title: string
-                name: My Store Page
+                meta_title: My Content page
+                name: Content Page Two
                 parent_id: 0
-                search_keywords: page
+                search_keywords: string
                 sort_order: 0
-                type: string
-                url: /my-store-page
+                type: page
+                url: /my-content-page-two
               meta: {}
 security:
   - X-Auth-Token: []
