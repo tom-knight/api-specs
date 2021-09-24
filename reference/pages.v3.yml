@@ -164,7 +164,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Page'
-            examples:
+            x-examples:
               Example:
                 channel_id: 1
                 email: string
@@ -653,6 +653,7 @@ components:
       description: |
         The URL of the RSS feed. Required in a `POST` request if the page type is `rss_feed`.
     link:
+      title: link
       type: string
       description: |
         Required in a `POST` request to create a link if the page type is `link`.
@@ -676,6 +677,7 @@ components:
         - description: Comma-separated list of SEO-relevant keywords to include in the page’s  element.
       type: string
     meta_description:
+      title: meta_description
       type: string
       description: |
         Description contained within this page’s  element.
@@ -782,27 +784,7 @@ components:
                     $ref: '#/components/schemas/url'
               meta:
                 type: object
-          examples:
-            Example:
-              data:
-                channel_id: 1
-                content_type: string
-                description: string
-                email: string
-                id: 1
-                is_customers_only: true
-                is_homepage: true
-                is_visible: true
-                meta_description: string
-                meta_keywords: string
-                meta_title: string
-                name: My Store Page
-                parent_id: 0
-                search_keywords: page
-                sort_order: 0
-                type: page
-                url: /my-store-page
-              meta: {}
+          examples: {}
   parameters: {}
 security:
   - X-Auth-Token: []
