@@ -164,7 +164,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Page'
-            x-examples:
+            examples:
               Example:
                 channel_id: 1
                 email: string
@@ -723,27 +723,6 @@ components:
           schema:
             description: ''
             type: object
-            x-examples:
-              example-1:
-                data:
-                  channel_id: 1
-                  content_type: text/html
-                  description: null
-                  email: null
-                  id: 20
-                  is_customers_only: false
-                  is_homepage: false
-                  is_visible: false
-                  meta_description: string
-                  meta_keywords: null
-                  meta_title: My Content page
-                  name: Content Page Two
-                  parent_id: 0
-                  search_keywords: string
-                  sort_order: 0
-                  type: page
-                  url: /my-content-page-two
-                meta: {}
             properties:
               data:
                 type: object
@@ -784,7 +763,48 @@ components:
                     $ref: '#/components/schemas/url'
               meta:
                 type: object
-          examples: {}
+          examples:
+            example-1:
+              data:
+                channel_id: 1
+                content_type: text/html
+                description: null
+                email: null
+                id: 20
+                is_customers_only: false
+                is_homepage: false
+                is_visible: false
+                meta_description: string
+                meta_keywords: null
+                meta_title: My Content page
+                name: Content Page Two
+                parent_id: 0
+                search_keywords: string
+                sort_order: 0
+                type: page
+                url: /my-content-page-two
+              meta: {}
+          x-example:
+            Example:
+              data:
+                channel_id: 1
+                content_type: string
+                description: string
+                email: string
+                id: 1
+                is_customers_only: true
+                is_homepage: true
+                is_visible: true
+                meta_description: string
+                meta_keywords: string
+                meta_title: string
+                name: My Store Page
+                parent_id: 0
+                search_keywords: page
+                sort_order: 0
+                type: page
+                url: /my-store-page
+              meta: {}
   parameters: {}
 security:
   - X-Auth-Token: []
