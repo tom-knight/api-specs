@@ -165,21 +165,20 @@ paths:
             schema:
               $ref: '#/components/schemas/Page'
             examples:
-              example-1:
-                value:
-                  channel_id: 1
-                  name: Content Page
-                  is_visible: false
-                  parent_id: 0
-                  sort_order: 0
-                  type: page
-                  body: <div>Hello World!</div>
-                  is_homepage: false
-                  meta_title: My Content page
-                  meta_keywords: string
-                  meta_description: string
-                  search_keywords: string
-                  url: /my-content-page
+              Example:
+                channel_id: 1
+                name: Content Page
+                is_visible: false
+                parent_id: 0
+                sort_order: 0
+                type: page
+                body: <div>Hello World!</div>
+                is_homepage: false
+                meta_title: My Content page
+                meta_keywords: string
+                meta_description: string
+                search_keywords: string
+                url: /my-content-page
         description: ''
         required: true
       responses:
@@ -760,7 +759,7 @@ components:
               meta:
                 type: object
           examples:
-            example:
+            Example:
               data:
                 channel_id: 1
                 content_type: text/html
