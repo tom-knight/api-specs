@@ -164,7 +164,26 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Page'
-            examples: {}
+            examples:
+              Example:
+                channel_id: 1
+                email: string
+                meta_title: string
+                body: <div>Hello World!</div>
+                feed: string
+                link: string
+                contact_fields: 'fullname,companyname,phone,orderno,rma'
+                meta_keywords: string
+                meta_description: string
+                search_keywords: page
+                url: /my-store-page
+                name: My Store Page
+                is_visible: true
+                parent_id: 0
+                sort_order: 0
+                type: page
+                is_homepage: true
+                is_customers_only: true
         description: ''
         required: true
       responses:
@@ -768,25 +787,23 @@ components:
                 type: object
           examples:
             Example:
-              data:
-                channel_id: 1
-                content_type: text/html
-                description: null
-                email: null
-                id: 20
-                is_customers_only: false
-                is_homepage: false
-                is_visible: false
-                meta_description: string
-                meta_keywords: null
-                meta_title: My Content page
-                name: Content Page Two
-                parent_id: 0
-                search_keywords: string
-                sort_order: 0
-                type: page
-                url: /my-content-page-two
-              meta: {}
+              channel_id: 1
+              content_type: text/html
+              description: null
+              email: null
+              id: 20
+              is_customers_only: false
+              is_homepage: false
+              is_visible: false
+              meta_description: string
+              meta_keywords: null
+              meta_title: My Content page
+              name: Content Page Two
+              parent_id: 0
+              search_keywords: string
+              sort_order: 0
+              type: page
+              url: /my-content-page-two
   parameters: {}
 security:
   - X-Auth-Token: []
