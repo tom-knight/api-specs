@@ -167,18 +167,23 @@ paths:
             examples:
               Example:
                 channel_id: 1
-                name: Content Page
-                is_visible: false
+                email: string
+                meta_title: string
+                body: <div>Hello World!</div>
+                feed: string
+                link: string
+                contact_fields: 'fullname,companyname,phone,orderno,rma'
+                meta_keywords: string
+                meta_description: string
+                search_keywords: page
+                url: /my-store-page
+                name: My Store Page
+                is_visible: true
                 parent_id: 0
                 sort_order: 0
                 type: page
-                body: <div>Hello World!</div>
-                is_homepage: false
-                meta_title: My Content page
-                meta_keywords: string
-                meta_description: string
-                search_keywords: string
-                url: /my-content-page
+                is_homepage: true
+                is_customers_only: true
         description: ''
         required: true
       responses:
