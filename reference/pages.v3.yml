@@ -654,9 +654,11 @@ components:
         |`rma`|Customer’s submitted RMA (Return Merchandise Authorization) number|
       example: 'fullname,companyname,phone,orderno,rma'
     meta_keywords:
+      description: ''
+      x-examples: {}
+      allOf:
+        - description: Comma-separated list of SEO-relevant keywords to include in the page’s  element.
       type: string
-      description: |
-        Comma-separated list of SEO-relevant keywords to include in the page’s  element.
     meta_description:
       type: string
       description: |
