@@ -785,25 +785,7 @@ components:
                     $ref: '#/components/schemas/url'
               meta:
                 type: object
-          examples:
-            Example:
-              channel_id: 1
-              content_type: text/html
-              description: null
-              email: null
-              id: 20
-              is_customers_only: false
-              is_homepage: false
-              is_visible: false
-              meta_description: string
-              meta_keywords: null
-              meta_title: My Content page
-              name: Content Page Two
-              parent_id: 0
-              search_keywords: string
-              sort_order: 0
-              type: page
-              url: /my-content-page-two
+          examples: {}
   parameters: {}
 security:
   - X-Auth-Token: []
