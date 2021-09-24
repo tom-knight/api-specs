@@ -165,25 +165,26 @@ paths:
             schema:
               $ref: '#/components/schemas/Page'
             examples:
-              Example:
-                channel_id: 1
-                email: string
-                meta_title: string
-                body: <div>Hello World!</div>
-                feed: string
-                link: string
-                contact_fields: 'fullname,companyname,phone,orderno,rma'
-                meta_keywords: string
-                meta_description: string
-                search_keywords: page
-                url: /my-store-page
-                name: My Store Page
-                is_visible: true
-                parent_id: 0
-                sort_order: 0
-                type: page
-                is_homepage: true
-                is_customers_only: true
+              example-1:
+                data:
+                  channel_id: 1
+                  email: string
+                  meta_title: string
+                  body: <div>Hello World!</div>
+                  feed: string
+                  link: string
+                  contact_fields: 'fullname,companyname,phone,orderno,rma'
+                  meta_keywords: string
+                  meta_description: string
+                  search_keywords: page
+                  url: /my-store-page
+                  name: My Store Page
+                  is_visible: true
+                  parent_id: 0
+                  sort_order: 0
+                  type: page
+                  is_homepage: true
+                  is_customers_only: true
         description: ''
         required: true
       responses:
@@ -710,6 +711,49 @@ components:
       title: description
       type: string
       description: A description of the page.
+    PostResponse:
+      title: PostResponse
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            channel_id:
+              $ref: '#/components/schemas/channel_id'
+            content_type:
+              $ref: '#/components/schemas/content_type'
+            description:
+              $ref: '#/components/schemas/description'
+            email:
+              $ref: '#/components/schemas/email'
+            id:
+              $ref: '#/components/schemas/id'
+            is_customers_only:
+              $ref: '#/components/schemas/is_customers_only'
+            is_homepage:
+              $ref: '#/components/schemas/is_homepage'
+            is_visible:
+              $ref: '#/components/schemas/is_visible'
+            meta_description:
+              $ref: '#/components/schemas/meta_description'
+            meta_keywords:
+              $ref: '#/components/schemas/meta_keywords'
+            meta_title:
+              $ref: '#/components/schemas/meta_title'
+            name:
+              $ref: '#/components/schemas/name'
+            parent_id:
+              $ref: '#/components/schemas/parent_id'
+            search_keywords:
+              $ref: '#/components/schemas/search_keywords'
+            sort_order:
+              $ref: '#/components/schemas/sort_order'
+            type:
+              $ref: '#/components/schemas/type'
+            url:
+              $ref: '#/components/schemas/url'
+        meta:
+          type: object
   securitySchemes:
     X-Auth-Token:
       name: X-Auth-Token
@@ -721,69 +765,29 @@ components:
       content:
         application/json:
           schema:
-            description: ''
-            type: object
-            properties:
-              data:
-                type: object
-                properties:
-                  channel_id:
-                    $ref: '#/components/schemas/channel_id'
-                  content_type:
-                    $ref: '#/components/schemas/content_type'
-                  description:
-                    $ref: '#/components/schemas/description'
-                  email:
-                    $ref: '#/components/schemas/email'
-                  id:
-                    $ref: '#/components/schemas/id'
-                  is_customers_only:
-                    $ref: '#/components/schemas/is_customers_only'
-                  is_homepage:
-                    $ref: '#/components/schemas/is_homepage'
-                  is_visible:
-                    $ref: '#/components/schemas/is_visible'
-                  meta_description:
-                    $ref: '#/components/schemas/meta_description'
-                  meta_keywords:
-                    $ref: '#/components/schemas/meta_keywords'
-                  meta_title:
-                    $ref: '#/components/schemas/meta_title'
-                  name:
-                    $ref: '#/components/schemas/name'
-                  parent_id:
-                    $ref: '#/components/schemas/parent_id'
-                  search_keywords:
-                    $ref: '#/components/schemas/search_keywords'
-                  sort_order:
-                    $ref: '#/components/schemas/sort_order'
-                  type:
-                    $ref: '#/components/schemas/type'
-                  url:
-                    $ref: '#/components/schemas/url'
-              meta:
-                type: object
+            $ref: '#/components/schemas/PostResponse'
           examples:
-            example-1:
-              data:
-                channel_id: 1
-                content_type: text/html
-                description: null
-                email: null
-                id: 20
-                is_customers_only: false
-                is_homepage: false
-                is_visible: false
-                meta_description: string
-                meta_keywords: null
-                meta_title: My Content page
-                name: Content Page Two
-                parent_id: 0
-                search_keywords: string
-                sort_order: 0
-                type: page
-                url: /my-content-page-two
-              meta: {}
+            response:
+              value:
+                data:
+                  channel_id: 1
+                  content_type: string
+                  description: string
+                  email: string
+                  id: 1
+                  is_customers_only: true
+                  is_homepage: true
+                  is_visible: true
+                  meta_description: string
+                  meta_keywords: string
+                  meta_title: string
+                  name: My Store Page
+                  parent_id: 0
+                  search_keywords: page
+                  sort_order: 0
+                  type: page
+                  url: /my-store-page
+                meta: {}
           x-example:
             Example:
               data:
