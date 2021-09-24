@@ -785,18 +785,6 @@ components:
                 type: page
                 url: /my-content-page-two
               meta: {}
-  parameters:
-    Accept:
-      in: header
-      type: string
-      name: Accept
-      default: application/json
-      required: true
-    Content-Type:
-      name: Content-Type
-      in: header
-      type: string
-      default: application/json
-      required: true
+  parameters: {}
 security:
   - X-Auth-Token: []
