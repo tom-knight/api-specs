@@ -257,10 +257,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       summary: Update a Page
-      parameters:
-        - schema:
-            type: string
-          in: header
+      parameters: []
     delete:
       operationId: content-pages-delete
       tags:
