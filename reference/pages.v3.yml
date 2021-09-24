@@ -166,7 +166,7 @@ paths:
               $ref: '#/components/schemas/Page'
             examples:
               example-1:
-                data:
+                value:
                   channel_id: 1
                   email: string
                   meta_title: string
