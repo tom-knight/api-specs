@@ -339,7 +339,7 @@ paths:
                         - id: 200
                           value: '180'
                         - id: 230
-                          value: 'Custom Message'
+                          value: Custom Message
               Multiple Products:
                 value:
                   status_id: 0
@@ -612,14 +612,12 @@ paths:
                 value:
                   tracking_number: EJ958083578UK
                   comments: Janes Order
-                  order_address_id: '128'
+                  order_address_id: 128
                   shipping_provider: ''
                   items:
                     - order_product_id: 194
-                      product_id: 0
                       quantity: 1
                     - order_product_id: 195
-                      product_id: 0
                       quantity: 1
         required: true
       responses:
@@ -2916,7 +2914,7 @@ components:
                   - ''
               customer_locale:
                 type: 'string,'
-                example: 'en'
+                example: en
                 description: The customer's locale
   requestBodies: null
   securitySchemes:
@@ -4026,7 +4024,7 @@ components:
           type: string
         customer_locale:
           type: string
-          example: 'en'
+          example: en
           description: The customer's locale
         total_ex_tax:
           description: 'Override value for the total, excluding tax. If specified, the field `total_inc_tax` is also required. (Float, Float-As-String, Integer)'
