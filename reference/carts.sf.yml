@@ -323,8 +323,6 @@ paths:
                   currencyCode: EUR
       responses:
         '200':
-          $ref: ''
-        '201':
           description: Created
           content:
             application/json:
