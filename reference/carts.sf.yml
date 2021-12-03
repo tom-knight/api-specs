@@ -293,6 +293,35 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/deleteCartsItems'
+  /carts/change-currency:
+    post:
+      summary: Update currency
+      tags:
+        - Change currency
+      responses: {}
+      operationId: post-carts-change-currency
+      description: |-
+        Updates the currency.
+
+        <div class="HubBlock--callout">
+        <div class="CalloutBlock--info">
+        <div class="HubBlock-content">
+
+        > ### Note
+        > The Send a Test Request feature is not currently supported for this endpoint.
+
+        </div>
+        </div>
+        </div>
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requestCartCurrency'
+            examples:
+              example-1:
+                value:
+                  currencyCode: EUR
 components:
   schemas:
     responseCartCoupons:
@@ -941,6 +970,15 @@ components:
         name:
           type: string
           description: Contact's name.
+    requestCartCurrency:
+      title: requestCartCurrency
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          example: EUR
+      required:
+        - currencyCode
   responses:
     postCarts:
       description: Post Carts Response
