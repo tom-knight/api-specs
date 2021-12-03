@@ -298,7 +298,6 @@ paths:
       summary: Update currency
       tags:
         - Change currency
-      responses: {}
       operationId: post-carts-change-currency
       description: |-
         Updates the currency.
