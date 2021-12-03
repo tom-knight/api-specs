@@ -293,6 +293,60 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/deleteCartsItems'
+  /carts/change-currency:
+    post:
+      description: |
+        Updates the currency.
+
+        <div class="HubBlock--callout">
+        <div class="CalloutBlock--info">
+        <div class="HubBlock-content">
+
+          > ### Note
+          > The Send a Test Request feature is not currently supported for this endpoint.
+
+        </div>
+        </div>
+        </div>
+      operationId: Update currency
+      tags:
+        - Change currency
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requestCartCurrency'
+            examples:
+              example-1:
+                value:
+                  currencyCode: EUR
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseCartCurrency'
+              examples:
+                example-1:
+                  value:
+                    code: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/requestCartCurrency'
+          examples:
+            example-1:
+              value:
+                currencyCode: EUR
+    responses:
+      '200':
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/responseCartCurrency'
 components:
   schemas:
     responseCartCoupons:
@@ -529,7 +583,9 @@ components:
           type: string
           description: 'ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)'
           format: ISO-4217
-      description: This will always be the same between cart and checkout.
+      description: |-
+        NOTE: There is no response body. Refresh the page to see the updated currency selection.
+        Currency will always be the same between cart and checkout.
       x-go-gen-location: models
     responseCartLineItems:
       title: Response Line Items Object
@@ -941,6 +997,15 @@ components:
         name:
           type: string
           description: Contact's name.
+    requestCartCurrency:
+      title: requestCartCurrency
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          example: EUR
+      required:
+        - currencyCode
   responses:
     postCarts:
       description: Post Carts Response
