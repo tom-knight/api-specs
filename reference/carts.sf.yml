@@ -321,6 +321,9 @@ paths:
               example-1:
                 value:
                   currencyCode: EUR
+      responses:
+        '200':
+          $ref: ''
 components:
   schemas:
     responseCartCoupons:
