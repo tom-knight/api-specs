@@ -1,18 +1,19 @@
 openapi: 3.0.0
 servers:
-- url: https://{username}.gigantic-server.com:{port}/{basePath}
-  description: The production API server
-  variables:
-    username:
-      default: demo
-      description: this value is assigned by the service provider, in this example `gigantic-server.com`
-    port:
-      enum:
-        - '8443'
-        - '443'
-      default: '8443'
-    basePath:
-      default: v2
+  - url: 'https://{store_hash}.gigantic-server.com:{port}/{basePath}'
+    description: The production API server
+    variables:
+      store_hash:
+        default: 'demo'
+        description: 'this value is assigned by the service provider, in this example `gigantic-server.com`'
+      port:
+        enum:
+          - '8443'
+          - '443'
+        default: '8443'
+      basePath:
+        default: v2
+    
 tags:
   - name: Customers
     description: BigCommerce Customers API Definition.
@@ -33,6 +34,7 @@ x-stoplight:
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
+  - X-Store-Hash: []
 info:
   version: ''
   title: Customers V3
@@ -909,6 +911,11 @@ paths:
           schema:
             type: integer
           required: true
+        - in: path
+          name: store_hash
+          schema:
+            type: integer
+          required: true
       requestBody:
         content:
           application/json:
@@ -1655,11 +1662,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      x-postman-variables:
-        type: save
-        name: myVariable
-        path:
-          store_hash: null
   '/customers/{customerId}/stored-instruments':
     get:
       summary: Get Stored Instruments (Beta)
