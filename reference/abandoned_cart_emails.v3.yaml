@@ -15,11 +15,11 @@ consumes:
 produces:
   - application/json
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{store_hash}/v3'
+  - url: 'https://cors-anywhere-proxy-mm.herokuapp.com/https://api.bigcommerce.com/stores/{store_hash}/v3'
     description: BigCommerce API Gateway
     variables:
       store_hash:
-        default: abc123
+        default: 29iql3rwa6
         description: Store hash used to identify the store.
 paths:
   /marketing/abandoned-cart-emails:
@@ -458,9 +458,12 @@ components:
       description: Channel ID to use for channel-specific setting.
   securitySchemes:
     X-Auth-Token:
-      name: API Key
+      name: X-Auth-Token
       type: apiKey
       in: header
+security:
+  - X-Auth-Client: []
+  - X-Auth-Token: []
 x-stoplight:
   docs:
     includeDownloadLink: true

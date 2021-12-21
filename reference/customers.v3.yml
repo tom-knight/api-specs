@@ -1,10 +1,10 @@
 openapi: 3.0.0
 servers:
-  - url: 'https://{store_hash}.gigantic-server.com:{port}/{basePath}'
+  - url: 'https://api.bigcommerce.com/'
     description: The production API server
     variables:
       store_hash:
-        default: 'demo'
+        default: demo
         description: 'this value is assigned by the service provider, in this example `gigantic-server.com`'
       port:
         enum:
@@ -13,7 +13,8 @@ servers:
         default: '8443'
       basePath:
         default: v2
-    
+  - description: CORS Proxy
+    url: 'https://cors-anywhere-proxy-mm.herokuapp.com/https://api.bigcommerce.com/'
 tags:
   - name: Customers
     description: BigCommerce Customers API Definition.
@@ -74,7 +75,7 @@ info:
     * [Customer and Subscribers Overview](/api-docs/customers/customers-subscribers-overview).
   contact: {}
 paths:
-  /customers:
+  '/stores/{store_hash}/v3/customers':
     get:
       description: |-
         Returns a list of Customers. Optional filter parameters can be passed in.
@@ -230,6 +231,14 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/CustomerCollectionResponse'
+      x-custom-info:
+        comment: Here's some custom information
+        in: header
+        authors:
+          - name: John Doe
+            email: john@doe.com
+          - name: Jane Doe
+            email: jane@doe.com
     post:
       description: |-
         Creates Customers. Multiple customers can be created in one call.
@@ -455,6 +464,13 @@ paths:
         '204':
           description: ''
           headers: {}
+    parameters:
+      - schema:
+          type: string
+          example: this
+        name: store_hash
+        in: path
+        required: true
   /customers/addresses:
     get:
       description: Returns a list of Customer Addresses. Optional filter parameters can be passed in.
@@ -2520,6 +2536,10 @@ components:
           schema:
             $ref: '#/components/schemas/consent_Full'
   securitySchemes:
+    X-Store-Hash:
+      type: apiKey
+      name: X-Store-Hash
+      in: header
     X-Auth-Token:
       type: apiKey
       name: X-Auth-Token
