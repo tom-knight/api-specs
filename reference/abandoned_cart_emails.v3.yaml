@@ -15,12 +15,18 @@ consumes:
 produces:
   - application/json
 servers:
-  - url: 'https://cors-anywhere-proxy-mm.herokuapp.com/https://api.bigcommerce.com/'
-    description: BigCommerce API Gateway
+  - url: 'https://prism.stoplight.io/v1/run/https://api.bigcommerce.com/'
+    description: Prism
     variables:
       store_hash:
         default: 29iql3rwa6
         description: Store hash used to identify the store.
+  - url: 'https://prism.stoplight.io/https://api.bigcommerce.com/'
+    description: Prism
+  - description: BC Gateway
+    url: 'https://api.bigcommerce.com/'
+  - description: CORs proxy
+    url: 'https://cors-anywhere-proxy-mm.herokuapp.com/https://api.bigcommerce.com/'
 paths:
   /marketing/abandoned-cart-emails:
     get:
