@@ -1,20 +1,6 @@
 openapi: 3.0.0
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{store_hash}/v3/'
-    description: The production API server
-    variables:
-      store_hash:
-        default: 29iql3rwa6
-        description: 'this value is assigned by the service provider, in this example `gigantic-server.com`'
-      port:
-        enum:
-          - '8443'
-          - '443'
-        default: '8443'
-      basePath:
-        default: v2
-  - description: CORS Proxy
-    url: 'https://cors-anywhere-proxy-mm.herokuapp.com/https://api.bigcommerce.com/'
+  - url: 'https://api.bigcommerce.com/stores/29iql3rwa6/v3'
 tags:
   - name: Customers
     description: BigCommerce Customers API Definition.
@@ -35,7 +21,6 @@ x-stoplight:
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
-  - X-Store-Hash: []
 info:
   version: ''
   title: Customers V3
@@ -75,7 +60,7 @@ info:
     * [Customer and Subscribers Overview](/api-docs/customers/customers-subscribers-overview).
   contact: {}
 paths:
-  '/stores/{store_hash}/v3/customers':
+  /customers:
     get:
       description: |-
         Returns a list of Customers. Optional filter parameters can be passed in.
@@ -231,21 +216,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/CustomerCollectionResponse'
-      servers:
-      - url: 'https://api.bigcommerce.com/stores/{store_hash}/v3'
-        description: BigCommerce API Gateway
-        variables:
-          store_hash:
-            default: []
-            description: Store hash used to identify the store.
-      x-custom-info:
-        comment: Here's some custom information
-        in: header
-        authors:
-          - name: John Doe
-            email: john@doe.com
-          - name: Jane Doe
-            email: jane@doe.com
     post:
       description: |-
         Creates Customers. Multiple customers can be created in one call.
@@ -471,13 +441,6 @@ paths:
         '204':
           description: ''
           headers: {}
-    parameters:
-      - schema:
-          type: string
-          example: this
-        name: store_hash
-        in: path
-        required: true
   /customers/addresses:
     get:
       description: Returns a list of Customer Addresses. Optional filter parameters can be passed in.
@@ -931,11 +894,6 @@ paths:
       parameters:
         - in: path
           name: channel_id
-          schema:
-            type: integer
-          required: true
-        - in: path
-          name: store_hash
           schema:
             type: integer
           required: true
@@ -2543,10 +2501,6 @@ components:
           schema:
             $ref: '#/components/schemas/consent_Full'
   securitySchemes:
-    X-Store-Hash:
-      type: apiKey
-      name: X-Store-Hash
-      in: header
     X-Auth-Token:
       type: apiKey
       name: X-Auth-Token
@@ -2796,9 +2750,7 @@ components:
           description: Array of channels the customer can access
           type: array
           items:
-            example:
-              - 1
-              - 2
+            example: [1,2]
       required:
         - email
         - first_name
@@ -3476,9 +3428,7 @@ components:
       title: customerChannelIds
       description: Array of channel ids the Customer has access to.
       items:
-        example:
-          - 1
-          - 2
+        example: [1,2]
     CardInstrument:
       type: object
       properties:
