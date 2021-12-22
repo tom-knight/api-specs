@@ -27,6 +27,8 @@ servers:
     url: 'https://api.bigcommerce.com/'
   - description: CORs proxy
     url: 'https://cors-anywhere-proxy-mm.herokuapp.com/https://api.bigcommerce.com/'
+  - url: 'https://ha2dgmz2ozsxe43jn5xc6mjogm5g233dnnsxeltqojuxg3jopfwwy.prism.stoplight.io/'
+    description: ''
 paths:
   /marketing/abandoned-cart-emails:
     get:
