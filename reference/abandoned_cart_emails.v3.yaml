@@ -264,6 +264,8 @@ paths:
                       - locale: en
                         keys:
                           hello_phrase: Welcome back
+        '400':
+          description: Bad Request!!
     parameters:
       - schema:
           type: string
