@@ -122,11 +122,11 @@ x-stoplight:
     includeDownloadLink: true
     showModels: true
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
+  - url: 'https://api.bigcommerce.com/stores/{store_hash}/v3'
     variables:
       $$.env.store_hash:
         default: '{$$.env.store_hash}'
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2'
+  - url: 'https://api.bigcommerce.com/stores/{store_hash}/v2'
     variables:
       $$.env.store_hash:
         default: '{$$.env.store_hash}'

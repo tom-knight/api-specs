@@ -26,7 +26,6 @@ info:
     Requests can be authenticated by sending an`access_token` via `X-Auth-Token` HTTP header:
 
     ```http
-    GET /stores/{$$.env.store_hash}/v3/catalog/summary
     host: api.bigcommerce.com
     Accept: application/json
     X-Auth-Token: {access_token}
@@ -46,7 +45,7 @@ info:
   license:
     name: ''
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: '/stores/{store_hash}/v3'
 tags:
   - name: Scripts
 schemes:

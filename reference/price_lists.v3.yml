@@ -82,7 +82,7 @@ info:
     name: ''
     url: ''
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: '/stores/{store_hash}/v3'
 tags:
   - name: Price Lists
     description: BigCommerce Price Lists API Definition.
@@ -787,7 +787,7 @@ paths:
         - Price Lists
       summary: Update a Price List
     delete:
-      description: |- 
+      description: |-
         Deletes a *Price List*. All associated price records are also removed.
 
         **Limits**

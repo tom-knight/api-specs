@@ -15,6 +15,8 @@ info:
     ## Authentication
 
     Authenticate requests by sending an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` via `X-Auth-Token` HTTP header.
+    
+    ### Example
 
     ```http
     GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/sites
@@ -147,7 +149,7 @@ info:
     * [Building Headless Storefronts Guide](https://developer.bigcommerce.com/api-docs/storefronts/developers-guide-headless)
   contact: {}
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: '/stores/{store_hash}/v3'
 paths:
   /sites:
     post:

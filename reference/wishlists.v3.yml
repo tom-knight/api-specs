@@ -30,7 +30,7 @@ info:
     ## Additional Information
     * [Wishlists](https://support.bigcommerce.com/s/article/Wishlists)
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: '/stores/{store_hash}/v3'
 schemes:
   - https
 consumes:
