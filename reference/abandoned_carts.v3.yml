@@ -196,7 +196,7 @@ securityDefinitions:
 
       ```http
 
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
+      GET /stores/{store_hash}/v3/catalog/summary
 
       host: api.bigcommerce.com
 
@@ -217,7 +217,7 @@ consumes:
   - application/json
 produces:
   - application/json
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: '/stores/{store_hash}/v3'
 tags:
   - name: Abandoned Carts
 responses:

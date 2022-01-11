@@ -223,7 +223,9 @@ paths:
         - Channel Active Theme
       summary: Get a Channel Active Theme
       operationId: getChannelActiveTheme
-      description: Returns active theme details for a specific channel.
+      description: |-
+        Returns details of the theme active on the specified channel.
+        Does not support active Blueprint (legacy) themes.
       parameters:
         - $ref: '#/components/parameters/channel_id_path_param'
       responses:
@@ -520,7 +522,7 @@ x-stoplight:
     includeDownloadLink: true
     showModels: false
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
+  - url: 'https://api.bigcommerce.com/stores/{store_hash}/v3'
     variables:
       $$.env.store_hash:
         default: store_hash
@@ -1550,7 +1552,7 @@ components:
         ### Example
 
         ```http
-        GET /stores/{$$.env.store_hash}/v3/catalog/summary
+        GET /stores/{store_hash}/v3/catalog/summary
         host: api.bigcommerce.com
         Content-Type: application/json
         X-Auth-Token: {access_token}
@@ -2189,3 +2191,4 @@ components:
                   - {language} The language string that the client is using
                 example: /my-amazing-product
       title: site_Full
+      x-internal: true

@@ -962,7 +962,7 @@ x-stoplight:
     includeDownloadLink: true
     showModels: false
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2'
+  - url: 'https://api.bigcommerce.com/stores/{store_hash}/v2'
     variables:
       $$.env.store_hash:
         default: unknown
@@ -1378,13 +1378,13 @@ components:
                   channel_id: 1
                   external_source: POS
                   products:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/100/products'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/100/products'
                     resource: /orders/100/products
                   shipping_addresses:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/100/shippingaddresses'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/100/shippingaddresses'
                     resource: /orders/100/shippingaddresses
                   coupons:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/100/coupons'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/100/coupons'
                     resource: /orders/100/coupons
                   external_id: null
                   external_merchant_id: {}
@@ -1594,13 +1594,13 @@ components:
                 channel_id: 1
                 external_source: null
                 products:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/218/products'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/218/products'
                   resource: /orders/218/products
                 shipping_addresses:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/218/shippingaddresses'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/218/shippingaddresses'
                   resource: /orders/218/shippingaddresses
                 coupons:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/218/coupons'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/218/coupons'
                   resource: /orders/218/coupons
                 external_id: null
                 external_merchant_id: null
@@ -1685,13 +1685,13 @@ components:
                 channel_id: 1
                 external_source: {}
                 products:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/products'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/247/products'
                   resource: /orders/247/products
                 shipping_addresses:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/shippingaddresses'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/247/shippingaddresses'
                   resource: /orders/247/shippingaddresses
                 coupons:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/coupons'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/247/coupons'
                   resource: /orders/247/coupons
                 external_id: {}
                 external_merchant_id: {}
@@ -2338,7 +2338,7 @@ components:
                   shipping_zone_id: 1
                   shipping_zone_name: United States -1
                   shipping_quotes:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/229/shippingaddresses/132/shippingquotes'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/229/shippingaddresses/132/shippingquotes'
                     resource: /orders/229/shippingaddresses/132/shippingquotes
                   form_fields: []
                 - id: 133
@@ -2371,7 +2371,7 @@ components:
                   shipping_zone_id: 1
                   shipping_zone_name: United States -1
                   shipping_quotes:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/229/shippingaddresses/133/shippingquotes'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/229/shippingaddresses/133/shippingquotes'
                     resource: /orders/229/shippingaddresses/133/shippingquotes
                   form_fields: []
     orderShippingAddress_Resp:
@@ -2413,7 +2413,7 @@ components:
                 shipping_zone_id: 1
                 shipping_zone_name: United States
                 shipping_quotes:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/140/shippingaddresses/42/shippingquotes'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/140/shippingaddresses/42/shippingquotes'
                   resource: /orders/140/shippingaddresses/42/shippingquotes
                 form_fields:
                   - name: Wholesale ID
@@ -2576,13 +2576,13 @@ components:
               order_source: www
               external_source: null
               products:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/113/products'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/113/products'
                 resource: /orders/113/products
               shipping_addresses:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/113/shippingaddresses'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/113/shippingaddresses'
                 resource: /orders/113/shippingaddresses
               coupons:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/113/coupons'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/113/coupons'
                 resource: /orders/113/coupons
               external_id: null
               external_merchant_id: null
@@ -3505,7 +3505,7 @@ components:
         url:
           description: ''
           readOnly: true
-          example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/products'
+          example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/129/products'
           type: string
         resource:
           description: ''
@@ -3520,7 +3520,7 @@ components:
         url:
           description: URL of the shipping address for api requests
           readOnly: true
-          example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/shippingaddresses'
+          example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/129/shippingaddresses'
           type: string
         resource:
           description: ''
@@ -3535,7 +3535,7 @@ components:
         url:
           description: URL of the coupons for api requests
           readOnly: true
-          example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/coupons'
+          example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/129/coupons'
           type: string
         resource:
           description: resource of the coupons
@@ -3701,7 +3701,7 @@ components:
           description: |-
             This URL will return a 204 for shipping quotes. To return shipping quotes:
             `/shipping_addresses/shipping_address_id/shipping_quotes`
-          example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/163/shippingaddresses/64/shippingquotes'
+          example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/163/shippingaddresses/64/shippingquotes'
         resource:
           type: string
           readOnly: true

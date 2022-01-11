@@ -25,7 +25,7 @@ info:
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
 
     ```http
-    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+    GET /stores/{store_hash}/v3/catalog/summary
     host: api.bigcommerce.com
     Accept: application/json
     X-Auth-Token: {access_token}
@@ -70,7 +70,7 @@ info:
     - [Managing Currencies](https://support.bigcommerce.com/s/article/Managing-Currencies-Beta) (BigCommerce Knowledge Base)
     - [Tax](https://support.bigcommerce.com/s/article/Manual-Tax-Setup#intro1) (BigCommerce Knowledge Base)
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v2/'
+basePath: '/stores/{store_hash}/v2/'
 schemes:
   - https
 consumes:
@@ -422,7 +422,7 @@ securityDefinitions:
       ### Example
 
       ```http
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
+      GET /stores/{store_hash}/v3/catalog/summary
       host: api.bigcommerce.com
       Content-Type: application/json
       X-Auth-Token: {access_token}
