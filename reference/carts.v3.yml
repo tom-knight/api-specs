@@ -4,7 +4,7 @@ info:
   version: ''
   description: Create a cart using BigCommerce cart logic.
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: '/stores/{store_hash}/v3'
 consumes:
   - application/json
 produces:
@@ -1342,7 +1342,7 @@ definitions:
                     description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
                   amount:
                     type: number
-                    description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
+                    description: Value must be between 1.00 and 1,000.00 in the store's default currency.
                   is_taxable:
                     type: boolean
                   sender:
@@ -1798,7 +1798,7 @@ definitions:
               description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
             amount:
               type: number
-              description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
+              description: Value must be between 1.00 and 1,000.00 in the stores default currency.
             is_taxable:
               type: boolean
             sender:
@@ -1845,7 +1845,7 @@ definitions:
               type: string
             list_price:
               type: string
-              description: 'Price of the item. With or without tax, depending on your store''s setup. Optional price override.'
+              description: Price of the item. With or without tax, depending on your store's setup. Optional price override.
     required:
       - physical_items
       - digital_items
@@ -1867,7 +1867,7 @@ definitions:
         description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
       amount:
         type: number
-        description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
+        description: Value must be between 1.00 and 1,000.00 in the store's default currency.
       is_taxable:
         type: boolean
       sender:
