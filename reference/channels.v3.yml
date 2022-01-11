@@ -223,7 +223,9 @@ paths:
         - Channel Active Theme
       summary: Get a Channel Active Theme
       operationId: getChannelActiveTheme
-      description: Returns active theme details for a specific channel.
+      description: |-
+        Returns details of the theme active on the specified channel.
+        Does not support active Blueprint (legacy) themes.
       parameters:
         - $ref: '#/components/parameters/channel_id_path_param'
       responses:
@@ -2189,3 +2191,4 @@ components:
                   - {language} The language string that the client is using
                 example: /my-amazing-product
       title: site_Full
+      x-internal: true
