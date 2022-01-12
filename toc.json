@@ -17,22 +17,14 @@
             "slug": "{SLUG}",
             "href": "{HREF}",
             "uri": "{PATH}"
-          },
+          }
         ]
       },
       {
         "type": "group",
         "title": "GraphQL",
         "slug": "/graphql",
-        "items": [
-          {
-            "type": "item",
-            "title": "{TITLE}",
-            "slug": "{SLUG}",
-            "href": "{HREF}",
-            "uri": "{PATH}"
-          },
-        ]
+        "items": ["structure done, uris pending. see .toc/toc-2-graphql.jsonc"]
       },
       {
         "type": "group",
@@ -45,24 +37,13 @@
             "slug": "{SLUG}",
             "href": "{HREF}",
             "uri": "{PATH}"
-          },
+          }
         ]
       },
       {
         "type": "group",
         "title": "Provider APIs",
         "slug": "/providers",
-        "items": [
-          {
-            "type": "item",
-            "title": "{TITLE}",
-            "slug": "{SLUG}",
-            "href": "{HREF}",
-            "uri": "{PATH}"
-          },
-        ]
-      }
-
-    ]
+        "items": ["structure done, uris pending. see .toc/toc-4-provider-apis.jsonc"]
   }
   
