@@ -1,0 +1,21 @@
+{
+  "type": "group",
+  "title": "GraphQL",
+  "slug": "/graphql",
+  "items": [
+    {
+      "type": "item",
+      "title": "GraphQL Storefront API",
+      "slug": "/graphql",
+      "href": "/api-reference/graphql/graphql",
+      "uri": "{PATH}"
+    },
+    {
+      "type": "item",
+      "title": "GraphQL Storefront API Reference",
+      "slug": "/storefront-graphql-reference",
+      "href": "/api-reference/graphql/storefront-graphql-reference",
+      "uri": "{PATH}"
+    }
+  ]
+}
