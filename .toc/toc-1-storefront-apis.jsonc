@@ -4,27 +4,6 @@
   "slug": "/storefront",
   "items": [
     {
-      "type": "item",
-
-      "uri": "{PATH}"
-    }
-  ]
-},
-
-
-"uri": "{PATH}"
-},
-{
-  "type": "item",
-
-
-
-{
-  "type": "group",
-  "title": "Storefront APIs",
-  "slug": "/storefront",
-  "items": [
-    {
       "type": "group",
       "title": "Carts",
       "href": "/api-reference/storefront/carts",
