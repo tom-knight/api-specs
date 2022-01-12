@@ -1,0 +1,68 @@
+{
+    "hide_powered_by": true,
+    "items": [
+      {
+        "type": "divider",
+        "title": "API Reference",
+        "slug": "/api-reference"
+      }, 
+      {
+        "type": "group",
+        "title": "Storefront APIs",
+        "slug": "/storefront",
+        "items": [
+          {
+            "type": "item",
+            "title": "{TITLE}",
+            "slug": "{SLUG}",
+            "href": "{HREF}",
+            "uri": "{PATH}"
+          },
+        ]
+      },
+      {
+        "type": "group",
+        "title": "GraphQL",
+        "slug": "/graphql",
+        "items": [
+          {
+            "type": "item",
+            "title": "{TITLE}",
+            "slug": "{SLUG}",
+            "href": "{HREF}",
+            "uri": "{PATH}"
+          },
+        ]
+      },
+      {
+        "type": "group",
+        "title": "Management APIs",
+        "slug": "/store-management",
+        "items": [
+          {
+            "type": "item",
+            "title": "{TITLE}",
+            "slug": "{SLUG}",
+            "href": "{HREF}",
+            "uri": "{PATH}"
+          },
+        ]
+      },
+      {
+        "type": "group",
+        "title": "Provider APIs",
+        "slug": "/providers",
+        "items": [
+          {
+            "type": "item",
+            "title": "{TITLE}",
+            "slug": "{SLUG}",
+            "href": "{HREF}",
+            "uri": "{PATH}"
+          },
+        ]
+      }
+
+    ]
+  }
+  
