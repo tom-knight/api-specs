@@ -10,7 +10,7 @@
         "type": "group",
         "title": "Storefront APIs",
         "slug": "/storefront",
-        "items": ["structure in progress"]
+        "items": ["structure done, uris pending. see .toc/toc-1-storefront-apis.jsonc"]
       },
       {
         "type": "group",

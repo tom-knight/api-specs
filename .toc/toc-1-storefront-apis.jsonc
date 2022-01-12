@@ -1,0 +1,455 @@
+{
+  "type": "group",
+  "title": "Storefront APIs",
+  "slug": "/storefront",
+  "items": [
+    {
+      "type": "item",
+
+      "uri": "{PATH}"
+    }
+  ]
+},
+
+
+"uri": "{PATH}"
+},
+{
+  "type": "item",
+
+
+
+{
+  "type": "group",
+  "title": "Storefront APIs",
+  "slug": "/storefront",
+  "items": [
+    {
+      "type": "group",
+      "title": "Carts",
+      "href": "/api-reference/storefront/carts",
+      "slug": "/carts",
+      "flag": "sf rest",
+      "uri": "{PATH}",
+      "items": [
+        {
+          "type": "group",
+          "title": "Carts",
+          "slug": "/cart",
+          "items": [
+            {
+              "type": "item",
+              "title": "Get a Cart",
+              "href": "/api-reference/storefront/carts/cart/getacart",
+              "slug": "/getacart",
+              "flag": "get",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Create a Cart",
+              "href": "/api-reference/storefront/carts/cart/createacart",
+              "slug": "/createacart",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Delete a Cart",
+              "href": "/api-reference/storefront/carts/cart/deleteacart",
+              "slug": "/deleteacart",
+              "flag": "delete",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Cart Items",
+          "slug": "/cart-items",
+          "items": [
+            {
+              "type": "item",
+              "title": "Add Cart Line Items",
+              "href": "/api-reference/storefront/carts/cart-items/addcartlineitem",
+              "slug": "/addcartlineitem",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Update Cart Line Item",
+              "href": "/api-reference/storefront/carts/cart-items/updatecartlineitem",
+              "slug": "/updatecartlineitem",
+              "flag": "put",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Delete Cart Line Item",
+              "href": "/api-reference/storefront/carts/cart-items/deletecartlineitem",
+              "slug": "/deletecartlineitem",
+              "flag": "delete",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Checkouts",
+      "href": "/api-reference/storefront/checkouts",
+      "slug": "/checkouts",
+      "flag": "sf rest",
+      "uri": "{PATH}",
+      "items": [
+        {
+          "type": "group",
+          "title": "Checkout",
+          "slug": "/checkout",
+          "items": [
+            {
+              "type": "item",
+              "title": "Get a Checkout",
+              "href": "/api-reference/storefront/checkouts/checkout/checkoutsbycheckoutidget",
+              "slug": "/checkoutsbycheckoutidget",
+              "flag": "get",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Update Customer Messages",
+              "href": "/api-reference/storefront/checkouts/checkout/checkoutsbycheckoutidput",
+              "slug": "/checkoutsbycheckoutidput",
+              "flag": "put",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Checkout Billing Address",
+          "slug": "/checkout-billing-address",
+          "items": [
+            {
+              "type": "item",
+              "title": "Add Checkout Billing Address",
+              "href": "/api-reference/storefront/checkouts/checkout-billing-address/checkoutsbillingaddressbycheckoutidpost",
+              "slug": "/checkoutsbillingaddressbycheckoutidpost",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Update Checkout Billing Address",
+              "href": "/api-reference/storefront/checkouts/checkout-billing-address/checkoutsbillingaddressbycheckoutidandaddressidput",
+              "slug": "/checkoutsbillingaddressbycheckoutidandaddressidput",
+              "flag": "put",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Checkout Cart Items",
+          "slug": "/checkout-cart-items",
+          "items": [
+            {
+              "type": "item",
+              "title": "Update a Line Item",
+              "href": "/api-reference/storefront/checkouts/checkout-cart-items/checkoutscartsitemsitemidbycheckoutidandcartidput",
+              "slug": "/checkoutscartsitemsitemidbycheckoutidandcartidput",
+              "flag": "put",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Delete a Line Item",
+              "href": "/api-reference/storefront/checkouts/checkout-cart-items/checkoutscartsitemsitemidbycheckoutidandcartiddelete",
+              "slug": "/checkoutscartsitemsitemidbycheckoutidandcartiddelete",
+              "flag": "delete",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Checkout Consignments",
+          "slug": "/checkout-consignments",
+          "items": [
+            {
+              "type": "item",
+              "title": "Create a Consignment",
+              "href": "/api-reference/storefront/checkouts/checkout-consignments/checkoutsconsignmentsbycheckoutidpost",
+              "slug": "/checkoutsconsignmentsbycheckoutidpost",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Update a Consignment",
+              "href": "/api-reference/storefront/checkouts/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput",
+              "slug": "/checkoutsconsignmentsbycheckoutidandconsignmentidput",
+              "flag": "put",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Delete a Consignment",
+              "href": "/api-reference/storefront/checkouts/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentiddelete",
+              "slug": "/checkoutsconsignmentsbycheckoutidandconsignmentiddelete",
+              "flag": "delete",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Checkout Coupons",
+          "slug": "/checkout-coupons",
+          "items": [
+            {
+              "type": "item",
+              "title": "Add Coupon to Checkout",
+              "href": "/api-reference/storefront/checkouts/checkout-coupons/checkoutscouponsbycheckoutidpost",
+              "slug": "/checkoutscouponsbycheckoutidpost",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Delete Checkout Coupon",
+              "href": "/api-reference/storefront/checkouts/checkout-coupons/checkoutscouponsbycheckoutidandcouponcodedelete",
+              "slug": "/checkoutscouponsbycheckoutidandcouponcodedelete",
+              "flag": "delete",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Checkout Gift Certificates",
+          "slug": "/checkout-gift-certificates",
+          "items": [
+            {
+              "type": "item",
+              "title": "Add Gift Certificate to Checkout",
+              "href": "/api-reference/storefront/checkouts/checkout-gift-certificates/checkoutsgiftcertificatesbycheckoutidpost",
+              "slug": "/checkoutsgiftcertificatesbycheckoutidpost",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Delete Gift Certificate",
+              "href": "/api-reference/storefront/checkouts/checkout-gift-certificates/checkoutsgiftcertificatesbycheckoutidandgiftcertificatecodedelete",
+              "slug": "/checkoutsgiftcertificatesbycheckoutidandgiftcertificatecodedelete",
+              "flag": "delete",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Checkout Spam Protection",
+          "slug": "/checkout-spam-protection",
+          "items": [
+            {
+              "type": "item",
+              "title": "Checkout Spam Protection",
+              "href": "/api-reference/storefront/checkouts/checkout-spam-protection/checkoutspamprotection",
+              "slug": "/checkoutspamprotection",
+              "flag": "post",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Checkout Store Credit",
+          "slug": "/checkout-store-credit",
+          "items": [
+            {
+              "type": "item",
+              "title": "Add Store Credit",
+              "href": "/api-reference/storefront/checkouts/checkout-store-credit/checkoutstorecreditadd",
+              "slug": "/checkoutstorecreditadd",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Remove Store Credit",
+              "href": "/api-reference/storefront/checkouts/checkout-store-credit/checkoutsstorecreditremove",
+              "slug": "/checkoutsstorecreditremove",
+              "flag": "delete",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Cookie Consent", 
+      "href": "/api-reference/storefront/cookie-consent", 
+      "slug": "/cookie-consent",
+      "flag": "sf rest",
+      "uri": "{PATH}",
+      "items": [
+        {
+          "type": "group",
+          "title": "Consent",
+          "slug": "/consent",
+          "items": [
+            {
+              "type": "item",
+              "title": "Set Cookie Consent Preferences",
+              "href": "/api-reference/storefront/cookie-consent/consent/postconsent",
+              "slug": "/postconsent",
+              "flag": "post",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Current Customers",
+      "href": "/api-reference/storefront/current-customers",
+      "slug": "/current-customers",
+      "uri": "{PATH}",
+      "items": [
+        {
+          "type": "group",
+          "title": "Current Customers",
+          "slug": "/current-customers",
+          "items": [
+            {
+              "type": "item",
+              "title": "Get Current Customer",
+              "href": "/api-reference/storefront/current-customers/current-customers/getcurrentcustomer",
+              "slug": "/getcurrentcustomer",
+              "flag": "get",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Customers", 
+      "href": "/api-reference/storefront/customers", 
+      "slug": "/customers",
+      "flag": "sf rest", 
+      "uri": "{PATH}",
+      "items": [
+        {
+          "type": "group",
+          "title": "Customers",
+          "slug": "/customers",
+          "items": [
+            {
+              "type": "item",
+              "title": "Creates a Customer",
+              "href": "/api-reference/storefront/customers/customers/createacustomer",
+              "slug": "/createacustomer",
+              "flag": "post",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "title": "Customer Login SSO", 
+      "slug": "/customer-login-sso",
+      "href": "/api-reference/storefront/customer-login-sso", 
+      "flag": "sf rest", 
+      "uri": "{PATH}"
+    },
+    {
+      "type": "group",
+      "title": "Form Fields", 
+      "slug": "/form-fields", 
+      "href": "/api-reference/storefront/form-fields", 
+      "flag": "sf rest", 
+      "uri": "{PATH}",
+      "items": [
+        {
+          "type": "group",
+          "title": "Form Fields",
+          "slug": "/form-fields",
+          "items": [
+            {
+              "type": "item",
+              "title": "Get Form Fields",
+              "href": "/api-reference/storefront/form-fields/form-fields/getformfields",
+              "slug": "/getformfields",
+              "flag": "get",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Email Subscriptions", 
+      "slug": "/storefront-subscriptions", 
+      "href": "/api-reference/storefront/storefront-subscriptions", 
+      "flag": "sf rest", 
+      "uri": "{PATH}",
+      "items": [
+        {
+          "type": "group",
+          "title": "Subscription",
+          "slug": "/subscription",
+          "items": [
+            {
+              "type": "item",
+              "title": "Create a Subscription",
+              "href": "/api-reference/storefront/storefront-subscriptions/subscription/postsubscriptions",
+              "slug": "/postsubscriptions",
+              "flag": "post",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Orders",
+      "slug": "/orders",
+      "href": "/api-reference/storefront/orders",
+      "flag": "sf rest",
+      "uri": "{PATH}",
+      "items": [
+        {
+          "type": "group",
+          "title": "Order",
+          "slug": "/order",
+          "items": [
+            {
+              "type": "item",
+              "title": "Get Order",
+              "href": "/api-reference/storefront/orders/order/ordersbyorderidget",
+              "slug": "/ordersbyorderidget",
+              "flag": "get",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+
+
