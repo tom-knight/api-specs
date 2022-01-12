@@ -10,15 +10,7 @@
         "type": "group",
         "title": "Storefront APIs",
         "slug": "/storefront",
-        "items": [
-          {
-            "type": "item",
-            "title": "{TITLE}",
-            "slug": "{SLUG}",
-            "href": "{HREF}",
-            "uri": "{PATH}"
-          }
-        ]
+        "items": ["structure in progress"]
       },
       {
         "type": "group",
@@ -30,15 +22,7 @@
         "type": "group",
         "title": "Management APIs",
         "slug": "/store-management",
-        "items": [
-          {
-            "type": "item",
-            "title": "{TITLE}",
-            "slug": "{SLUG}",
-            "href": "{HREF}",
-            "uri": "{PATH}"
-          }
-        ]
+        "items": ["structure in progress"]
       },
       {
         "type": "group",
