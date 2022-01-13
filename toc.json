@@ -56,12 +56,12 @@
     {
       "type": "item",
       "title": "GraphQL Storefront API",
-      "uri": "{PATH}"
+      "uri": "assets/html/graphql-explorer.html"
     },
     {
       "type": "item",
       "title": "GraphQL Storefront API Reference",
-      "uri": "{PATH}"
+      "uri": "assets/html/graphql-playground.html"
     },
     {
       "type": "divider",
