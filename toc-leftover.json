@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "type": "divider",
+      "title": "models"
+    },
+    {
+      "type": "group",
+      "title": "email_templates",
+      "items": [
+        {
+          "type": "item",
+          "title": "Email Template Objects",
+          "uri": "models/email_templates/README.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "webhooks",
+      "items": [
+        {
+          "type": "item",
+          "title": "Webhooks",
+          "uri": "models/webhooks/README.md"
+        }
+      ]
+    },
+    {
+      "type": "item",
+      "title": "Pages V3",
+      "uri": "reference/pages.v3.yml"
+    }
+  ]
+}
