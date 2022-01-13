@@ -8,14 +8,14 @@
       "title": "GraphQL Storefront API",
       "slug": "/graphql",
       "href": "/api-reference/graphql/graphql",
-      "uri": "{PATH}"
+      "uri": "/api-reference/assets/html/graphql-explorer.html"
     },
     {
       "type": "item",
       "title": "GraphQL Storefront API Reference",
       "slug": "/storefront-graphql-reference",
       "href": "/graphql-api-reference",
-      "uri": "{PATH}"
+      "uri": "/api-reference/assets/html/graphql-playground.html"
     }
   ]
 }
