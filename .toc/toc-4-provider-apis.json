@@ -1,0 +1,167 @@
+{
+  "items": [
+    {
+      "type": "group",
+      "title": "Shipping Provider API",
+      "slug": "/shipping-provider-api",
+      "href": "/api-reference/providers/shipping-provider-api",
+      "items": [
+        {
+          "type": "group",
+          "title": "Shipping Provider",
+          "slug": "/shipping-provider",
+          "items": [
+            {
+              "type": "item",
+              "title": "Request shipping rates",
+              "slug": "/requestshippingrates",
+              "href": "/api-reference/providers/shipping-provider-api/shipping-provider/requestshippingrates",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Validate connection options",
+              "slug": "/validateconnectionoptions",
+              "href": "/api-reference/providers/shipping-provider-api/shipping-provider/validateconnectionoptions",
+              "flag": "post",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Tax Provider API",
+      "slug": "/tax-provider-api",
+      "href": "/api-reference/providers/tax-provider-api",
+      "flag": "new",
+      "items": [
+        {
+          "type": "group",
+          "title": "Tax Provider",
+          "slug": "/tax-provider",
+          "items": [
+            {
+              "type": "item",
+              "title": "Estimate Taxes",
+              "slug": "/estimate",
+              "href": "/api-reference/providers/tax-provider-api/tax-provider/estimate",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Void Tax Quote",
+              "slug": "/void",
+              "href": "/api-reference/providers/tax-provider-api/tax-provider/void",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Commit Tax Quote",
+              "slug": "/commit",
+              "href": "/api-reference/providers/tax-provider-api/tax-provider/commit",
+              "flag": "post",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Adjust Tax Quote",
+              "slug": "/adjust",
+              "href": "/api-reference/providers/tax-provider-api/tax-provider/adjust",
+              "flag": "post",
+              "uri": "{PATH}"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Callbacks",
+          "slug": "/models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Address",
+              "slug": "/address",
+              "href": "/api-reference/providers/tax-provider-api/models/address",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "AdjustRequest",
+              "slug": "/request-adjust",
+              "href": "/api-reference/providers/tax-provider-api/models/request-adjust",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Document",
+              "slug": "/response-document",
+              "href": "/api-reference/providers/tax-provider-api/models/response-document",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "DocumentRequest",
+              "slug": "/request-document",
+              "href": "/api-reference/providers/tax-provider-api/models/request-document",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Item",
+              "slug": "/response-item",
+              "href": "/api-reference/providers/tax-provider-api/models/response-item",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "ItemRequest",
+              "slug": "/request-item",
+              "href": "/api-reference/providers/tax-provider-api/models/request-item",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "Quote",
+              "slug": "/response-quote",
+              "href": "/api-reference/providers/tax-provider-api/models/response-quote",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "QuoteRequest",
+              "slug": "/request-quote",
+              "href": "/api-reference/providers/tax-provider-api/models/request-quote",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "SalesTax",
+              "slug": "/salestax",
+              "href": "/api-reference/providers/tax-provider-api/models/salestax",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "TaxClass",
+              "slug": "/taxclass",
+              "href": "/api-reference/providers/tax-provider-api/models/taxclass",
+              "uri": "{PATH}"
+            },
+            {
+              "type": "item",
+              "title": "TaxPrice",
+              "slug": "/response-taxprice",
+              "href": "/api-reference/providers/tax-provider-api/models/response-taxprice",
+              "uri": "{PATH}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
