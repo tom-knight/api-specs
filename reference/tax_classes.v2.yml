@@ -4,7 +4,6 @@ info:
   title: Tax Classes
   description: 'Manage tax calculations applied to sales. Tax classes are used to apply different tax rates for specific types of products and orders. This API is read only. Classes must be set using the [Control Panel](https://forum.bigcommerce.com/s/article/Taxes-Video#).'
 host: api.bigcommerce.com
-basePath: '/stores/{store_hash}/v2'
 schemes:
   - https
 consumes:
@@ -12,7 +11,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /tax_classes:
+  '/stores/{store_hash}/v2/tax_classes':
     get:
       description: |-
         Returns a list of all *Tax Classes* in a store.
@@ -89,7 +88,12 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       operationId: getAllTaxClasses
-  '/tax_classes/{id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/tax_classes/{id}':
     get:
       description: Returns a single *Tax Class*.
       summary: Get a Tax Class
@@ -134,6 +138,15 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       operationId: getATaxClass
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: id
+        in: path
+        required: true
 definitions:
   taxClass_Full:
     title: taxClass_Full

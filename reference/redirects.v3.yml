@@ -60,7 +60,7 @@ security:
   - X-Auth-Token: []
   - OAuthScopes: []
 paths:
-  /storefront/redirects:
+  '/stores/{store_hash}/v3/storefront/redirects':
     get:
       summary: Get Redirects
       tags:
@@ -197,6 +197,11 @@ paths:
           type: integer
       description: Deletes redirects.
       operationId: DeleteRedirects
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 definitions:
   Error:
     type: object
@@ -343,7 +348,7 @@ definitions:
           errors:
             $ref: '#/definitions/DetailedErrors'
 host: api.bigcommerce.com
-basePath: '/stores/{store_hash}/v3'
+basePath: ''
 tags:
   - name: Redirects
 schemes:

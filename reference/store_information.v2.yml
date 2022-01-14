@@ -4,7 +4,6 @@ info:
   title: Store Information
   description: 'Get Store Information endpoint, manage store profile settings.'
 host: api.bigcommerce.com
-basePath: '/stores/{store_hash}/v2'
 schemes:
   - https
 consumes:
@@ -12,7 +11,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /store:
+  '/stores/{store_hash}/v2/store':
     get:
       description: Returns metadata about a store.
       summary: Get Store Information
@@ -138,7 +137,12 @@ paths:
         IsMultiContentStreaming: false
       produces:
         - Time
-  /time:
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/time':
     get:
       description: Returns the system timestamp at the time of the request. The time resource is useful for validating API authentication details and testing client connections.
       summary: Get System Timestamp
@@ -169,6 +173,11 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Time Zone
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 definitions:
   StoreInformation:
     title: Store Information
