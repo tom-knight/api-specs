@@ -21,7 +21,7 @@ const hasTheGoods = (obj, gossip) => {
 }
 
 const hasTea = (obj, gossip) => {
-    //gossip is an object with a string of the key (spill) that we want to recurse into if present
+    //gossip is an object with a string of the key (spill) that holds the array we want to recurse into
     let {spill} = gossip;
     if(obj[spill]) {
         return obj[spill]; // will be an array
