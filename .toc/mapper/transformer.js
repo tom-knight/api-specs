@@ -11,7 +11,8 @@ const oldMenu = {
 
 const keepers = {
     seriously: 'href',
-    juicy: ['title']
+    juicy: ['title'],
+    spill: 'items'
 }
 
 const newMenu = {
@@ -20,7 +21,8 @@ const newMenu = {
 
 const essential = {
     seriously: 'slug',
-    juicy: ['id', 'title']
+    juicy: ['id', 'title'],
+    spill: 'items'
 }
 
 // >>>>>>>>>>> ZIP THEM TOGETHER
@@ -28,18 +30,18 @@ const essential = {
 const zipper = require('./zipper');
 
 
-const exercise = (muscle, goal) => {
+const massage = (muscle, goal) => {
     // console.log(muscle);
     // console.log(goal);
-    return Object.keys(muscle).reduce((all, curr) => {
-        let flat = flattener(muscle[curr], goal)
+    return Object.keys(muscle).reduce((all, group) => {
+        let flat = flattener(muscle[group], goal);
         return all.concat(flat);
     }, [])
 }
 
 const transform = () => {
-    const past = exercise(oldMenu, keepers);
-    const future = exercise(newMenu, essential);
+    const past = massage(oldMenu, keepers);
+    const future = massage(newMenu, essential);
     console.log(past);
     console.log(future);
 
