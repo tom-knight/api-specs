@@ -2,7 +2,7 @@
 
 const hasTheGoods = (obj, gossip) => {
     //gossip is an object with a string of the most important key (seriously) and an array of the keys we want to return (juicy)
-    let {juicy, seriously} = gossip;
+    let {seriously, juicy} = gossip;
     if(obj[seriously]) {
         let juice = juicy.reduce((pitcher, squeeze) => {
             let squirt = obj[squeeze] ? obj[squeeze] : "";
@@ -21,7 +21,7 @@ const hasTheGoods = (obj, gossip) => {
 }
 
 const hasTea = (obj, gossip) => {
-    //gossip is an object with a string of the key (spill) that holds the array we want to recurse into
+    //gossip is an object with a string at the key ("spill") that holds the array we want to recurse into if it's present in obj
     let {spill} = gossip;
     if(obj[spill]) {
         return obj[spill]; // will be an array
