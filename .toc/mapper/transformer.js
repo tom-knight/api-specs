@@ -1,6 +1,6 @@
 // >>>>>>>>>>>> FLATTEN THEM OUT
 
-const flattener = require('./flattener');
+const flatten = require('./flattener');
 
 const oldMenu = {
     storefront: require('../toc-1-storefront-apis.json'),
@@ -27,14 +27,12 @@ const essential = {
 
 // >>>>>>>>>>> ZIP THEM TOGETHER
 
-const zipper = require('./zipper');
+const zip = require('./zipper');
 
 
 const massage = (muscle, goal) => {
-    // console.log(muscle);
-    // console.log(goal);
     return Object.keys(muscle).reduce((all, group) => {
-        let flat = flattener(muscle[group], goal);
+        let flat = flatten(muscle[group], goal);
         return all.concat(flat);
     }, [])
 }
