@@ -1,18 +1,24 @@
 
 
-// take an array and filter the ones that contain hrefs
-
-const hasHref = (obj) => {
-    if(obj.href) {
-        let {title, href} = obj;
-        return [{title, href}];
+const hasTheGoods = (obj, gossip) => {
+    //gossip is an object with a string of the most important key (seriously) and an array of the keys we want to return (juicy)
+    let {juicy, seriously} = gossip;
+    if(obj[seriously]) {
+        let juice = juicy.reduce((pitcher, squeeze) => {
+            let squirt = obj[squeeze] ? obj[squeeze] : "";
+            return {
+                [squeeze]: squirt,
+                ...pitcher
+            }
+        }, {});
+        return [{
+            [seriously]: obj[seriously],
+            ...juice
+        }]
     } else {
         return [];
     }
 }
-
-
-// loop through objects and look for arrays at item
 
 const hasItems = (obj) => {
     if(obj.items) {
@@ -22,19 +28,19 @@ const hasItems = (obj) => {
     }
 }
 
-
-const getThe411 = (obj) => {
+const getThe411 = (obj, what) => {
     let tea = hasItems(obj);
-    let theGoods = hasHref(obj);
+    let theGoods = hasTheGoods(obj, what);
     return {tea, theGoods};
 }
 
-const spillTheTea = (arr) => {
+const spillTheTea = (arr, what) => {
+    // console.log(arr);
     return arr.reduce((all, node) => {
-        let the411 = getThe411(node);
+        let the411 = getThe411(node, what);
         let {theGoods} = the411;
         if(the411.tea) {
-            let theTea = spillTheTea(the411.tea);
+            let theTea = spillTheTea(the411.tea, what);
             return all.concat(theGoods.concat(theTea));
         } else {
             return all.concat(theGoods);
@@ -42,16 +48,12 @@ const spillTheTea = (arr) => {
     }, []);
 }
 
-const flatten = (obj) => {
-    let theGoods = hasHref(obj);
-    let theTea = spillTheTea(obj.items);
-    let washboard = theGoods.concat(theTea);
-    // console.log(washboard);
-    return washboard;
+const flatten = (obj, what) => {
+    let theGoods = hasTheGoods(obj, what);
+    let theTea = spillTheTea(obj.items, what);
+    let theSkinny = theGoods.concat(theTea);
+    // console.log(theSkinny);
+    return theSkinny;
 }
 
 module.exports = flatten;
-
-//input is an object with an array called items
-//output is an array of objects with no items
-
