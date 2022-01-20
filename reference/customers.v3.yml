@@ -1802,6 +1802,12 @@ paths:
         name: customerId
         in: path
         required: true
+  /testpath:
+    get:
+      summary: tests
+      tags: []
+      responses: {}
+      operationId: get-testpath
 components:
   parameters:
     customerId:
