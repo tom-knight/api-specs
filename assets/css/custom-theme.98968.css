@@ -1,0 +1,27 @@
+ 
+      .HubHeader {
+        background-color: #4d34c6 !important;
+      }
+    
+    .HubHeader .HubHeaderItem {
+      color: #ffffff;
+    }
+    
+      .HubBlock-tab.active {
+        border-color: #4b71fc !important;
+      }
+
+      .markdown-body a {
+        color: #4b71fc;
+      }
+
+      .HubMain .text-active,
+      .HubMain .hover\:text-active:hover,
+      .HubMain .HubBlock-tab:hover {
+        color: #4b71fc !important;
+      }
+    
+      .HubMain .ui.secondary.button {
+        background-color: #2553fb;
+      }
+     
