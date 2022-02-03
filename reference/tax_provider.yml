@@ -731,9 +731,9 @@ components:
             - shipping
             - refund
         wrapping:
-          anyOf:            
-            - $ref: '#/components/schemas/request-item'
-            - type: 'null'
+          nullable: true
+          allOf:            
+          - $ref: '#/components/schemas/request-item'
       required:
         - id
         - price
