@@ -3,8 +3,7 @@ info:
   title: Tax Provider API
   version: '1.0'
   contact: {}
-
-  description: "Use BigCommerce’s platform-to-platform Tax Provider API to integrate a tax calculation engine into the BigCommerce storefront and control panel. Supports [estimate](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/estimate), [adjust](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/adjust), [commit](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/commit), and [void](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/void) operations. For more information, see [Tax Provider API Overview](https://developer.bigcommerce.com/api-docs/providers/tax)."
+  description: 'Use BigCommerce’s platform-to-platform Tax Provider API to integrate a tax calculation engine into the BigCommerce storefront and control panel. Supports [estimate](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/estimate), [adjust](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/adjust), [commit](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/commit), and [void](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/void) operations. For more information, see [Tax Provider API Overview](https://developer.bigcommerce.com/api-docs/providers/tax).'
 tags:
   - name: Tax Provider
 servers:
@@ -629,6 +628,7 @@ components:
     request-item:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
+      title: ItemRequest
       properties:
         id:
           type: string
@@ -642,6 +642,9 @@ components:
         price:
           type: object
           description: 'The final sale price (after discounts, bulk pricing, price lists, etc.) prior to having taxes calculated. If the merchant lists prices inclusive of tax, this price will already be tax inclusive, and so the tax provider will instead calculate the amount of tax that was already included in this price. For multiple quantities, this price includes that multiplication.'
+          required:
+            - amount
+            - tax_inclusive
           properties:
             amount:
               type: number
@@ -651,9 +654,6 @@ components:
               type: boolean
               description: 'Note: **Tax Inclusive** and **Tax Exclusive** prices cannot be added together.'
               default: false
-          required:
-            - amount
-            - tax_inclusive
         quantity:
           type: integer
           minimum: 0
@@ -661,7 +661,7 @@ components:
           $ref: '#/components/schemas/TaxClass'
         tax_exempt:
           type: boolean
-          description: Flag whether or not this item is always tax-exempt. For example, gift certificate purchases and order-level refunds are tax-exempt. Tax-exempt items are included in the request for auditing purposes.
+          description: 'Flag whether or not this item is always tax-exempt. For example, gift certificate purchases and order-level refunds are tax-exempt. Tax-exempt items are included in the request for auditing purposes.'
           default: false
         type:
           type: string
@@ -675,14 +675,11 @@ components:
             - handling
             - shipping
             - refund
-        wrapping:
-          $ref: '#/components/schemas/request-item'
       required:
         - id
         - price
         - quantity
         - type
-      title: ItemRequest
     request-document:
       type: object
       description: 'Each **DocumentRequest** represents an order or part of an order of items fulfilled from a single origin address to a single destination address. In addition to shipping and billing details, it contains an `items` array of one or more **ItemRequest** objects, which represent the shipment’s tax-relevant contents. Multi-address orders, in which items ship to or from multiple addresses, require at least one **DocumentRequest** per combination of sender-recipient addresses. These are similar to "consignments" or "shipments" in other BigCommerce APIs.'
@@ -726,7 +723,7 @@ components:
           description: ISO 4217 3 character currency code that all prices on this request are in.
         customer:
           type: object
-          description: If the shopper is a registered customer in the merchant’s store, basic details for that customer.
+          description: 'If the shopper is a registered customer in the merchant’s store, basic details for that customer.'
           required:
             - customer_id
             - customer_group_id
@@ -740,7 +737,7 @@ components:
               default: '0'
             taxability_code:
               type: string
-              description: "If applicable, the tax exemption code of the shopper’s customer account. A taxability code is intended to apply to multiple customers. This code should match the exemption codes provided by the third-party integration."
+              description: 'If applicable, the tax exemption code of the shopper’s customer account. A taxability code is intended to apply to multiple customers. This code should match the exemption codes provided by the third-party integration.'
         transaction_date:
           type: string
           format: date-time
@@ -763,7 +760,7 @@ components:
           properties:
             adjust_description:
               type: string
-              description: Specifies the reason for the adjustment operation, for auditing purposes. May be a custom, user-entered description.
+              description: 'Specifies the reason for the adjustment operation, for auditing purposes. May be a custom, user-entered description.'
         - $ref: '#/components/schemas/request-quote'
       title: AdjustRequest
     Address:
@@ -802,7 +799,7 @@ components:
           example: '2007'
         company_name:
           type: string
-          description: If this is a commercial address, the associated company’s name.
+          description: 'If this is a commercial address, the associated company’s name.'
           deprecated: true
         type:
           type: string
@@ -814,13 +811,13 @@ components:
       properties:
         code:
           type: string
-          description: The provider-specific tax code for this item. Items can be classified with tax codes relevant to each Tax Provider, configured by the merchant, and assigned to their products within BigCommerce. A tax code is intended to apply to multiple products. This code should match the tax codes provided by the third-party integration.
+          description: 'The provider-specific tax code for this item. Items can be classified with tax codes relevant to each Tax Provider, configured by the merchant, and assigned to their products within BigCommerce. A tax code is intended to apply to multiple products. This code should match the tax codes provided by the third-party integration.'
         class_id:
           type: string
-          description: "The ID of the tax class defined in the merchant’s BigCommerce store. May have a UUID value."
+          description: The ID of the tax class defined in the merchant’s BigCommerce store. May have a UUID value.
         name:
           type: string
-          description: "The human-readable name of this tax class in the merchant’s BigCommerce store."
+          description: The human-readable name of this tax class in the merchant’s BigCommerce store.
       required:
         - code
         - class_id
@@ -848,7 +845,7 @@ components:
           description: A unique identifier for this consignment. Must match the ID of the corresponding Document Request.
         external_id:
           type: string
-          description: "An optional unique identifier for the document stored in the external provider’s system. Currently not used in any end-to-end operation, but may be logged by BigCommerce and thus be helpful when resolving issues."
+          description: 'An optional unique identifier for the document stored in the external provider’s system. Currently not used in any end-to-end operation, but may be logged by BigCommerce and thus be helpful when resolving issues.'
         items:
           type: array
           description: Collection of items contained within this consignment that have had tax liabilities calculated.
@@ -870,6 +867,7 @@ components:
         The tax liabilities calculated for a specific item.
 
         Note: Tax liabilities should be calculated with **quantity** accounted for.
+      title: Item
       properties:
         id:
           type: string
@@ -884,13 +882,10 @@ components:
             - shipping
             - handling
             - refund
-        wrapping:
-          $ref: '#/components/schemas/response-item'
       required:
         - id
         - price
         - type
-      title: Item
     response-taxprice:
       type: object
       properties:
@@ -924,7 +919,7 @@ components:
       properties:
         name:
           type: string
-          description: The human-readable name of this tax. Used for reporting. Depending on store configuration, may also be visible in the itemization of taxes at checkout, on invoices, and in control panel views. May not be empty.
+          description: 'The human-readable name of this tax. Used for reporting. Depending on store configuration, may also be visible in the itemization of taxes at checkout, on invoices, and in control panel views. May not be empty.'
         rate:
           type: number
           format: double
