@@ -896,6 +896,7 @@ components:
       title: Quote
     response-document:
       type: object
+      title: Document
       properties:
         id:
           type: string
@@ -907,7 +908,7 @@ components:
           type: array
           description: Collection of items contained within this consignment that have had tax liabilities calculated.
           items:
-            $ref: '#/components/schemas/response-item'
+            $ref: '#/components/schemas/response-item-wrapping'
         shipping:
           $ref: '#/components/schemas/response-item'
         handling:
@@ -917,7 +918,6 @@ components:
         - items
         - shipping
         - handling
-      title: Document
     response-item:
       type: object
       description: |-
