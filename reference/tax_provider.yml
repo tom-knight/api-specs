@@ -11,7 +11,7 @@ servers:
     description: ''
     variables:
       your_server:
-      default: store.example.com
+      default: 'store.example.com'
 paths:
   /estimate:
     post:
