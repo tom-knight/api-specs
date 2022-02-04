@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: Tax Provider API
   version: '1.0'
@@ -7,11 +7,7 @@ info:
 tags:
   - name: Tax Provider
 servers:
-  - url: 'https://{your_server}.com'
-    description: ''
-    variables:
-      your_server:
-        default: store.example
+  - url: 'https://{store_domain}/api/storefront'
 paths:
   /estimate:
     post:
