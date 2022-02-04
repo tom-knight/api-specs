@@ -419,6 +419,20 @@ paths:
                       name: Default Tax Class
                     tax_exempt: false
                     type: item
+                    wrapping:
+                      id: product_14
+                      item_code: ''
+                      name: 'Wrapping: Holiday'
+                      price:
+                        amount: 5
+                        tax_inclusive: false
+                      quantity: 1
+                      tax_class:
+                        code: ''
+                        class_id: '6'
+                        name: Wrapping
+                      tax_exempt: false
+                      type: wrapping
                   - id: product_14
                     item_code: CLC
                     name: '[Sample] Canvas Laundry Cart'
@@ -476,7 +490,23 @@ paths:
                                     code: US
                                   id: Brutal Tax
                             type: item
-                            wrapping: null
+                            wrapping:
+                              id: product_14
+                              price:
+                                amount_exclusive: 5
+                                amount_inclusive: 7.5
+                                sales_tax_summary:
+                                  - amount: 2.5
+                                    id: '1'
+                                    name: BRUTAL TAX
+                                    rate: 0.5
+                                    tax_class:
+                                      class_id: '6'
+                                      code: US
+                                      name: Wrapping
+                                tax_rate: 0.5
+                                total_tax: 2.5
+                              type: wrapping
                           - id: product_14
                             price:
                               amount_inclusive: 300
@@ -493,7 +523,23 @@ paths:
                                     code: US
                                   id: Brutal Tax
                             type: item
-                            wrapping: null
+                            wrapping:
+                              id: product_14
+                              price:
+                                amount_exclusive: 5
+                                amount_inclusive: 7.5
+                                sales_tax_summary:
+                                  - amount: 2.5
+                                    id: '1'
+                                    name: BRUTAL TAX
+                                    rate: 0.5
+                                    tax_class:
+                                      class_id: '6'
+                                      code: US
+                                      name: Wrapping
+                                tax_rate: 0.5
+                                total_tax: 2.5
+                              type: wrapping
                         shipping:
                           id: shipping_14
                           price:
@@ -511,7 +557,6 @@ paths:
                                   code: US
                                 id: Brutal Tax
                           type: shipping
-                          wrapping: null
                         handling:
                           id: handling_14
                           price:
@@ -529,7 +574,6 @@ paths:
                                   code: US
                                 id: Brutal Tax
                           type: handling
-                          wrapping: null
                     id: '113'
         '400':
           description: General response that points to an issue with the incoming request that means a valid response is unable to be returned.
@@ -775,7 +819,7 @@ components:
             - shipping
             - refund
         wrapping:
-          anyOf:            
+          anyOf:
             - $ref: '#/components/schemas/request-item'
             - type: 'null'
       required:
