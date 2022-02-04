@@ -592,6 +592,108 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/request-adjust'
+              examples:
+                example-1:
+                  value:
+                    adjust_description: string
+                    id: string
+                    currency_code: string
+                    customer:
+                      customer_id: string
+                      customer_group_id: '0'
+                      taxability_code: string
+                    transaction_date: '2019-08-24T14:15:22Z'
+                    documents:
+                      - id: string
+                        billing_address:
+                          line1: string
+                          line2: string
+                          city: Sydney
+                          region_name: New South Wales
+                          region_code: NSW
+                          country_name: Australia
+                          country_code: AU
+                          postal_code: '2007'
+                          company_name: string
+                          type: RESIDENTIAL
+                        destination_address:
+                          line1: string
+                          line2: string
+                          city: Sydney
+                          region_name: New South Wales
+                          region_code: NSW
+                          country_name: Australia
+                          country_code: AU
+                          postal_code: '2007'
+                          company_name: string
+                          type: RESIDENTIAL
+                        origin_address:
+                          line1: string
+                          line2: string
+                          city: Sydney
+                          region_name: New South Wales
+                          region_code: NSW
+                          country_name: Australia
+                          country_code: AU
+                          postal_code: '2007'
+                          company_name: string
+                          type: RESIDENTIAL
+                        shipping:
+                          id: string
+                          item_code: string
+                          name: string
+                          price:
+                            amount: 0
+                            tax_inclusive: false
+                          quantity: 0
+                          tax_class:
+                            code: string
+                            class_id: string
+                            name: string
+                          tax_exempt: false
+                          type: item
+                        handling:
+                          id: string
+                          item_code: string
+                          name: string
+                          price:
+                            amount: 0
+                            tax_inclusive: false
+                          quantity: 0
+                          tax_class:
+                            code: string
+                            class_id: string
+                            name: string
+                          tax_exempt: false
+                          type: item
+                        items:
+                          - id: string
+                            item_code: string
+                            name: string
+                            price:
+                              amount: 0
+                              tax_inclusive: false
+                            quantity: 0
+                            tax_class:
+                              code: string
+                              class_id: string
+                              name: string
+                            tax_exempt: false
+                            type: item
+                            wrapping:
+                              id: string
+                              item_code: string
+                              name: string
+                              price:
+                                amount: 0
+                                tax_inclusive: false
+                              quantity: 0
+                              tax_class:
+                                code: string
+                                class_id: string
+                                name: string
+                              tax_exempt: false
+                              type: item
         '400':
           description: General response that points to an issue with the incoming request that means a valid response is unable to be returned.
         '401':
@@ -625,7 +727,23 @@ paths:
                                     code: US
                                   id: Brutal Tax
                             type: item
-                            wrapping: null
+                            wrapping:
+                              id: d2675662-6326-4a23-9107-ab71fa6a21a1
+                              price:
+                                amount_exclusive: 5
+                                amount_inclusive: 7.5
+                                sales_tax_summary:
+                                  - amount: 2.5
+                                    id: '1'
+                                    name: BRUTAL TAX
+                                    rate: 0.5
+                                    tax_class:
+                                      class_id: '6'
+                                      code: US
+                                      name: Wrapping
+                                tax_rate: 0.5
+                                total_tax: 2.5
+                              type: wrapping
                           - id: product_14
                             price:
                               amount_inclusive: 300
@@ -642,7 +760,23 @@ paths:
                                     code: US
                                   id: Brutal Tax
                             type: item
-                            wrapping: null
+                            wrapping:
+                              id: d2675662-6326-4a23-9107-ab71fa6a21a1
+                              price:
+                                amount_exclusive: 5
+                                amount_inclusive: 7.5
+                                sales_tax_summary:
+                                  - amount: 2.5
+                                    id: '1'
+                                    name: BRUTAL TAX
+                                    rate: 0.5
+                                    tax_class:
+                                      class_id: '6'
+                                      code: US
+                                      name: Wrapping
+                                tax_rate: 0.5
+                                total_tax: 2.5
+                              type: wrapping
                         shipping:
                           id: shipping_14
                           price:
@@ -660,7 +794,6 @@ paths:
                                   code: US
                                 id: Brutal Tax
                           type: shipping
-                          wrapping: null
                         handling:
                           id: handling_14
                           price:
@@ -678,7 +811,6 @@ paths:
                                   code: US
                                 id: Brutal Tax
                           type: handling
-                          wrapping: null
                     id: '113'
       summary: Adjust Tax Quote
       description: |-
