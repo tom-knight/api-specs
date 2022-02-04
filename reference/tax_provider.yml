@@ -7,10 +7,11 @@ info:
 tags:
   - name: Tax Provider
 servers:
-  - url: 'https://{your_server}'
+  - url: 'https://{your_server}.com'
+    description: ''
     variables:
       your_server:
-        default: store.example.com
+        default: store.example
 paths:
   /estimate:
     post:
