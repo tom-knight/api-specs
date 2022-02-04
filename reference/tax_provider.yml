@@ -7,7 +7,7 @@ info:
 tags:
   - name: Tax Provider
 servers:
-  - url: {your_server}
+  - url: https://{your_server}
     description: ''
     variables:
       your_server:
