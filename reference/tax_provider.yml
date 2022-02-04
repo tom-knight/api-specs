@@ -135,6 +135,20 @@ paths:
                       name: Default Tax Class
                     tax_exempt: false
                     type: item
+                    wrapping:
+                      id: d2675662-6326-4a23-9107-ab71fa6a21a1
+                      item_code: ''
+                      name: 'Wrapping: [Sample] Canvas Laundry Cart'
+                      price:
+                        amount: 5
+                        tax_inclusive: false
+                      quantity: 1
+                      tax_class:
+                        code: ''
+                        class_id: '6'
+                        name: Wrapping
+                      tax_exempt: false
+                      type: wrapping
                   - id: d2675662-6326-4a23-9107-ab71fa6a21a1
                     item_code: CLC
                     name: '[Sample] Canvas Laundry Cart'
@@ -191,7 +205,23 @@ paths:
                                     code: US
                                   id: Brutal Tax
                             type: item
-                            wrapping: null
+                            wrapping:
+                              id: d2675662-6326-4a23-9107-ab71fa6a21a1
+                              price:
+                                amount_exclusive: 5
+                                amount_inclusive: 7.5
+                                sales_tax_summary:
+                                  - amount: 2.5
+                                    id: '1'
+                                    name: BRUTAL TAX
+                                    rate: 0.5
+                                    tax_class:
+                                      class_id: '6'
+                                      code: US
+                                      name: Wrapping
+                                tax_rate: 0.5
+                                total_tax: 2.5
+                              type: wrapping
                           - id: d2675662-6326-4a23-9107-ab71fa6a21a1
                             price:
                               amount_inclusive: 300
@@ -208,7 +238,23 @@ paths:
                                     code: US
                                   id: Brutal Tax
                             type: item
-                            wrapping: null
+                            wrapping:
+                              id: d2675662-6326-4a23-9107-ab71fa6a21a1
+                              price:
+                                amount_exclusive: 5
+                                amount_inclusive: 7.5
+                                sales_tax_summary:
+                                  - amount: 2.5
+                                    id: '1'
+                                    name: BRUTAL TAX
+                                    rate: 0.5
+                                    tax_class:
+                                      class_id: '6'
+                                      code: US
+                                      name: Wrapping
+                                tax_rate: 0.5
+                                total_tax: 2.5
+                              type: wrapping
                         shipping:
                           id: 5d522b889d3d9
                           price:
@@ -226,7 +272,6 @@ paths:
                                   code: US
                                 id: Brutal Tax
                           type: shipping
-                          wrapping: null
                         handling:
                           id: 5d522b889d3d9
                           price:
@@ -244,7 +289,6 @@ paths:
                                   code: US
                                 id: Brutal Tax
                           type: handling
-                          wrapping: null
                     id: 3f0c857e-2c55-443e-a89b-c3c4d8a29605
         '400':
           description: Fallback Tax will be used for this transaction. General response that points to an issue with the incoming request that means a valid response is unable to be returned.
