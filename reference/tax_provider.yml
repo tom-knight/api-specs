@@ -7,7 +7,7 @@ info:
 tags:
   - name: Tax Provider
 servers:
-  - uri: 'https://{your_server}'
+  - url: 'https://{your_server}'
     variables:
       your_server:
         default: store.example.com
