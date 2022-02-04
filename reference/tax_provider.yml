@@ -6,8 +6,8 @@ info:
   description: 'Use BigCommerce’s platform-to-platform Tax Provider API to integrate a tax calculation engine into the BigCommerce storefront and control panel. Supports [estimate](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/estimate), [adjust](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/adjust), [commit](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/commit), and [void](https://developer.bigcommerce.com/api-reference/providers/tax-provider-api/tax-provider/void) operations. For more information, see [Tax Provider API Overview](https://developer.bigcommerce.com/api-docs/providers/tax).'
 tags:
   - name: Tax Provider
-servers
-  - url: '{your_server}'
+servers:
+  - url: {your_server}
     description: ''
     variables:
       your_server:
