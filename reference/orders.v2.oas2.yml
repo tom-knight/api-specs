@@ -1056,6 +1056,7 @@ paths:
                           location:
                             id: '1'
                             name: Location 1
+                            code: LOCATION-1
                             address_line_1: 123 Main Street
                             address_line_2: Suite 101
                             city: Austin
@@ -1118,6 +1119,7 @@ paths:
                         location:
                           id: '1'
                           name: Location 1
+                          code: LOCATION-1
                           address_line_1: 123 Main Street
                           address_line_2: Suite 101
                           city: Austin
@@ -4805,9 +4807,14 @@ components:
               readOnly: true
             name:
               type: string
-              description: The name of the pickup store location.
+              description: The name of the pickup location.
               example: Location 1
               maxLength: 255
+            code:
+              type: string
+              description: The code of the pickup location.
+              example: LOCATION-1
+              maxLength: 50
             address_line_1:
               type: string
               description: Street address (first line).
