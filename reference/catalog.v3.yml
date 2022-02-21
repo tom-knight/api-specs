@@ -366,6 +366,8 @@ paths:
           name: sku
           description: 'Filter items by main SKU. To filter by variant SKU, see [Get All Variants](/api-reference/store-management/catalog/variants/getvariants). '
         - type: array
+          items:
+              type: string
           in: query
           name: 'sku:in'
           description: Filter items by SKU.
