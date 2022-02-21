@@ -76,7 +76,7 @@ info:
     name: ''
     url: ''
 host: api.bigcommerce.com
-basePath: ''
+basePath: '/'
 tags:
   - name: Brands
   - name: Brand Images
