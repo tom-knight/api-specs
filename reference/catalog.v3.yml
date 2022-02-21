@@ -5375,7 +5375,7 @@ paths:
         '404':
           description: No option(s) were found with this query.
           schema:
-            type: '/api-docs/getting-started/api-status-codes'
+            type: 
             properties: {}
         '422':
           description: |
