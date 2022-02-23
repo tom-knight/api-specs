@@ -3,18 +3,13 @@ info:
   title: Catalog
   version: ''
   description: |-
-    Manage products, brands and categories. To learn more about catalog resources see [Catalog Overview](https://developer.bigcommerce.com/api-docs/catalog/products-overview).
-
-    - [Authentication](#authentication)
-    - [Differentiating Variants and Modifiers](#differentiating-variants-and-modifiers)
-    - [Available Endpoints](#available-endpoints)
-    - [Resources](#resources)
+    Manage products, brands and categories. To learn more about catalog resources see [Catalog Overview](/api-docs/catalog/products-overview).
 
     ## Authentication
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
 
     ```http
-    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+    GET /stores/{store_hash}/v3/catalog/summary
     host: api.bigcommerce.com
     Accept: application/json
     X-Auth-Token: {access_token}
@@ -30,16 +25,16 @@ info:
     | Products | modify     | `store_v2_products`           |
     | Products | read-only  | `store_v2_products_read_only` |
 
-    For more information on OAuth Scopes, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    For more information on OAuth Scopes, see: [Authentication](/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes).
 
-    For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 
     ## Differentiating Variants and Modifiers
     [Variants](https://support.bigcommerce.com/s/article/Product-Options-v3#variations) represent a physical product made up of [Product Option](https://support.bigcommerce.com/s/article/Product-Options-v3) choices, i.e. a large blue t-shirt. Each variant can have a unique SKU.
 
     Modifiers represent a choice a customer makes about a product that doesn't represent a physical item, i.e. text to be printed on a t-shirt. Assigning a SKU to a modifier will turn it into a variant.
 
-    See [Variant Options](https://developer.bigcommerce.com/api-docs/catalog/products-overview#variant-options) and [Modifier Options](https://developer.bigcommerce.com/api-docs/catalog/products-overview#modifier-options) for more information.
+    See [Variant Options](/api-docs/store-management/catalog/catalog-overview#variant-options) and [Modifier Options](/api-docs/store-management/catalog/catalog-overview#modifier-options) for more information.
 
     ## Available Endpoints
     | Resource / Endpoint                     | Description                                                             |
@@ -81,7 +76,7 @@ info:
     name: ''
     url: ''
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: ''
 tags:
   - name: Brands
   - name: Brand Images
@@ -118,7 +113,7 @@ produces:
 consumes:
   - application/json
 paths:
-  /catalog/products:
+  '/stores/{store_hash}/v3/catalog/products':
     get:
       description: Returns a list of **Products**. Optional filter parameters can be passed in.
       operationId: getProducts
@@ -369,7 +364,7 @@ paths:
         - type: string
           in: query
           name: sku
-          description: 'Filter items by main SKU. To filter by variant SKU, see [Get All Variants](https://developer.bigcommerce.com/api-reference/store-management/catalog/variants/getvariants). '
+          description: 'Filter items by main SKU. To filter by variant SKU, see [Get All Variants](/api-reference/store-management/catalog/variants/getvariants). '
         - type: array
           in: query
           name: 'sku:in'
@@ -533,14 +528,9 @@ paths:
     delete:
       description: |-
         To delete *Product* objects, you must include a filter. This prevents inadvertently deleting all *Product* objects in a store.
-
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-        The maximum number of products you can delete at one time is 250.
-        </div>
-        </div>
-        </div>  
+        
+        <!-- theme: info -->
+        > The maximum number of products you can delete at one time is 250.
 
         **Example**:
         To delete products with the id's of 1,2 and 3, use `DELETE /v3/catalog/products?id:in=1,2,3`.
@@ -694,7 +684,7 @@ paths:
               errors: {}
               status: 413
               title: The request payload is too large. The maximum items allowed in the array is 50
-              type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+              type: '/api-docs/getting-started/api-status-codes'
           schema:
             $ref: '#/definitions/error_Base'
         '422':
@@ -769,7 +759,12 @@ paths:
                 sku: PS-1
                 description: '<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>'
         - $ref: '#/parameters/FilterIncludeFieldsParam'
-  '/catalog/products/{product_id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/catalog/products/{product_id}':
     parameters:
       - name: product_id
         in: path
@@ -777,6 +772,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Product*. Optional parameters can be passed in.
       operationId: getProductById
@@ -1074,7 +1073,7 @@ paths:
           type: string
           default: application/json
           required: true
-  '/catalog/products/{product_id}/images':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/images':
     parameters:
       - name: product_id
         in: path
@@ -1082,6 +1081,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of *Product Images*. Optional parameters can be passed in.
       operationId: getProductImages
@@ -1476,14 +1479,14 @@ paths:
             Example:
               status: 422
               title: image_url must be present if uploading by url
-              type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+              type: '/api-docs/getting-started/api-status-codes'
       summary: Create a Product Image
       consumes:
         - application/json
         - multipart/form-data
       tags:
         - Product Images
-  '/catalog/products/{product_id}/images/{image_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/images/{image_id}':
     parameters:
       - name: product_id
         in: path
@@ -1497,6 +1500,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Product Image*. Optional parameters can be passed in.
       operationId: getProductImageById
@@ -1780,7 +1787,7 @@ paths:
           required: true
       tags:
         - Product Images
-  '/catalog/products/{product_id}/videos':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/videos':
     parameters:
       - name: product_id
         in: path
@@ -1788,6 +1795,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of *Product Videos*. Optional parameters can be passed in.
       operationId: getProductVideos
@@ -2049,7 +2060,7 @@ paths:
       summary: Create a Product Video
       tags:
         - Product Videos
-  '/catalog/products/{product_id}/videos/{id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/videos/{id}':
     parameters:
       - name: product_id
         in: path
@@ -2057,7 +2068,15 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
-      - $ref: '#/parameters/VideoIdParam'
+      - name: id
+        description: The BigCommerce ID of the `Video`
+        required: true
+        in: path
+        type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Product Video*. Optional parameters can be passed in.
       operationId: getProductVideoById
@@ -2309,7 +2328,7 @@ paths:
           type: string
           default: application/json
           required: true
-  '/catalog/products/{product_id}/variants':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/variants':
     parameters:
       - name: product_id
         in: path
@@ -2317,6 +2336,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of product *Variants*. Optional parameters can be passed in.
       operationId: getVariantsByProductId
@@ -2605,7 +2628,7 @@ paths:
       tags:
         - Product Variants
       summary: Create a Product Variant
-  '/catalog/products/{product_id}/variants/{variant_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/variants/{variant_id}':
     parameters:
       - name: product_id
         in: path
@@ -2619,6 +2642,10 @@ paths:
           ID of the variant on a product, or on an associated Price List Record.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single product *Variant*. Optional parameters can be passed in.
       operationId: getVariantById
@@ -2833,7 +2860,7 @@ paths:
           type: string
           default: application/json
           required: true
-  '/catalog/products/{product_id}/variants/{variant_id}/metafields':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/variants/{variant_id}/metafields':
     parameters:
       - name: product_id
         in: path
@@ -2847,6 +2874,10 @@ paths:
           ID of the variant on a product, or on an associated Price List Record.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of product variant *Metafields*. Optional parameters can be passed in.
       operationId: getVariantMetafieldsByProductIdAndVariantId
@@ -3075,7 +3106,7 @@ paths:
       summary: Create a Product Variant Metafield
       tags:
         - Product Variants Metafields
-  '/catalog/products/{product_id}/variants/{variant_id}/metafields/{metafield_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/variants/{variant_id}/metafields/{metafield_id}':
     parameters:
       - name: metafield_id
         in: path
@@ -3095,6 +3126,10 @@ paths:
           ID of the variant on a product, or on an associated Price List Record.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single product variant *Metafield*. Optional parameters can be passed in.
       operationId: getVariantMetafieldByProductIdAndVariantId
@@ -3264,7 +3299,7 @@ paths:
           required: true
       tags:
         - Product Variants Metafields
-  '/catalog/products/{product_id}/variants/{variant_id}/image':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/variants/{variant_id}/image':
     post:
       operationId: createVariantImage
       parameters:
@@ -3296,7 +3331,7 @@ paths:
               image_url: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Anglel_Bless_Legendary_Hills_1_m%C4%9Bs%C3%ADc_st%C3%A1%C5%99%C3%AD.jpg'
             multipart/form-data: |-
               curl -X POST \
-                https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3/catalog/products/203/variants/503/image \
+                https://api.bigcommerce.com/stores/{store_hash}/v3/catalog/products/203/variants/503/image \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -H 'Host: api.bigcommerce.com' \
@@ -3434,7 +3469,20 @@ paths:
       consumes:
         - application/json
         - multipart/form-data
-  '/catalog/products/{product_id}/options':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: product_id
+        in: path
+        required: true
+      - type: string
+        name: variant_id
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/options':
     parameters:
       - name: product_id
         in: path
@@ -3442,6 +3490,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: 'Returns a list of product *Variant Options*. Optional parameters can be passed in. '
       operationId: getOptions
@@ -3957,7 +4009,7 @@ paths:
       summary: Create a Product Variant Option
       tags:
         - Product Variant Options
-  '/catalog/products/{product_id}/options/{option_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/options/{option_id}':
     parameters:
       - name: product_id
         in: path
@@ -3971,6 +4023,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Variant Option*. Optional parameters can be passed in.
       operationId: getOptionById
@@ -4749,7 +4805,7 @@ paths:
           required: true
       tags:
         - Product Variant Options
-  '/catalog/products/{product_id}/options/{option_id}/values':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/options/{option_id}/values':
     parameters:
       - name: product_id
         in: path
@@ -4763,6 +4819,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of all *Variant Option Values*. Optional parameters can be passed in.
       operationId: getOptionValues
@@ -5056,7 +5116,7 @@ paths:
       summary: Create a Product Variant Option Value
       tags:
         - Product Variant Option Values
-  '/catalog/products/{product_id}/options/{option_id}/values/{value_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/options/{option_id}/values/{value_id}':
     parameters:
       - name: product_id
         in: path
@@ -5076,6 +5136,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Variant Option Value*. Optional parameters can be passed in.
       operationId: getOptionValueById
@@ -5309,7 +5373,7 @@ paths:
         '404':
           description: No option(s) were found with this query.
           schema:
-            type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+            type: '/api-docs/getting-started/api-status-codes'
             properties: {}
         '422':
           description: |
@@ -5365,7 +5429,7 @@ paths:
           required: true
       tags:
         - Product Variant Option Values
-  '/catalog/products/{product_id}/modifiers':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers':
     parameters:
       - name: product_id
         in: path
@@ -5373,6 +5437,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of all *Product Modifiers*. Optional parameters can be passed in.
       operationId: getModifiers
@@ -6276,7 +6344,7 @@ paths:
       summary: Create a Product Modifier
       tags:
         - Product Modifiers
-  '/catalog/products/{product_id}/modifiers/{modifier_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers/{modifier_id}':
     parameters:
       - name: product_id
         in: path
@@ -6290,6 +6358,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       operationId: getModifierById
       parameters:
@@ -7192,7 +7264,7 @@ paths:
           required: true
       tags:
         - Product Modifiers
-  '/catalog/products/{product_id}/modifiers/{modifier_id}/values':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers/{modifier_id}/values':
     parameters:
       - name: product_id
         in: path
@@ -7206,6 +7278,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of all product *Modifier Values*. Optional parameters can be passed in.
       operationId: getModifierValues
@@ -7585,7 +7661,7 @@ paths:
       summary: Create Modifier Value
       tags:
         - Product Modifier Values
-  '/catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}':
     parameters:
       - name: product_id
         in: path
@@ -7605,6 +7681,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Modifier Value*. Optional parameters can be passed in.
       operationId: getModifierValueById
@@ -8007,7 +8087,7 @@ paths:
           required: true
       tags:
         - Product Modifier Values
-  '/catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}/image':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}/image':
     parameters:
       - name: product_id
         in: path
@@ -8027,6 +8107,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     post:
       description: |-
         Creates a *Modifier Image*.
@@ -8164,7 +8248,7 @@ paths:
           required: true
       tags:
         - Product Modifier Images
-  '/catalog/products/{product_id}/complex-rules':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/complex-rules':
     parameters:
       - name: product_id
         in: path
@@ -8172,6 +8256,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of all product *Complex Rules*. Optional parameters may be passed in.
       operationId: getComplexRules
@@ -8367,7 +8455,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`''s, or else reference a `modifier_value_id` and a `variant_id`.'
+                  description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`’s, or else reference a `modifier_value_id` and a `variant_id`.'
                   title: Complex Rule Condition
                   properties:
                     id:
@@ -8524,7 +8612,7 @@ paths:
         - id
       tags:
         - Product Complex Rules
-  '/catalog/products/{product_id}/complex-rules/{complex_rule_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/complex-rules/{complex_rule_id}':
     parameters:
       - name: product_id
         in: path
@@ -8538,6 +8626,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Complex Rule*. Optional parameters can be passed in.
       operationId: getComplexRuleById
@@ -8701,7 +8793,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`''s, or else reference a `modifier_value_id` and a `variant_id`.'
+                  description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`’s, or else reference a `modifier_value_id` and a `variant_id`.'
                   title: Complex Rule Condition
                   properties:
                     id:
@@ -8854,7 +8946,7 @@ paths:
           required: true
       tags:
         - Product Complex Rules
-  '/catalog/products/{product_id}/custom-fields':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/custom-fields':
     parameters:
       - name: product_id
         in: path
@@ -8862,6 +8954,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of product *Custom Fields*. Optional parameters can be passed in.
       operationId: getCustomFields
@@ -8906,7 +9002,7 @@ paths:
                 type: array
                 items:
                   type: object
-                  description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+                  description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
                   title: Custom Field
                   properties:
                     id:
@@ -8980,7 +9076,7 @@ paths:
           required: true
           schema:
             type: object
-            description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+            description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
             title: Custom Field
             properties:
               id:
@@ -9033,7 +9129,7 @@ paths:
             properties:
               data:
                 type: object
-                description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+                description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
                 title: Custom Field
                 properties:
                   id:
@@ -9128,7 +9224,7 @@ paths:
       summary: Create a Custom Fields
       tags:
         - Product Custom Fields
-  '/catalog/products/{product_id}/custom-fields/{custom_field_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/custom-fields/{custom_field_id}':
     parameters:
       - name: product_id
         in: path
@@ -9142,6 +9238,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Custom Field*. Optional parameters can be passed in.
       operationId: getCustomFieldById
@@ -9223,7 +9323,7 @@ paths:
           required: true
           schema:
             type: object
-            description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+            description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
             title: Custom Field
             properties:
               id:
@@ -9276,7 +9376,7 @@ paths:
             properties:
               data:
                 type: object
-                description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+                description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
                 title: Custom Field
                 properties:
                   id:
@@ -9410,7 +9510,7 @@ paths:
           required: true
       tags:
         - Product Custom Fields
-  '/catalog/products/{product_id}/bulk-pricing-rules':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/bulk-pricing-rules':
     parameters:
       - name: product_id
         in: path
@@ -9418,6 +9518,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
       - name: page
         description: Specifies the page number in a limited (paginated) list of products.
         required: false
@@ -9661,7 +9765,7 @@ paths:
       summary: Create a Bulk Pricing Rule
       tags:
         - Product Bulk Pricing Rules
-  '/catalog/products/{product_id}/bulk-pricing-rules/{bulk_pricing_rule_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/bulk-pricing-rules/{bulk_pricing_rule_id}':
     parameters:
       - name: product_id
         in: path
@@ -9675,6 +9779,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Bulk Pricing Rule*. Optional parameters can be passed in.
       operationId: getBulkPricingRuleById
@@ -9964,7 +10072,7 @@ paths:
           required: true
       tags:
         - Product Bulk Pricing Rules
-  '/catalog/products/{product_id}/metafields':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/metafields':
     parameters:
       - name: product_id
         in: path
@@ -9972,6 +10080,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of *Product Metafields*. Optional parameters can be passed in.
       operationId: getProductMetafieldsByProductId
@@ -10214,7 +10326,7 @@ paths:
       summary: Create a Product Metafield
       tags:
         - Product Metafields
-  '/catalog/products/{product_id}/metafields/{metafield_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/metafields/{metafield_id}':
     parameters:
       - name: metafield_id
         in: path
@@ -10228,6 +10340,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Product Metafield*. Optional parameters can be passed in.
       operationId: getProductMetafieldByProductId
@@ -10349,7 +10465,7 @@ paths:
           required: true
       tags:
         - Product Metafields
-  '/catalog/products/{product_id}/reviews':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/reviews':
     parameters:
       - name: product_id
         in: path
@@ -10357,6 +10473,10 @@ paths:
           The ID of the `Product` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of all *Product Reviews*. Optional parameters can be passed in.
       operationId: getProductReviews
@@ -10706,7 +10826,7 @@ paths:
       summary: Create a Product Review
       tags:
         - Product Reviews
-  '/catalog/products/{product_id}/reviews/{review_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/reviews/{review_id}':
     parameters:
       - name: product_id
         in: path
@@ -10720,6 +10840,10 @@ paths:
         required: true
         in: path
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Product Review*. Optional parameters maybe passed in.
       operationId: getProductReviewById
@@ -11059,7 +11183,7 @@ paths:
           type: string
           default: application/json
           required: true
-  /catalog/categories:
+  '/stores/{store_hash}/v3/catalog/categories':
     get:
       description: Returns a list of *Categories*. Optional filter parameters can be passed in.
       operationId: getCategories
@@ -11404,7 +11528,7 @@ paths:
         **Usage Notes**
 
         - Sending a `DELETE`request without specifying a filter parameter will result in a `422` error. 
-        - Sending a `DELETE` request for a category that contains products will result in a `422` error. Move products to a new category by sending a `PUT` requst to the `/catalog/products/{product_id}` endpoint before deleting a category.
+        - Sending a `DELETE` request for a category that contains products will result in a `422` error. Move products to a new category by sending a `PUT` request to the `/catalog/products/{product_id}` endpoint before deleting a category.
       operationId: deleteCategories
       parameters:
         - type: integer
@@ -11495,6 +11619,11 @@ paths:
       summary: Delete Categories
       tags:
         - Category
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
   '/catalog/categories/{category_id}':
     parameters:
       - name: category_id
@@ -11947,7 +12076,7 @@ paths:
           type: string
           default: application/json
           required: true
-  '/catalog/categories/{category_id}/metafields':
+  '/stores/{store_hash}/v3/catalog/categories/{category_id}/metafields':
     parameters:
       - name: category_id
         in: path
@@ -11955,6 +12084,10 @@ paths:
           The ID of the `Category` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a list of *Metafields* on a *Category*. Optional filter parameters can be passed in.
       operationId: getCategoryMetafieldsByCategoryId
@@ -12182,7 +12315,7 @@ paths:
       summary: Create a Category Metafield
       tags:
         - Category Metafields
-  '/catalog/categories/{category_id}/metafields/{metafield_id}':
+  '/stores/{store_hash}/v3/catalog/categories/{category_id}/metafields/{metafield_id}':
     parameters:
       - name: metafield_id
         in: path
@@ -12196,6 +12329,10 @@ paths:
           The ID of the `Category` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Category Metafield*. Optional parameters can be passed in.
       operationId: getCategoryMetafieldByCategoryId
@@ -12317,7 +12454,7 @@ paths:
           required: true
       tags:
         - Category Metafields
-  '/catalog/categories/{category_id}/image':
+  '/stores/{store_hash}/v3/catalog/categories/{category_id}/image':
     parameters:
       - name: category_id
         in: path
@@ -12325,6 +12462,10 @@ paths:
           The ID of the `Category` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     post:
       parameters:
         - in: header
@@ -12448,7 +12589,7 @@ paths:
           required: true
       tags:
         - Category Images
-  /catalog/categories/tree:
+  '/stores/{store_hash}/v3/catalog/categories/tree':
     get:
       description: 'Returns the categories tree, a nested lineage of the categories with parent->child relationship. The Category objects returned are simplified versions of the category objects returned in the rest of this API.'
       operationId: getCategoryTree
@@ -12511,7 +12652,12 @@ paths:
           type: string
           default: application/json
           required: true
-  /catalog/brands:
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/catalog/brands':
     get:
       description: Returns a list of *Brands*. Optional filter parameters can be passed in.
       operationId: getBrands
@@ -13064,7 +13210,12 @@ paths:
         - Brands
         - Catalog
       summary: Delete Brands
-  '/catalog/brands/{brand_id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/catalog/brands/{brand_id}':
     parameters:
       - name: brand_id
         in: path
@@ -13072,6 +13223,10 @@ paths:
           The ID of the `Brand` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a single *Brand*. Optional filter parameters can be passed in.
       operationId: getBrandById
@@ -13463,7 +13618,7 @@ paths:
           type: string
           default: application/json
           required: true
-  '/catalog/brands/{brand_id}/metafields':
+  '/stores/{store_hash}/v3/catalog/brands/{brand_id}/metafields':
     parameters:
       - name: brand_id
         in: path
@@ -13471,6 +13626,10 @@ paths:
           The ID of the `Brand` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: 'Returns a list of *Brand Metafields*. Optional filter parameters can be passed in. '
       operationId: getBrandMetafieldsByBrandId
@@ -13697,7 +13856,7 @@ paths:
       summary: Create a Brand Metafield
       tags:
         - Brand Metafields
-  '/catalog/brands/{brand_id}/metafields/{metafield_id}':
+  '/stores/{store_hash}/v3/catalog/brands/{brand_id}/metafields/{metafield_id}':
     parameters:
       - name: metafield_id
         in: path
@@ -13711,6 +13870,10 @@ paths:
           The ID of the `Brand` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a *Brand Metafield*. Optional filter parameters can be passed in.
       operationId: getBrandMetafieldByBrandId
@@ -13832,7 +13995,7 @@ paths:
           type: string
           default: application/json
           required: true
-  '/catalog/brands/{brand_id}/image':
+  '/stores/{store_hash}/v3/catalog/brands/{brand_id}/image':
     parameters:
       - name: brand_id
         in: path
@@ -13840,6 +14003,10 @@ paths:
           The ID of the `Brand` to which the resource belongs.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     post:
       description: |-
         Creates a *Brand Image*.
@@ -13963,7 +14130,7 @@ paths:
           required: true
       tags:
         - Brand Images
-  /catalog/variants:
+  '/stores/{store_hash}/v3/catalog/variants':
     get:
       description: Returns a list of all variants in your catalog. Optional parameters can be passed in.
       operationId: getVariants
@@ -14037,25 +14204,25 @@ paths:
                         price:
                           type: number
                           format: double
-                          description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+                          description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
                           x-nullable: true
                           minimum: 0
                         sale_price:
                           type: number
                           format: double
-                          description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+                          description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
                           x-nullable: true
                           minimum: 0
                         retail_price:
                           type: number
                           format: double
-                          description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+                          description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
                           x-nullable: true
                           minimum: 0
                         weight:
                           type: number
                           format: double
-                          description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+                          description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
                           x-nullable: true
                           minimum: 0
                         width:
@@ -14104,7 +14271,7 @@ paths:
                           x-nullable: true
                         inventory_level:
                           type: integer
-                          description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+                          description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
                           x-nullable: true
                         inventory_warning_level:
                           type: integer
@@ -15677,25 +15844,25 @@ paths:
                     price:
                       type: number
                       format: double
-                      description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+                      description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
                       x-nullable: true
                       minimum: 0
                     sale_price:
                       type: number
                       format: double
-                      description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+                      description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
                       x-nullable: true
                       minimum: 0
                     retail_price:
                       type: number
                       format: double
-                      description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+                      description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
                       x-nullable: true
                       minimum: 0
                     weight:
                       type: number
                       format: double
-                      description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+                      description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
                       x-nullable: true
                       minimum: 0
                     width:
@@ -15744,7 +15911,7 @@ paths:
                       x-nullable: true
                     inventory_level:
                       type: integer
-                      description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+                      description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
                       x-nullable: true
                     inventory_warning_level:
                       type: integer
@@ -15885,25 +16052,25 @@ paths:
                         price:
                           type: number
                           format: double
-                          description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+                          description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
                           x-nullable: true
                           minimum: 0
                         sale_price:
                           type: number
                           format: double
-                          description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+                          description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
                           x-nullable: true
                           minimum: 0
                         retail_price:
                           type: number
                           format: double
-                          description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+                          description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
                           x-nullable: true
                           minimum: 0
                         weight:
                           type: number
                           format: double
-                          description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+                          description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
                           x-nullable: true
                           minimum: 0
                         width:
@@ -15952,7 +16119,7 @@ paths:
                           x-nullable: true
                         inventory_level:
                           type: integer
-                          description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+                          description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
                           x-nullable: true
                         inventory_warning_level:
                           type: integer
@@ -16182,7 +16349,7 @@ paths:
               errors: {}
               status: 413
               title: The request payload is too large. The maximum items allowed in the array is 50
-              type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+              type: '/api-docs/getting-started/api-status-codes'
         '422':
           description: |
             This is the result of missing required fields, or of invalid data. See the response for more details.
@@ -16228,7 +16395,12 @@ paths:
         - application/json
       produces:
         - application/json
-  /catalog/summary:
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/catalog/summary':
     get:
       tags:
         - Summary
@@ -16334,13 +16506,22 @@ paths:
           default: application/json
           required: true
       operationId: getCatalogSummary
-  '/catalog/categories/{category_id}/products/sort-order':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/catalog/categories/{category_id}/products/sort-order':
     parameters:
       - type: integer
         name: category_id
         in: path
         required: true
         description: The ID of the `Category` to which the resource belongs.
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       summary: Get Product Sort Order
       responses:
@@ -18631,25 +18812,25 @@ definitions:
       price:
         type: number
         format: double
-        description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+        description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
         x-nullable: true
         minimum: 0
       sale_price:
         type: number
         format: double
-        description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+        description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
         x-nullable: true
         minimum: 0
       retail_price:
         type: number
         format: double
-        description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+        description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
         x-nullable: true
         minimum: 0
       weight:
         type: number
         format: double
-        description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+        description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
         x-nullable: true
         minimum: 0
       width:
@@ -18698,7 +18879,7 @@ definitions:
         x-nullable: true
       inventory_level:
         type: integer
-        description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+        description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
         x-nullable: true
       inventory_warning_level:
         type: integer
@@ -18757,25 +18938,25 @@ definitions:
           price:
             type: number
             format: double
-            description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+            description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
             x-nullable: true
             minimum: 0
           sale_price:
             type: number
             format: double
-            description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+            description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
             x-nullable: true
             minimum: 0
           retail_price:
             type: number
             format: double
-            description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+            description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
             x-nullable: true
             minimum: 0
           weight:
             type: number
             format: double
-            description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+            description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
             x-nullable: true
             minimum: 0
           width:
@@ -18824,7 +19005,7 @@ definitions:
             x-nullable: true
           inventory_level:
             type: integer
-            description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+            description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
             x-nullable: true
           inventory_warning_level:
             type: integer
@@ -18880,25 +19061,25 @@ definitions:
           price:
             type: number
             format: double
-            description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+            description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
             x-nullable: true
             minimum: 0
           sale_price:
             type: number
             format: double
-            description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+            description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
             x-nullable: true
             minimum: 0
           retail_price:
             type: number
             format: double
-            description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+            description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
             x-nullable: true
             minimum: 0
           weight:
             type: number
             format: double
-            description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+            description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
             x-nullable: true
             minimum: 0
           width:
@@ -18947,7 +19128,7 @@ definitions:
             x-nullable: true
           inventory_level:
             type: integer
-            description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+            description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
             x-nullable: true
           inventory_warning_level:
             type: integer
@@ -19025,25 +19206,25 @@ definitions:
       price:
         type: number
         format: double
-        description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+        description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
         x-nullable: true
         minimum: 0
       sale_price:
         type: number
         format: double
-        description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+        description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
         x-nullable: true
         minimum: 0
       retail_price:
         type: number
         format: double
-        description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+        description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
         x-nullable: true
         minimum: 0
       weight:
         type: number
         format: double
-        description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+        description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
         x-nullable: true
         minimum: 0
       width:
@@ -19092,7 +19273,7 @@ definitions:
         x-nullable: true
       inventory_level:
         type: integer
-        description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+        description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
         x-nullable: true
       inventory_warning_level:
         type: integer
@@ -19941,7 +20122,7 @@ definitions:
           $ref: '#/definitions/complexRuleConditionBase'
   productCustomField_Base:
     type: object
-    description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+    description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
     title: productCustomField_Base
     properties:
       id:
@@ -19977,7 +20158,7 @@ definitions:
     description: The model for a POST to create a custom field on a product.
     allOf:
       - type: object
-        description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+        description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
         title: Custom Field
         properties:
           id:
@@ -20014,7 +20195,7 @@ definitions:
     description: The model for a PUT to update a custom field on a product.
     allOf:
       - type: object
-        description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+        description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
         title: Custom Field
         properties:
           id:
@@ -20048,7 +20229,7 @@ definitions:
     title: productCustomField_Put
   complexRuleConditionBase:
     type: object
-    description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`''s, or else reference a `modifier_value_id` and a `variant_id`.'
+    description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`’s, or else reference a `modifier_value_id` and a `variant_id`.'
     title: complexRuleConditionBase
     properties:
       id:
@@ -20791,25 +20972,25 @@ definitions:
       price:
         type: number
         format: double
-        description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+        description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
         x-nullable: true
         minimum: 0
       sale_price:
         type: number
         format: double
-        description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+        description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
         x-nullable: true
         minimum: 0
       retail_price:
         type: number
         format: double
-        description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+        description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
         x-nullable: true
         minimum: 0
       weight:
         type: number
         format: double
-        description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+        description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
         x-nullable: true
         minimum: 0
       width:
@@ -20858,7 +21039,7 @@ definitions:
         x-nullable: true
       inventory_level:
         type: integer
-        description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+        description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
         x-nullable: true
       inventory_warning_level:
         type: integer
@@ -21379,13 +21560,13 @@ securityDefinitions:
       ### Example
 
       ```http
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
+      GET /stores/{store_hash}/v3/catalog/summary
       host: api.bigcommerce.com
       Content-Type: application/json
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
@@ -22659,7 +22840,7 @@ responses:
                 type: array
                 items:
                   type: object
-                  description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`''s, or else reference a `modifier_value_id` and a `variant_id`.'
+                  description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`’s, or else reference a `modifier_value_id` and a `variant_id`.'
                   title: Complex Rule Condition
                   properties:
                     id:
@@ -22857,7 +23038,7 @@ responses:
               type: array
               items:
                 type: object
-                description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`''s, or else reference a `modifier_value_id` and a `variant_id`.'
+                description: 'Complex rules may return with conditions that apply to one or more variants, or with a single modifier value (if the rules were created using the v2 API or the control panel). Complex rules created or updated in the v3 API must have conditions that either reference multiple `modifier_value_id`’s, or else reference a `modifier_value_id` and a `variant_id`.'
                 title: Complex Rule Condition
                 required:
                   - modifier_id
@@ -22965,7 +23146,7 @@ responses:
           type: array
           items:
             type: object
-            description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+            description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
             title: Custom Field
             properties:
               id:
@@ -23022,7 +23203,7 @@ responses:
       properties:
         data:
           type: object
-          description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product''s page, such as a book''s ISBN or a DVD''s release date.'
+          description: 'Gets custom fields associated with a product. These allow you to specify additional information that will appear on the product’s page, such as a book’s ISBN or a DVD’s release date.'
           title: Custom Field
           properties:
             id:
@@ -25298,25 +25479,25 @@ responses:
                   price:
                     type: number
                     format: double
-                    description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+                    description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
                     x-nullable: true
                     minimum: 0
                   sale_price:
                     type: number
                     format: double
-                    description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+                    description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
                     x-nullable: true
                     minimum: 0
                   retail_price:
                     type: number
                     format: double
-                    description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+                    description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
                     x-nullable: true
                     minimum: 0
                   weight:
                     type: number
                     format: double
-                    description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+                    description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
                     x-nullable: true
                     minimum: 0
                   width:
@@ -25365,7 +25546,7 @@ responses:
                     x-nullable: true
                   inventory_level:
                     type: integer
-                    description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+                    description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
                     x-nullable: true
                   inventory_warning_level:
                     type: integer
@@ -25556,25 +25737,25 @@ responses:
                 price:
                   type: number
                   format: double
-                  description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+                  description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
                   x-nullable: true
                   minimum: 0
                 sale_price:
                   type: number
                   format: double
-                  description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+                  description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
                   x-nullable: true
                   minimum: 0
                 retail_price:
                   type: number
                   format: double
-                  description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+                  description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
                   x-nullable: true
                   minimum: 0
                 weight:
                   type: number
                   format: double
-                  description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+                  description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
                   x-nullable: true
                   minimum: 0
                 width:
@@ -25623,7 +25804,7 @@ responses:
                   x-nullable: true
                 inventory_level:
                   type: integer
-                  description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+                  description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
                   x-nullable: true
                 inventory_warning_level:
                   type: integer
@@ -25998,25 +26179,25 @@ responses:
                   price:
                     type: number
                     format: double
-                    description: 'This variant''s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product''s default price (set in the Product resource''s `price` field) will be used as the base price.'
+                    description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
                     x-nullable: true
                     minimum: 0
                   sale_price:
                     type: number
                     format: double
-                    description: 'This variant''s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s sale price (set in the Product resource''s `price` field) will be used as the sale price.'
+                    description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
                     x-nullable: true
                     minimum: 0
                   retail_price:
                     type: number
                     format: double
-                    description: 'This variant''s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product''s retail price (set in the Product resource''s `price` field) will be used as the retail price.'
+                    description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
                     x-nullable: true
                     minimum: 0
                   weight:
                     type: number
                     format: double
-                    description: 'This variant''s base weight on the storefront. If this value is null, the product''s default weight (set in the Product resource''s weight field) will be used as the base weight.'
+                    description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
                     x-nullable: true
                     minimum: 0
                   width:
@@ -26065,7 +26246,7 @@ responses:
                     x-nullable: true
                   inventory_level:
                     type: integer
-                    description: 'Inventory level for the variant, which is used when the product''s inventory_tracking is set to `variant`.'
+                    description: 'Inventory level for the variant, which is used when the product’s inventory_tracking is set to `variant`.'
                     x-nullable: true
                   inventory_warning_level:
                     type: integer

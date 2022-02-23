@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
+  - url: 'https://api.bigcommerce.com'
     variables:
       $$.env.store_hash:
         default: store_hash
@@ -30,15 +30,12 @@ info:
   description: |-
     Create and manage customers.
 
-    - [Authentication](#authentication)
-    - [Resources](#resources)
-
     ## Authentication
 
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
 
     ```http
-    GET /stores/{$$.env.store_hash}/v3/customers
+    GET /stores/{store_hash}/v3/customers
     host: api.bigcommerce.com
     Accept: application/json
     X-Auth-Token: {access_token}
@@ -57,13 +54,13 @@ info:
     | Stored Payment Instruments                   | modify     | `store_stored_payment_instruments`            |
     | Stored Payment Instruments                   | read-only  | `store_stored_payment_instruments_read_only`  |
 
-    For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 
     ## Resources
     * [Customer and Subscribers Overview](/api-docs/customers/customers-subscribers-overview).
   contact: {}
 paths:
-  /customers:
+  '/stores/{store_hash}/v3/customers':
     get:
       description: |-
         Returns a list of Customers. Optional filter parameters can be passed in.
@@ -238,7 +235,7 @@ paths:
         * postal_code
 
         **Required Fields Attributes**
-        * Attributes must be [created](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes/customersattributespost) **BEFORE** creating a customer.
+        * Attributes must be [created](/api-reference/customer-subscribers/v3-customers-api/customer-attributes/customersattributespost) **BEFORE** creating a customer.
         * attribute_id
         * attribute_value -- This is input as a string, regardless of the [Type](/api-reference/customer-subscribers/v3-customers-api/models/type).
 
@@ -249,7 +246,7 @@ paths:
 
         A customer can be created with global access or channel-specific access.
         * **Global access:**
-          * Make sure the channel has `allow_global_logins` enabled. This is on by default only for the default storefront. Find more info at [Customer Settings > Channel](https://developer.bigcommerce.com/api-reference/store-management/customers-v3/customer-settings-channel/customersettingschannelget).
+          * Make sure the channel has `allow_global_logins` enabled. This is on by default only for the default storefront. Find more info at [Customer Settings > Channel](/api-reference/store-management/customers-v3/customer-settings-channel/customersettingschannelget).
           * Omit `channel_ids` field, or provide `channel_ids: null`.
         * **Channel-specific access:**
           * Provide a `channel_ids` array containing the channels accessible by the customer. This array cannot be empty.
@@ -331,7 +328,7 @@ paths:
                   value:
                     status: 422
                     title: Create customers failed.
-                    type: 'https://developer.bigcommerce.com/api#api-status-codes'
+                    type: '/api-docs/getting-started/api-status-codes'
                     errors:
                       .customer_create: Error creating customers
     put:
@@ -350,7 +347,7 @@ paths:
 
         **Notes**
 
-        * Attributes Values can not be updated using Update a Customer. Use the Update a [Customer Attribute Values](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values/customersattributevaluesput) endpoint.
+        * Attributes Values can not be updated using Update a Customer. Use the Update a [Customer Attribute Values](/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values/customersattributevaluesput) endpoint.
         * channel_ids -- Updating the list of channels a customer can access may create some side effects in a multi-storefront situation. This list determines which customer account we will use to authenticate a shopper given a channel.
       summary: Update Customers
       tags:
@@ -444,7 +441,13 @@ paths:
         '204':
           description: ''
           headers: {}
-  /customers/addresses:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/addresses':
     get:
       description: Returns a list of Customer Addresses. Optional filter parameters can be passed in.
       summary: Get All Customer Addresses
@@ -704,7 +707,13 @@ paths:
           headers: {}
       tags:
         - Customer Addresses
-  /customers/validate-credentials:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/validate-credentials':
     post:
       tags:
         - Customer Validate Credentials
@@ -778,13 +787,19 @@ paths:
                     example: Too many requests
                   type:
                     type: string
-                    example: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+                    example: '/api-docs/getting-started/api-status-codes'
                   errors:
                     type: object
                     additionalProperties:
                       type: string
                     example: {}
-  /customers/settings:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/settings':
     get:
       tags:
         - Customer Settings
@@ -845,7 +860,13 @@ paths:
                     customer_group_settings:
                       guest_customer_group_id: 0
                       default_customer_group_id: 0
-  '/customers/settings/channels/{channel_id}':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/settings/channels/{channel_id}':
     get:
       tags:
         - Customer Settings Channel
@@ -934,7 +955,18 @@ paths:
                       guest_customer_group_id: 0
                       default_customer_group_id: 0
                     allow_global_logins: true
-  /customers/attributes:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: channel_id
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/attributes':
     get:
       description: Returns a list of Customer Attributes. You can pass in optional filter parameters.
       summary: Get All Customer Attributes
@@ -1202,7 +1234,13 @@ paths:
           headers: {}
       tags:
         - Customer Attributes
-  /customers/attribute-values:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/attribute-values':
     get:
       description: Returns a list of Customer Attribute Values. Optional filter parameters can be passed in.
       summary: Get All Customer Attribute Values
@@ -1414,7 +1452,13 @@ paths:
           headers: {}
       tags:
         - Customer Attribute Values
-  /customers/form-field-values:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/form-field-values':
     get:
       responses:
         '200':
@@ -1568,7 +1612,13 @@ paths:
                   - customer_id: 12
                     name: What is your favorite pizza topping?
                     value: Mushrooms
-  '/customers/{customerId}/consent':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/{customerId}/consent':
     get:
       description: Gets the status of a customer's consent to allow data collection by cookies and scripts while shopping on a storefront.
       summary: Get Customer Consent
@@ -1646,7 +1696,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  '/customers/{customerId}/stored-instruments':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: customerId
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/{customerId}/stored-instruments':
     get:
       summary: Get Stored Instruments (Beta)
       tags:
@@ -1654,16 +1715,10 @@ paths:
       description: |-
         Lists all available stored instruments for a customer. This list will include all types of stored instruments namely card, account and bank_account instruments
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > * This endpoint is in beta.
 
-        </div>
-        </div>
-        </div>
       operationId: liststoredinstruments
       parameters:
         - $ref: '#/components/parameters/customerId'
@@ -1727,6 +1782,17 @@ paths:
               example:
                 code: 403
                 message: Missing scope
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: customerId
+        in: path
+        required: true
 components:
   parameters:
     customerId:
@@ -2526,13 +2592,13 @@ components:
         ### Example
 
         ```http
-        GET /stores/{$$.env.store_hash}/v3/catalog/summary
+        GET /stores/{store_hash}/v3/catalog/summary
         host: api.bigcommerce.com
         Content-Type: application/json
         X-Auth-Token: {access_token}
         ```
 
-        * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+        * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
   schemas:
     Pagination:
       title: Pagination
@@ -2753,7 +2819,9 @@ components:
           description: Array of channels the customer can access
           type: array
           items:
-            example: [1,2]
+            example:
+              - 1
+              - 2
       required:
         - email
         - first_name
@@ -3425,13 +3493,15 @@ components:
           example: string
           minLength: 0
           maxLength: 255
-          description: 'Attribute value. This will always be a string, regardless of the attribute''s type.'
+          description: 'Attribute value. This will always be a string, regardless of the attribute’s type.'
     customerChannelIds:
       type: array
       title: customerChannelIds
       description: Array of channel ids the Customer has access to.
       items:
-        example: [1,2]
+        example:
+          - 1
+          - 2
     CardInstrument:
       type: object
       properties:

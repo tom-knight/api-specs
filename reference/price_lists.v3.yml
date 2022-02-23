@@ -5,15 +5,9 @@ info:
   description: |-
     Populate different versions of catalog pricing and assign them to different [customer groups](/api-reference/customer-subscribers/customers-api) at the variant level.
 
-    - [Authentication](#authentication)
-    - [Price Lists](#price-lists)
-    - [Price Lists Assignments](#price-lists-assignments)
-    - [Usage notes](#usage-notes)
-    - [Additional information](#additional-information)
-
     ## Authentication
 
-    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request headers.
+    Authenticate requests by including an [OAuth](/api-docs/getting-started/authentication/rest-api-authentication) `access_token` in the request headers.
 
     ```http
     GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/{{ENDPOINT}}
@@ -32,11 +26,11 @@ info:
 
     The association of a Price List to a customer group can be done either via the control panel or using the [Customer Groups API.](/api-reference/customer-subscribers/customers-api)
 
-    [Price List Assignments](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-records/) can be created to assign Price Lists to a specific [channel](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api). Price Lists assigned to a channel apply to all shoppers on that channel, unless there are more specific assignments or customer group discounts set up for the shopper's customer group.
+    [Price List Assignments](/api-reference/store-management/price-lists/price-lists-assignments/createpricelistassignments) can be created to assign Price Lists to a specific [channel](/api-reference/cart-checkout/channels-listings-api). Price Lists assigned to a channel apply to all shoppers on that channel, unless there are more specific assignments or customer group discounts set up for the shopper's customer group.
 
     If an active Price List does not contain prices for a variant, then the catalog pricing will be used.
 
-    Price Lists provide overridden price values to the Stencil storefront. Final price display can be further customized within the Stencil template using the template's [price](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/models/price) object.
+    Price Lists provide overridden price values to the Stencil storefront. Final price display can be further customized using Stencil's [handlebars objects](/theme-objects).
 
     To learn more about Price Lists, see [Price Lists API](/api-docs/store-management/price-list-overview).
 
@@ -63,7 +57,7 @@ info:
     - Price Lists cannot be assigned to a customer group that has customer group discounts -- the customer group discounts must be deleted first.
     - Bulk pricing Tiers may additionally be associated with a price record to indicate different pricing as the quantity in the cart increases.
     - If a variant has a Price Record, any existing product-level bulk pricing will not apply in the cart. For variants without Price Records, any existing product bulk pricing will apply.
-    - [Price Lists Records](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-records/setpricelistrecordcollection) accepts bulk upsert. You can only do one bulk upsert at a time. Running more than one in parallel on the **same store** will cause a 429 error and the request will fail.
+    - [Price Lists Records](/api-reference/store-management/price-lists/price-lists-records/setpricelistrecordcollection) accepts bulk upsert. You can only do one bulk upsert at a time. Running more than one in parallel on the **same store** will cause a 429 error and the request will fail.
     - There are no webhooks available for Price Lists. Since Price Lists directly relate to products, product webhooks will fire for corresponding changes such as pricing.
 
     ## Additional information
@@ -82,7 +76,7 @@ info:
     name: ''
     url: ''
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: ''
 tags:
   - name: Price Lists
     description: BigCommerce Price Lists API Definition.
@@ -95,7 +89,7 @@ produces:
 consumes:
   - application/json
 paths:
-  /pricelists:
+  '/stores/{store_hash}/v3/pricelists':
     get:
       description: Returns a list of *Price Lists*. Optional parameters can be passed in.
       operationId: getPriceListCollection
@@ -501,13 +495,22 @@ paths:
       tags:
         - Price Lists
       summary: Delete All Price Lists
-  '/pricelists/{price_list_id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/pricelists/{price_list_id}':
     parameters:
       - type: integer
         name: price_list_id
         in: path
         description: |
           The ID of the `Price List` requested.
+        required: true
+      - type: string
+        name: store_hash
+        in: path
         required: true
     get:
       description: ' Returns a single *Price List*.'
@@ -787,7 +790,7 @@ paths:
         - Price Lists
       summary: Update a Price List
     delete:
-      description: |- 
+      description: |-
         Deletes a *Price List*. All associated price records are also removed.
 
         **Limits**
@@ -803,13 +806,17 @@ paths:
         - Price Lists
       summary: Delete a Price List
       parameters: []
-  '/pricelists/{price_list_id}/records':
+  '/stores/{store_hash}/v3/pricelists/{price_list_id}/records':
     parameters:
       - type: integer
         name: price_list_id
         in: path
         description: |
           The ID of the `Price List` requested.
+        required: true
+      - type: string
+        name: store_hash
+        in: path
         required: true
     get:
       description: Returns a list of *Price List Records* associated with a *Price List*.
@@ -1604,7 +1611,7 @@ paths:
       summary: Delete a Price List Record
       tags:
         - Price Lists Records
-  '/pricelists/{price_list_id}/records/{variant_id}':
+  '/stores/{store_hash}/v3/pricelists/{price_list_id}/records/{variant_id}':
     parameters:
       - type: integer
         name: price_list_id
@@ -1618,6 +1625,10 @@ paths:
           ID of the variant on a product, or on an associated Price List Record.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns *Price List Records* using the variant ID. Will also contain currency records.
       operationId: getPriceListRecordsByVariantId
@@ -1850,7 +1861,7 @@ paths:
           default: application/json
       tags:
         - Price Lists Records
-  '/pricelists/{price_list_id}/records/{variant_id}/{currency_code}':
+  '/stores/{store_hash}/v3/pricelists/{price_list_id}/records/{variant_id}/{currency_code}':
     parameters:
       - type: integer
         name: price_list_id
@@ -1871,6 +1882,10 @@ paths:
           The currency code associated with the price record being acted upon.
         required: true
         format: ISO-4217
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a *Price List Record* using the currency code. Optional parameters can be used.
       operationId: getPriceListRecord
@@ -2395,7 +2410,7 @@ paths:
           default: application/json
       tags:
         - Price Lists Records
-  /pricelists/assignments:
+  '/stores/{store_hash}/v3/pricelists/assignments':
     post:
       tags:
         - Price Lists Assignments
@@ -2478,6 +2493,11 @@ paths:
           schema:
             $ref: '#/definitions/NoContent'
       summary: Delete Price List Assignments
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 parameters:
   FilterIdParam:
     name: id
@@ -4071,7 +4091,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication). 
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []

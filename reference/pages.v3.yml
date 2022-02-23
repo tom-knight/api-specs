@@ -7,7 +7,7 @@ info:
 tags:
   - name: Pages
 paths:
-  /content/pages:
+  '/stores/{store_hash}/v3/content/pages':
     get:
       operationId: content-pages-get
       tags:
@@ -15,16 +15,10 @@ paths:
       description: |-
         Returns a list of content pages.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > This endpoint is in beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
 
-        </div>
-        </div>
-        </div>
       responses:
         '200':
           description: |
@@ -45,7 +39,6 @@ paths:
                         is_visible: false
                         parent_id: 0
                         sort_order: 0
-                        description: null
                         type: page
                         meta_keywords: ''
                         meta_description: string
@@ -62,7 +55,6 @@ paths:
                         is_visible: false
                         parent_id: 0
                         sort_order: 3
-                        description: null
                         feed: 'https://bigcommerce.com/feed/'
                         type: feed
                         meta_keywords: ''
@@ -80,7 +72,6 @@ paths:
                         is_visible: false
                         parent_id: 0
                         sort_order: 0
-                        description: null
                         link: '1'
                         type: link
                         meta_keywords: ''
@@ -148,15 +139,10 @@ paths:
       description: |-
         Creates a content page.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > This endpoint is in beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
-        </div>
-        </div>
-        </div>
+
       tags:
         - Pages
       requestBody:
@@ -225,16 +211,11 @@ paths:
       description: |-
         Updates a content page.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        
+        <!-- theme: info -->
+        > #### Note
         > This endpoint is in beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
 
-        </div>
-        </div>
-        </div>
       tags:
         - Pages
       requestBody:
@@ -308,16 +289,10 @@ paths:
       description: |-
         Deletes a page from a store.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > This endpoint is in beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
 
-        </div>
-        </div>
-        </div>
       responses:
         '204':
           description: |
@@ -334,8 +309,14 @@ paths:
           name: channel_id
           description: Channel Id provided to delete all pages for a given Channel
       summary: Delete a Page
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
+  - url: 'https://api.bigcommerce.com'
     description: Pages API Gateway
     variables:
       store_hash:

@@ -3,28 +3,23 @@ info:
   title: Email Templates
   description: Manage Handlebars-based email templates globally and create channel-specific overrides.
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
+  - url: 'https://api.bigcommerce.com'
     description: BigCommerce API Gateway
     variables:
       store_hash:
         default: abc123
         description: Store hash used to identify the store.
 paths:
-  /marketing/email-templates:
+  '/stores/{store_hash}/v3/marketing/email-templates':
     get:
       summary: Get Email Templates
       description: |-
         Get a list of email templates.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        >### Note
+        <!-- theme: info -->
+        > #### Note
         >`/marketing/email-templates` endpoints only work after opting into the new email management experience from your store's control panel. You can opt-in by visiting Email Templates. If you have already opted in, visiting the Email Templates page will return a `404` error, and you will be able to access the new Transactional Emails page.
-        </div>
-        </div>
-        </div>
+
       responses:
         '200':
           content:
@@ -55,11 +50,22 @@ paths:
       operationId: getEmailTemplates
       tags:
         - Email Templates
-  '/marketing/email-templates/{template-name}':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/marketing/email-templates/{template-name}':
     parameters:
       - schema:
           type: string
         name: template-name
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: store_hash
         in: path
         required: true
     get:
@@ -67,16 +73,11 @@ paths:
       description: |-
         Get a single global email template or a channel-specific email template override.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        >### Note
+        
+        <!-- theme: info -->
+        > #### Note
         >`/marketing/email-templates` endpoints only work after opting into the new email management experience from your store's control panel. You can opt-in by visiting [Email Templates](https://login.bigcommerce.com/deep-links/manage/marketing/email-templates). If you have already opted in, visiting the [Email Templates](https://login.bigcommerce.com/deep-links/manage/marketing/email-templates) page will return a `404` error, and you will be able to access the new [Transactional Emails](https://login.bigcommerce.com/deep-links/manage/transactional-emails) page.
 
-        </div>
-        </div>
-        </div>
       tags:
         - Email Templates
       responses:
@@ -299,7 +300,7 @@ components:
       type: apiKey
       in: header
       description: |-
-        Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request header.
+        Authenticate requests by including an [OAuth](/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes) `access_token` in the request header.
 
         ```http
         GET /stores/{{STORE_HASH}}/v3/marketing/email-templates
