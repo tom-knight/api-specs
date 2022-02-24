@@ -82,6 +82,18 @@ paths:
                         total_pages: 1
                         links:
                           current: '?page=1&limit=50'
+        '400':
+          description: Bad Request; reasons for failure include invalid query parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/DetailedErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       parameters:
         - schema:
             type: integer
@@ -102,7 +114,7 @@ paths:
             type: string
           in: query
           name: 'name:like'
-          description: One word from the name of the page. Does not search substrings. Does not return pages with names that match exactly.
+          description: One word from the name of the page. Does not search substrings. Does not return pages with names that match exactly. Does not support fuzzy search.
         - schema:
             type: integer
           in: query
@@ -172,13 +184,18 @@ paths:
                     id: 1
         '207':
           $ref: '#/components/responses/HTTP207Response'
-        '422':
-          description: |
-            The `Page` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
+        '400':
+          description: Bad Request; reasons for failure include invalid query parameters.
           content:
-            application/json:
+            application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DetailedErrorResponse'
+        '422':
+          description: The input was not valid. This is the result of missing required fields or other invalid arguments. See the response for more details.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/DetailedErrorResponse'
       summary: Create Pages
     put:
       operationId: content-pages-put
@@ -241,13 +258,18 @@ paths:
                     meta: {}
         '207':
           $ref: '#/components/responses/HTTP207Response'
-        '422':
-          description: |
-            The `Page` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
+        '404':
+          description: Not Found
           content:
-            application/json:
+            application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: The input was not valid. This is the result of missing required fields or other invalid arguments. See the response for more details.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/DetailedErrorResponse'
       summary: Update Pages
     delete:
       operationId: content-pages-delete
@@ -258,6 +280,12 @@ paths:
         '204':
           description: |
             An empty response.
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       parameters:
         - schema:
             type: integer
@@ -357,6 +385,31 @@ paths:
                         total_pages: 1
                         links:
                           current: '?page=1&limit=50'
+        '404':
+          description: Not Found.
+          content:
+            application/problem+json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    status: 404
+                    title: A Page was not found with an id of 15
+                    type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+                properties:
+                  status:
+                    type: integer
+                  title:
+                    type: string
+                    minLength: 1
+                  type:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - title
+                  - type
       parameters: []
       summary: Get a Page
     put:
@@ -426,13 +479,18 @@ paths:
                     meta: {}
         '207':
           $ref: '#/components/responses/HTTP207Response'
-        '422':
-          description: |
-            The `Page` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
+        '400':
+          description: Bad Request; reasons for failure include invalid query parameters.
           content:
-            application/json:
+            application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/DetailedErrorResponse'
+        '422':
+          description: The input was not valid. This is the result of missing required fields or other invalid arguments. See the response for more details.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/DetailedErrorResponse'
       summary: Update a Page
     delete:
       operationId: content-page-delete
@@ -446,8 +504,30 @@ paths:
         > This endpoint recognizes the same query parameters as [Delete Multiple Pages](#?#). If the targeted page does not meet the query parameters you specify, #?#.
       responses:
         '204':
-          description: |
-            An empty response.
+          description: No content. A 204 response with no payload indicates successful deletion.
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    status: 404
+                    title: A Page was not found with an id of 66
+                    type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+                properties:
+                  status:
+                    type: integer
+                  title:
+                    type: string
+                    minLength: 1
+                  type:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
       parameters:
         - schema:
             type: integer
@@ -486,10 +566,6 @@ x-stoplight:
     showModels: false
 components:
   schemas:
-    DetailedErrors:
-      type: object
-      additionalProperties:
-        type: string
     BaseError:
       type: object
       description: |
@@ -505,15 +581,33 @@ components:
           type: string
         type:
           type: string
-        instance:
+      required:
+        - status
+    DetailedError:
+      type: object
+      description: |
+        Error payload for the BigCommerce API.
+      properties:
+        status:
+          description: |
+            The HTTP status code.
+          type: integer
+        title:
+          description: |
+            The error title describing the particular error.
           type: string
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+        - status
     ErrorResponse:
       allOf:
         - $ref: '#/components/schemas/BaseError'
-        - type: object
-          properties:
-            errors:
-              $ref: '#/components/schemas/DetailedErrors'
+    DetailedErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/DetailedError'
     CollectionMeta:
       type: object
       description: |
