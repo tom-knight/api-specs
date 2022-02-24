@@ -22,7 +22,7 @@ servers:
         default: abc123
         description: Store hash used to identify the store.
 paths:
-  '/stores/{store_hash}/v3/settings/marketing/abandoned-cart-emailssss':
+  '/stores/{store_hash}/v3/settings/marketing/abandoned-cart-emails':
     get:
       description: An array of abandoned cart emails on the store.
       parameters:
