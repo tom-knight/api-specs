@@ -7,8 +7,9 @@ properties:
       - $ref: ./global.yml
   Abandoned Cart Email Template Objects:
     description: Data available to the abandoned cart email template.
-    allOf:
+    oneOf:
       - $ref: ./abandoned_cart_email.yml
+      - $ref: ./abandoned_cart_email - copy.yml
   Account Settings Edited Email Template Objects:
     description: Data available to the account details changed email template.
     allOf:
