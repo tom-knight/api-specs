@@ -17,12 +17,10 @@ paths:
 
         <!-- theme: info -->
         > #### Note
-        > This endpoint is in beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
-
+        > This endpoint is recently out of beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
       responses:
         '200':
-          description: |
-            An array of pages.
+          description: ''
           content:
             application/json:
               schema:
@@ -94,17 +92,12 @@ paths:
             type: integer
           in: query
           name: channel_id
-          description: Channel Id to return only pages for a given Channel.
-        - schema:
-            type: integer
-          in: query
-          name: id
-          description: Id of the page.
+          description: Return only pages associated with the specified channel.
         - schema:
             type: string
           in: query
           name: 'id:in'
-          description: 'Explicitly fetch Pages by IDs, provided as CSV string.'
+          description: 'A comma-separated string of page IDs to fetch. Supports bulk operations. If none of the page IDs passed exist, the query will return an empty `data` array.'
         - schema:
             type: string
           in: query
@@ -114,26 +107,18 @@ paths:
             type: string
           in: query
           name: 'name:like'
-          description: Partial name of the page.
+          description: One word from the name of the page. Does not search substrings. Will not return pages with names that match exactly.
         - schema:
             type: integer
           in: query
           name: limit
-          description: Number of results to return per page.
+          description: The number of results to return per request. See `meta.pagination.per_page` in the response body.
         - schema:
             type: integer
           in: query
           name: page
-          description: 'Which page number to return, based on the page size. Used to paginate large collections.'
-        - schema:
-            type: string
-            example: body
-            enum:
-              - body
-          in: query
-          name: include
-          description: Indicates whether to include page sub-resources.
-      summary: Get Pages
+          description: 'The page, or grouping, of results to return. See `meta.pagination.current_page` in the response body.'
+      summary: Get Multiple Pages
     post:
       operationId: content-pages-post
       description: |-
@@ -142,7 +127,6 @@ paths:
         <!-- theme: info -->
         > #### Note
         > This endpoint is in beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
-
       tags:
         - Pages
       requestBody:
@@ -211,11 +195,10 @@ paths:
       description: |-
         Updates a content page.
 
-        
+
         <!-- theme: info -->
         > #### Note
         > This endpoint is in beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
-
       tags:
         - Pages
       requestBody:
@@ -292,7 +275,6 @@ paths:
         <!-- theme: info -->
         > #### Note
         > This endpoint is in beta. Any comments on performance should be submitted via the **Docs Feedback** button on this page.
-
       responses:
         '204':
           description: |
@@ -315,6 +297,7 @@ paths:
         name: store_hash
         in: path
         required: true
+        description: The merchant's store hash. Also called a store id.
 servers:
   - url: 'https://api.bigcommerce.com'
     description: Pages API Gateway
