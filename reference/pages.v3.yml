@@ -605,7 +605,7 @@ paths:
         description: The merchant's store hash. Also called a store id.
       - schema:
           type: string
-        name: page_id
+        name: pageId
         in: path
         required: true
         description: The id of the page to be operated on.
