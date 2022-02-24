@@ -234,28 +234,47 @@ paths:
       operationId: content-pages-delete
       tags:
         - Pages
-      description: Deletes one or more content pages. This endpoint supports bulk operations.
+      description: |-
+        Deletes one or more content pages. This endpoint supports bulk operations.
+
+        <!-- theme: warning -->
+        > #### Mind query parameters
+        > If you attempt to delete multiple pages by passing more than one pageId to `id:in` and one or more of them does not exist, you will receive a 404 response. However, the pages corresponding to the pagesIds that do exist will still be deleted.
       responses:
         '204':
-          description: |
-            An empty response.
+          description: No content. A 204 response with no payload indicates successful deletion of all specified pages.
         '404':
-          description: Not Found
+          description: Not Found. One of more of the pages specified for deletion did not exist. Specified pages that did exist were successfully deleted.
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Page not found:
+                  value:
+                    status: 404
+                    title: A Page was not found with an id of 100
+                    type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+        '422':
+          description: Invalid input. See response for details.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/DetailedErrorResponse'
+              examples:
+                Missing ID:
+                  value:
+                    status: 422
+                    title: Input is invalid
+                    type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+                    detail: 'missing the required field: id'
       parameters:
         - schema:
-            type: integer
+            type: string
           in: query
           name: 'id:in'
-          description: List of Redirect IDs to delete explicitly
-        - schema:
-            type: integer
-          in: query
-          name: channel_id
-          description: Channel Id provided to delete all pages for a given Channel
+          description: 'Request deletion of multiple pages by passing a comma-separated string of corresponding page IDs. Supports bulk operations. '
+          required: true
       summary: Delete Pages
     parameters:
       - schema:
@@ -274,7 +293,7 @@ paths:
 
         <!-- theme: warning -->
         > #### Mind query parameters
-        > This endpoint recognizes the same query parameters as [Get Multiple Pages](#?#). If the requested page does not meet the query parameters you specify, you will receive a 404 response even if the requested pageId does exist.
+        > This endpoint recognizes the same query parameters as [Get Multiple Pages](/api-reference/store-management/pages/pages/getpages). If the requested page does not meet the query parameters you specify, you will receive a 404 response even if the requested pageId does exist.
       responses:
         '200':
           description: ''
@@ -311,13 +330,7 @@ paths:
       summary: Get a Page
     put:
       operationId: content-page-put
-      description: |-
-        Updates one content page.
-
-
-        <!-- theme: warning -->
-        > #### Mind query parameters
-        > This endpoint recognizes the same query parameters as [Update Multiple Pages](#?#). If the requested page does not meet the query parameters you specify, #?#.
+      description: Updates one content page.
       tags:
         - Pages
       requestBody:
@@ -338,7 +351,7 @@ paths:
         '207':
           $ref: '#/components/responses/HTTP207Response'
         '400':
-          description: Bad Request; reasons for failure include invalid query parameters.
+          description: Bad Request; reasons for failure include invalid query parameters. See the response for more details.
           content:
             application/problem+json:
               schema:
@@ -357,46 +370,25 @@ paths:
       description: |-
         Deletes one content page.
 
-        <!-- theme: warning -->
-        > #### Mind query parameters
-        > This endpoint recognizes the same query parameters as [Delete Multiple Pages](#?#). If the targeted page does not meet the query parameters you specify, #?#.
+        <!-- theme: info -->
+        > #### Query parameters
+        > This endpoint does not recognize query parameters.
       responses:
         '204':
           description: No content. A 204 response with no payload indicates successful deletion.
         '404':
-          description: Not Found
+          description: The page specified for deletion did not exist.
           content:
             application/problem+json:
               schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
                     status: 404
-                    title: A Page was not found with an id of 66
+                    title: A Page was not found with an id of 99
                     type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
-                properties:
-                  status:
-                    type: integer
-                  title:
-                    type: string
-                    minLength: 1
-                  type:
-                    type: string
-                    minLength: 1
-                required:
-                  - status
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: 'id:in'
-          description: List of Redirect IDs to delete explicitly
-        - schema:
-            type: integer
-          in: query
-          name: channel_id
-          description: Channel Id provided to delete all pages for a given Channel
+      parameters: []
       summary: Delete a Page
     parameters:
       - schema:
