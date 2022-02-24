@@ -6,6 +6,8 @@ info:
   termsOfService: 'http://www.bigcommerce.com/terms'
 tags:
   - name: Pages
+security:
+  - X-Auth-Token: []
 paths:
   '/stores/{store_hash}/v3/content/pages':
     get:
@@ -131,6 +133,9 @@ paths:
           in: query
           name: page
           description: The ordered grouping of results to return. See `meta.pagination.current_page` in the response body.
+        - schema:
+            type: string
+          in: header
       summary: Get Pages
     post:
       operationId: content-pages-post
