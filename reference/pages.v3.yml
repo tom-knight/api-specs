@@ -155,13 +155,34 @@ paths:
         description: ''
         required: true
       responses:
-        '200':
-          description: |+
+        '201':
+          description: |-
+            Created.
 
+            Response.data will inherit the datatype of the request. A single entry passed as an object will return an object for the data property. Any number of entries passed in an array will return an array for the data property.
+
+            Properties associated with a page `type` that are not required to create an entry will be created with default values. 
+
+            When making bulk requests, an invalid input in any one entry will return 422. The entries that are valid will still be created.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PagesCollectionResponse'
+                type: object
+                properties:
+                  data:
+                    oneOf:
+                      - type: object
+                        properties:
+                          data:
+                            $ref: '#/components/schemas/PageBase'
+                      - type: array
+                        items:
+                          type: object
+                          properties:
+                            data:
+                              $ref: '#/components/schemas/PageBase'
+                  meta:
+                    $ref: '#/components/schemas/CollectionMeta'
               examples:
                 example-1:
                   value:
@@ -184,14 +205,11 @@ paths:
                     id: 1
         '207':
           $ref: '#/components/responses/HTTP207Response'
-        '400':
-          description: Bad Request; reasons for failure include invalid query parameters.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/DetailedErrorResponse'
         '422':
-          description: The input was not valid. This is the result of missing required fields or other invalid arguments. See the response for more details.
+          description: |-
+            The input was not valid. This is the result of missing required fields or other invalid arguments. See the response for more details.
+
+            When making bulk requests, an invalid input in any one entry will cause the whole request to return 422. The entries that are valid will still be created.
           content:
             application/problem+json:
               schema:
