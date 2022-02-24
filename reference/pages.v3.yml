@@ -7,14 +7,14 @@ info:
 tags:
   - name: Pages
 security:
-- X-Auth-Token: []
+  - X-Auth-Token: []
 paths:
   '/stores/{store_hash}/v3/content/pages':
     get:
       operationId: content-pages-get
       tags:
         - Pages
-      description: Returns one or more content pages. This endpoint supports bulk operations.
+      description: Returns one or more content pages. This endpoint supports bulk operations. Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.Returns one or more content pages. This endpoint supports bulk operations.
       responses:
         '200':
           description: ''
