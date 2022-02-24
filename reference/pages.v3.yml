@@ -102,7 +102,7 @@ paths:
             type: string
           in: query
           name: 'name:like'
-          description: One word from the name of the page. Does not search substrings. Will not return pages with names that match exactly.
+          description: One word from the name of the page. Does not search substrings. Does not return pages with names that match exactly.
         - schema:
             type: integer
           in: query
@@ -149,7 +149,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PageResponse'
+                $ref: '#/components/schemas/PagesCollectionResponse'
               examples:
                 example-1:
                   value:
@@ -216,7 +216,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PageResponse'
+                $ref: '#/components/schemas/PagesCollectionResponse'
               examples:
                 Response:
                   value:
@@ -294,7 +294,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PagesCollectionResponse'
+                $ref: '#/components/schemas/PageResponse'
               examples:
                 example-1:
                   value:
@@ -545,6 +545,7 @@ components:
             meta:
               type: object
       type: object
+      title: PageResponseObject
     ContactFields:
       allOf:
         - properties:
@@ -670,6 +671,7 @@ components:
 
             |Value|Description|
             |-|-|
+            | `blog` | blog page |
             |`contact_form`|when the store’s contact form is used|
             |`link`|link to another web address|
             |`page`|free-text page|
