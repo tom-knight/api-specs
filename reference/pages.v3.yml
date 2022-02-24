@@ -183,26 +183,6 @@ paths:
                               $ref: '#/components/schemas/PageBase'
                   meta:
                     $ref: '#/components/schemas/CollectionMeta'
-              examples:
-                example-1:
-                  value:
-                    data:
-                      email: string
-                      meta_title: string
-                      body: <div>Hello World!</div>
-                      meta_keywords: string
-                      meta_description: string
-                      search_keywords: page
-                      url: /my-content-page
-                      channel_id: 1
-                      name: Content Page
-                      is_visible: true
-                      parent_id: 0
-                      sort_order: 0
-                      type: page
-                      is_homepage: true
-                      is_customers_only: true
-                    id: 1
         '207':
           $ref: '#/components/responses/HTTP207Response'
         '422':
@@ -225,23 +205,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PagePut'
-            examples:
-              example-1:
-                value:
-                  id: 9
-                  channel_id: 1
-                  name: Content Page
-                  meta_title: Content Page
-                  is_visible: false
-                  parent_id: 0
-                  sort_order: 0
-                  type: page
-                  meta_keywords: ''
-                  meta_description: string
-                  is_homepage: false
-                  is_customers_only: false
-                  search_keywords: 'content, api'
-                  url: /my-content-page
         description: ''
         required: true
       responses:
@@ -252,28 +215,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PagesCollectionResponse'
-              examples:
-                Response:
-                  value:
-                    data:
-                      id: 9
-                      channel_id: 1
-                      name: Content Page
-                      meta_title: Content Page
-                      email: ''
-                      is_visible: false
-                      parent_id: 0
-                      sort_order: 0
-                      description: null
-                      type: page
-                      meta_keywords: ''
-                      meta_description: string
-                      is_homepage: false
-                      is_customers_only: false
-                      search_keywords: 'content, api'
-                      content_type: text/html
-                      url: /my-content-page
-                    meta: {}
         '207':
           $ref: '#/components/responses/HTTP207Response'
         '404':
@@ -341,68 +282,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PageResponse'
-              examples:
-                example-1:
-                  value:
-                    data:
-                      - id: 1
-                        channel_id: 1
-                        name: Content page
-                        meta_title: Content page
-                        email: ''
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        type: page
-                        meta_keywords: ''
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: string
-                        content_type: text/html
-                        url: /my-content-page
-                      - id: 2
-                        channel_id: 1
-                        name: Feed page
-                        meta_title: string
-                        email: ''
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 3
-                        feed: 'https://bigcommerce.com/feed/'
-                        type: feed
-                        meta_keywords: ''
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: true
-                        search_keywords: string
-                        content_type: text/html
-                        url: /rss-feed-page
-                      - id: 3
-                        channel_id: 1
-                        name: Link page
-                        meta_title: ''
-                        email: ''
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        link: '1'
-                        type: link
-                        meta_keywords: ''
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        content_type: text/html
-                    meta:
-                      pagination:
-                        total: 3
-                        count: 3
-                        per_page: 50
-                        current_page: 1
-                        total_pages: 1
-                        links:
-                          current: '?page=1&limit=50'
         '404':
           description: Not Found.
           content:
@@ -446,23 +325,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PagePut'
-            examples:
-              example-1:
-                value:
-                  id: 9
-                  channel_id: 1
-                  name: Content Page
-                  meta_title: Content Page
-                  is_visible: false
-                  parent_id: 0
-                  sort_order: 0
-                  type: page
-                  meta_keywords: ''
-                  meta_description: string
-                  is_homepage: false
-                  is_customers_only: false
-                  search_keywords: 'content, api'
-                  url: /my-content-page
         description: ''
         required: true
       responses:
@@ -473,28 +335,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PageResponse'
-              examples:
-                Response:
-                  value:
-                    data:
-                      id: 9
-                      channel_id: 1
-                      name: Content Page
-                      meta_title: Content Page
-                      email: ''
-                      is_visible: false
-                      parent_id: 0
-                      sort_order: 0
-                      description: null
-                      type: page
-                      meta_keywords: ''
-                      meta_description: string
-                      is_homepage: false
-                      is_customers_only: false
-                      search_keywords: 'content, api'
-                      content_type: text/html
-                      url: /my-content-page
-                    meta: {}
         '207':
           $ref: '#/components/responses/HTTP207Response'
         '400':
@@ -688,7 +528,6 @@ components:
                 The unique numeric ID of the page.
           required:
             - id
-      x-examples: {}
     Page:
       allOf:
         - type: object
@@ -737,7 +576,7 @@ components:
               type: string
               description: |
                 Comma-separated list of keywords that shoppers can use to locate this page when searching the store.
-              example: page
+              example: trousers,pockets,luxury
             url:
               type: string
               description: |
@@ -747,7 +586,7 @@ components:
               type: integer
               description: |
                 The Id of the channel where this page should be shown.
-              example: 1
+              example: 12
         - $ref: '#/components/schemas/PageBase'
       title: ''
       description: ''
@@ -783,12 +622,12 @@ components:
 
             |Value|Description|
             |-|-|
-            | `blog` | blog page |
-            |`contact_form`|when the store’s contact form is used|
-            |`link`|link to another web address|
-            |`page`|free-text page|
-            |`raw`|raw page|
-            |`rss_feed`|syndicated content from an RSS feed|
+            | `blog` | blog page. Read-only; blog pages can only be created in the store control panel. |
+            |`contact_form`|hosts the store's contact form|
+            |`link`|link to another absolute URL|
+            |`page`|user-defined plain-text page|
+            |`raw`|page that contains markup, such as HTML.|
+            |`rss_feed`|contains syndicated content from an RSS feed|
           example: page
         is_homepage:
           type: boolean
