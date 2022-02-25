@@ -351,18 +351,14 @@ components:
       oneOf:
         - properties:
             lineItems:
-              type: array
-              items:
-                $ref: '#/components/schemas/requestCartPostLineItem'
+              $ref: '#/components/schemas/requestCartPostLineItem'
             locale:
               type: string
           required:
             - lineItems
         - properties:
             giftCertificates:
-              type: array
-              items:
-                $ref: '#/components/schemas/requestLineItemGiftCertificate'
+              $ref: '#/components/schemas/requestLineItemGiftCertificate'
             locale:
               type: string
           required:
@@ -379,8 +375,8 @@ components:
           required:
             - lineItems
             - giftCertificates
-      type: object
       x-internal: true
+      type: object
     responseCartLineItemsPhysicalItemGiftWrapping:
       title: Gift Wrapping
       type: object
