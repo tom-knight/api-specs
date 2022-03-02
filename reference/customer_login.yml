@@ -5,7 +5,7 @@ info:
   description: |-
     Enable single sign-on for shoppers on BigCommerce hosted storefronts.
 
-    [Learn more about the customer login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api).
+    [Learn more about the customer login API](/api-docs/customers/customer-login-api).
 host: '{$$.env.store_domain}'
 paths:
   '/login/token/{jwt_token}':
@@ -24,7 +24,7 @@ paths:
       description: |-
         The customer login access point URL.
 
-        [Learn more about the Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api).
+        [Learn more about the Customer Login API](/api-docs/customers/customer-login-api).
 
         ## Example
 
@@ -77,6 +77,7 @@ definitions:
         description: |
           **(Optional)** Field containing the expected IP address for the request. If provided, BigCommerce will check that it matches the browser trying to log in. If there is not a match, it will be rejected.
         example: '"111.222.333.444"'
+    x-internal: true
 tags:
   - name: Login Token
 x-stoplight:

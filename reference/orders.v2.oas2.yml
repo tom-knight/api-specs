@@ -5,12 +5,9 @@ info:
   description: |-
     Manage order coupons, messages, products, shipping addresses, statuses, taxes, shipments, and shipping address quotes.
 
-    - [Authentication](#authentication)
-    - [Order](#order)
-
     ## Authentication
 
-    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` request header.
+    Authenticate requests by including an [OAuth](/api-docs/getting-started/authentication/rest-api-authentication) `access_token` request header.
 
     ```http
     GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/{{ENDPOINT}}
@@ -63,7 +60,7 @@ info:
     }
     ```
 paths:
-  '/orders/{order_id}':
+  '/stores/{store_hash}/v2/orders/{order_id}':
     get:
       description: 'Gets an *Order*. To learn more about creating or updating orders, see [Orders Overview](/api-docs/orders/orders-api-overview).'
       summary: Get an Order
@@ -204,8 +201,18 @@ paths:
           description: ''
       operationId: deleteAnOrder
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-  /orders/count:
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/count':
     get:
       description: Gets an array of orders in the store organized by order status.
       summary: Get a Count of Orders
@@ -218,7 +225,13 @@ paths:
         '200':
           $ref: '#/components/responses/ordersCount_Resp'
       operationId: getCountOrder
-  /orders:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders':
     get:
       description: |-
         Gets a list of orders using the filter query.
@@ -416,7 +429,13 @@ paths:
         '204':
           description: ''
       operationId: deleteAllOrders
-  '/orders/{order_id}/coupons':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/coupons':
     get:
       description: |-
         Lists all order coupons. Optional parameters can be passed in.
@@ -454,7 +473,18 @@ paths:
       tags:
         - Order Coupons
       operationId: getAllOrderCoupons
-  '/orders/{order_id}/products':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: order_id
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/products':
     get:
       description: 'Lists all order products on an order using `order_id`. By default, items sort from lowest to highest according to a newly created ID, separate from the `order_id` and the `product_id`.'
       summary: List Order Products
@@ -470,7 +500,18 @@ paths:
       tags:
         - Order Products
       operationId: getAllOrderProducts
-  '/orders/{order_id}/shipping_addresses':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: order_id
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/shipping_addresses':
     get:
       description: |-
         Get all shipping addresses on an order using the `order_id`.
@@ -489,8 +530,18 @@ paths:
         - Order Shipping Addresses
       operationId: getAllShippingAddresses
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-  /order_statuses:
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/order_statuses':
     get:
       description: |-
         Returns a Collection of All Order Statuses.
@@ -523,7 +574,13 @@ paths:
       tags:
         - Order Status
       operationId: getOrderStatus
-  '/order_statuses/{status_id}':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/order_statuses/{status_id}':
     get:
       description: |-
         Returns a single order status.
@@ -557,8 +614,18 @@ paths:
       tags:
         - Order Status
       operationId: getAOrderStatus
-    parameters: []
-  '/orders/{order_id}/taxes':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: status_id
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/taxes':
     get:
       description: |-
         Gets all order taxes using `order_id`.
@@ -586,8 +653,18 @@ paths:
         - Order Taxes
       operationId: getOrderTaxes
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-  '/orders/{order_id}/shipments':
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/shipments':
     get:
       description: Gets a list of all shipments on an order.
       summary: Get Order Shipments
@@ -660,8 +737,18 @@ paths:
         - Order Shipments
       operationId: deleteAllOrderShipments
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-  '/orders/{order_id}/shipments/count':
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/shipments/count':
     get:
       description: Gets a count of the number of shipments that have been made for a single order.
       summary: Get Count of Order Shipments
@@ -675,8 +762,18 @@ paths:
         - Order Shipments
       operationId: getCountShipments
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-  '/orders/{order_id}/shipments/{shipment_id}':
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/shipments/{shipment_id}':
     get:
       tags:
         - Order Shipments
@@ -729,9 +826,24 @@ paths:
         - Order Shipments
       operationId: deleteOrderShipment
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-      - $ref: '#/components/parameters/shipment_id'
-  '/orders/{order_id}/messages':
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - name: shipment_id
+        in: path
+        required: true
+        description: Shipment ID
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/messages':
     get:
       responses:
         '200':
@@ -754,8 +866,18 @@ paths:
         - $ref: '#/components/parameters/limit'
       operationId: getOrderMessages
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-  '/orders/{order_id}/products/{product_id}':
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/products/{product_id}':
     get:
       responses:
         '200':
@@ -769,9 +891,24 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
       operationId: getAnOrderProduct
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-      - $ref: '#/components/parameters/product_id'
-  '/orders/{order_id}/shipping_addresses/{id}':
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - name: product_id
+        in: path
+        required: true
+        description: ID of the product
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/orders/{order_id}/shipping_addresses/{id}':
     get:
       responses:
         '200':
@@ -798,12 +935,22 @@ paths:
             default: application/json
       operationId: getAShippingAddress
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
       - name: id
         in: path
         required: true
         schema:
           type: string
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
     put:
       summary: Update a Shipping Address
       operationId: updateAShippingAddress
@@ -925,7 +1072,7 @@ paths:
         **Note**: Updating will NOT trigger the recalculation of shipping cost and tax
       tags:
         - Order Shipping Addresses
-  '/orders/{order_id}/shipping_addresses/{shipping_address_id}/shipping_quotes':
+  '/stores/{store_hash}/v2/orders/{order_id}/shipping_addresses/{shipping_address_id}/shipping_quotes':
     get:
       responses:
         '200':
@@ -942,8 +1089,23 @@ paths:
         - Order Shipping Addresses Quotes
       operationId: getShippingQuotes
     parameters:
-      - $ref: '#/components/parameters/order_id_path'
-      - $ref: '#/components/parameters/shipping_address_id'
+      - in: path
+        name: order_id
+        description: ID of the order
+        required: true
+        schema:
+          type: integer
+      - name: shipping_address_id
+        in: path
+        required: true
+        description: Shipping address ID
+        schema:
+          type: integer
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
 tags:
   - name: Orders
   - name: Order Coupons
@@ -962,7 +1124,7 @@ x-stoplight:
     includeDownloadLink: true
     showModels: false
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2'
+  - url: 'https://api.bigcommerce.com'
     variables:
       $$.env.store_hash:
         default: unknown
@@ -1378,13 +1540,13 @@ components:
                   channel_id: 1
                   external_source: POS
                   products:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/100/products'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/100/products'
                     resource: /orders/100/products
                   shipping_addresses:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/100/shippingaddresses'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/100/shippingaddresses'
                     resource: /orders/100/shippingaddresses
                   coupons:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/100/coupons'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/100/coupons'
                     resource: /orders/100/coupons
                   external_id: null
                   external_merchant_id: {}
@@ -1594,13 +1756,13 @@ components:
                 channel_id: 1
                 external_source: null
                 products:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/218/products'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/218/products'
                   resource: /orders/218/products
                 shipping_addresses:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/218/shippingaddresses'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/218/shippingaddresses'
                   resource: /orders/218/shippingaddresses
                 coupons:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/218/coupons'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/218/coupons'
                   resource: /orders/218/coupons
                 external_id: null
                 external_merchant_id: null
@@ -1685,13 +1847,13 @@ components:
                 channel_id: 1
                 external_source: {}
                 products:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/products'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/247/products'
                   resource: /orders/247/products
                 shipping_addresses:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/shippingaddresses'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/247/shippingaddresses'
                   resource: /orders/247/shippingaddresses
                 coupons:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/coupons'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/247/coupons'
                   resource: /orders/247/coupons
                 external_id: {}
                 external_merchant_id: {}
@@ -2338,7 +2500,7 @@ components:
                   shipping_zone_id: 1
                   shipping_zone_name: United States -1
                   shipping_quotes:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/229/shippingaddresses/132/shippingquotes'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/229/shippingaddresses/132/shippingquotes'
                     resource: /orders/229/shippingaddresses/132/shippingquotes
                   form_fields: []
                 - id: 133
@@ -2371,7 +2533,7 @@ components:
                   shipping_zone_id: 1
                   shipping_zone_name: United States -1
                   shipping_quotes:
-                    url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/229/shippingaddresses/133/shippingquotes'
+                    url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/229/shippingaddresses/133/shippingquotes'
                     resource: /orders/229/shippingaddresses/133/shippingquotes
                   form_fields: []
     orderShippingAddress_Resp:
@@ -2413,7 +2575,7 @@ components:
                 shipping_zone_id: 1
                 shipping_zone_name: United States
                 shipping_quotes:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/140/shippingaddresses/42/shippingquotes'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/140/shippingaddresses/42/shippingquotes'
                   resource: /orders/140/shippingaddresses/42/shippingquotes
                 form_fields:
                   - name: Wholesale ID
@@ -2576,13 +2738,13 @@ components:
               order_source: www
               external_source: null
               products:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/113/products'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/113/products'
                 resource: /orders/113/products
               shipping_addresses:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/113/shippingaddresses'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/113/shippingaddresses'
                 resource: /orders/113/shippingaddresses
               coupons:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/113/coupons'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/113/coupons'
                 resource: /orders/113/coupons
               external_id: null
               external_merchant_id: null
@@ -2619,7 +2781,7 @@ components:
                 example: Awaiting Fulfillment
                 type: string
               custom_status:
-                description: 'Contains the same (string, optiona) - value as the Order Statuses object''s `custom_label` property.'
+                description: 'Contains the same (string, optiona) - value as the Order Statuses object’s `custom_label` property.'
                 example: Awaiting Fulfillment
                 type: string
               subtotal_ex_tax:
@@ -2724,9 +2886,8 @@ components:
               payment_provider_id:
                 description: The external Transaction ID/Payment ID within this order's payment provider (if a payment provider was used).
                 example: null
-                type:
-                  - string
-                  - 'null'
+                type: string
+                nullable: true
               payment_status:
                 description: A read-only value. Do not attempt to set or modify this value in a POST or PUT operation.
                 type: string
@@ -2779,9 +2940,10 @@ components:
                 type: string
                 example: USD
               staff_notes:
+                type: string
                 description: Any additional notes for staff.
                 example: Send Saturday
-                type: string
+                maxLength: 65535
               customer_message:
                 description: 'Message that the customer entered (number, optiona) -o the `Order Comments` box during checkout.'
                 example: Thank you
@@ -2808,9 +2970,8 @@ components:
               credit_card_type:
                 description: Credit card type
                 example: 0
-                type:
-                  - integer
-                  - 'null'
+                type: integer
+                nullable: true
               ebay_order_id:
                 description: 'If the order was placed through eBay, the eBay order number will be included. Otherwise, the value will be `0`.'
                 example: '0'
@@ -2871,19 +3032,19 @@ components:
                     items:
                       title: Form Fields
                       type: object
-                      readOnly: true
                       description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order via API.
                       properties:
                         name:
                           description: Name of the form field
-                          readOnly: true
                           type: string
                           example: License Id
+                          readOnly: true
                         value:
                           description: Value of the form field
-                          readOnly: true
                           type: string
                           example: 123BAF
+                          readOnly: true
+                      readOnly: true
               order_source:
                 description: Orders submitted via the store's website will include a `www` value. Orders submitted via the API will be set to `external`. A read-only value. Do not pass in a POST or PUT.
                 example: www
@@ -2907,15 +3068,13 @@ components:
               external_id:
                 description: 'ID of the order in another system. For example, the Amazon Order ID if this is an Amazon order.This field can be updated in a /POST, but using a /PUT to update the order will return a 400 error. The field ''external_id'' cannot be written to. Please remove it from your request before trying again. It can not be overwritten once set.'
                 example: 'null'
-                type:
-                  - string
-                  - 'null'
+                type: string
+                nullable: true
               external_merchant_id:
                 description: ID of the merchant
                 example: 'null'
-                type:
-                  - string
-                  - 'null'
+                type: string
+                nullable: true
               channel_id:
                 type: integer
                 example: 1
@@ -2965,7 +3124,7 @@ components:
         X-Auth-Token: {access_token}
         ```
 
-        * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+        * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
   schemas:
     order_Resp:
       title: order_Resp
@@ -2973,6 +3132,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/order_RespOnly'
         - $ref: '#/components/schemas/order_Shared'
+      x-internal: true
     ordersCount_Full:
       title: ordersCount_Full
       type: object
@@ -2985,6 +3145,7 @@ components:
           description: Total number of orders in the store
           example: 45
           type: number
+      x-internal: true
     orderCoupons_Base:
       title: orderCoupons_Base
       type: object
@@ -3039,6 +3200,7 @@ components:
             3% then will return as 2.7000 or the amount of the order.  (Float, Float-As-String, Integer)
           example: 2.7
           type: number
+      x-internal: true
     orderProducts:
       title: orderProducts
       type: object
@@ -3077,7 +3239,7 @@ components:
           example: physical
           description: Type of product
         base_price:
-          description: 'The product''s base price. (Float, Float-As-String, Integer)'
+          description: 'The product’s base price. (Float, Float-As-String, Integer)'
           example: '54.0000'
           type: string
         price_ex_tax:
@@ -3125,7 +3287,7 @@ components:
           example: 1
           type: number
         base_cost_price:
-          description: 'The product''s cost price.  This can be set using the Catalog API. (Float, Float-As-String, Integer) Read Only'
+          description: 'The product’s cost price.  This can be set using the Catalog API. (Float, Float-As-String, Integer) Read Only'
           example: '0.0000'
           type: string
         cost_price_inc_tax:
@@ -3263,6 +3425,7 @@ components:
           type: string
           example: Towel Type 1
           description: The product name that is shown to merchant in Control Panel.
+      x-internal: true
     orderCount:
       title: orderCount
       example:
@@ -3273,6 +3436,7 @@ components:
           description: ''
           example: 27
           type: number
+      x-internal: true
     orderShippingAddress:
       title: orderShippingAddress
       allOf:
@@ -3348,6 +3512,7 @@ components:
             shipping_quotes:
               $ref: '#/components/schemas/shippingQuotes_Resource'
         - $ref: '#/components/schemas/shippingAddress_Base'
+      x-internal: true
     orderTaxes_Base:
       title: orderTaxes_Base
       type: object
@@ -3407,9 +3572,11 @@ components:
             - handling
             - gift-wrapping
           description: Type of tax on item
+      x-internal: true
     orderShipment:
       title: orderShipment
       type: object
+      description: ''
       properties:
         id:
           description: Shipment ID.
@@ -3459,13 +3626,14 @@ components:
           title: Tracking Carrier
           description: |-
             Tracking carrier for the shipment.
-            Acceptable values include an empty string (`""`) or one of the valid tracking-carrier values viewable [here](https://github.com/bigcommerce/dev-docs/blob/development/assets/csv/tracking_carrier_values.csv) and downloadable as a .CSV file [here](https://raw.githubusercontent.com/bigcommerce/dev-docs/development/assets/csv/tracking_carrier_values.csv).
+            Acceptable values include an empty string (`""`) or one of the valid tracking-carrier values that you can view and download as a .CSV file [here](https://github.com/bigcommerce/dev-docs/blob/master/assets/csv/tracking_carrier_values.csv).
         tracking_link:
           type: string
           description: Returns a tracking link from the shipping service.
         comments:
-          description: Comments the shipper wishes to add.
           type: string
+          description: Comments the shipper wishes to add.
+          maxLength: 65535
         billing_address:
           $ref: '#/components/schemas/billingAddress_Base'
         shipping_address:
@@ -3485,7 +3653,7 @@ components:
               quantity:
                 type: number
                 example: 2
-      description: ''
+      x-internal: true
     billingAddress_Full:
       allOf:
         - $ref: '#/components/schemas/billingAddress_Base'
@@ -3497,6 +3665,7 @@ components:
                 $ref: '#/components/schemas/formFields'
       title: billingAddress_Full
       description: Required to create an order.
+      x-internal: true
     products_Resource:
       title: products_Resource
       type: object
@@ -3505,13 +3674,14 @@ components:
         url:
           description: ''
           readOnly: true
-          example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/products'
+          example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/129/products'
           type: string
         resource:
           description: ''
           readOnly: true
           example: /orders/129/products
           type: string
+      x-internal: true
     shippingAddresses_Resource:
       title: shippingAddress_Resource
       type: object
@@ -3520,13 +3690,14 @@ components:
         url:
           description: URL of the shipping address for api requests
           readOnly: true
-          example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/shippingaddresses'
+          example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/129/shippingaddresses'
           type: string
         resource:
           description: ''
           readOnly: true
           example: /orders/129/shippingaddresses
           type: string
+      x-internal: true
     coupons_Resource:
       title: coupons_Resource
       type: object
@@ -3535,13 +3706,14 @@ components:
         url:
           description: URL of the coupons for api requests
           readOnly: true
-          example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/coupons'
+          example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/129/coupons'
           type: string
         resource:
           description: resource of the coupons
           readOnly: true
           example: /orders/129/coupons
           type: string
+      x-internal: true
     orderProductAppliedDiscounts:
       title: orderProductAppliedDiscounts
       type: object
@@ -3577,6 +3749,7 @@ components:
             - order
             - product
           description: Determines if the discount if discount was applied at the Order or Product level. Read Only.
+      x-internal: true
     orderProductOptions:
       title: orderProductOptions
       type: object
@@ -3594,7 +3767,7 @@ components:
           example: 53
           type: integer
         product_option_id:
-          description: ''
+          description: Numeric ID of an option applied to the product from a list of options available to the product.
           example: 120
           type: integer
         display_name:
@@ -3646,6 +3819,7 @@ components:
           type: string
           example: blue
           description: The product option value that is shown to merchant in Control Panel.
+      x-internal: true
     formFields:
       title: formFields
       type: object
@@ -3662,6 +3836,7 @@ components:
           readOnly: true
           type: string
           example: 123BAF
+      x-internal: true
     orderMessages:
       type: array
       items:
@@ -3690,6 +3865,7 @@ components:
           customer:
             type: object
       title: orderMessages
+      x-internal: true
     shippingQuotes_Resource:
       type: object
       title: shippingQuotes_Resource
@@ -3701,7 +3877,7 @@ components:
           description: |-
             This URL will return a 204 for shipping quotes. To return shipping quotes:
             `/shipping_addresses/shipping_address_id/shipping_quotes`
-          example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/163/shippingaddresses/64/shippingquotes'
+          example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/163/shippingaddresses/64/shippingquotes'
         resource:
           type: string
           readOnly: true
@@ -3709,6 +3885,7 @@ components:
           description: |-
             This URL will return a 204 for shipping quotes. To return shipping quotes:
             `/shipping_addresses/shipping_address_id/shipping_quotes`
+      x-internal: true
     shippingQuotes_Base:
       type: object
       title: shippingQuotes_Base
@@ -3749,6 +3926,7 @@ components:
         method_id:
           type: integer
           description: Shipping method ID
+      x-internal: true
     orderShipment_Post:
       type: object
       title: orderShipment_Post
@@ -3787,8 +3965,9 @@ components:
             Tracking carrier for the shipment.
             Acceptable values include an empty string (`""`) or one of the valid tracking-carrier values viewable [here](https://docs.google.com/spreadsheets/d/1w9c_aECSCGyf-oOrvGeUniDl-ARGKemfZl0qSsav8D4/pubhtml?gid=0&single=true) and downloadable as a .CSV file [here](https://docs.google.com/spreadsheets/d/1mTueEynfcEmwsU2y2Jd2MX-8GKwNZrmlRMBcIElg9aY/pub?gid=0&single=true&output=csv).
         comments:
-          description: Comments the shipper wishes to add.
           type: string
+          description: Comments the shipper wishes to add.
+          maxLength: 65535
         items:
           description: 'The items in the shipment. This object has the following members, all integer: order_product_id (required), quantity (required), product_id (read-only). A sample items value might be: [ {"order_product_id":16,"product_id": 0,"quantity":2} ]'
           type: array
@@ -3801,6 +3980,7 @@ components:
               quantity:
                 type: number
                 example: 2
+      x-internal: true
     orderShipment_Put:
       type: object
       title: orderShipment_Put
@@ -3837,10 +4017,12 @@ components:
           title: Tracking Carrier
           description: |-
             Tracking carrier for the shipment.
-            Acceptable values include an empty string (`""`) or one of the valid tracking-carrier values viewable [here](https://docs.google.com/spreadsheets/d/1w9c_aECSCGyf-oOrvGeUniDl-ARGKemfZl0qSsav8D4/pubhtml?gid=0&single=true) and downloadable as a .CSV file [here](https://docs.google.com/spreadsheets/d/1mTueEynfcEmwsU2y2Jd2MX-8GKwNZrmlRMBcIElg9aY/pub?gid=0&single=true&output=csv).
+            Acceptable values include an empty string (`""`) or one of the valid tracking-carrier values viewable and downloadable as a .CSV file [here](https://github.com/bigcommerce/dev-docs/blob/master/assets/csv/tracking_carrier_values.csv).
         comments:
-          description: Comments the shipper wishes to add.
           type: string
+          description: Comments the shipper wishes to add.
+          maxLength: 65535
+      x-internal: true
     orderStatus_Base:
       title: orderStatus_Base
       type: object
@@ -3865,6 +4047,7 @@ components:
           description: System description of the order status
           example: 'An incomplete order happens when a shopper reached the payment page, but did not complete the transaction.'
           type: string
+      x-internal: true
     ordersCountStatus:
       title: ordersCountStatus
       type: object
@@ -3880,6 +4063,7 @@ components:
               description: The sort order of the order status from the Control Panel
               example: 0
               type: integer
+      x-internal: true
     order_Shared:
       title: order_Shared
       description: Order properties used in `PUT` and `POST` requests and responses.
@@ -3926,7 +4110,13 @@ components:
           example: '0'
           type: string
         external_id:
-          description: 'ID of the order in another system. For example, the Amazon Order ID if this is an Amazon order.This field can be updated in a /POST, but using a /PUT to update the order will return a 400 error. The field ''external_id'' cannot be written to. Please remove it from your request before trying again. It can not be overwritten once set.'
+          description: 'The order ID in another system, such as the Amazon Order ID if this is an Amazon order. After setting it, you can not write to or update the `external_id`. You can update this field using a /POST request, but a /PUT request to update the order will return a 400 error.  Please remove it from your request before trying again.'
+          example: null
+          oneOf:
+            - type: string
+            - type: null
+        external_merchant_id:
+          description: 'The merchant ID represents an upstream order from an external system. It is the source of truth for orders. After setting it, you can not write to or update the `external_merchant_id`. For example, you can update the Facebook page ID in a /POST request, but a /PUT request to update the order will return a 400 error. Please remove it from your request before trying again.'
           example: null
           oneOf:
             - type: string
@@ -4016,9 +4206,10 @@ components:
           example: '0.0000'
           type: string
         staff_notes:
+          type: string
           description: Any additional notes for staff.
           example: Send Saturday
-          type: string
+          maxLength: 65535
         status_id:
           description: The status ID of the order.
           type: integer
@@ -4063,6 +4254,7 @@ components:
           description: 'The value of the wrapping cost, including tax. (Float, Float-As-String, Integer)'
           example: '0.0000'
           type: string
+      x-internal: true
     billingAddress_Base:
       type: object
       title: billingAddress_Base
@@ -4103,6 +4295,7 @@ components:
           example: janedoe@example.com
       required:
         - zip
+      x-internal: true
     shippingAddress_Base:
       type: object
       title: shippingAddress_Base
@@ -4146,11 +4339,12 @@ components:
         email:
           type: string
           example: janedoe@example.com
-          description: 'Recipient''s email address. '
+          description: 'Recipient’s email address. '
         shipping_method:
           type: string
           description: Text code identifying the BigCommerce shipping module selected by the customer.
           example: Free Shipping
+      x-internal: true
     order_RespOnly:
       title: order_RespOnly
       type: object
@@ -4234,7 +4428,7 @@ components:
           example: USD
           type: string
         currency_exchange_rate:
-          description: 'The exchange rate between the store''s default currency and the display currency. A read-only value. Do not pass in a POST or PUT. (Float, Float-As-String, Integer)'
+          description: 'The exchange rate between the store’s default currency and the display currency. A read-only value. Do not pass in a POST or PUT. (Float, Float-As-String, Integer)'
           example: '1.0000000000'
           type: string
         default_currency_id:
@@ -4266,6 +4460,7 @@ components:
           type: integer
           example: 7
           description: The staus ID of the order.
+      x-internal: true
     orderCustomProduct_Put:
       type: object
       title: orderCustomProduct_Put
@@ -4312,6 +4507,7 @@ components:
         - quantity
         - price_ex_tax
         - price_inc_tax
+      x-internal: true
     orderCatalogProduct_Put:
       title: orderCatalogProduct_Put
       description: |
@@ -4333,6 +4529,7 @@ components:
               type: integer
               description: 'The order product `id`. To add a product to an existing order, don''t include `id` in the payload. `id` is required when updating an order product.'
         - $ref: '#/components/schemas/orderCatalogProduct_Post'
+      x-internal: true
     orderCatalogProduct_Post:
       title: orderCatalogProduct_Post
       description: |
@@ -4367,6 +4564,7 @@ components:
             properties:
               id:
                 type: integer
+                description: 'Numeric ID of an option applied to the product from a list of options available to the product. This field has the same value as `product_option_id` when [retrieving products in an order](/api-reference/store-management/orders/order-products/getallorderproducts).'
               value:
                 type: string
                 description: |-
@@ -4428,6 +4626,7 @@ components:
           type: number
         wrapping_cost_inc_tax:
           type: number
+      x-internal: true
     orderCustomProduct_Post:
       title: orderCustomProduct_Post
       type: object
@@ -4466,6 +4665,7 @@ components:
         - quantity
         - price_inc_tax
         - price_ex_tax
+      x-internal: true
     order_Put:
       title: order_Put
       allOf:
@@ -4483,6 +4683,7 @@ components:
             shipping_addresses:
               $ref: '#/components/schemas/shippingAddress_Base'
         - $ref: '#/components/schemas/order_Shared'
+      x-internal: true
     order_Post:
       title: order_Post
       description: Products and Billing address only required for POST operation.
@@ -4500,3 +4701,4 @@ components:
               items:
                 $ref: '#/components/schemas/shippingAddress_Base'
         - $ref: '#/components/schemas/order_Shared'
+      x-internal: true

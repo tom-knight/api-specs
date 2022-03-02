@@ -2,7 +2,7 @@
     "formats": {
       "openapi": {
         "rootDir": "reference",
-        "include": ["**"]
+        "include": ["**"],
       },
       "markdown": {
         "rootDir": "docs",
@@ -17,5 +17,8 @@
         "include": ["**"]
       }
     },
-    "exclude": ["/README.md"]
+        "exclude": [
+          "/README.md",
+          "CONTRIBUTING.md"
+        ]
   }
