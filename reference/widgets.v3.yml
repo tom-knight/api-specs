@@ -5,13 +5,9 @@ info:
   description: |-
     Create and manage widget templates, widgets, regions, and placements.
 
-    - [Authentication](#authentication)
-    - [Subresources](#subresources)
-    - [Additional Information](#additional-information)
-
     ## Authentication
 
-    [Authenticate](https://developer.bigcommerce.com/api-docs/getting-started/authentication) requests by including an OAuth `access_token` in the request header.
+    [Authenticate](/api-docs/getting-started/authentication/rest-api-authentication) requests by including an OAuth `access_token` in the request header.
 
     ```http
     GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/{{ENDPOINT}}
@@ -25,30 +21,29 @@ info:
     |  Content | modify | `store_v2_content` |
     |  Content | read-only | `store_v2_content_read_only` |
 
-    For more information on OAuth scopes, see [Authenticating BigCommerce's REST APIs](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes).
+    For more information on OAuth scopes, see [Authenticating BigCommerce's REST APIs](/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes).
 
     ## Subresources
 
     ### Widget templates
-    [Widget templates](https://developer.bigcommerce.com/api-reference/store-management/widgets/widget-template/getwidgettemplates) are reusable Handlebars-enabled HTML templates that define the structure of the widget on a page.
+    [Widget templates](/api-reference/store-management/widgets/widget-template/getwidgettemplates) are reusable Handlebars-enabled HTML templates that define the structure of the widget on a page.
 
     ### Widgets
-    [Widgets](https://developer.bigcommerce.com/api-reference/store-management/widgets/widget/getwidgets) are units of content placed on specific pages in a Stencil theme. Widgets consist of a widget configuration and a widget template UUID and render as part of the storefront’s HTML.
+    [Widgets](/api-reference/store-management/widgets/widget/getwidgets) are units of content placed on specific pages in a Stencil theme. Widgets consist of a widget configuration and a widget template UUID and render as part of the storefront’s HTML.
 
     ### Regions
-    [Regions](https://developer.bigcommerce.com/api-reference/store-management/widgets/regions/getcontentregions) are specific locations in the Stencil theme template files where you can place a widget.
+    [Regions](/api-reference/store-management/widgets/regions/getcontentregions) are specific locations in the Stencil theme template files where you can place a widget.
 
     ### Placements
-    [Placements](https://developer.bigcommerce.com/api-reference/store-management/widgets/placement/getplacements) determine the region where you place widgets and in what order.
+    [Placements](/api-reference/store-management/widgets/placement/getplacements) determine the region where you place widgets and in what order.
 
     ## Additional Information
 
-    * [Widgets API Overview](https://developer.bigcommerce.com/api-docs/store-management/widgets/overview)
-    * [Widget UI Schema](https://developer.bigcommerce.com/stencil-docs/page-builder/widget-ui-schema)
-    * [Widget UI Input Types](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings)
+    * [Widgets API Overview](/api-docs/store-management/widgets/overview)
+    * [Widget UI Schema](/stencil-docs/page-builder/widget-ui-schema)
+    * [Widget UI Input Types](/stencil-docs/page-builder/schema-settings)
   termsOfService: ''
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
 tags:
   - name: Regions
   - name: Widget Template
@@ -66,7 +61,7 @@ produces:
 consumes:
   - application/json
 paths:
-  /content/widget-templates:
+  '/stores/{store_hash}/v3/content/widget-templates':
     post:
       tags:
         - Widget Template
@@ -187,7 +182,12 @@ paths:
           $ref: '#/responses/Error422_Resp'
       description: Returns a list of **Widget Templates**.
       summary: Get All Widget Templates
-  '/content/widget-templates/{uuid}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/content/widget-templates/{uuid}':
     get:
       tags:
         - Widget Template
@@ -282,7 +282,16 @@ paths:
         '422':
           $ref: '#/responses/Error422_Resp'
       description: Deletes a **Widget Template**.
-  /content/widgets:
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: uuid
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/content/widgets':
     post:
       tags:
         - Widget
@@ -380,7 +389,12 @@ paths:
         '422':
           $ref: '#/responses/Error422_Resp'
       description: Returns a list of **Widgets**. Optional parameters can be passed in.
-  '/content/widgets/{uuid}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/content/widgets/{uuid}':
     get:
       tags:
         - Widget
@@ -479,7 +493,16 @@ paths:
         '422':
           $ref: '#/responses/Error422_Resp'
       description: Deletes a **Widget**.
-  /content/placements:
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: uuid
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/content/placements':
     post:
       tags:
         - Placement
@@ -521,7 +544,7 @@ paths:
 
         **Template Files**
 
-        To view the list of values accepted by the `template_file` property, including **custom** templates, see [Placements](https://developer.bigcommerce.com/api-docs/store-management/widgets/overview#placements).
+        To view the list of values accepted by the `template_file` property, including **custom** templates, see [Placements](/api-docs/store-management/widgets/overview#placements).
     get:
       tags:
         - Placement
@@ -576,7 +599,12 @@ paths:
         '422':
           $ref: '#/responses/Error422_Resp'
       description: Returns a list of **Placements**. Optional parameters can be passed in.
-  '/content/placements/{uuid}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/content/placements/{uuid}':
     get:
       tags:
         - Placement
@@ -672,7 +700,16 @@ paths:
         '422':
           $ref: '#/responses/Error422_Resp'
       description: Deletes a **Placement**.
-  /content/regions:
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: uuid
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/content/regions':
     get:
       responses:
         '200':
@@ -696,6 +733,11 @@ paths:
           description: 'The template file, for example: `templateFile=pages/home`.'
           type: string
           required: true
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 parameters:
   TemplateUUID:
     name: uuid
@@ -797,6 +839,7 @@ definitions:
             type: boolean
             description: Can be added to create a new widget template version instead of updating the current one.
     title: widgetTemplate_Put
+    x-internal: true
   widgetTemplate_Post:
     title: widgetTemplate_Post
     type: object
@@ -817,6 +860,7 @@ definitions:
     required:
       - name
       - template
+    x-internal: true
   widgetTemplate_Full:
     allOf:
       - $ref: '#/definitions/widgetTemplate_Base'
@@ -846,6 +890,7 @@ definitions:
             description: A read-only value. Do not attempt to set or modify this value in a POST or PUT operation.
     title: widgetTemplate_Full
     description: ''
+    x-internal: true
   widget_Full:
     title: widget_Full
     allOf:
@@ -869,6 +914,7 @@ definitions:
           version_uuid:
             type: string
             description: The identifier of the widget template version associated with this widget.
+    x-internal: true
   widget_Post:
     required:
       - name
@@ -888,6 +934,7 @@ definitions:
         type: string
         description: The widget template UUID.
     title: widget_Post
+    x-internal: true
   widget_Put:
     title: widget_Put
     allOf:
@@ -897,6 +944,7 @@ definitions:
             type: string
             description: The widget template UUID.
         type: object
+    x-internal: true
   placement_Post:
     title: placement_Post
     allOf:
@@ -912,6 +960,7 @@ definitions:
           - widget_uuid
           - template_file
       - $ref: '#/definitions/placement_Base'
+    x-internal: true
   placement_Put:
     title: placement_Put
     allOf:
@@ -924,6 +973,7 @@ definitions:
             type: string
             description: A widget identifier.
       - $ref: '#/definitions/placement_Base'
+    x-internal: true
   placement_Full:
     title: placement_Full
     allOf:
@@ -949,6 +999,7 @@ definitions:
         properties:
           widget:
             $ref: '#/definitions/widget_Full'
+    x-internal: true
   metaCollection:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
@@ -956,6 +1007,7 @@ definitions:
     properties:
       pagination:
         $ref: '#/definitions/pagination'
+    x-internal: true
   pagination:
     type: object
     description: |
@@ -999,6 +1051,7 @@ definitions:
             description: |
               Link to the next page returned in the response.
     title: pagination
+    x-internal: true
   error_Base:
     type: object
     description: |
@@ -1019,15 +1072,18 @@ definitions:
         type: string
       errors:
         type: object
+    x-internal: true
   themeRegion:
     properties:
       name:
         type: string
         description: The region name.
     title: themeRegion
+    x-internal: true
   Meta:
     type: object
     description: Empty meta object; may be used later.
+    x-internal: true
   placement_Base:
     type: object
     title: placement_Base
@@ -1048,6 +1104,7 @@ definitions:
           - active
         description: Sets the placement as either inactive or active.
         default: inactive
+    x-internal: true
   widgetTemplate_Base:
     type: object
     title: widgetTemplate_Base
@@ -1065,6 +1122,7 @@ definitions:
         type: string
         description: The GraphQL Storefront API query that provides widget data.
     description: ''
+    x-internal: true
   widget_Base:
     type: object
     title: widget_Base
@@ -1079,6 +1137,7 @@ definitions:
         type: object
         format: json
         description: The JSON data that populates the template.
+    x-internal: true
   new-model:
     type: array
     items:
@@ -1096,6 +1155,7 @@ definitions:
           type: string
         conditional:
           $ref: '#/definitions/widgetSchemaConditional'
+    x-internal: true
   widgetSchemaTab:
     type: object
     title: widgetSchemaTab
@@ -1125,18 +1185,18 @@ definitions:
               example: Product
             settings:
               type: array
-              description: 'For examples of schema settings, see [Widget UI Input Types](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings).'
+              description: 'For examples of schema settings, see [Widget UI Input Types](/stencil-docs/page-builder/schema-settings).'
               items:
                 type: object
                 title: widgetSchemaSetting_Base
-                description: 'For examples of each type of setting, see [Page Builder > Schema Settings](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
+                description: 'For examples of each type of setting, see [Page Builder > Schema Settings](/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
                 properties:
                   type:
                     type: string
                     description: |-
                       The type of setting component to display. You can view the list of elements below to discover which are available to use.
 
-                      For examples of each type of setting, see [Page Builder > Schema Settings](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.
+                      For examples of each type of setting, see [Page Builder > Schema Settings](/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.
                     enum:
                       - alignment
                       - boolean
@@ -1200,6 +1260,7 @@ definitions:
                         type: array
                         description: A single-object array containing a value from the `typeMeta`'s `selectOptions`.
                         items: {}
+    x-internal: true
   widgetSchemaTabSections:
     type: object
     title: widgetSchemaTabSections
@@ -1208,9 +1269,10 @@ definitions:
         type: string
       settings:
         type: array
-        description: 'For examples of each type of setting, see [Page Builder > Schema Settings](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
+        description: 'For examples of each type of setting, see [Page Builder > Schema Settings](/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
         items:
           $ref: '#/definitions/widgetSchemaSetting_Base'
+    x-internal: true
   widgetSchemaArray:
     type: object
     title: widgetSchemaArray
@@ -1247,17 +1309,18 @@ definitions:
           anyOf:
             - $ref: '#/definitions/widgetSchemaHidden'
             - $ref: '#/definitions/widgetSchemaTab'
+    x-internal: true
   widgetSchemaSetting_Base:
     type: object
     title: widgetSchemaSetting_Base
-    description: 'For examples of each type of setting, see [Page Builder > Schema Settings](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
+    description: 'For examples of each type of setting, see [Page Builder > Schema Settings](/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
     properties:
       type:
         type: string
         description: |-
           The type of setting component to display. You can view the list of elements below to discover which are available to use.
 
-          For examples of each type of setting, see [Page Builder > Schema Settings](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.
+          For examples of each type of setting, see [Page Builder > Schema Settings](/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.
         enum:
           - alignment
           - boolean
@@ -1300,15 +1363,17 @@ definitions:
                   example: image
       conditional:
         $ref: '#/definitions/widgetSchemaConditional'
+    x-internal: true
   widgetSchema:
     type: array
-    description: 'The schema for the widget''s merchant-facing UI. For more information on the available schema settings, see [Widget UI Schema](https://developer.bigcommerce.com/stencil-docs/page-builder/widget-ui-schema). '
+    description: 'The schema for the widget’s merchant-facing UI. For more information on the available schema settings, see [Widget UI Schema](/stencil-docs/page-builder/widget-ui-schema). '
     title: ''
     items:
       anyOf:
         - $ref: '#/definitions/widgetSchemaTab'
         - $ref: '#/definitions/widgetSchemaArray'
         - $ref: '#/definitions/widgetSchemaHidden'
+    x-internal: true
   widgetSchemaHidden:
     type: object
     title: widgetSchemaHidden
@@ -1323,14 +1388,14 @@ definitions:
         items:
           type: object
           title: widgetSchemaSetting_Base
-          description: 'For examples of each type of setting, see [Page Builder > Schema Settings](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
+          description: 'For examples of each type of setting, see [Page Builder > Schema Settings](/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
           properties:
             type:
               type: string
               description: |-
                 The type of setting component to display. You can view the list of elements below to discover which are available to use.
 
-                For examples of each type of setting, see [Page Builder > Schema Settings](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.
+                For examples of each type of setting, see [Page Builder > Schema Settings](/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.
               enum:
                 - alignment
                 - boolean
@@ -1393,10 +1458,12 @@ definitions:
                 value:
                   type: array
                   description: A single-object array containing a value from the `typeMeta`'s `selectOptions`.
+    x-internal: true
   widgetSchemaTabSectionsSettings:
     type: object
     properties: {}
     title: widgetSchemaTabSectionsSettings
+    x-internal: true
   widgetSchemaConditional:
     type: object
     title: widgetSchemaConditional
@@ -1420,6 +1487,7 @@ definitions:
         type: array
         description: A single-object array containing a value from the `typeMeta`'s `selectOptions`.
         items: {}
+    x-internal: true
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
@@ -1447,7 +1515,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
