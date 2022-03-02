@@ -282,9 +282,9 @@ paths:
         * 50 line item limit for guest shoppers
         * 600 line item limit for logged-in shoppers
 
-        For more information about working with consignments, see [Checkout consignment](https://developer.bigcommerce.com/api-docs/checkouts/checkout-consignment).  
+        For more information about working with consignments, see [Checkout consignment](/api-docs/checkouts/checkout-consignment).  
 
-        Though the only required `shipping_address` properties to create a consignment are `email` and `country_code`, to successfully [create an order](https://developer.bigcommerce.com/api-reference/store-management/checkouts/checkout-orders/createanorder) the `shipping_address` requires the following properties:
+        Though the only required `shipping_address` properties to create a consignment are `email` and `country_code`, to successfully [create an order](/api-reference/store-management/checkouts/checkout-orders/createanorder) the `shipping_address` requires the following properties:
         * `first_name`
         * `last_name`
         * `address1`
@@ -521,6 +521,9 @@ paths:
 
         **Required Fields**
         * coupon_code
+
+        **Limits**
+        * Coupon codes have a 50 character limit. 
       summary: Add Coupon to Checkout
       tags:
         - Checkout Coupons
@@ -823,7 +826,7 @@ definitions:
                       type: number
                       format: double
                     list_price:
-                      description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                      description: 'Item’s list price, as quoted by the manufacturer/distributor.'
                       type: number
                       format: double
                     sale_price:
@@ -946,7 +949,7 @@ definitions:
                       type: number
                       format: double
                     list_price:
-                      description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                      description: 'Item’s list price, as quoted by the manufacturer/distributor.'
                       type: number
                       format: double
                     sale_price:
@@ -974,7 +977,7 @@ definitions:
                       description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
                       type: string
                     amount:
-                      description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
+                      description: 'Value must be between 1.00 and 1,000.00 in the store’s default currency.'
                       type: number
                       format: double
                     sender:
@@ -1366,6 +1369,7 @@ definitions:
               text:
                 description: Text of the banner
                 type: string
+    x-internal: true
   Checkout_Put:
     title: Checkout_Put
     type: object
@@ -1375,6 +1379,7 @@ definitions:
         type: string
     required:
       - customer_message
+    x-internal: true
   AppliedCoupon:
     title: Applied Coupon
     type: object
@@ -1408,6 +1413,7 @@ definitions:
           |`5`|`promotion`|
     required:
       - code
+    x-internal: true
   AddressProperties:
     title: Address Properties
     type: object
@@ -1450,7 +1456,7 @@ definitions:
         type: string
         pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
       custom_fields:
-        description: 'You can retreive custom fields from the [Get Form Fields](https://developer.bigcommerce.com/api-reference/storefront/form-fields/form-fields/getformfields) endpoint.'
+        description: 'You can retreive custom fields from the [Get Form Fields](/api-reference/storefront/form-fields/form-fields/getformfields) endpoint.'
         type: array
         items:
           title: Custom Field
@@ -1465,6 +1471,7 @@ definitions:
     required:
       - email
       - country_code
+    x-internal: true
   CreateConsignmentRequest:
     title: Create Consignment Request
     type: object
@@ -1511,7 +1518,7 @@ definitions:
             type: string
             pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
           custom_fields:
-            description: 'You can retreive custom fields from the [Get Form Fields](https://developer.bigcommerce.com/api-reference/storefront/form-fields/form-fields/getformfields) endpoint.'
+            description: 'You can retreive custom fields from the [Get Form Fields](/api-reference/storefront/form-fields/form-fields/getformfields) endpoint.'
             type: array
             items:
               title: Custom Field
@@ -1543,6 +1550,7 @@ definitions:
           required:
             - item_id
             - quantity
+    x-internal: true
   UpdateConsignmentRequest:
     title: Update Consignment Request
     description: One or more of these three fields are mandatory. `shipping_address` and `line_items` can be updated in one request. `shipping_option_id` has to be updated in a separate request since changing the address or line items can invalidate the previously available shipping options.
@@ -1625,13 +1633,15 @@ definitions:
       shipping_option_id:
         description: ''
         type: string
+    x-internal: true
   CouponCodeRequest:
     title: Coupon Code Request
     type: object
     properties:
       coupon_code:
-        description: ''
+        description: Coupon codes have a 50 character limit.
         type: string
+    x-internal: true
   Order:
     type: object
     title: Order
@@ -1640,6 +1650,7 @@ definitions:
         type: integer
         example: 75
         description: The order Id.
+    x-internal: true
 parameters:
   checkoutId:
     name: checkoutId
@@ -1708,7 +1719,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 tags:
   - name: Checkout
   - name: Checkout Billing Address

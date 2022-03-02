@@ -5,11 +5,6 @@ info:
   description: |-
     Create and Manage Customers, Customer Addresses, and Customer Groups. Additionally, validate customer passwords. To learn more about Customers see [here](/api-docs/customers/customers-subscribers-overview). 
 
-    - [Authentication](#authentication)
-    - [Available Endpoints](#available-endpoints)
-    - [Usage Notes](#usage-notes)
-    - [Resources](#resources)
-
     ## Authentication
 
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
@@ -31,7 +26,7 @@ info:
     | Customers                                    | modify     | `store_v2_customers`                          |
     | Customers                                    | read-only  | `store_v2_customers_read_only`                |
 
-    For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 
     ## Available Endpoints
     | Resource / Endpoint                     | Description                                                                   |
@@ -54,15 +49,15 @@ info:
     ## Resources
 
     ### Related APIs / Endpoints
-      [Customer Login API](https://developer.bigcommerce.com/api-docs/customers/customer-login-api)
-    - [Current Customer API](https://developer.bigcommerce.com/api-docs/customers/current-customer-api)
-    - [Customers API (v3)](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api)
-    - [Subscribers API](https://developer.bigcommerce.com/api-reference/customer-subscribers/subscribers-api)
+      [Customer Login API](/api-docs/customers/customer-login-api)
+    - [Current Customer API](/api-docs/customers/current-customer-api)
+    - [Customers API (v3)](/api-reference/customer-subscribers/v3-customers-api)
+    - [Subscribers API](/api-reference/customer-subscribers/subscribers-api)
 
     ### Webhooks
-    - [Customers](https://developer.bigcommerce.com/api-docs/getting-started/webhooks/webhook-events#webhook-events_customer)
+    - [Customers](/api-docs/store-management/webhooks/webhook-events#customer)
 host: api.bigcommerce.com
-basePath: '/'
+basePath: /
 schemes:
   - https
 consumes:
@@ -874,7 +869,7 @@ paths:
                 description: Store-owner notes on the customer.
                 type: string
               tax_exempt_category:
-                description: 'If applicable, the tax-exempt category of the shopper''s customer account. You can apply a tax-exempt category to multiple customers. This code should match the exemption codes provided by the third-party integration. '
+                description: 'If applicable, the tax-exempt category of the shopper’s customer account. You can apply a tax-exempt category to multiple customers. This code should match the exemption codes provided by the third-party integration. '
                 type: string
               accepts_marketing:
                 description: 'If the customer accepts product review emails or abandon cart emails. Read-Only. '
@@ -928,6 +923,11 @@ paths:
                 }
               }
             password-confirm: |2-
+
+
+
+
+
 
 
 
@@ -2420,6 +2420,7 @@ definitions:
               description: Value of the form field
               type: string
               example: 123BAF
+    x-internal: true
   customerFormFields:
     title: customerFormFields
     type: object
@@ -2432,6 +2433,7 @@ definitions:
         description: Value of the form field
         type: string
         example: 123BAF
+    x-internal: true
   shippingAddress_Full:
     title: shippingAddress_Full
     type: object
@@ -2444,6 +2446,7 @@ definitions:
         description: ''
         example: /orders/129/shippingaddresses
         type: string
+    x-internal: true
   customer_Full:
     title: customer_Full
     example:
@@ -2488,6 +2491,7 @@ definitions:
             type: string
             format: date-time
       - $ref: '#/definitions/customer_Base'
+    x-internal: true
   categoryAccessLevel_Full:
     title: categoryAccessLevel_Full
     type: object
@@ -2508,6 +2512,7 @@ definitions:
         example: '18,19,23,34'
         items:
           type: integer
+    x-internal: true
   count_Full:
     title: count_Full
     example:
@@ -2518,6 +2523,7 @@ definitions:
         description: ''
         example: 27
         type: number
+    x-internal: true
   customerAddress_Full:
     title: customerAddress_Full
     example:
@@ -2547,6 +2553,7 @@ definitions:
             example: US
             type: string
       - $ref: '#/definitions/customerAddress_Base'
+    x-internal: true
   customerGroup_Full:
     title: customerGroup_Full
     type: object
@@ -2596,6 +2603,7 @@ definitions:
       is_group_for_guests:
         type: boolean
         description: If the groups is for guests. There can only be one customer group for guests at a time.
+    x-internal: true
   country_Full:
     title: country_Full
     example:
@@ -2636,6 +2644,7 @@ definitions:
             description: ''
             example: /countries/13/states
             type: string
+    x-internal: true
   statesResource_Full:
     title: statesResource_Full
     type: object
@@ -2648,6 +2657,7 @@ definitions:
         description: ''
         example: /countries/13/states
         type: string
+    x-internal: true
   state_Full:
     title: state_Full
     example:
@@ -2673,6 +2683,7 @@ definitions:
         description: Numeric ID of the state’s/province’s associated country.
         example: 13
         type: integer
+    x-internal: true
   customerGroup_Post:
     title: customerGroup_Post
     type: object
@@ -2718,12 +2729,14 @@ definitions:
       is_group_for_guests:
         type: boolean
         description: If the groups is for guests. There can only be one customer group for guests at a time.
+    x-internal: true
   validatePassword:
     type: object
     properties:
       success:
         type: boolean
         description: Will return `true` or `false`
+    x-internal: true
   customer_Base:
     title: customer_Base
     example:
@@ -2797,7 +2810,7 @@ definitions:
         description: Store-owner notes on the customer.
         type: string
       tax_exempt_category:
-        description: 'If applicable, the tax-exempt category of the shopper''s customer account. You can apply a tax-exempt category to multiple customers. This code should match the exemption codes provided by the third-party integration.'
+        description: 'If applicable, the tax-exempt category of the shopper’s customer account. You can apply a tax-exempt category to multiple customers. This code should match the exemption codes provided by the third-party integration.'
         type: string
       accepts_marketing:
         description: 'If the customer accepts product review emails or abandon cart emails. Read-Only. '
@@ -2839,6 +2852,7 @@ definitions:
       - first_name
       - last_name
       - email
+    x-internal: true
   customerAddress_Base:
     title: customerAddress_Base
     example:
@@ -2916,6 +2930,7 @@ definitions:
       - zip
       - country
       - phone
+    x-internal: true
 tags:
   - name: Customers
   - name: Customer Groups
@@ -2948,7 +2963,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication). 
 security:
   - X-Auth-Token: []
   - X-Auth-Client: []

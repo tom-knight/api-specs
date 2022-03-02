@@ -5,9 +5,6 @@ info:
   description: |-
     Backup, restore, download, and activate themes; and, get the status of theme jobs and read theme configurations.
 
-    - [OAuth Scopes](#oauth-scopes)
-    - [Authentication](#authentication)
-
     ## Authentication
 
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header.
@@ -23,7 +20,7 @@ info:
     | UI Name                                      | Permission | Parameter                                     |
     |----------------------------------------------|------------|-----------------------------------------------|
     | Themes                                       | modify     | `store_themes_manage`                         |
-    For more information on OAuth Scopes, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    For more information on OAuth Scopes, see: [Authentication](/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes).
   license:
     name: ''
 tags:
@@ -54,15 +51,15 @@ paths:
                         variations:
                           - uuid: 877427a0-731f-0136-9d2f-633ff0d6ced1
                             name: Light
-                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                             external_id: light
                           - uuid: 87be3180-731f-0136-9d2f-633ff0d6ced1
                             name: Bold
-                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                             external_id: bold
                           - uuid: 87d48e90-731f-0136-9d2f-633ff0d6ced1
                             name: Warm
-                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                             external_id: warm
                         name: Cornerstone-blog
                         is_private: true
@@ -71,15 +68,15 @@ paths:
                         variations:
                           - uuid: b16c3fe0-7bcb-0136-b5fc-07fe54a9e639
                             name: Light
-                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                             external_id: light
                           - uuid: b17d57e0-7bcb-0136-b5fc-07fe54a9e639
                             name: Bold
-                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                             external_id: bold
                           - uuid: b18ad610-7bcb-0136-b5fc-07fe54a9e639
                             name: Warm
-                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                            description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                             external_id: warm
                         name: Cornerstone
                         is_private: false
@@ -244,15 +241,15 @@ paths:
                       variations:
                         - uuid: b16c3fe0-7bcb-0136-b5fc-07fe54a9e639
                           name: Light
-                          description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                          description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                           external_id: light
                         - uuid: b17d57e0-7bcb-0136-b5fc-07fe54a9e639
                           name: Bold
-                          description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                          description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                           external_id: bold
                         - uuid: b18ad610-7bcb-0136-b5fc-07fe54a9e639
                           name: Warm
-                          description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site''s fonts and colors, all without the need to write code.'
+                          description: 'Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site’s fonts and colors, all without the need to write code.'
                           external_id: warm
                       name: Cornerstone
                       is_private: false
@@ -915,7 +912,7 @@ components:
         X-Auth-Token: {access_token}
         ```
 
-        * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+        * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
   schemas:
     CollectionMeta:
       type: object
@@ -970,6 +967,7 @@ components:
                   description: |
                     Link to the next page returned in the response.
       title: Collection Meta
+      x-internal: true
     Pagination:
       type: object
       description: 'Data about the response, including pagination and collection totals.'
@@ -1018,6 +1016,7 @@ components:
               type: string
               description: |
                 Link to the next page returned in the response.
+      x-internal: true
     Meta:
       type: object
       description: 'Data about the response, including pagination and collection totals.'
@@ -1071,6 +1070,7 @@ components:
                   type: string
                   description: |
                     Link to the next page returned in the response.
+      x-internal: true
     ErrorResponse:
       allOf:
         - type: object
@@ -1098,6 +1098,7 @@ components:
                 type: string
               title: DetailedErrors
       title: Error Response
+      x-internal: true
     BaseError:
       type: object
       description: |
@@ -1116,11 +1117,13 @@ components:
         instance:
           type: string
       title: Base Error
+      x-internal: true
     DetailedErrors:
       type: object
       additionalProperties:
         type: string
       title: DetailedErrors
+      x-internal: true
     NotFound:
       description: Error payload for the BigCommerce API.
       type: object
@@ -1137,6 +1140,7 @@ components:
         instance:
           type: string
       title: Not Found
+      x-internal: true
     JobId:
       description: The job identifier for theme upload or download.
       type: object
@@ -1145,6 +1149,7 @@ components:
           description: The job identifier.
           type: string
       title: Job Id
+      x-internal: true
     NoContent:
       description: No-content response for the BigCommerce API.
       type: object
@@ -1161,6 +1166,7 @@ components:
         instance:
           type: string
       title: No Content
+      x-internal: true
     Job:
       description: The job for theme upload or download
       type: object
@@ -1216,6 +1222,7 @@ components:
               warning:
                 description: The warning.
                 type: string
+      x-internal: true
     Theme:
       description: A theme.
       type: object
@@ -1248,6 +1255,7 @@ components:
         is_private:
           description: Flag to identify private themes.
           type: boolean
+      x-internal: true
     Activate:
       description: Request definition for activation endpoint.
       required:
@@ -1265,6 +1273,7 @@ components:
             - last_activated
             - last_created
       title: Activate
+      x-internal: true
     Variation:
       description: A variation.
       type: object
@@ -1281,6 +1290,7 @@ components:
         uuid:
           description: The identifier.
           type: string
+      x-internal: true
     ThemesCollectionResponse:
       description: |
         Response payload for the BigCommerce API.
@@ -1374,6 +1384,7 @@ components:
                         Link to the next page returned in the response.
           title: Collection Meta
       title: Themes Collection Response
+      x-internal: true
     ThemeResponse:
       description: |
         Response payload for the BigCommerce API.
@@ -1384,6 +1395,7 @@ components:
           $ref: '#/components/schemas/Theme'
         meta:
           $ref: '#/components/schemas/CollectionMeta'
+      x-internal: true
     JobResponse:
       type: object
       properties:
@@ -1448,6 +1460,7 @@ components:
           title: Meta
       title: Job Response
       description: Response for /GET Jobs by Id.
+      x-internal: true
     WhichThemeToDownload:
       description: 'An object specifying which theme to download. One of: `original`: the original Marketplace or uploaded custom theme; `last_activated`: the theme version most recently applied to the store; `last_created`: the theme version most recently created.'
       allOf:
@@ -1472,6 +1485,7 @@ components:
                 - last_created
       title: Which Theme To Download
       type: object
+      x-internal: true
     RequestHeaders:
       type: object
       description: 'These are the minium request headers needed for BigCommerce. '
@@ -1483,6 +1497,7 @@ components:
         Accepts:
           type: string
           default: application/json
+      x-internal: true
     themeConfiguration_Full:
       description: A theme.
       type: object
@@ -1504,6 +1519,7 @@ components:
           type: integer
           description: Site ID to which this configuration belongs. Will be 0 for the original configuration for a Theme.
       title: themeConfiguration_Full
+      x-internal: true
     themeConfiguration_Write:
       description: A theme.
       type: object
@@ -1515,3 +1531,4 @@ components:
           type: object
           description: 'The content of the configuration, which is a JSON object which will vary in structure from theme to theme.'
       title: themeConfiguration_Write
+      x-internal: true

@@ -175,6 +175,7 @@ definitions:
         example: '2018-05-07T20:14:17+00:00'
         format: date-time
         type: string
+    x-internal: true
 tags:
   - name: Taxes
 securityDefinitions:
@@ -204,7 +205,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication). 
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []

@@ -32,6 +32,11 @@
     {
       "type": "item",
       "title": "Customer Login SSO",
+      "uri": "docs/customer-login-sso.md"
+    },
+    {
+      "type": "item",
+      "title": "Customer Login",
       "uri": "reference/customer_login.yml"
     },
     {
@@ -56,7 +61,7 @@
     {
       "type": "item",
       "title": "GraphQL Storefront API",
-      "uri": "assets/html/graphql-explorer.html"
+      "uri": "docs/storefront-graphql.md"
     },
     {
       "type": "item",
@@ -105,7 +110,7 @@
     {
       "type": "item",
       "title": "Customers v2",
-      "uri": "reference/customers_v2.yml"
+      "uri": "reference/customers.v2.yml"
     },
     {
       "type": "item",
@@ -146,6 +151,11 @@
       "type": "item",
       "title": "Orders v3",
       "uri": "reference/orders.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Pages v3",
+      "uri": "reference/pages.v3.yml"
     },
     {
       "type": "item",
