@@ -255,16 +255,10 @@ paths:
       description: |
         Updates the currency.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
+        <!-- theme: info -->
+        > #### Note
+        > The Send a Test Request feature is not currently supported for this endpoint.
 
-          > ### Note
-          > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       operationId: Update currency
       tags:
         - Change currency
