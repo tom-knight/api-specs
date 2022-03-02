@@ -4,7 +4,7 @@ info:
   title: Checkouts
   description: Create checkouts from existing carts using BigCommerce checkout logic.
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: /
 schemes:
   - https
 consumes:
@@ -12,7 +12,7 @@ consumes:
 produces:
   - application/json
 paths:
-  '/checkouts/{checkoutId}':
+  'stores/{store_hash}/v3/checkouts/{checkoutId}':
     get:
       description: |-
         Returns a *Checkout*.
@@ -49,10 +49,12 @@ paths:
             * `cart.line_items.physical_items.options` - physical options
             * `cart.line_items.digital_items.options` - digital options
             * `consignments.available_shipping_options` - shipping options
+            * `promotions.banners` - promotion options
           enum:
             - cart.line_items.physical_items.options
             - cart.line_items.digital_items.options
             - consignments.available_shipping_options
+            - promotions.banners
       responses:
         '200':
           $ref: '#/responses/CheckoutResponse'
@@ -88,7 +90,62 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  '/checkouts/{checkoutId}/billing-address':
+    put:
+      description: |-
+        Change customer message to an existing *Checkout*.
+
+        **Limits:**
+        * 2000 characters for customer message
+      tags:
+        - Checkout
+      operationId: CheckoutsByCheckoutIdPut
+      produces:
+        - application/json
+      parameters:
+        - name: checkoutId
+          in: path
+          type: string
+          required: true
+          description: ID of the Checkout
+        - name: Accept
+          in: header
+          type: string
+          default: application/json
+          required: true
+        - name: Content-Type
+          in: header
+          type: string
+          default: application/json
+          required: true
+        - name: body
+          in: body
+          required: true
+          description: '`customer_message` is required (max length is 2000).'
+          schema:
+            $ref: '#/definitions/Checkout_Put'
+          x-examples:
+            application/json:
+              customer_message: Ship Now!
+      responses:
+        '200':
+          $ref: '#/responses/CheckoutResponse'
+      x-unitTests: []
+      x-operation-settings:
+        CollectParameters: false
+        AllowDynamicQueryParameters: false
+        AllowDynamicFormParameters: false
+        IsMultiContentStreaming: false
+      summary: Update Customer Messages
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: checkoutId
+        in: path
+        required: true
+  'stores/{store_hash}/v3/checkouts/{checkoutId}/billing-address':
     post:
       description: |-
         Adds a billing address to an existing *Checkout*.
@@ -146,7 +203,16 @@ paths:
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
       summary: Add Checkout Billing Address
-  '/checkouts/{checkoutId}/billing-address/{addressId}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: checkoutId
+        in: path
+        required: true
+  'stores/{store_hash}/v3/checkouts/{checkoutId}/billing-address/{addressId}':
     put:
       description: Updates an existing billing address on *Checkout*.
       summary: Update Checkout Billing Address
@@ -194,17 +260,31 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  '/checkouts/{checkoutId}/consignments':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: checkoutId
+        in: path
+        required: true
+      - type: string
+        name: addressId
+        in: path
+        required: true
+  'stores/{store_hash}/v3/checkouts/{checkoutId}/consignments':
     post:
       description: |-
         Adds a new consignment to a checkout.
 
+        **Limits:**
+        * 50 line item limit for guest shoppers
+        * 600 line item limit for logged-in shoppers
 
-        There are two steps to create a new consignment with a shipping address, line items, and shipping option. 
-        1. Add a new consignment to a checkout. Append the following query parameter to your `POST` request to also return `available_shipping_options` necessary for step two: `?include=consignments.available_shipping_options`. 
-        2. [Update the consignment](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput) with one of the available shipping options returned from your `POST` request.
+        For more information about working with consignments, see [Checkout consignment](/api-docs/checkouts/checkout-consignment).  
 
-        Though the only required `shipping_address` properties to create a consignment are `email` and `country_code`, to successfully [create an order](https://developer.bigcommerce.com/api-reference/store-management/checkouts/checkout-orders/createanorder) the `shipping_address` requires the following properties:
+        Though the only required `shipping_address` properties to create a consignment are `email` and `country_code`, to successfully [create an order](/api-reference/store-management/checkouts/checkout-orders/createanorder) the `shipping_address` requires the following properties:
         * `first_name`
         * `last_name`
         * `address1`
@@ -302,7 +382,16 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  '/checkouts/{checkoutId}/consignments/{consignmentId}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: checkoutId
+        in: path
+        required: true
+  'stores/{store_hash}/v3/checkouts/{checkoutId}/consignments/{consignmentId}':
     put:
       description: |-
         Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.
@@ -343,36 +432,28 @@ paths:
           schema:
             $ref: '#/definitions/UpdateConsignmentRequest'
           x-examples:
-            application/json: |-
-              {
-                "shipping_address": {
-                  "email": "jane2@example.com",
-                  "country_code": "US",
-                  "first_name": "Testing",
-                  "last_name": "BigCommerce",
-                  "company": "BigCommerce",
-                  "address1": "1234 Main Street",
-                  "address2": "1234",
-                  "city": "Austin",
-                  "state_or_province": "Texas",
-                  "state_or_province_code": "TX",
-                  "postal_code": "78751",
-                  "phone": "+481526687548x4{1-5}",
-                  "custom_fields": [
-                    {
-                      "field_id": "field_25",
-                      "field_value": "You're Welcome"
-                    },
-                  ]
-                },
-                "line_items": [
-                  {
-                    "item_id": "15429582-222e-499e-8d22-d2930a0cfc0e",
-                    "quantity": 1
-                  },
-                ],
-                "shipping_option_id": "156fb123-68e1-40a2-8a48-98ceb04031c1"
-              }
+            Updating shipping optionID:
+              shipping_option_id: 9241669174884c2f2e83b3adabf03f83
+            Updating shipping address:
+              shipping_address:
+                email: jane2@example.com
+                country_code: US
+                first_name: Testing
+                last_name: BigCommerce
+                company: BigCommerce
+                address1: 1234 Main Street
+                address2: '1234'
+                city: Austin
+                state_or_province: Texas
+                state_or_province_code: TX
+                postal_code: '78751'
+                phone: '+481526687548x4{1-5}'
+                custom_fields:
+                  - field_id: field_25
+                    field_value: You're Welcome
+              line_items:
+                - item_id: 15429582-222e-499e-8d22-d2930a0cfc0e
+                  quantity: 1
         - name: include
           in: query
           required: false
@@ -420,13 +501,29 @@ paths:
       responses:
         '200':
           $ref: '#/responses/CheckoutResponse'
-  '/checkouts/{checkoutId}/coupons':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: checkoutId
+        in: path
+        required: true
+      - type: string
+        name: consignmentId
+        in: path
+        required: true
+  'stores/{store_hash}/v3/checkouts/{checkoutId}/coupons':
     post:
       description: |-
         Adds a *Coupon Code* to *Checkout*.
 
         **Required Fields**
         * coupon_code
+
+        **Limits**
+        * Coupon codes have a 50 character limit. 
       summary: Add Coupon to Checkout
       tags:
         - Checkout Coupons
@@ -467,7 +564,16 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  '/checkouts/{checkoutId}/coupons/{couponCode}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: checkoutId
+        in: path
+        required: true
+  'stores/{store_hash}/v3/checkouts/{checkoutId}/coupons/{couponCode}':
     delete:
       description: Deletes a *Coupon Code* from *Checkout*.
       summary: Delete Checkout Coupon
@@ -506,7 +612,20 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  '/checkouts/{checkoutId}/orders':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: checkoutId
+        in: path
+        required: true
+      - type: string
+        name: couponCode
+        in: path
+        required: true
+  'stores/{store_hash}/v3/checkouts/{checkoutId}/orders':
     post:
       responses:
         '200':
@@ -545,6 +664,10 @@ paths:
         in: path
         type: string
         required: true
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 definitions:
   Checkout:
     title: Checkout
@@ -567,7 +690,7 @@ definitions:
             type: integer
             format: int32
           email:
-            description: The cart's email. This is the same email that is used in the billing address
+            description: The cart's email. This is the same email that is used in the billing address.
             type: string
           currency:
             title: Currency
@@ -689,7 +812,7 @@ definitions:
                             type: number
                             format: double
                     coupons:
-                      description: ''
+                      description: 'When the line item uses a coupon, returns a number indicating the total discounted amount.  Otherwise, returns an empty array.'
                       type:
                         - number
                         - array
@@ -703,7 +826,7 @@ definitions:
                       type: number
                       format: double
                     list_price:
-                      description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                      description: 'Item’s list price, as quoted by the manufacturer/distributor.'
                       type: number
                       format: double
                     sale_price:
@@ -812,7 +935,7 @@ definitions:
                             type: number
                             format: double
                     coupons:
-                      description: ''
+                      description: 'When the line item uses a coupon, returns a number indicating the total discounted amount.  Otherwise, returns an empty array.'
                       type:
                         - number
                         - array
@@ -826,7 +949,7 @@ definitions:
                       type: number
                       format: double
                     list_price:
-                      description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                      description: 'Item’s list price, as quoted by the manufacturer/distributor.'
                       type: number
                       format: double
                     sale_price:
@@ -854,7 +977,7 @@ definitions:
                       description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
                       type: string
                     amount:
-                      description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
+                      description: 'Value must be between 1.00 and 1,000.00 in the store’s default currency.'
                       type: number
                       format: double
                     sender:
@@ -1224,6 +1347,39 @@ definitions:
       customer_message:
         description: Shopper's message provided as details for the order to be created from this checkout.
         type: string
+      promotions:
+        description: ''
+        type: object
+        properties:
+          banners:
+            title: Banner
+            type: object
+            properties:
+              id:
+                description: Id of the promotion.
+                type: string
+              type:
+                description: Type of the banner
+                type: string
+              page:
+                description: An array of the locations where the banner will display
+                type: array
+                items:
+                  type: string
+              text:
+                description: Text of the banner
+                type: string
+    x-internal: true
+  Checkout_Put:
+    title: Checkout_Put
+    type: object
+    properties:
+      customer_message:
+        description: ''
+        type: string
+    required:
+      - customer_message
+    x-internal: true
   AppliedCoupon:
     title: Applied Coupon
     type: object
@@ -1257,6 +1413,7 @@ definitions:
           |`5`|`promotion`|
     required:
       - code
+    x-internal: true
   AddressProperties:
     title: Address Properties
     type: object
@@ -1299,7 +1456,7 @@ definitions:
         type: string
         pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
       custom_fields:
-        description: 'You can retreive custom fields from the [Get Form Fields](https://developer.bigcommerce.com/api-reference/storefront/form-fields/form-fields/getformfields) endpoint.'
+        description: 'You can retreive custom fields from the [Get Form Fields](/api-reference/storefront/form-fields/form-fields/getformfields) endpoint.'
         type: array
         items:
           title: Custom Field
@@ -1314,6 +1471,7 @@ definitions:
     required:
       - email
       - country_code
+    x-internal: true
   CreateConsignmentRequest:
     title: Create Consignment Request
     type: object
@@ -1360,7 +1518,7 @@ definitions:
             type: string
             pattern: '^\+?[1-9]\d{1,14}(x\d{1-5})?$'
           custom_fields:
-            description: 'You can retreive custom fields from the [Get Form Fields](https://developer.bigcommerce.com/api-reference/storefront/form-fields/form-fields/getformfields) endpoint.'
+            description: 'You can retreive custom fields from the [Get Form Fields](/api-reference/storefront/form-fields/form-fields/getformfields) endpoint.'
             type: array
             items:
               title: Custom Field
@@ -1392,6 +1550,7 @@ definitions:
           required:
             - item_id
             - quantity
+    x-internal: true
   UpdateConsignmentRequest:
     title: Update Consignment Request
     description: One or more of these three fields are mandatory. `shipping_address` and `line_items` can be updated in one request. `shipping_option_id` has to be updated in a separate request since changing the address or line items can invalidate the previously available shipping options.
@@ -1474,13 +1633,15 @@ definitions:
       shipping_option_id:
         description: ''
         type: string
+    x-internal: true
   CouponCodeRequest:
     title: Coupon Code Request
     type: object
     properties:
       coupon_code:
-        description: ''
+        description: Coupon codes have a 50 character limit.
         type: string
+    x-internal: true
   Order:
     type: object
     title: Order
@@ -1489,6 +1650,7 @@ definitions:
         type: integer
         example: 75
         description: The order Id.
+    x-internal: true
 parameters:
   checkoutId:
     name: checkoutId
@@ -1557,7 +1719,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 tags:
   - name: Checkout
   - name: Checkout Billing Address
@@ -1580,196 +1742,6 @@ responses:
         data:
           $ref: '#/definitions/Checkout'
     examples:
-      application/json:
-        data:
-          id: 41d4ef29-0532-4ded-a669-14e4048451ad
-          cart:
-            id: 41d4ef29-0532-4ded-a669-14e4048451ad
-            customer_id: 9
-            email: testing@example.com
-            currency:
-              code: USD
-            base_amount: 520.54
-            discount_amount: 0
-            cart_amount_inc_tax: 600.6
-            cart_amount_ex_tax: 515.54
-            coupons:
-              - id: 1
-                code: S2549JM0Y
-                coupon_type: per_total_discount
-                discounted_amount: 5
-            discounts:
-              - id: 87c770bc-7a5e-42cf-aaf9-c8bceda81704
-                discounted_amount: 0.17
-              - id: 8166a146-3ecb-40aa-b40a-f39244e6c257
-                discounted_amount: 0.46
-              - id: 1359bfee-5b01-4f73-803b-6b07d75b36cd
-                discounted_amount: 2.1
-              - id: 20e79ae2-5c44-472c-9ac4-aaa645b955ff
-                discounted_amount: 2.27
-            line_items:
-              physical_items:
-                - id: 8166a146-3ecb-40aa-b40a-f39244e6c257
-                  parent_id: 123
-                  variant_id: 328
-                  product_id: 158
-                  sku: SKU-BDD6E975
-                  name: Chambray Towel
-                  url: 'http://store-url.mybigcommerce.com/all/chambray-towel/'
-                  quantity: 1
-                  is_taxable: true
-                  image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/158/images/382/foglinenbeigestripetowel1b_1024x1024__83011__60806.1534344511.330.500.jpg?c=2'
-                  discounts:
-                    - id: total-coupon
-                      discounted_amount: 0.46
-                  coupons: 0
-                  discount_amount: 0
-                  coupon_amount: 0
-                  list_price: 47.49
-                  sale_price: 47.49
-                  extended_list_price: 47.49
-                  extended_sale_price: 47.03
-                  is_require_shipping: true
-                - id: 1359bfee-5b01-4f73-803b-6b07d75b36cd
-                  parent_id: 123
-                  variant_id: 338
-                  product_id: 167
-                  sku: ''
-                  name: Able Brewing System
-                  url: 'http://store-url.mybigcommerce.com/all/able-brewing-system/'
-                  quantity: 1
-                  is_taxable: true
-                  image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.330.500.jpg?c=2'
-                  discounts:
-                    - id: total-coupon
-                      discounted_amount: 2.1
-                  coupons: 0
-                  discount_amount: 0
-                  coupon_amount: 0
-                  list_price: 218.5
-                  sale_price: 218.5
-                  extended_list_price: 218.5
-                  extended_sale_price: 216.4
-                  is_require_shipping: true
-                - id: 20e79ae2-5c44-472c-9ac4-aaa645b955ff
-                  parent_id: 123
-                  variant_id: 367
-                  product_id: 184
-                  sku: SMA-GRE
-                  name: Canvas Laundry Cart
-                  url: 'http://store-url.mybigcommerce.com/all/canvas-laundry-cart/'
-                  quantity: 1
-                  is_taxable: true
-                  image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.330.500.jpg?c=2'
-                  discounts:
-                    - id: total-coupon
-                      discounted_amount: 2.27
-                  coupons: 0
-                  discount_amount: 0
-                  coupon_amount: 0
-                  list_price: 236.55
-                  sale_price: 236.55
-                  extended_list_price: 236.55
-                  extended_sale_price: 234.28
-                  is_require_shipping: true
-              digital_items:
-                - id: 87c770bc-7a5e-42cf-aaf9-c8bceda81704
-                  parent_id: 123
-                  variant_id: 360
-                  product_id: 189
-                  sku: ''
-                  name: Gather Journal Issue 7
-                  url: 'http://store-url.mybigcommerce.com/all/gather-journal-issue-7/'
-                  quantity: 1
-                  is_taxable: true
-                  image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/189/images/465/gather_1024x1024__17195__82620.1534344540.330.500.jpg?c=2'
-                  discounts:
-                    - id: total-coupon
-                      discounted_amount: 0.17
-                  coupons: 0
-                  discount_amount: 0
-                  coupon_amount: 0
-                  list_price: 18
-                  sale_price: 18
-                  extended_list_price: 18
-                  extended_sale_price: 17.83
-                  is_require_shipping: false
-              gift_certificates: []
-            created_time: '2018-08-15T15:53:10+00:00'
-            updated_time: '2018-08-15T15:54:31+00:00'
-          billing_address:
-            id: 5b744c77bbe1f
-            first_name: BigCommerce
-            last_name: BigCommerce Cart/Checkout
-            email: testing@example.com
-            company: {}
-            address1: 123 Main Street
-            address2: {}
-            city: Austin
-            state_or_province: Texas
-            state_or_province_code: TX
-            country: United States
-            country_code: US
-            postal_code: '78726'
-            phone: '5122134567'
-          consignments:
-            - id: 5b744c77bbf2b
-              shipping_cost_inc_tax: 54.53
-              shipping_cost_ex_tax: 46.81
-              handling_cost_inc_tax: 0
-              handling_cost_ex_tax: 0
-              coupon_discounts: []
-              discounts: []
-              line_item_ids:
-                - 8166a146-3ecb-40aa-b40a-f39244e6c257
-                - 1359bfee-5b01-4f73-803b-6b07d75b36cd
-                - 20e79ae2-5c44-472c-9ac4-aaa645b955ff
-              selectedShippingOption:
-                id: 156fb123-68e1-40a2-8a48-98ceb04031c1
-                type: shipping_upsready
-                description: UPS® (UPS Next Day Air®)
-                image_url: ''
-                cost: 46.81
-                transit_time: 1 business day
-              shippingAddress:
-                first_name: BigCommerce
-                last_name: BigCommerce Cart/Checkout
-                email: testing@example.com
-                company: ''
-                address1: 123 Main Street
-                address2: ''
-                city: Austin
-                state_or_province: Texas
-                state_or_province_code: TX
-                country: United States
-                country_code: US
-                postal_code: '78726'
-                phone: '5122134567'
-                customFields:
-                  - field_id: field_25
-                    field_value: 11305 4 Points Drive
-              couponDiscounts: []
-          taxes:
-            - name: This is tax
-              amount: 92.78
-          coupons:
-            - id: 1
-              code: S2549JM0Y
-              coupon_type: per_total_discount
-              discounted_amount: 5
-          order_id: {}
-          shipping_cost_total_inc_tax: 54.53
-          shipping_cost_total_ex_tax: 46.81
-          handling_cost_total_inc_tax: 0
-          handling_cost_total_ex_tax: 0
-          tax_total: 92.78
-          subtotal_inc_tax: 606.42496049047
-          subtotal_ex_tax: 520.54
-          grand_total: 605.13
-          created_time: '2018-08-15T15:53:10+00:00'
-          updated_time: '2018-08-15T15:54:31+00:00'
-          customer_message: ''
-        meta: {}
       Available Shipping Options:
         data:
           id: 306d57d7-124e-4112-82cd-35e060c0d4d9
@@ -1801,7 +1773,7 @@ responses:
                   is_taxable: true
                   image_url: 'https://cdn11.bigcommerce.com/s-{store_hash}/products/188/images/460/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.330.500.jpg?c=2'
                   discounts: []
-                  coupons: 0
+                  coupons: []
                   discount_amount: 0
                   coupon_amount: 0
                   list_price: 31.95
@@ -1928,7 +1900,7 @@ responses:
                   is_taxable: true
                   image_url: 'https://cdn11.bigcommerce.com/s-{store_hash}/products/188/images/460/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.330.500.jpg?c=2'
                   discounts: []
-                  coupons: 0
+                  coupons: []
                   discount_amount: 0
                   coupon_amount: 0
                   list_price: 31.95
@@ -2009,6 +1981,302 @@ responses:
           created_time: '2019-08-05T15:38:14+00:00'
           updated_time: '2019-08-05T15:41:28+00:00'
           customer_message: ''
+        meta: {}
+      Coupon Applied:
+        data:
+          id: 267c5d6f-0d27-48ea-b731-e7832a4c5537
+          cart:
+            id: 267c5d6f-0d27-48ea-b731-e7832a4c5537
+            customer_id: 25
+            channel_id: 1
+            email: customer@example.com
+            currency:
+              code: USD
+            base_amount: 67
+            discount_amount: 0
+            cart_amount_inc_tax: 53.6
+            cart_amount_ex_tax: 53.6
+            coupons:
+              - id: 1
+                code: SHOP20
+                coupon_type: percentage_discount
+                discounted_amount: 13.4
+            discounts:
+              - id: 985c79a3-4c94-4104-923a-2e3d4572e72d
+                discounted_amount: 7
+              - id: b0adf3a7-7a92-44d9-ad46-87235b118e48
+                discounted_amount: 6.4
+            line_items:
+              physical_items:
+                - id: b0adf3a7-7a92-44d9-ad46-87235b118e48
+                  parent_id: null
+                  variant_id: 528
+                  product_id: 145
+                  sku: htltwl-001
+                  name: Hotel Towel
+                  url: 'https://example.com/hotel-towel/'
+                  quantity: 1
+                  is_taxable: true
+                  image_url: 'https://cdn11.bigcommerce.com/s-29iql3rwa6/products/145/images/422/Marriott-towel-set-MAR-320-01-SET-BT-WH_xlrg__70357.1636473771.220.290.jpg?c=1'
+                  discounts:
+                    - id: coupon
+                      discounted_amount: 6.4
+                  coupons: 6.4
+                  discount_amount: 0
+                  coupon_amount: 6.4
+                  list_price: 32
+                  sale_price: 32
+                  extended_list_price: 32
+                  extended_sale_price: 32
+                  is_require_shipping: true
+                  gift_wrapping: null
+                  is_mutable: true
+              digital_items:
+                - id: 985c79a3-4c94-4104-923a-2e3d4572e72d
+                  parent_id: null
+                  variant_id: 182
+                  product_id: 138
+                  sku: ebk-001
+                  name: eBook Download
+                  url: 'https://example.com/digital/'
+                  quantity: 1
+                  is_taxable: true
+                  image_url: 'https://cdn11.bigcommerce.com/s-29iql3rwa6/products/138/images/420/thebridgebetween__54934.1636473557.220.290.png?c=1'
+                  discounts:
+                    - id: coupon
+                      discounted_amount: 7
+                  coupons: 7
+                  discount_amount: 0
+                  coupon_amount: 7
+                  list_price: 35
+                  sale_price: 35
+                  extended_list_price: 35
+                  extended_sale_price: 35
+                  is_require_shipping: false
+                  is_mutable: true
+              gift_certificates: []
+              custom_items: []
+            created_time: '2021-11-08T22:46:23+00:00'
+            updated_time: '2021-11-09T16:08:01+00:00'
+          billing_address:
+            id: 618a9ce18173e
+            first_name: null
+            last_name: null
+            email: customer@example.com
+            company: ''
+            address1: null
+            address2: null
+            city: null
+            state_or_province: ''
+            state_or_province_code: ''
+            country: ''
+            country_code: ''
+            postal_code: null
+            phone: ''
+            custom_fields: []
+          consignments: []
+          taxes:
+            - name: Tax
+              amount: 0
+          coupons:
+            - id: 1
+              code: SHOP20
+              coupon_type: percentage_discount
+              discounted_amount: 13.4
+          order_id: null
+          shipping_cost_total_inc_tax: 0
+          shipping_cost_total_ex_tax: 0
+          handling_cost_total_inc_tax: 0
+          handling_cost_total_ex_tax: 0
+          tax_total: 0
+          subtotal_inc_tax: 67
+          subtotal_ex_tax: 67
+          grand_total: 53.6
+          created_time: '2021-11-08T22:46:23+00:00'
+          updated_time: '2021-11-09T16:08:01+00:00'
+          customer_message: ''
+        meta: {}
+      No Coupon Applied:
+        data:
+          id: 267c5d6f-0d27-48ea-b731-e7832a4c5537
+          cart:
+            id: 267c5d6f-0d27-48ea-b731-e7832a4c5537
+            customer_id: 0
+            channel_id: 1
+            email: ''
+            currency:
+              code: USD
+            base_amount: 67
+            discount_amount: 0
+            cart_amount_inc_tax: 67
+            cart_amount_ex_tax: 67
+            coupons: []
+            discounts:
+              - id: 985c79a3-4c94-4104-923a-2e3d4572e72d
+                discounted_amount: 0
+              - id: b0adf3a7-7a92-44d9-ad46-87235b118e48
+                discounted_amount: 0
+            line_items:
+              physical_items:
+                - id: b0adf3a7-7a92-44d9-ad46-87235b118e48
+                  parent_id: null
+                  variant_id: 528
+                  product_id: 145
+                  sku: htltwl-001
+                  name: Hotel Towel
+                  url: 'https://example.com/hotel-towel/'
+                  quantity: 1
+                  is_taxable: true
+                  image_url: 'https://cdn11.bigcommerce.com/s-29iql3rwa6/products/145/images/422/Marriott-towel-set-MAR-320-01-SET-BT-WH_xlrg__70357.1636473771.220.290.jpg?c=1'
+                  discounts: []
+                  coupons: []
+                  discount_amount: 0
+                  coupon_amount: 0
+                  list_price: 32
+                  sale_price: 32
+                  extended_list_price: 32
+                  extended_sale_price: 32
+                  is_require_shipping: true
+                  gift_wrapping: null
+                  is_mutable: true
+              digital_items:
+                - id: 985c79a3-4c94-4104-923a-2e3d4572e72d
+                  parent_id: null
+                  variant_id: 182
+                  product_id: 138
+                  sku: ebk-001
+                  name: eBook Download
+                  url: 'https://example.com/digital/'
+                  quantity: 1
+                  is_taxable: true
+                  image_url: 'https://cdn11.bigcommerce.com/s-29iql3rwa6/products/138/images/420/thebridgebetween__54934.1636473557.220.290.png?c=1'
+                  discounts: []
+                  coupons: []
+                  discount_amount: 0
+                  coupon_amount: 0
+                  list_price: 35
+                  sale_price: 35
+                  extended_list_price: 35
+                  extended_sale_price: 35
+                  is_require_shipping: false
+                  is_mutable: true
+              gift_certificates: []
+              custom_items: []
+            created_time: '2021-11-08T22:46:23+00:00'
+            updated_time: '2021-11-09T16:06:56+00:00'
+          billing_address: {}
+          consignments: []
+          taxes:
+            - name: Tax
+              amount: 0
+          coupons: []
+          order_id: null
+          shipping_cost_total_inc_tax: 0
+          shipping_cost_total_ex_tax: 0
+          handling_cost_total_inc_tax: 0
+          handling_cost_total_ex_tax: 0
+          tax_total: 0
+          subtotal_inc_tax: 67
+          subtotal_ex_tax: 67
+          grand_total: 67
+          created_time: '2021-11-08T22:46:23+00:00'
+          updated_time: '2021-11-09T16:06:56+00:00'
+          customer_message: ''
+        meta: {}
+      Include promotions:
+        data:
+          id: 267c5d6f-0d27-48ea-b731-e7832a4c5537
+          cart:
+            id: 267c5d6f-0d27-48ea-b731-e7832a4c5537
+            customer_id: 0
+            channel_id: 1
+            email: ''
+            currency:
+              code: USD
+            base_amount: 67
+            discount_amount: 0
+            cart_amount_inc_tax: 67
+            cart_amount_ex_tax: 67
+            coupons: []
+            discounts:
+              - id: 985c79a3-4c94-4104-923a-2e3d4572e72d
+                discounted_amount: 0
+              - id: b0adf3a7-7a92-44d9-ad46-87235b118e48
+                discounted_amount: 0
+            line_items:
+              physical_items:
+                - id: b0adf3a7-7a92-44d9-ad46-87235b118e48
+                  parent_id: null
+                  variant_id: 528
+                  product_id: 145
+                  sku: htltwl-001
+                  name: Hotel Towel
+                  url: 'https://example.com/hotel-towel/'
+                  quantity: 1
+                  is_taxable: true
+                  image_url: 'https://cdn11.bigcommerce.com/s-29iql3rwa6/products/145/images/422/Marriott-towel-set-MAR-320-01-SET-BT-WH_xlrg__70357.1636473771.220.290.jpg?c=1'
+                  discounts: []
+                  coupons: []
+                  discount_amount: 0
+                  coupon_amount: 0
+                  list_price: 32
+                  sale_price: 32
+                  extended_list_price: 32
+                  extended_sale_price: 32
+                  is_require_shipping: true
+                  gift_wrapping: null
+                  is_mutable: true
+              digital_items:
+                - id: 985c79a3-4c94-4104-923a-2e3d4572e72d
+                  parent_id: null
+                  variant_id: 182
+                  product_id: 138
+                  sku: ebk-001
+                  name: eBook Download
+                  url: 'https://example.com/digital/'
+                  quantity: 1
+                  is_taxable: true
+                  image_url: 'https://cdn11.bigcommerce.com/s-29iql3rwa6/products/138/images/420/thebridgebetween__54934.1636473557.220.290.png?c=1'
+                  discounts: []
+                  coupons: []
+                  discount_amount: 0
+                  coupon_amount: 0
+                  list_price: 35
+                  sale_price: 35
+                  extended_list_price: 35
+                  extended_sale_price: 35
+                  is_require_shipping: false
+                  is_mutable: true
+              gift_certificates: []
+              custom_items: []
+            created_time: '2021-11-08T22:46:23+00:00'
+            updated_time: '2021-11-09T16:06:56+00:00'
+          billing_address: {}
+          consignments: []
+          taxes:
+            - name: Tax
+              amount: 0
+          coupons: []
+          order_id: null
+          shipping_cost_total_inc_tax: 0
+          shipping_cost_total_ex_tax: 0
+          handling_cost_total_inc_tax: 0
+          handling_cost_total_ex_tax: 0
+          tax_total: 0
+          subtotal_inc_tax: 67
+          subtotal_ex_tax: 67
+          grand_total: 67
+          created_time: '2021-11-08T22:46:23+00:00'
+          updated_time: '2021-11-09T16:06:56+00:00'
+          customer_message: ''
+          promotions:
+            - banners:
+                - id: '3'
+                  type: applied
+                  page:
+                    - homepage
+                    - cartpage
+                  text: Some text
         meta: {}
   order_Resp:
     description: ''

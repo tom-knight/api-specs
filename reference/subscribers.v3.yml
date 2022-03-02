@@ -28,12 +28,12 @@ info:
     X-Auth-Token: {access_token}
     ```
 
-    * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+    * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication). 
   termsOfService: ''
   license:
     name: ''
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: /
 tags:
   - name: Subscribers
     description: BigCommerce Customers API Definition.
@@ -44,7 +44,7 @@ produces:
 consumes:
   - application/json
 paths:
-  /customers/subscribers:
+  '/stores/{store_hash}/v3/customers/subscribers':
     get:
       description: Returns a list of *Subscribers*. Optional filter parameters can be passed in.
       operationId: getSubscribers
@@ -279,7 +279,12 @@ paths:
       tags:
         - Subscribers
       summary: Delete Subscribers
-  '/customers/subscribers/{subscriber_id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/subscribers/{subscriber_id}':
     parameters:
       - name: subscriber_id
         in: path
@@ -287,6 +292,10 @@ paths:
           The ID of the `Subscriber` requested.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a *Subscriber*.
       operationId: getSubscriberById
@@ -576,6 +585,7 @@ definitions:
             format: date-time
             description: |
               The date of which the subscriber was created.
+    x-internal: true
   subscriber_Base:
     type: object
     description: Common Subscriber properties.
@@ -617,6 +627,7 @@ definitions:
         minimum: 1
         maximum: 2147483647
         description: The channel ID where the subscriber was created.
+    x-internal: true
   Subscriber:
     type: object
     allOf:
@@ -673,18 +684,21 @@ definitions:
             format: date-time
             description: |
               The date of which the subscriber was created.
+    x-internal: true
   subscriber_Post:
     description: |
       The model for a POST to create a subscriber.
     allOf:
       - $ref: '#/definitions/subscriber_Base'
     title: subscriber_Post
+    x-internal: true
   subscriber_Put:
     description: |
       The model for a PUT to update a subscriber.
     allOf:
       - $ref: '#/definitions/subscriber_Base'
     title: subscriber_Put
+    x-internal: true
   CollectionMeta:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
@@ -738,6 +752,7 @@ definitions:
                 description: |
                   Link to the next page returned in the response.
     title: Collection Meta
+    x-internal: true
   Pagination:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
@@ -786,10 +801,12 @@ definitions:
             type: string
             description: |
               Link to the next page returned in the response.
+    x-internal: true
   Meta:
     type: object
     description: Empty meta object; may be used later.
     title: Meta
+    x-internal: true
   ErrorResponse:
     allOf:
       - type: object
@@ -818,6 +835,7 @@ definitions:
               additionalProperties:
                 type: string
     title: Error Response
+    x-internal: true
   BaseError:
     type: object
     description: |
@@ -836,6 +854,7 @@ definitions:
       instance:
         type: string
     title: Base Error
+    x-internal: true
   NotFound:
     description: Error payload for the BigCommerce API.
     type: object
@@ -852,12 +871,14 @@ definitions:
       instance:
         type: string
     title: Not Found
+    x-internal: true
   DetailedErrors:
     type: object
     title: Detailed Errors
     properties:
       additionalProperties:
         type: string
+    x-internal: true
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
@@ -885,7 +906,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication). 
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []

@@ -17,16 +17,10 @@ paths:
 
         The cart ID and checkout ID are the same.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
 
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Get a Checkout
       tags:
         - Checkout
@@ -209,16 +203,14 @@ paths:
       description: |-
         Updates *Checkout* customer messages.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
+        **Limits**
 
-        > ### Note
+        * 2000 character limit
+
+
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Update Customer Messages
       tags:
         - Checkout
@@ -366,16 +358,10 @@ paths:
 
         If a variant needs to be changed or updated, the product will need to be removed and re-added to the cart with the correct variants using the [Add Cart Line Items](/api-reference/cart-checkout/storefront-cart-api/cart-items/addcartlineitem) endpoint.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
 
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Update a Line Item
       tags:
         - Checkout Cart Items
@@ -528,16 +514,10 @@ paths:
       description: |-
         Deletes a *Line Item* from the *Cart*.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
 
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Delete a Line Item
       tags:
         - Checkout Cart Items
@@ -786,18 +766,12 @@ paths:
         **Required Fields**
         * country_code
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
 
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > * The `email` property is only required if the customer is a guest shopper. Otherwise, it is set automatically.
         > * Sending `email` property as a payload in POST request triggers the abandoned cart notification process.
         > * The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Add Checkout Billing Address
       tags:
         - Checkout Billing Address
@@ -948,16 +922,10 @@ paths:
       description: |-
         Updates an existing billing address on *Checkout*.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
 
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Update Checkout Billing Address
       tags:
         - Checkout Billing Address
@@ -1219,7 +1187,7 @@ paths:
           description: Unable to determine if provided email is associated with an account. The customer must sign-in.
   '/checkouts/{checkoutId}/consignments':
     post:
-      description: "Adds a new *Consignment* to *Checkout*.\n\nThere are two steps to add a new shipping address and shipping options with line items. \n1. Add a new Consignment to Checkout.\n* \tSend a POST to Consignments with each shipping address and line items IDs. Each address can have its own line item IDs.\n* \tAs part of the request URL make sure to add `include=consignments.availableShippingOptions` to return the available shipping options based on line items and shipping locations. This will return `availableShippingOptions` in the response.\n2. [Update the Consignment](/api-reference/cart-checkout/storefront-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.\n\n**Required Query**\n* consignments.availableShippingOptions\n\n**Required Fields**\n* shipping_address\n* line_items\n\nTo learn more about creating a Checkout Consignment see [Working with the Fetch API](/api-docs/cart-and-checkout/working-sf-apis).\n\n<div class=\"HubBlock--callout\">\n<div class=\"CalloutBlock--info\">\n<div class=\"HubBlock-content\"> \n\n> ### Note\n> The Send a Test Request feature is not currently supported for this endpoint.\n \n</div>\n</div>\n</div>"
+      description: "Adds a new *Consignment* to *Checkout*.\n\nThere are two steps to add a new shipping address and shipping options with line items. \n1. Add a new Consignment to Checkout.\n* \tSend a POST to Consignments with each shipping address and line items IDs. Each address can have its own line item IDs.\n* \tAs part of the request URL make sure to add `include=consignments.availableShippingOptions` to return the available shipping options based on line items and shipping locations. This will return `availableShippingOptions` in the response.\n2. [Update the Consignment](/api-reference/cart-checkout/storefront-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.\n\n**Required Query**\n* consignments.availableShippingOptions\n\n**Required Fields**\n* shipping_address\n* line_items\n\nTo learn more about creating a Checkout Consignment see [Working with the Fetch API](/api-docs/cart-and-checkout/working-sf-apis).\n\n<!-- theme: info --> \n\n> #### Note\n> The Send a Test Request feature is not currently supported for this endpoint."
       summary: Create a Consignment
       tags:
         - Checkout Consignments
@@ -1397,7 +1365,7 @@ paths:
               customerMessage: ''
   '/checkouts/{checkoutId}/consignments/{consignmentId}':
     put:
-      description: "Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.\n\nThere are two steps to add a new shipping address and shipping options with line items. \n1. Add a new Consignment to Checkout.\n2. Update the Consignment with Shipping Options.\n* \t Update each *Consignment* `shippingOptionId` (shipping address and line items) with the `availableShippingOption > id` from Step One. \n\n**Required Fields**\n* shippingOptionId\n\nTo learn more about creating a Checkout Consignment see [Working with the Fetch API](/api-docs/cart-and-checkout/working-sf-apis).\n\n<div class=\"HubBlock--callout\">\n<div class=\"CalloutBlock--info\">\n<div class=\"HubBlock-content\"> \n\n> ### Note\n> * You cannot pass both a `shippingAddress` and `shippingOptionId` because the shipping option may not be able to be applied to the given address \n> * The Send a Test Request feature is not currently supported for this endpoint.\n \n</div>\n</div>\n</div>"
+      description: "Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.\n\nThere are two steps to add a new shipping address and shipping options with line items. \n1. Add a new Consignment to Checkout.\n2. Update the Consignment with Shipping Options.\n* \t Update each *Consignment* `shippingOptionId` (shipping address and line items) with the `availableShippingOption > id` from Step One. \n\n**Required Fields**\n* shippingOptionId\n\nTo learn more about creating a Checkout Consignment see [Working with the Fetch API](/api-docs/cart-and-checkout/working-sf-apis).\n\n<!-- theme: info --> \n\n> #### Note\n> * You cannot pass both a `shippingAddress` and `shippingOptionId` because the shipping option may not be able to be applied to the given address \n> * The Send a Test Request feature is not currently supported for this endpoint."
       tags:
         - Checkout Consignments
       operationId: CheckoutsConsignmentsByCheckoutIdAndConsignmentIdPut
@@ -1566,16 +1534,9 @@ paths:
       description: |-
         Removes an existing *Consignment* from *Checkout*.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Delete a Consignment
       tags:
         - Checkout Consignments
@@ -1712,18 +1673,12 @@ paths:
       description: |-
         Adds a *Gift Certificate Code* to *Checkout*.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
 
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > * *Gift Certificates* are treated as a payment methods.
         > * You are not able to purchase a gift certificate with a gift certificate.
         > * The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Add Gift Certificate to Checkout
       tags:
         - Checkout Gift Certificates
@@ -1871,17 +1826,9 @@ paths:
 
         This removes the *Gift Certificate* payment method.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
-        >
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Delete Gift Certificate
       tags:
         - Checkout Gift Certificates
@@ -1912,16 +1859,9 @@ paths:
         **Required Fields**
         * couponCode
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Add Coupon to Checkout
       tags:
         - Checkout Coupons
@@ -2067,16 +2007,9 @@ paths:
       description: |
         Deletes a *Coupon Code* from *Checkout*.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Delete Checkout Coupon
       tags:
         - Checkout Coupons
@@ -2340,16 +2273,9 @@ paths:
       description: |-
         Applies any available store credit to a checkout. As on the storefront, all available store credit will be used (up to the value of the order) and no amount need be specified.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
     parameters:
       - name: checkoutId
         in: path
@@ -2373,16 +2299,9 @@ paths:
       description: |-
         Removes store credit from a checkout.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       operationId: CheckoutsStoreCreditRemove
       consumes:
         - application/json
@@ -2393,16 +2312,9 @@ paths:
       description: |-
         Verifies if checkout is created by human.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       summary: Checkout Spam Protection
       tags:
         - Checkout Spam Protection
@@ -2437,6 +2349,7 @@ definitions:
     properties:
       token:
         type: string
+    x-internal: true
   checkout_Full:
     title: checkout_Full
     type: object
@@ -2512,6 +2425,7 @@ definitions:
         type: boolean
         description: |
           `true` value indicates StoreCredit has been applied.
+    x-internal: true
   AppliedCoupon:
     title: Applied Coupon
     type: object
@@ -2548,6 +2462,7 @@ definitions:
         format: double
     required:
       - code
+    x-internal: true
   contactEntity:
     title: contactEntity
     type: object
@@ -2559,6 +2474,7 @@ definitions:
         description: ''
         type: string
     description: Model for sender and receiver objects.
+    x-internal: true
   address_Full:
     title: address_Full
     allOf:
@@ -2569,8 +2485,9 @@ definitions:
             description: ''
             type: string
           shouldSaveAddress:
-            description: 'Indicates if we should add this address to the customer address book.'
+            description: Indicates if we should add this address to the customer address book.
             type: boolean
+    x-internal: true
   address_Base:
     title: address_Base
     type: object
@@ -2618,6 +2535,7 @@ definitions:
           $ref: '#/definitions/customFields'
     required:
       - countryCode
+    x-internal: true
   customFields:
     title: customFields
     type: object
@@ -2628,6 +2546,7 @@ definitions:
       fieldValue:
         type: string
         description: 'This can also be an array for fields that need to support list of values (e.g., a set of check boxes.). When doing a PUT or POST to the `fieldValue` with a pick list, the input must be a number. The response will be a string.'
+    x-internal: true
   consignment_Full:
     title: consignment_Full
     description: 'This allows us to have multiple shipping addresses. Where there is only one shipping address, this array will contain only one value, with all the items.'
@@ -2706,6 +2625,7 @@ definitions:
         type: array
         items:
           type: string
+    x-internal: true
   consignmentAvailableShippingOptions:
     title: consignmentAvailableShippingOptions
     allOf:
@@ -2717,6 +2637,7 @@ definitions:
             type: boolean
           additionalDescription:
             type: string
+    x-internal: true
   checkoutTax:
     title: checkoutTax
     type: object
@@ -2728,6 +2649,7 @@ definitions:
         description: ''
         type: number
         format: double
+    x-internal: true
   checkout_Put:
     title: checkout_Put
     type: object
@@ -2735,6 +2657,7 @@ definitions:
       customerMessage:
         description: ''
         type: string
+    x-internal: true
   checkouts_Resp:
     title: checkouts_Resp
     type: object
@@ -2785,7 +2708,7 @@ definitions:
                 description: Boolean representing whether tax information is included.
                 type: boolean
               baseAmount:
-                description: 'Cost of cart''s contents, before applying discounts.'
+                description: 'Cost of cart’s contents, before applying discounts.'
                 type: number
                 format: double
               discountAmount:
@@ -2905,7 +2828,7 @@ definitions:
                             type: number
                             format: double
                           listPrice:
-                            description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                            description: 'Item’s list price, as quoted by the manufacturer/distributor.'
                             type: number
                             format: double
                           salePrice:
@@ -3014,7 +2937,7 @@ definitions:
                             type: number
                             format: double
                           listPrice:
-                            description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                            description: 'Item’s list price, as quoted by the manufacturer/distributor.'
                             type: number
                             format: double
                           salePrice:
@@ -3454,6 +3377,7 @@ definitions:
             type: boolean
             description: |
               `true` value indicates StoreCredit has been applied.
+    x-internal: true
   cartLineItemPut:
     title: cartLineItemPut
     type: object
@@ -3470,6 +3394,7 @@ definitions:
         description: ''
         type: number
         format: double
+    x-internal: true
   cartLineItemGiftCertificate_Put:
     title: cartLineItemGiftCertificate_Put
     type: object
@@ -3500,6 +3425,7 @@ definitions:
       - sender
       - recipient
       - quantity
+    x-internal: true
   CreateConsignmentRequest:
     title: Create Consignment Request
     type: object
@@ -3555,7 +3481,7 @@ definitions:
                 fieldValue:
                   type: string
           shouldSaveAddress:
-            description: 'Indicates if we should add this address to the customer address book.'
+            description: Indicates if we should add this address to the customer address book.
             type: boolean
         required:
           - countryCode
@@ -3576,6 +3502,7 @@ definitions:
           required:
             - itemId
             - quantity
+    x-internal: true
   GiftCertificateRequest:
     title: Gift Certificate Request
     type: object
@@ -3583,6 +3510,7 @@ definitions:
       giftCertificateCode:
         description: ''
         type: string
+    x-internal: true
   cart_Put:
     title: cart_Put
     type: object
@@ -3591,6 +3519,7 @@ definitions:
         $ref: '#/definitions/cartLineItemPut'
       giftCertificate:
         $ref: '#/definitions/cartLineItemGiftCertificate_Put'
+    x-internal: true
   NewUpdateConsignment:
     title: Update Consignment Request
     description: 'One or more of these three fields are mandatory. Shipping address and line items can be updated in one request. Shipping option ID has to be updated in a separate request, since changing the address or line items can invalidate the previously available shipping options.'
@@ -3647,7 +3576,7 @@ definitions:
                 fieldValue:
                   type: string
           shouldSaveAddress:
-            description: 'Indicates if we should add this address to the customer address book.'
+            description: Indicates if we should add this address to the customer address book.
             type: boolean
         required:
           - countryCode
@@ -3671,6 +3600,7 @@ definitions:
       shippingOptionId:
         description: ''
         type: string
+    x-internal: true
   checkoutCart:
     title: checkoutCart
     description: 'A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.'
@@ -3709,7 +3639,7 @@ definitions:
         description: Boolean representing whether tax information is included.
         type: boolean
       baseAmount:
-        description: 'Cost of cart''s contents, before applying discounts.'
+        description: 'Cost of cart’s contents, before applying discounts.'
         type: number
         format: double
       discountAmount:
@@ -3829,7 +3759,7 @@ definitions:
                     type: number
                     format: double
                   listPrice:
-                    description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                    description: 'Item’s list price, as quoted by the manufacturer/distributor.'
                     type: number
                     format: double
                   salePrice:
@@ -3941,7 +3871,7 @@ definitions:
                     type: number
                     format: double
                   listPrice:
-                    description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                    description: 'Item’s list price, as quoted by the manufacturer/distributor.'
                     type: number
                     format: double
                   salePrice:
@@ -4062,6 +3992,7 @@ definitions:
       updatedTime:
         description: Time when the cart was last updated.
         type: string
+    x-internal: true
   checkoutGiftCertificates:
     description: Applied gift certificate (as a payment method).
     type: array
@@ -4090,6 +4021,7 @@ definitions:
           type: number
           format: double
     title: checkoutGiftCertificates
+    x-internal: true
   consignmentShippingOption_Base:
     title: consignmentShippingOption_Base
     type: object
@@ -4113,6 +4045,7 @@ definitions:
       transitTime:
         description: An estimate of the arrival time.
         type: string
+    x-internal: true
 parameters:
   include:
     name: include

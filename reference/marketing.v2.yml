@@ -5,12 +5,9 @@ info:
   description: |-
     Manage coupons, banners, and gift certificates.
 
-    - [Authentication](#authentication)
-    - [Subresources](#subresources)
-
     ## Authentication
 
-    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request header.
+    Authenticate requests by including an [OAuth](/api-docs/getting-started/authentication/rest-api-authentication) `access_token` in the request header.
 
     ```http
     GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/{{ENDPOINT}}
@@ -35,7 +32,7 @@ info:
     ### Gift Certificates
     Gift certificates available to offer to a store’s customers.
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v2'
+basePath: /
 schemes:
   - https
 consumes:
@@ -43,7 +40,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /coupons:
+  '/stores/{store_hash}/v2/coupons':
     get:
       description: |-
         Returns a list of *Coupons*. Default sorting is by coupon/discount id, from lowest to highest. Optional filter parameters can be passed in.
@@ -184,6 +181,9 @@ paths:
         *   `shipping_discount`
         *   `free_shipping`
         *   `percentage_discount`
+        
+        Legacy coupon codes only work with the store's default currency. Applying a coupon with any other currency other than the store's default will result in the error: "Coupons only apply to default currency."
+
       summary: Create a New Coupon
       parameters:
         - name: Accept
@@ -246,7 +246,12 @@ paths:
       tags:
         - Coupons
       operationId: deleteAllCoupons
-  /coupons/count:
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/coupons/count':
     get:
       description: Returns a count of all *Coupons* in the store.
       summary: Get a Count of Coupons
@@ -269,7 +274,12 @@ paths:
       tags:
         - Coupons
       operationId: getACountOfCoupons
-  '/coupons/{id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/coupons/{id}':
     put:
       description: |-
         Updates a *Coupon*.
@@ -368,7 +378,11 @@ paths:
         in: path
         type: string
         required: true
-  /banners:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/banners':
     get:
       description: 'Returns a list of *Banners*. Default sorting is by banner id, from lowest to highest.'
       summary: Get All Banners
@@ -491,7 +505,12 @@ paths:
       tags:
         - Banners
       operationId: deleteAllBanners
-  '/banners/{id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/banners/{id}':
     get:
       description: Returns a single *Banner*
       summary: Get a Banner
@@ -596,7 +615,11 @@ paths:
         in: path
         type: string
         required: true
-  /banners/count:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/banners/count':
     get:
       description: Returns a count of *Banners*.
       summary: Get a Count of Store Banners
@@ -619,7 +642,12 @@ paths:
       tags:
         - Banners
       operationId: getACountOfBanners
-  '/gift_certificates/{id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v2/gift_certificates/{id}':
     get:
       description: Returns a single *Gift Certificate*.
       summary: Get a Gift Certificate
@@ -683,6 +711,10 @@ paths:
         in: path
         type: string
         required: true
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     put:
       responses:
         '200':
@@ -715,7 +747,7 @@ paths:
       tags:
         - Gift Certificates
       operationId: updateAGiftCertificate
-  /gift_certificates:
+  '/stores/{store_hash}/v2/gift_certificates':
     get:
       responses:
         '200':
@@ -844,6 +876,11 @@ paths:
         - Gift Certificates
       description: 'By default, it deletes all *Gift Certificates*.'
       operationId: deleteAllGiftCertificates
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 definitions:
   CouponsResource:
     title: Coupon Resource
@@ -851,12 +888,13 @@ definitions:
     properties:
       url:
         description: URL of the coupons for api requests
-        example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/coupons'
+        example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/129/coupons'
         type: string
       resource:
         description: resource of the coupons
         example: /orders/129/coupons
         type: string
+    x-internal: true
   coupon_Full:
     title: coupon_Full
     allOf:
@@ -877,6 +915,7 @@ definitions:
         required:
           - id
       - $ref: '#/definitions/coupon_Base'
+    x-internal: true
   coupon_Base:
     title: coupon_Base
     example:
@@ -918,7 +957,7 @@ definitions:
           - promotion
       amount:
         type: string
-        description: 'The discount to apply to an order, as either an amount or a percentage. This field''s usage is determined by the coupon `type`. For example, a `type` of + `percentage_discount` would determine a percentage here.'
+        description: 'The discount to apply to an order, as either an amount or a percentage. This field’s usage is determined by the coupon `type`. For example, a `type` of + `percentage_discount` would determine a percentage here.'
         example: 5
       min_purchase:
         description: Specifies a minimum value that an order must have before the coupon can be applied to it.
@@ -928,7 +967,7 @@ definitions:
         description: 'Specifies when a coupon expires. Coupons need not have an expiry date – you can also control expiry via + `max_uses` or `max_uses_per_customer`. If you do use this date field, the value must be in <a href="http://tools.ietf.org/html/rfc2822#section-3.3" target="_blank">RFC 2822</a> format.'
         type: string
       enabled:
-        description: 'If the coupon is enabled, this field''s value is `true`; otherwise, `false`.'
+        description: 'If the coupon is enabled, this field’s value is `true`; otherwise, `false`.'
         example: true
         type: boolean
       code:
@@ -974,6 +1013,7 @@ definitions:
       - amount
       - code
       - applies_to
+    x-internal: true
   banner_Base:
     type: object
     title: banner_Base
@@ -1025,6 +1065,7 @@ definitions:
       - page
       - location
       - date_type
+    x-internal: true
   banner_Full:
     allOf:
       - type: object
@@ -1046,6 +1087,7 @@ definitions:
             example: '0'
       - $ref: '#/definitions/banner_Base'
     title: banner_Full
+    x-internal: true
   banner_Put:
     allOf:
       - type: object
@@ -1056,6 +1098,7 @@ definitions:
             example: '0'
       - $ref: '#/definitions/banner_Base'
     title: banner_Put
+    x-internal: true
   giftCertificate_Base:
     type: object
     title: giftCertificate_Base
@@ -1086,6 +1129,7 @@ definitions:
       - from_name
       - from_email
       - amount
+    x-internal: true
   giftCertificate_Full:
     allOf:
       - $ref: '#/definitions/giftCertificate_Base'
@@ -1163,6 +1207,7 @@ definitions:
         message: Congratulations!
         code: FFZ-5N4-C7M-S78
         status: active
+    x-internal: true
   giftCertificate_Put:
     allOf:
       - $ref: '#/definitions/giftCertificate_Base'
@@ -1215,6 +1260,7 @@ definitions:
               - disabled
             example: active
     title: giftCertificate_Put
+    x-internal: true
   giftCertificate_Post:
     allOf:
       - $ref: '#/definitions/giftCertificate_Base'
@@ -1251,6 +1297,7 @@ definitions:
             type: string
             description: 'Text that will be sent to the recipient, such as “Congratulations.”'
             example: Congratulations!
+            maxLength: 250
           code:
             type: string
             description: |-
@@ -1275,6 +1322,7 @@ definitions:
             example: USD
     title: giftCertificate_Post
     description: ''
+    x-internal: true
 tags:
   - name: Banners
   - name: Coupons
@@ -1300,13 +1348,13 @@ securityDefinitions:
       ### Example
 
       ```http
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
+      GET /stores/{store_hash}/v3/catalog/summary
       host: api.bigcommerce.com
       Content-Type: application/json
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 security:
   - X-Auth-Token: []
   - X-Auth-Client: []
