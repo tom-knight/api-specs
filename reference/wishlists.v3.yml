@@ -6,12 +6,9 @@ info:
   description: |-
     Create and manage customer [wishlists](https://support.bigcommerce.com/s/article/Wishlists).
 
-    - [Authentication](#authentication)
-    - [Additional Information](#additional-information)
-
     ## Authentication
 
-    [Authenticate](https://developer.bigcommerce.com/api-docs/getting-started/authentication) requests by including an OAuth `access_token` in the request header.
+    [Authenticate](/api-docs/getting-started/authentication/rest-api-authentication) requests by including an OAuth `access_token` in the request header.
 
     ```http
     GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/{{ENDPOINT}}
@@ -25,12 +22,12 @@ info:
     |  Customers | modify | `store_v2_customers` |
     |  Customers | read-only | `store_v2_customers_read_only` |
 
-    For more information on OAuth scopes, see [Authenticating BigCommerce's REST APIs](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes).
+    For more information on OAuth scopes, see [Authenticating BigCommerce's REST APIs](/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes).
 
     ## Additional Information
     * [Wishlists](https://support.bigcommerce.com/s/article/Wishlists)
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: /
 schemes:
   - https
 consumes:
@@ -38,7 +35,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /wishlists:
+  '/stores/{store_hash}/v3/wishlists':
     post:
       description: |-
         Creates a wishlist and wishlist item. More than one item can be added in the POST.
@@ -169,7 +166,12 @@ paths:
                 type: string
               type:
                 type: string
-  '/wishlists/{wishlist_id}/items/{item_id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/wishlists/{wishlist_id}/items/{item_id}':
     delete:
       description: Deletes a wishlist item.
       summary: Delete Wishlist Item
@@ -237,7 +239,11 @@ paths:
         in: path
         type: string
         required: true
-  '/wishlists/{wishlist_id}':
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/wishlists/{wishlist_id}':
     get:
       description: Returns a single wishlist.
       summary: Get a Wishlist
@@ -295,7 +301,7 @@ paths:
       description: |-
         Updates a wishlist.
 
-        Use this endpoint to update existing wishlist items, change the wishlist's name and whether the wishlist is available publicly. To add or delete a wishlist item, see [Wishlist Items](https://developer.bigcommerce.com/api-reference/store-management/wishlists/wishlists-items).
+        Use this endpoint to update existing wishlist items, change the wishlist's name and whether the wishlist is available publicly. To add or delete a wishlist item, see [Wishlist Items](/api-reference/store-management/wishlists/wishlists-items).
       summary: Update a Wishlist
       tags:
         - Wishlists
@@ -415,11 +421,19 @@ paths:
         in: path
         type: string
         required: true
-  '/wishlists/{wishlist_id}/items':
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/wishlists/{wishlist_id}/items':
     parameters:
       - name: wishlist_id
         in: path
         type: string
+        required: true
+      - type: string
+        name: store_hash
+        in: path
         required: true
     post:
       responses:
@@ -508,6 +522,7 @@ definitions:
               example: 152
     required:
       - customer_id
+    x-internal: true
   wishlist_Put:
     title: wishlist_Put
     type: object
@@ -547,6 +562,7 @@ definitions:
     required:
       - customer_id
       - items
+    x-internal: true
   wishlist_Full:
     title: wishlist_Full
     type: object
@@ -579,6 +595,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/wishlistItem_Full'
+    x-internal: true
   wishlistItem_Full:
     title: wishlistItem_Full
     type: object
@@ -598,6 +615,7 @@ definitions:
         type: integer
         format: int32
         example: 22
+    x-internal: true
   wishlistItem_Post:
     title: wishlistItem_Post
     type: object
@@ -612,6 +630,7 @@ definitions:
         type: integer
         format: int32
         example: 152
+    x-internal: true
   pagination:
     title: pagination
     description: 'Data about the response, including pagination and collection totals.'
@@ -637,6 +656,7 @@ definitions:
         description: The total number of pages in the collection.
         type: integer
         format: int32
+    x-internal: true
   error:
     title: error
     type: object
@@ -648,12 +668,14 @@ definitions:
         type: string
       type:
         type: string
+    x-internal: true
   metaCollection:
     type: object
     title: metaCollection
     properties:
       pagination:
         $ref: '#/definitions/pagination'
+    x-internal: true
 tags:
   - name: Wishlists
     description: ''
@@ -836,7 +858,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+      * For more information on Authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []

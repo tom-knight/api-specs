@@ -4,7 +4,6 @@ info:
   title: Shipping V3
   description: V3 REST API shipping endpoints.
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
 schemes:
   - https
 consumes:
@@ -12,7 +11,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /shipping/products/customs-information:
+  '/stores/{store_hash}/v3/shipping/products/customs-information':
     get:
       responses:
         '200':
@@ -53,7 +52,7 @@ paths:
           type: array
           items:
             type: integer
-          description: 'A coma separated list of product IDs. For more information, see [Filtering](https://developer.bigcommerce.com/api-docs/getting-started/filtering)'
+          description: 'A comma-separated list of product IDs. For more information, see [Filtering](/api-docs/getting-started/filtering).'
         - in: query
           name: page
           type: integer
@@ -127,6 +126,11 @@ paths:
                   CA: '508313'
                   AU: '817355'
                   ALL: '501000'
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 definitions:
   shippingMethod_Full:
     title: shippingMethod_Full
@@ -138,6 +142,7 @@ definitions:
             example: 1
             type: integer
       - $ref: '#/definitions/shippingMethod_Base'
+    x-internal: true
   shippingMethod_Base:
     title: shippingMethod_Base
     type: object
@@ -211,6 +216,7 @@ definitions:
         description: Whether or not this shipping zone is the fallback if all others are not valid for the order.
         example: false
         type: boolean
+    x-internal: true
   customsInformation:
     title: customsInformation
     description: Data about the customs information object.
@@ -245,6 +251,7 @@ definitions:
         example: true
       hs_codes:
         $ref: '#/definitions/harmonizedSystemCodes'
+    x-internal: true
   harmonizedSystemCodes:
     title: harmonizedSystemCodes
     description: |-
@@ -256,6 +263,7 @@ definitions:
       CA: '508313'
       AU: '817355'
       ALL: '501000'
+    x-internal: true
   metaCollection:
     title: metaCollection
     description: Meta data relating to pagination
@@ -299,10 +307,12 @@ definitions:
                 type: string
                 description: Query string appended to the resource to show the current page.
                 example: '?limit=1&page=2'
+    x-internal: true
   error_Full:
     title: Error
     description: Meta data relating to pagination
     type: object
+    x-internal: true
 tags:
   - name: Shipping Method
   - name: Shipping Carrier
@@ -336,7 +346,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
@@ -361,7 +371,7 @@ responses:
       application/json:
         status: 502
         title: A login URL could not be generated. Please try another request.
-        type: 'https://developer.bigcommerce.com/api#api-status-codes'
+        type: /api-docs/getting-started/api-status-codes
         errors: {}
   504_GatewayTimeout:
     description: 'If this occurs, you should retry the request. Typically retrying the request several times will result in a successful request; However, if you are unable to successfully make a request, please check the BigCommerce system status [here](https://status.bigcommerce.com/). A service is likely down and the request will need to be made again when it is back up (in several hours usually)'
@@ -371,7 +381,7 @@ responses:
       application/json:
         status: 504
         title: Gateway Timeout
-        type: 'https://developer.bigcommerce.com/api#api-status-codes'
+        type: /api-docs/getting-started/api-status-codes
         errors: {}
   403_Unauthorized:
     description: Returned when permissions do not allow the operation.
@@ -381,7 +391,7 @@ responses:
       application/json:
         status: 403
         title: Unauthorized Access. You do not have permission to make this request.
-        type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+        type: /api-docs/getting-started/api-status-codes
         errors: {}
   400_BadRequest:
     description: 'Invalid syntax, required data missing, `content-type` header missing; Double-check request body for syntax errors and missing data; check `content-type` header.'
@@ -391,7 +401,7 @@ responses:
       application/json:
         status: 400
         title: Input is invalid.
-        type: 'https://developer.bigcommerce.com/api#api-status-codes'
+        type: /api-docs/getting-started/api-status-codes
         errors: {}
   404_NotFound:
     description: 'If the requested account resource is not found for the franchise, return a 404 Not Found.'
@@ -401,7 +411,7 @@ responses:
       application/json:
         status: 404
         title: 'Account with {id} not found'
-        type: 'https://developer.bigcommerce.com/api#api-status-codes'
+        type: /api-docs/getting-started/api-status-codes
         errors: {}
   422_UnprocessableEntity:
     description: This occurs when missing or unacceptable data is passed for one or more fields. Please correct the values for the fields listed in the errors object.
@@ -411,7 +421,7 @@ responses:
       application/json:
         status: 422
         title: JSON data is missing or invalid
-        type: 'https://developer.bigcommerce.com/api#api-status-codes'
+        type: /api-docs/getting-started/api-status-codes
         errors: {}
   503_ServiceUnavailable:
     description: |-
@@ -424,7 +434,7 @@ responses:
       application/json:
         status: 503
         title: Service Unavailable
-        type: 'https://developer.bigcommerce.com/api#api-status-codes'
+        type: /api-docs/getting-started/api-status-codes
         errors: {}
   401_Unauthorized:
     description: API credentials are missing or invalid; Double-check the `access_token` and `client_id`.
@@ -435,7 +445,7 @@ responses:
     schema:
       $ref: '#/definitions/error_Full'
   429_Too_Many_Requests:
-    description: 'When an OAuth client exceeds the [rate limit](https://developer.bigcommerce.com/api-docs/getting-started/best-practices#api-rate-limits) for API requests to a store..'
+    description: 'When an OAuth client exceeds the [rate limit](/api-docs/getting-started/best-practices#api-rate-limits) for API requests to a store..'
     schema:
       $ref: '#/definitions/error_Full'
   405_Method_Not_Allowed:

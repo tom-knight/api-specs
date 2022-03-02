@@ -5,15 +5,9 @@ info:
   description: |-
     Populate different versions of catalog pricing and assign them to different [customer groups](/api-reference/customer-subscribers/customers-api) at the variant level.
 
-    - [Authentication](#authentication)
-    - [Price Lists](#price-lists)
-    - [Price Lists Assignments](#price-lists-assignments)
-    - [Usage notes](#usage-notes)
-    - [Additional information](#additional-information)
-
     ## Authentication
 
-    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request headers.
+    Authenticate requests by including an [OAuth](/api-docs/getting-started/authentication/rest-api-authentication) `access_token` in the request headers.
 
     ```http
     GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/{{ENDPOINT}}
@@ -32,11 +26,11 @@ info:
 
     The association of a Price List to a customer group can be done either via the control panel or using the [Customer Groups API.](/api-reference/customer-subscribers/customers-api)
 
-    [Price List Assignments](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-records/) can be created to assign Price Lists to a specific [channel](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api). Price Lists assigned to a channel apply to all shoppers on that channel, unless there are more specific assignments or customer group discounts set up for the shopper's customer group.
+    [Price List Assignments](/api-reference/store-management/price-lists/price-lists-assignments/createpricelistassignments) can be created to assign Price Lists to a specific [channel](/api-reference/cart-checkout/channels-listings-api). Price Lists assigned to a channel apply to all shoppers on that channel, unless there are more specific assignments or customer group discounts set up for the shopper's customer group.
 
     If an active Price List does not contain prices for a variant, then the catalog pricing will be used.
 
-    Price Lists provide overridden price values to the Stencil storefront. Final price display can be further customized within the Stencil template using the template's [price](https://developer.bigcommerce.com/stencil-docs/reference-docs/global-objects-and-properties/models/price) object.
+    Price Lists provide overridden price values to the Stencil storefront. Final price display can be further customized using Stencil's [handlebars objects](/theme-objects).
 
     To learn more about Price Lists, see [Price Lists API](/api-docs/store-management/price-list-overview).
 
@@ -63,7 +57,7 @@ info:
     - Price Lists cannot be assigned to a customer group that has customer group discounts -- the customer group discounts must be deleted first.
     - Bulk pricing Tiers may additionally be associated with a price record to indicate different pricing as the quantity in the cart increases.
     - If a variant has a Price Record, any existing product-level bulk pricing will not apply in the cart. For variants without Price Records, any existing product bulk pricing will apply.
-    - [Price Lists Records](https://developer.bigcommerce.com/api-reference/store-management/price-lists/price-lists-records/setpricelistrecordcollection) accepts bulk upsert. You can only do one bulk upsert at a time. Running more than one in parallel on the **same store** will cause a 429 error and the request will fail.
+    - [Price Lists Records](/api-reference/store-management/price-lists/price-lists-records/setpricelistrecordcollection) accepts bulk upsert. You can only do one bulk upsert at a time. Running more than one in parallel on the **same store** will cause a 429 error and the request will fail.
     - There are no webhooks available for Price Lists. Since Price Lists directly relate to products, product webhooks will fire for corresponding changes such as pricing.
 
     ## Additional information
@@ -82,7 +76,7 @@ info:
     name: ''
     url: ''
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: '/'
 tags:
   - name: Price Lists
     description: BigCommerce Price Lists API Definition.
@@ -95,7 +89,7 @@ produces:
 consumes:
   - application/json
 paths:
-  /pricelists:
+  '/stores/{store_hash}/v3/pricelists':
     get:
       description: Returns a list of *Price Lists*. Optional parameters can be passed in.
       operationId: getPriceListCollection
@@ -144,9 +138,13 @@ paths:
           name: Accept
           default: application/json
         - type: array
+          items:
+            type: integer
           in: query
           name: 'id:in'
         - type: array
+          items:
+            type: string
           in: query
           name: 'name:like'
         - type: string
@@ -501,13 +499,22 @@ paths:
       tags:
         - Price Lists
       summary: Delete All Price Lists
-  '/pricelists/{price_list_id}':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/pricelists/{price_list_id}':
     parameters:
       - type: integer
         name: price_list_id
         in: path
         description: |
           The ID of the `Price List` requested.
+        required: true
+      - type: string
+        name: store_hash
+        in: path
         required: true
     get:
       description: ' Returns a single *Price List*.'
@@ -787,7 +794,7 @@ paths:
         - Price Lists
       summary: Update a Price List
     delete:
-      description: |- 
+      description: |-
         Deletes a *Price List*. All associated price records are also removed.
 
         **Limits**
@@ -803,13 +810,17 @@ paths:
         - Price Lists
       summary: Delete a Price List
       parameters: []
-  '/pricelists/{price_list_id}/records':
+  '/stores/{store_hash}/v3/pricelists/{price_list_id}/records':
     parameters:
       - type: integer
         name: price_list_id
         in: path
         description: |
           The ID of the `Price List` requested.
+        required: true
+      - type: string
+        name: store_hash
+        in: path
         required: true
     get:
       description: Returns a list of *Price List Records* associated with a *Price List*.
@@ -901,9 +912,13 @@ paths:
           name: Accept
           default: application/json
         - type: array
+          items:
+            type: string
           in: query
           name: 'sku:in'
         - type: array
+          items:
+            type: string
           in: query
           name: 'currency:in'
         - type: number
@@ -1604,7 +1619,7 @@ paths:
       summary: Delete a Price List Record
       tags:
         - Price Lists Records
-  '/pricelists/{price_list_id}/records/{variant_id}':
+  '/stores/{store_hash}/v3/pricelists/{price_list_id}/records/{variant_id}':
     parameters:
       - type: integer
         name: price_list_id
@@ -1618,6 +1633,10 @@ paths:
           ID of the variant on a product, or on an associated Price List Record.
         required: true
         type: integer
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns *Price List Records* using the variant ID. Will also contain currency records.
       operationId: getPriceListRecordsByVariantId
@@ -1850,7 +1869,7 @@ paths:
           default: application/json
       tags:
         - Price Lists Records
-  '/pricelists/{price_list_id}/records/{variant_id}/{currency_code}':
+  '/stores/{store_hash}/v3/pricelists/{price_list_id}/records/{variant_id}/{currency_code}':
     parameters:
       - type: integer
         name: price_list_id
@@ -1871,6 +1890,10 @@ paths:
           The currency code associated with the price record being acted upon.
         required: true
         format: ISO-4217
+      - type: string
+        name: store_hash
+        in: path
+        required: true
     get:
       description: Returns a *Price List Record* using the currency code. Optional parameters can be used.
       operationId: getPriceListRecord
@@ -2395,7 +2418,7 @@ paths:
           default: application/json
       tags:
         - Price Lists Records
-  /pricelists/assignments:
+  '/stores/{store_hash}/v3/pricelists/assignments':
     post:
       tags:
         - Price Lists Assignments
@@ -2429,18 +2452,26 @@ paths:
         - $ref: '#/parameters/FilterCustomerGroupIdParam'
         - $ref: '#/parameters/FilterChannelIdParam'
         - type: array
+          items:
+            type: integer
           in: query
           name: 'id:in'
           description: Filter items by a comma-separated list of `id`s.
         - type: array
+          items:
+            type: integer
           in: query
           name: 'customer_group_id:in'
           description: Filter items by a comma-separated list of `customer_group_id`s.
         - type: array
+          items:
+            type: integer
           in: query
           name: 'price_list_id:in'
           description: Filter items by a comma-separated list of `price_list_id`s.
         - type: array
+          items:
+            type: integer
           in: query
           name: 'channel_id:in'
           description: Filter items by a comma-separated list of `channel_id`s.
@@ -2469,6 +2500,8 @@ paths:
         - $ref: '#/parameters/FilterCustomerGroupIdParam'
         - $ref: '#/parameters/FilterChannelIdParam'
         - type: array
+          items:
+            type: integer
           in: query
           name: 'channel_id:in'
           description: Filter results by a comma-separated list of `channel_id`s.
@@ -2478,6 +2511,11 @@ paths:
           schema:
             $ref: '#/definitions/NoContent'
       summary: Delete Price List Assignments
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 parameters:
   FilterIdParam:
     name: id
@@ -2668,6 +2706,7 @@ definitions:
         description: Channel ID for assignment
     required:
       - price_list_id
+    x-internal: true
   PriceListAssignmentsBatchErrorResponse:
     description: Errors during batch usage for the BigCommerce API.
     type: object
@@ -2676,6 +2715,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/PriceListAssignmentsBatchErrorSet'
+    x-internal: true
   PriceListAssignmentsBatchErrorSet:
     description: Error during `Price List Assignments` batch POST. Includes data sent in the request and errors.
     type: object
@@ -2684,6 +2724,7 @@ definitions:
         $ref: '#/definitions/PriceListAssignmentsIdentifiers'
       field_errors:
         $ref: '#/definitions/DetailedErrors'
+    x-internal: true
   PriceListAssignmentsIdentifiers:
     type: object
     description: '`Price List Assignments` object used in GET response.'
@@ -2699,6 +2740,7 @@ definitions:
           channel_id:
             type: integer
             description: The Channel with which this price set is associated. This field is optional or may be null when a price list applies across channels for the customer_group_id in the assignment.
+    x-internal: true
   AssignmentForGetResponse:
     type: object
     properties:
@@ -2718,6 +2760,7 @@ definitions:
         type: integer
         format: int32
         description: Channel ID for assignment
+    x-internal: true
   AssignmentsForGetResponse:
     description: Array of the price list assignments matching the filter. The response is paginated.
     type: object
@@ -2728,6 +2771,7 @@ definitions:
           $ref: '#/definitions/AssignmentForGetResponse'
       meta:
         $ref: '#/definitions/CollectionMeta'
+    x-internal: true
   PriceListCollectionResponse:
     description: Get All PriceLists.
     type: object
@@ -2828,6 +2872,7 @@ definitions:
                       Link to the next page returned in the response.
         title: Collection Meta
     title: PriceList Collection Response
+    x-internal: true
   PriceListResponse:
     description: |-
       PriceList Reponse returns for:
@@ -2882,6 +2927,7 @@ definitions:
         description: Empty meta object; may be used later.
         title: Meta
     title: Price List Response
+    x-internal: true
   PriceListBase:
     type: object
     description: Common Price List properties.
@@ -2901,6 +2947,7 @@ definitions:
         example: true
     required:
       - name
+    x-internal: true
   PriceList:
     allOf:
       - properties:
@@ -2941,6 +2988,7 @@ definitions:
           - name
     title: Price List
     type: object
+    x-internal: true
   PriceListPost:
     type: object
     allOf:
@@ -2966,6 +3014,7 @@ definitions:
       - name
     title: PriceList Post
     description: 'Creates a Price List. '
+    x-internal: true
   PriceListPut:
     type: object
     allOf:
@@ -2989,6 +3038,7 @@ definitions:
           - name
     title: PriceList Put
     description: Update a PriceList
+    x-internal: true
   PriceRecordCollectionResponse:
     description: |-
       PriceRecord Collection Response returns for:
@@ -3169,6 +3219,7 @@ definitions:
                       Link to the next page returned in the response.
         title: Collection Meta
     title: PriceRecord Collection Response
+    x-internal: true
   PriceRecordResponse:
     description: Response payload for the BigCommerce API.
     type: object
@@ -3295,6 +3346,7 @@ definitions:
         description: Empty meta object; may be used later.
         title: Meta
     title: Price Record Response
+    x-internal: true
   PriceRecordBase:
     type: object
     description: Common Price Record properties.
@@ -3359,6 +3411,7 @@ definitions:
         description: |
           The SKU code associated with this `Price Record` if requested and it exists.
         example: SMB-123
+    x-internal: true
   PriceRecord:
     description: The Price Record object.
     allOf:
@@ -3476,6 +3529,7 @@ definitions:
             example: SMB-123
     title: Price Record
     type: object
+    x-internal: true
   BulkPricingTier:
     type: object
     title: Bulk Pricing Tier
@@ -3505,6 +3559,7 @@ definitions:
         description: |
           The price adjustment amount. This value along with the type will decide the price per variant for the pricing tier.
         example: 3
+    x-internal: true
   PriceRecordPut:
     type: object
     allOf:
@@ -3572,6 +3627,7 @@ definitions:
               The SKU code associated with this `Price Record` if requested and it exists.
             example: SMB-123
     title: Price Record Put
+    x-internal: true
   PriceRecordCollectionPut:
     type: array
     items:
@@ -3660,6 +3716,7 @@ definitions:
       title: PriceRecord Batch Item
       type: object
     title: Price Record Collection Put
+    x-internal: true
   PriceRecordBatchItem:
     description: Price Record object used in batch create or update.
     allOf:
@@ -3745,6 +3802,7 @@ definitions:
             example: SMB-123
     title: PriceRecord Batch Item
     type: object
+    x-internal: true
   PriceRecordIdentifiers:
     description: Price Record object used in batch create or update.
     allOf:
@@ -3771,10 +3829,12 @@ definitions:
             example: usd
     title: Price Record Identifiers
     type: object
+    x-internal: true
   SuccessBatchResponse:
     type: object
     description: Empty object for Success case for Batch API.
     title: Success Batch Response
+    x-internal: true
   PriceRecordBatchErrorResponse:
     description: Errors during batch usage for the BigCommerce API.
     type: object
@@ -3818,6 +3878,7 @@ definitions:
               title: Detailed Errors
           title: PriceRecord Batch Error Set
     title: PriceRecord Batch Error Response
+    x-internal: true
   NoContent:
     description: No-content response for the BigCommerce API.
     type: object
@@ -3832,6 +3893,7 @@ definitions:
         type: string
       instance:
         type: string
+    x-internal: true
   PriceRecordBatchErrorSet:
     description: Error during Price Record batch PUT.  Includes data sent in the request and errors.
     type: object
@@ -3868,6 +3930,7 @@ definitions:
           type: string
         title: Detailed Errors
     title: PriceRecord Batch Error Set
+    x-internal: true
   CollectionMeta:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
@@ -3921,6 +3984,7 @@ definitions:
                 description: |
                   Link to the next page returned in the response.
     title: Collection Meta
+    x-internal: true
   Pagination:
     type: object
     description: 'Data about the response, including pagination and collection totals.'
@@ -3969,10 +4033,12 @@ definitions:
             type: string
             description: |
               Link to the next page returned in the response.
+    x-internal: true
   Meta:
     type: object
     description: Empty meta object; may be used later.
     title: Meta
+    x-internal: true
   ErrorResponse:
     allOf:
       - type: object
@@ -4000,6 +4066,7 @@ definitions:
               type: string
             title: Detailed Errors
     title: Error Response
+    x-internal: true
   BaseError:
     type: object
     description: |
@@ -4018,11 +4085,13 @@ definitions:
       instance:
         type: string
     title: Base Error
+    x-internal: true
   DetailedErrors:
     type: object
     additionalProperties:
       type: string
     title: Detailed Errors
+    x-internal: true
   NotFound:
     description: Error payload for the BigCommerce API.
     type: object
@@ -4039,11 +4108,13 @@ definitions:
       instance:
         type: string
     title: Not Found
+    x-internal: true
   CreateBatchPriceListAssignmentsRequest:
     type: array
     description: Batch of price list assignments.
     items:
       $ref: '#/definitions/AssignmentsForRequest'
+    x-internal: true
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
@@ -4071,9 +4142,8 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication). 
 security:
-  - X-Auth-Client: []
   - X-Auth-Token: []
 x-stoplight:
   docs:

@@ -5,13 +5,9 @@ info:
   description: |-
     Get a list of a store's enabled payment methods. For processing payments, see [Payment Processing API](/api-docs/payments/payments-api-overview).
 
-    - [Authentication](#authentication)
-    - [Subresources](#subresources)
-    - [Additional Resources](#additional-resources)
-
     ## Authentication
 
-    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request header.
+    Authenticate requests by including an [OAuth](/api-docs/getting-started/authentication/rest-api-authentication) `access_token` in the request header.
 
     ```http
     GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v2/{{ENDPOINT}}
@@ -27,7 +23,7 @@ info:
   license:
     name: ''
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v2'
+basePath: /
 schemes:
   - https
 consumes:
@@ -35,22 +31,14 @@ consumes:
 produces:
   - application/json
 paths:
-  /payments/methods:
+  '/stores/{store_hash}/v2/payments/methods':
     get:
       description: |-
         Gets the list of enabled payment methods. Default sorting is by payment method, alphabetically from A to Z.
 
-
-        <div class=\"HubBlock--callout\">
-        <div class=\"CalloutBlock--info\">
-        <div class=\"HubBlock-content\">
-
-         ### Note:
-        Avoid using this API operation if possible. It is not supported; therefore, all enabled providers may not appear.
-
-         </div>
-         </div>
-         </div>
+        <!-- theme: info -->
+        > #### Note:
+        > Avoid using this API operation if possible. It is not supported; therefore, all enabled providers may not appear.
          
       summary: Get All Payment Methods
       parameters:
@@ -91,6 +79,11 @@ paths:
         IsMultiContentStreaming: false
       tags:
         - Payment Methods
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 definitions:
   payment_Base:
     title: payment_Base
@@ -112,6 +105,7 @@ definitions:
         description: Determines whether the payment gateway is in test mode. Always false for offline payment methods.
         example: false
         type: boolean
+    x-internal: true
 tags:
   - name: Payment Methods
 securityDefinitions:
@@ -140,7 +134,7 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication). 
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []

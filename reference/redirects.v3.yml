@@ -5,12 +5,6 @@ info:
   description: |-
     Manage 301 redirects for one or more storefronts powered by a single BigCommerce back-end.
 
-    **On This Page**
-    - [Authentication](#authentication)
-    - [OAuth Scopes](#oauth-scopes)
-    ---
-
-
     ## Authentication
 
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
@@ -26,7 +20,7 @@ info:
     |-|-|-|
     |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
 
-    For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
@@ -54,13 +48,13 @@ securityDefinitions:
       X-Auth-Token: {access_token}
       ```
 
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
   - OAuthScopes: []
 paths:
-  /storefront/redirects:
+  '/stores/{store_hash}/v3/storefront/redirects':
     get:
       summary: Get Redirects
       tags:
@@ -109,7 +103,7 @@ paths:
             - desc
           in: query
           name: direction
-          description: Sort direction. Acceptable values are `asc`, `desc`.
+          description: 'Sort direction. Acceptable values are `asc`, `desc`.'
         - type: string
           enum:
             - to_url
@@ -129,7 +123,7 @@ paths:
       description: Upserts new redirect data across all storefronts.
       responses:
         '201':
-          description: 'Created'
+          description: Created
           schema:
             type: object
             properties:
@@ -197,6 +191,11 @@ paths:
           type: integer
       description: Deletes redirects.
       operationId: DeleteRedirects
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
 definitions:
   Error:
     type: object
@@ -205,29 +204,34 @@ definitions:
         type: integer
       message:
         type: string
+    x-internal: true
   ErrorResponse400:
     type: object
     properties:
       schema:
         $ref: '#/definitions/Error'
+    x-internal: true
   ErrorResponse404:
     type: object
     properties:
       schema:
         $ref: '#/definitions/Error'
+    x-internal: true
   ErrorResponse409:
     type: object
     properties:
       schema:
         $ref: '#/definitions/Error'
+    x-internal: true
   ErrorResponse422:
     type: object
     properties:
       schema:
         $ref: '#/definitions/Error'
+    x-internal: true
   301RedirectUpsert:
     type: object
-    description: "Data necessary to create or update a redirect. If there's a conflict on the from_path and site_id, the redirect will be overwritten with new data."
+    description: 'Data necessary to create or update a redirect. If there’s a conflict on the from_path and site_id, the redirect will be overwritten with new data.'
     properties:
       from_path:
         type: string
@@ -239,6 +243,7 @@ definitions:
     required:
       - from_path
       - site_id
+    x-internal: true
   301RedirectRead:
     type: object
     description: 'Full detail of a Redirect, optionally including the full destination URL.'
@@ -260,6 +265,7 @@ definitions:
     required:
       - from_path
       - site_id
+    x-internal: true
   MetaPaginationObject:
     type: object
     properties:
@@ -295,6 +301,7 @@ definitions:
               current:
                 type: string
                 example: '?limit=5&page=1'
+    x-internal: true
   RedirectTo:
     title: RedirectTo
     type: object
@@ -314,10 +321,12 @@ definitions:
         type: string
         example: /new-url
         maxLength: 2048
+    x-internal: true
   DetailedErrors:
     type: object
     additionalProperties:
       type: string
+    x-internal: true
   BaseError:
     type: object
     description: |
@@ -335,6 +344,7 @@ definitions:
         type: string
       instance:
         type: string
+    x-internal: true
   ErrorResponse:
     allOf:
       - $ref: '#/definitions/BaseError'
@@ -342,8 +352,9 @@ definitions:
         properties:
           errors:
             $ref: '#/definitions/DetailedErrors'
+    x-internal: true
 host: api.bigcommerce.com
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: ''
 tags:
   - name: Redirects
 schemes:

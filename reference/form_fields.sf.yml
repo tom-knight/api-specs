@@ -4,16 +4,9 @@ info:
   description: |-
     Read form fields on a BigCommerce hosted storefront.
 
-    <div class="HubBlock--callout">
-    <div class="CalloutBlock--warning">
-    <div class="HubBlock-content">
-
-    > ### Note
+    <!-- theme: warning -->
+    > #### Note
     > * Breaking changes may be introduced to this endpoint while in beta.
-
-    </div>
-    </div>
-    </div>
   version: ''
 consumes:
   - application/json
@@ -25,16 +18,9 @@ paths:
       description: |-
         Gets form fields.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content"> 
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-         
-        </div>
-        </div>
-        </div>
       parameters:
         - name: filter
           in: query
@@ -169,11 +155,13 @@ definitions:
         $ref: '#/definitions/FormFields'
       billingAddress:
         $ref: '#/definitions/FormFields'
+    x-internal: true
   FormFields:
     type: array
     description: List of form fields for the group
     items:
       $ref: '#/definitions/FormField'
+    x-internal: true
   FormField:
     type: object
     description: Form Field
@@ -243,6 +231,7 @@ definitions:
                   type: string
                 value:
                   type: string
+    x-internal: true
 tags:
   - name: Form Fields
 basePath: /api/storefront
