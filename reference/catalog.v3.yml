@@ -1488,7 +1488,7 @@ paths:
         - multipart/form-data
       tags:
         - Product Images
-  '/stores/{store_hash}/v3/catalog/products/{product_id}/images/{image_id}':
+  '/stores/{store_hash}/v3/catalog/products/{product_id}/images/{imageId}':
     parameters:
       - name: product_id
         in: path
