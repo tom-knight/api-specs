@@ -43,7 +43,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/requestCart'
+              type: array
+              items:
+                $ref: '#/components/schemas/requestCart'
             examples:
               With Text Modifier:
                 value:
@@ -54,6 +56,10 @@ paths:
                         - optionId: 10
                           optionValue: Some Text Value
                   locale: en
+              example-1:
+                value:
+                  - productId: 0
+                    quantity: 0
         required: true
       responses:
         '200':
@@ -349,29 +355,19 @@ components:
       title: Create Cart Request Object
       description: Cart object used in create cart requests.
       oneOf:
-        - properties:
-            lineItems:
-              type: array
-              items:
-                $ref: '#/components/schemas/requestCartPostLineItem'
-            locale:
-              type: string
-          required:
-            - lineItems
-        - properties:
+        - $ref: '#/components/schemas/requestCartPostLineItem'
+        - type: object
+          properties:
             giftCertificates:
-              type: array
-              items:
-                $ref: '#/components/schemas/requestLineItemGiftCertificate'
+              $ref: '#/components/schemas/requestLineItemGiftCertificate'
             locale:
               type: string
           required:
             - giftCertificates
-        - properties:
+        - type: object
+          properties:
             lineItems:
-              type: array
-              items:
-                $ref: '#/components/schemas/requestCartPostLineItem'
+              $ref: '#/components/schemas/requestCartPostLineItem'
             giftCertificates:
               $ref: '#/components/schemas/requestLineItemGiftCertificate'
             locale:
@@ -379,8 +375,13 @@ components:
           required:
             - lineItems
             - giftCertificates
-      type: object
       x-internal: true
+      x-examples:
+        example-1:
+          lineItems:
+            productId: 0
+            quantity: 0
+          locale: string
     responseCartLineItemsPhysicalItemGiftWrapping:
       title: Gift Wrapping
       type: object
