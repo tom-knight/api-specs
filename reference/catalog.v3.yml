@@ -21524,7 +21524,7 @@ definitions:
       - type
       - weight
       - price
-    x-internal: true
+    x-internal: false
   metafield_Put:
     description: Properties for updating metafields.
     title: metafield_Put
