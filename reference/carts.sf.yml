@@ -521,7 +521,7 @@ components:
           description: Array of `ItemPhysical` objects.
           items:
             $ref: '#/components/schemas/responseCartLineItemsItemsPhysicalItemsItems'
-      x-internal: true
+      x-internal: false
     responseCartLineItemsCustomItems:
       title: Item Custom
       type: object
