@@ -350,7 +350,7 @@ components:
         locale:
           type: string
           description: Locale of the cart.
-      x-internal: true
+      x-internal: false
     requestCart:
       title: Create Cart Request Object
       description: Cart object used in create cart requests.
