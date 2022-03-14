@@ -350,7 +350,7 @@ components:
         locale:
           type: string
           description: Locale of the cart.
-      x-internal: false
+      x-internal: true
     requestCart:
       title: Create Cart Request Object
       description: Cart object used in create cart requests.
@@ -521,7 +521,7 @@ components:
           description: Array of `ItemPhysical` objects.
           items:
             $ref: '#/components/schemas/responseCartLineItemsItemsPhysicalItemsItems'
-      x-internal: false
+      x-internal: true
     responseCartLineItemsCustomItems:
       title: Item Custom
       type: object
@@ -1251,9 +1251,7 @@ components:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/responseCart'
+            $ref: '#/components/schemas/responseCart'
           examples:
             Example:
               value:
