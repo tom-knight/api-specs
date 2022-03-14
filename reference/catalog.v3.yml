@@ -21666,9 +21666,7 @@ responses:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/definitions/product_Full'
+          $ref: '#/definitions/product_Full'
         meta:
           $ref: '#/definitions/metaCollection_Full'
     examples:
