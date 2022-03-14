@@ -259,35 +259,30 @@ paths:
 components:
   schemas:
     responseCartCoupons:
-      title: Response Cart Coupons
-      type: array
-      items:
-        required:
-          - code
-        type: object
-        properties:
-          code:
-            type: string
-            description: The coupon code.
-          couponType:
-            type: integer
-            description: |-
-              |Type `int`|Type Name|
-              |-|-|
-              |`0`|`per_item_discount`|
-              |`1`|`percentage_discount`|
-              |`2`|`per_total_discount`|
-              |`3`|`shipping_discount`|
-              |`4`|`free_shipping`|
-              |`5`|`promotion`|
-          discountedAmount:
-            type: number
-            description: The discounted amount applied within a given context.
-            format: float
-          id:
-            type: string
-            description: The coupon ID.
-      x-internal: true
+      description: ''
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 1
+        couponType:
+          type: number
+        discountedAmount:
+          type: number
+        id:
+          type: string
+          minLength: 1
+      required:
+        - code
+        - couponType
+        - discountedAmount
+        - id
+      x-examples:
+        example-1:
+          code: string
+          couponType: 0
+          discountedAmount: -3.402823669209385e+38
+          id: string
     responseCartDiscounts:
       title: responseCartDiscounts
       type: array
