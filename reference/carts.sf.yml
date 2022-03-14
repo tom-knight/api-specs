@@ -496,8 +496,7 @@ components:
           description: 'ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)'
           format: ISO-4217
       description: This will always be the same between cart and checkout.
-      x-go-gen-location: models
-      x-internal: true
+      x-internal: false
     responseCartLineItems:
       title: Response Line Items Object
       type: object
