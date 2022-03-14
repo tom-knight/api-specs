@@ -20760,7 +20760,7 @@ definitions:
         type: string
     x-internal: true
   product_Full:
-    anyOf:
+    allOf:
       - $ref: '#/definitions/product_Base'
       - type: object
         properties:
