@@ -283,6 +283,7 @@ components:
           couponType: 0
           discountedAmount: -3.402823669209385e+38
           id: string
+      x-internal: true
     responseCartDiscounts:
       title: responseCartDiscounts
       type: array
