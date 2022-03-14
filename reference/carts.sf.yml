@@ -354,7 +354,14 @@ components:
     requestCart:
       title: Create Cart Request Object
       description: Cart object used in create cart requests.
-      oneOf:
+      x-internal: true
+      x-examples:
+        example-1:
+          lineItems:
+            productId: 0
+            quantity: 0
+          locale: string
+      anyOf:
         - $ref: '#/components/schemas/requestCartPostLineItem'
         - type: object
           properties:
@@ -375,13 +382,6 @@ components:
           required:
             - lineItems
             - giftCertificates
-      x-internal: true
-      x-examples:
-        example-1:
-          lineItems:
-            productId: 0
-            quantity: 0
-          locale: string
     responseCartLineItemsPhysicalItemGiftWrapping:
       title: Gift Wrapping
       type: object
