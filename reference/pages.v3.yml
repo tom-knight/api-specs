@@ -950,12 +950,6 @@ components:
             |`orderno`|Customer’s submitted order number|
             |`rma`|Customer’s submitted RMA (Return Merchandise Authorization) number|
           example: 'fullname,companyname,phone,orderno,rma'
-          enum:
-            - fullname
-            - phone
-            - companyname
-            - phone
-            - orderno
         meta_keywords:
           type: string
           description: |
@@ -1020,14 +1014,8 @@ components:
                 |`companyname`|Customer’s submitted company name|
                 |`orderno`|Customer’s submitted order number|
                 |`rma`|Customer’s submitted RMA (Return Merchandise Authorization) number|
-              example: 'fullname,companyname,phone,orderno,rma'
+              example: 'fullname,orderno,rma'
               default: ''
-              enum:
-                - fullname
-                - phone
-                - companyname
-                - phone
-                - orderno
             meta_keywords:
               type: string
               description: |
