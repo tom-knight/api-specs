@@ -226,7 +226,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PagesCollectionResponse'
               examples:
-                update meta descriptions for two  pages:
+                update meta descriptions for two pages:
                   value:
                     data:
                       - id: 20
@@ -811,7 +811,7 @@ components:
         body:
           type: string
           description: |
-            HTML or variable that populates this page’s  element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
+            HTML or variable that populates this page’s element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
           example: <div>Hello World!</div>
           writeOnly: true
         feed:
@@ -834,21 +834,15 @@ components:
             |`companyname`|Customer’s submitted company name|
             |`orderno`|Customer’s submitted order number|
             |`rma`|Customer’s submitted RMA (Return Merchandise Authorization) number|
-          example: 'fullname,companyname,phone,orderno,rma'
-          enum:
-            - fullname
-            - phone
-            - companyname
-            - phone
-            - orderno
+          example: 'fullname,orderno,rma'
         meta_keywords:
           type: string
           description: |
-            Comma-separated list of SEO-relevant keywords to include in the page’s  element.
+            Comma-separated list of SEO-relevant keywords to include in the page’s element.
         meta_description:
           type: string
           description: |
-            Description contained within this page’s  element.
+            Description contained within this page’s element.
         search_keywords:
           type: string
           description: |
@@ -932,7 +926,7 @@ components:
         body:
           type: string
           description: |
-            HTML or variable that populates this page’s  element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
+            HTML or variable that populates this page’s element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
           example: <div>Hello World!</div>
           writeOnly: true
         feed:
@@ -965,11 +959,11 @@ components:
         meta_keywords:
           type: string
           description: |
-            Comma-separated list of SEO-relevant keywords to include in the page’s  element.
+            Comma-separated list of SEO-relevant keywords to include in the page’s element.
         meta_description:
           type: string
           description: |
-            Description contained within this page’s  element.
+            Description contained within this page’s element.
         search_keywords:
           type: string
           description: |
@@ -1003,7 +997,7 @@ components:
             body:
               type: string
               description: |
-                HTML or variable that populates this page’s  element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
+                HTML or variable that populates this page’s element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
               example: <div>Hello World!</div>
               writeOnly: true
             feed:
@@ -1037,12 +1031,12 @@ components:
             meta_keywords:
               type: string
               description: |
-                Comma-separated list of SEO-relevant keywords to include in the page’s  element.
+                Comma-separated list of SEO-relevant keywords to include in the page’s element.
               default: ''
             meta_description:
               type: string
               description: |
-                Description contained within this page’s  element.
+                Description contained within this page’s element.
               default: ''
             search_keywords:
               type: string
