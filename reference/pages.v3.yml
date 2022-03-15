@@ -23,79 +23,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/PagesCollectionResponse'
               examples:
-                example-1:
-                  value:
-                    data:
-                      - id: 1
-                        channel_id: 1
-                        name: Content page
-                        meta_title: Content page
-                        email: ''
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        type: page
-                        meta_keywords: ''
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: string
-                        content_type: text/html
-                        url: /my-content-page
-                      - id: 2
-                        channel_id: 1
-                        name: Feed page
-                        meta_title: string
-                        email: ''
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 3
-                        feed: 'https://bigcommerce.com/feed/'
-                        type: feed
-                        meta_keywords: ''
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: true
-                        search_keywords: string
-                        content_type: text/html
-                        url: /rss-feed-page
-                      - id: 3
-                        channel_id: 1
-                        name: Link page
-                        meta_title: ''
-                        email: ''
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        link: '1'
-                        type: link
-                        meta_keywords: ''
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        content_type: text/html
-                    meta:
-                      pagination:
-                        total: 3
-                        count: 3
-                        per_page: 50
-                        current_page: 1
-                        total_pages: 1
-                        links:
-                          current: '?page=1&limit=50'
+                $ref: '#/components/examples/example-gp'
         '400':
           description: 'Bad Request; reasons for failure include passing query parameters that are not supported on this endpoint, but are common on other BigCommerce endpoints.'
           content:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/DetailedErrorResponse'
-        '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '422':
           description: Invalid input. Reasons for failure include passing supported parameters with values that have the incorrect datatype.
           content:
@@ -103,36 +37,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListedErrorResponse'
       parameters:
-        - schema:
-            type: integer
-          in: query
-          name: channel_id
-          description: Return only pages associated with the specified channel.
-        - schema:
-            type: string
-          in: query
-          name: 'id:in'
-          description: 'A comma-separated string of page IDs to fetch. Supports bulk operations. If none of the page IDs passed exist, the query will return an empty `data` array.'
-        - schema:
-            type: string
-          in: query
-          name: name
-          description: Name of the page.
-        - schema:
-            type: string
-          in: query
-          name: 'name:like'
-          description: One word from the name of the page. Does not search substrings. Does not return pages with names that match exactly. Does not support fuzzy search.
-        - schema:
-            type: integer
-          in: query
-          name: limit
-          description: The number of results to return per request. See `meta.pagination.per_page` in the response body.
-        - schema:
-            type: integer
-          in: query
-          name: page
-          description: The ordered grouping of results to return. See `meta.pagination.current_page` in the response body.
+        - $ref: '#/components/parameters/channelIdQuery'
+        - $ref: '#/components/parameters/idInQueryGet'
+        - $ref: '#/components/parameters/nameQuery'
+        - $ref: '#/components/parameters/nameLikeQuery'
+        - $ref: '#/components/parameters/limitQuery'
+        - $ref: '#/components/parameters/pageQuery'
+        - $ref: '#/components/parameters/includeQuery'
       summary: Get Pages
     post:
       operationId: content-pages-post
@@ -164,35 +75,7 @@ paths:
         required: true
       responses:
         '201':
-          description: |-
-            Created.
-
-            Response.data will inherit the datatype of the request. A single entry passed as an object will return an object for the data property. Any number of entries passed in an array will return an array for the data property.
-
-            Properties associated with a page `type` that are not required to create an entry will be created with default values. 
-
-            When making bulk requests, an invalid input in any one entry will return 422. The entries that are valid will still be created.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    oneOf:
-                      - type: object
-                        properties:
-                          data:
-                            $ref: '#/components/schemas/Page'
-                      - type: array
-                        items:
-                          type: object
-                          properties:
-                            data:
-                              $ref: '#/components/schemas/PageBase'
-                  meta:
-                    $ref: '#/components/schemas/CollectionMeta'
-        '207':
-          $ref: '#/components/responses/HTTP207Response'
+          $ref: '#/components/responses/HTTP201CreatePages'
         '422':
           description: |-
             The input was not valid. This is the result of missing required fields or other invalid arguments. See the response for more details.
@@ -202,6 +85,8 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/DetailedErrorResponse'
+      parameters:
+        - $ref: '#/components/parameters/includeQuery'
       summary: Create Pages
     put:
       operationId: content-pages-put
@@ -258,8 +143,6 @@ paths:
                         is_customers_only: false
                         search_keywords: ''
                     meta: {}
-        '207':
-          $ref: '#/components/responses/HTTP207Response'
         '404':
           description: Not Found
           content:
@@ -285,6 +168,8 @@ paths:
                     title: Input is invalid
                     type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
                     detail: 'missing the required field: body'
+      parameters:
+        - $ref: '#/components/parameters/includeQuery'
       summary: Update Pages
     delete:
       operationId: content-pages-delete
@@ -298,7 +183,7 @@ paths:
         > If you attempt to delete multiple pages by passing more than one pageId to `id:in` and one or more of them does not exist, you will receive a 404 response. However, the pages corresponding to the pagesIds that do exist will still be deleted.
       responses:
         '204':
-          description: No content. A 204 response with no payload indicates successful deletion of all specified pages.
+          $ref: '#/components/responses/HTTP204'
         '404':
           description: Not Found. One of more of the pages specified for deletion did not exist. Specified pages that did exist were successfully deleted.
           content:
@@ -325,20 +210,10 @@ paths:
                     type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
                     detail: 'missing the required field: id'
       parameters:
-        - schema:
-            type: string
-          in: query
-          name: 'id:in'
-          description: 'Request deletion of multiple pages by passing a comma-separated string of corresponding page IDs. Supports bulk operations. '
-          required: true
+        - $ref: '#/components/parameters/idInQueryDelete'
       summary: Delete Pages
     parameters:
-      - schema:
-          type: string
-        name: store_hash
-        in: path
-        required: true
-        description: The merchant's store hash. Also called a store id.
+      - $ref: '#/components/parameters/storeHashPath'
   '/stores/{store_hash}/v3/content/pages/{pageId}':
     get:
       operationId: content-page-get
@@ -522,7 +397,8 @@ paths:
                     type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
                     errors:
                       - bar
-      parameters: []
+      parameters:
+        - $ref: '#/components/parameters/includeQuery'
       summary: Get a Page
     put:
       operationId: content-page-put
@@ -544,8 +420,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PageResponse'
-        '207':
-          $ref: '#/components/responses/HTTP207Response'
         '400':
           description: Bad Request; reasons for failure include invalid query parameters. See the response for more details.
           content:
@@ -570,6 +444,8 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/DetailedErrorResponse'
+      parameters:
+        - $ref: '#/components/parameters/includeQuery'
       summary: Update a Page
     delete:
       operationId: content-page-delete
@@ -583,7 +459,7 @@ paths:
         > This endpoint does not recognize query parameters.
       responses:
         '204':
-          description: No content. A 204 response with no payload indicates successful deletion.
+          $ref: '#/components/responses/HTTP204'
         '404':
           description: The page specified for deletion did not exist.
           content:
@@ -599,18 +475,8 @@ paths:
       parameters: []
       summary: Delete a Page
     parameters:
-      - schema:
-          type: string
-        name: store_hash
-        in: path
-        required: true
-        description: The merchant's store hash. Also called a store id.
-      - schema:
-          type: string
-        name: pageId
-        in: path
-        required: true
-        description: The id of the page to be operated on.
+      - $ref: '#/components/parameters/storeHashPath'
+      - $ref: '#/components/parameters/pageIdPath'
 servers:
   - url: 'https://api.bigcommerce.com'
     description: Pages API Gateway
@@ -1162,14 +1028,195 @@ components:
       title: PageFull
       allOf:
         - $ref: '#/components/schemas/Page'
+  responses:
+    HTTP200:
+      description: ''
+      content:
+        application/json:
+          schema: {}
+    HTTP201CreatePages:
+      description: |-
+        Created.
+
+        Response.data will inherit the datatype of the request. A single entry passed as an object will return an object for the data property. Any number of entries passed in an array will return an array for the data property.
+
+        Properties associated with a page `type` that are not required to create an entry will be created with default values. 
+
+        When making bulk requests, an invalid input in any one entry will return 422. The entries that are valid will still be created.
+      content:
+        application/json:
+          schema: 
+            type: object
+            properties:
+              data:
+                oneOf:
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Page'
+                  - type: array
+                    items:
+                      type: object
+                      properties:
+                        data:
+                          $ref: '#/components/schemas/PageBase'
+              meta:
+                $ref: '#/components/schemas/CollectionMeta'
+    HTTP204:
+      description: No content. A 204 response with no payload indicates successful deletion of all specified pages.
+    HTTP400:
+      description: ''
+      content:
+        application/problem+json:
+          schema: 
+            $ref: '#/components/schemas/DetailedErrorResponse'
+    HTTP404:
+      description: ''
+      content:
+        application/problem+json:
+          schema: 
+            $ref: '#/components/schemas/DetailedErrorResponse'
+    HTTP422:
+      description: ''
+      content:
+        application/problem+json:
+          schema: 
+            $ref: '#/components/schemas/DetailedErrorResponse'
+  parameters:
+    storeHashPath: 
+      schema:
+        type: string
+      name: store_hash
+      in: path
+      required: true
+      description: The merchant’s store hash. Also called a store id.
+    pageIdPath:
+      schema:
+        type: string
+      name: pageId
+      in: path
+      required: true
+      description: The id of the page to be operated on.
+    includeQuery:
+      schema:
+        type: string
+        enum: 
+          - body
+      in: query
+      name: include
+      description: Explicitly request the page’s `body` property to include the page’s markup in the response.
+    channelIdQuery:
+      schema:
+        type: integer
+      in: query
+      name: channel_id
+      description: Return only pages associated with the specified channel.
+    idInQueryGet:
+      schema:
+        type: string
+      in: query
+      name: 'id:in'
+      description: 'A comma-separated string of page IDs to fetch. Supports bulk operations. If none of the page IDs passed exist, the query will return an empty `data` array.'
+    idInQueryDelete:
+      schema:
+        type: string
+      in: query
+      name: 'id:in'
+      description: 'Request deletion of multiple pages by passing a comma-separated string of corresponding page IDs. Supports bulk operations. '
+      required: true
+    nameQuery:
+      schema:
+        type: string
+      in: query
+      name: name
+      description: Name of the page.
+    nameLikeQuery:
+      schema:
+        type: string
+      in: query
+      name: 'name:like'
+      description: One word from the name of the page. Does not search substrings. Does not return pages with names that match exactly. Does not support fuzzy search.
+    limitQuery:
+      schema:
+        type: integer
+      in: query
+      name: limit
+      description: The number of results to return per request. See `meta.pagination.per_page` in the response body.
+    pageQuery:
+      schema:
+        type: integer
+      in: query
+      name: page
+      description: The ordered grouping of results to return. See `meta.pagination.current_page` in the response body.
+  examples:
+    example-1:
+      summary: Example response for Get Pages
+      value:
+        data:
+          - id: 1
+            channel_id: 1
+            name: Content page
+            meta_title: Content page
+            email: ''
+            is_visible: false
+            parent_id: 0
+            sort_order: 0
+            type: page
+            meta_keywords: ''
+            meta_description: string
+            is_homepage: false
+            is_customers_only: false
+            search_keywords: string
+            content_type: text/html
+            url: /my-content-page
+          - id: 2
+            channel_id: 1
+            name: Feed page
+            meta_title: string
+            email: ''
+            is_visible: false
+            parent_id: 0
+            sort_order: 3
+            feed: 'https://bigcommerce.com/feed/'
+            type: feed
+            meta_keywords: ''
+            meta_description: string
+            is_homepage: false
+            is_customers_only: true
+            search_keywords: string
+            content_type: text/html
+            url: /rss-feed-page
+          - id: 3
+            channel_id: 1
+            name: Link page
+            meta_title: ''
+            email: ''
+            is_visible: false
+            parent_id: 0
+            sort_order: 0
+            link: '1'
+            type: link
+            meta_keywords: ''
+            meta_description: ''
+            is_homepage: false
+            is_customers_only: false
+            search_keywords: ''
+            content_type: text/html
+        meta:
+            pagination:
+              total: 3
+              count: 3
+              per_page: 50
+              current_page: 1
+              total_pages: 1
+              links:
+                current: '?page=1&limit=50'
+  requestBodies:
+  headers:
   securitySchemes:
     X-Auth-Token:
       name: X-Auth-Token
       type: apiKey
       in: header
-  responses:
-    HTTP207Response:
-      description: 'Multiple operations have taken place and the status for each operation can be viewed in the body of the response. Typically indicates that a partial failure has occured, such as when a `POST` or `PUT` request is successful, but saving the URL has failed.'
-      content:
-        application/json:
-          schema: {}
+  links:
+  callbacks:
