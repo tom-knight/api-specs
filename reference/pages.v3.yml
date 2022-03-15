@@ -85,7 +85,7 @@ paths:
                         links:
                           current: '?page=1&limit=50'
         '400':
-          description: 'Bad Request; reasons for failure include passing query parameters that are not support on this endpoint, but are common on other BigCommerce endpoints.'
+          description: 'Bad Request; reasons for failure include passing query parameters that are not supported on this endpoint, but are common on other BigCommerce endpoints.'
           content:
             application/problem+json:
               schema:
@@ -509,7 +509,7 @@ paths:
                     title: A Page was not found with an id of 99
                     type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
         '422':
-          description: Invalid input. One or more path parameter(s) did not have the incorrect datatype.
+          description: Invalid input. One or more path parameter(s) did not have the correct datatype.
           content:
             application/problem+json:
               schema:
@@ -685,7 +685,6 @@ components:
     ErrorResponse:
       allOf:
         - $ref: '#/components/schemas/BaseError'
-      title: ListedErrorResponse
     ListedErrorResponse:
       allOf:
         - $ref: '#/components/schemas/ListedError'
