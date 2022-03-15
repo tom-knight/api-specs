@@ -808,12 +808,13 @@ components:
           maxLength: 255
         meta_title:
           type: string
+          nullable: true
         body:
           type: string
           description: |
             HTML or variable that populates this page’s element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
           example: <div>Hello World!</div>
-          writeOnly: true
+          nullable: true
         feed:
           type: string
           description: |
@@ -845,11 +846,13 @@ components:
           type: string
           description: |
             Description contained within this page’s element.
+          nullable: true
         search_keywords:
           type: string
           description: |
             Comma-separated list of keywords that shoppers can use to locate this page when searching the store.
           example: 'trousers,pockets,luxury'
+          nullable: true
         url:
           type: string
           description: |
@@ -925,12 +928,13 @@ components:
           maxLength: 255
         meta_title:
           type: string
+          nullable: true
         body:
           type: string
           description: |
             HTML or variable that populates this page’s element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
           example: <div>Hello World!</div>
-          writeOnly: true
+          nullable: true
         feed:
           type: string
           description: |
@@ -962,11 +966,13 @@ components:
           type: string
           description: |
             Description contained within this page’s element.
+          nullable: true
         search_keywords:
           type: string
           description: |
             Comma-separated list of keywords that shoppers can use to locate this page when searching the store.
           example: 'trousers,pockets,luxury'
+          nullable: true
         url:
           type: string
           description: |
@@ -991,13 +997,13 @@ components:
               default: ''
             meta_title:
               type: string
-              default: ''
+              nullable: true
             body:
               type: string
               description: |
                 HTML or variable that populates this page’s element, in default/desktop view. Required in a `POST` request if the page type is `raw`.
               example: <div>Hello World!</div>
-              writeOnly: true
+              nullable: true
             feed:
               type: string
               description: |
@@ -1030,13 +1036,13 @@ components:
               type: string
               description: |
                 Description contained within this page’s element.
-              default: ''
+              nullable: true
             search_keywords:
               type: string
               description: |
                 Comma-separated list of keywords that shoppers can use to locate this page when searching the store.
               example: 'trousers,pockets,luxury'
-              default: ''
+              nullable: true
             url:
               type: string
               description: |
