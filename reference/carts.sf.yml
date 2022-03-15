@@ -303,7 +303,7 @@ components:
       description: Cart object used in storefront cart responses.
       title: Cart Read
       type: object
-      x-internal: true
+      x-internal: false
       properties:
         id:
           type: string
@@ -486,15 +486,15 @@ components:
       type: object
       x-internal: true
     responseCartCurrency:
-      title: Currency
+      description: ''
       type: object
+      x-examples:
+        example-1:
+          string: string
       properties:
-        code:
+        string:
           type: string
-          description: 'ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)'
-          format: ISO-4217
-      description: This will always be the same between cart and checkout.
-      x-internal: false
+          minLength: 1
     responseCartLineItems:
       title: Response Line Items Object
       type: object
