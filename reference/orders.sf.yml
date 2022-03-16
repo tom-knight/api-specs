@@ -141,7 +141,7 @@ definitions:
         description: Id of the channel which the order belongs to.
       consignments:
         $ref: '#/definitions/Consignments'
-    x-internal: true
+    x-internal: false
   Currency:
     title: Currency
     description: This will always be the same between cart and checkout.
