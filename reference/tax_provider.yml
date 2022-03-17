@@ -975,7 +975,9 @@ components:
         destination_address:
           $ref: '#/components/schemas/Address2'
         origin_address:
-          $ref: '#/components/schemas/Address'
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
         shipping:
           $ref: '#/components/schemas/request-item'
         handling:
