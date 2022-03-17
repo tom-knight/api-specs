@@ -845,62 +845,6 @@ components:
       schema:
         type: string
   schemas:
-    request-item:
-      type: object
-      description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
-      title: ItemRequest
-      properties:
-        id:
-          type: string
-          description: A unique identifier for this item used to map responses back to the corresponding item on the order.
-        item_code:
-          type: string
-          description: 'The SKU/UPC of the item, if available.'
-        name:
-          type: string
-          description: A display name for this item.
-        price:
-          type: object
-          description: 'The final sale price (after discounts, bulk pricing, price lists, etc.) prior to having taxes calculated. If the merchant lists prices inclusive of tax, this price will already be tax inclusive, and so the tax provider will instead calculate the amount of tax that was already included in this price. For multiple quantities, this price includes that multiplication.'
-          required:
-            - amount
-            - tax_inclusive
-          properties:
-            amount:
-              type: number
-              description: 'Note: This amount will be **negative** for order-level refunds and may be **zero** for line-item refunds.'
-              format: double
-            tax_inclusive:
-              type: boolean
-              description: 'Note: **Tax Inclusive** and **Tax Exclusive** prices cannot be added together.'
-              default: false
-        quantity:
-          type: integer
-          minimum: 0
-        tax_class:
-          $ref: '#/components/schemas/TaxClass'
-        tax_exempt:
-          type: boolean
-          description: 'Flag whether or not this item is always tax-exempt. For example, gift certificate purchases and order-level refunds are tax-exempt. Tax-exempt items are included in the request for auditing purposes.'
-          default: false
-        type:
-          type: string
-          description: |-
-            The type of line item this request represents. This will depend on the item’s position in the request hierarchy. For example, the document request contains a collection of items (which may or may not also have wrapping attached). In addition, each document request also has a shipping line item and handling line item.
-
-            The type refund is used when the tax estimate request is for an order-level refund.
-          enum:
-            - item
-            - wrapping
-            - handling
-            - shipping
-            - refund
-      required:
-        - id
-        - price
-        - quantity
-        - type
-      x-internal: false
     handling:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
@@ -956,7 +900,7 @@ components:
         - price
         - quantity
         - type
-      x-internal: false
+      x-internal: true
     handling2:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
@@ -1012,7 +956,63 @@ components:
         - price
         - quantity
         - type
-      x-internal: false
+      x-internal: true
+    request-item:
+      type: object
+      description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
+      title: ItemRequest
+      properties:
+        id:
+          type: string
+          description: A unique identifier for this item used to map responses back to the corresponding item on the order.
+        item_code:
+          type: string
+          description: 'The SKU/UPC of the item, if available.'
+        name:
+          type: string
+          description: A display name for this item.
+        price:
+          type: object
+          description: 'The final sale price (after discounts, bulk pricing, price lists, etc.) prior to having taxes calculated. If the merchant lists prices inclusive of tax, this price will already be tax inclusive, and so the tax provider will instead calculate the amount of tax that was already included in this price. For multiple quantities, this price includes that multiplication.'
+          required:
+            - amount
+            - tax_inclusive
+          properties:
+            amount:
+              type: number
+              description: 'Note: This amount will be **negative** for order-level refunds and may be **zero** for line-item refunds.'
+              format: double
+            tax_inclusive:
+              type: boolean
+              description: 'Note: **Tax Inclusive** and **Tax Exclusive** prices cannot be added together.'
+              default: false
+        quantity:
+          type: integer
+          minimum: 0
+        tax_class:
+          $ref: '#/components/schemas/TaxClass'
+        tax_exempt:
+          type: boolean
+          description: 'Flag whether or not this item is always tax-exempt. For example, gift certificate purchases and order-level refunds are tax-exempt. Tax-exempt items are included in the request for auditing purposes.'
+          default: false
+        type:
+          type: string
+          description: |-
+            The type of line item this request represents. This will depend on the item’s position in the request hierarchy. For example, the document request contains a collection of items (which may or may not also have wrapping attached). In addition, each document request also has a shipping line item and handling line item.
+
+            The type refund is used when the tax estimate request is for an order-level refund.
+          enum:
+            - item
+            - wrapping
+            - handling
+            - shipping
+            - refund
+      required:
+        - id
+        - price
+        - quantity
+        - type
+      x-internal: true
     shipping:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
@@ -1068,7 +1068,7 @@ components:
         - price
         - quantity
         - type
-      x-internal: false
+      x-internal: true
     shipping2:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
@@ -1124,12 +1124,12 @@ components:
         - price
         - quantity
         - type
-      x-internal: false
+      x-internal: true
     items:
       type: object
       description: 'An **ItemRequestWrapping** represents required information relating to completing tax calculations for a specific line item, including the information used to calculate wrapping tax.'
       title: ItemRequestWrapping
-      x-internal: false
+      x-internal: true
       properties:
         id:
           type: string
@@ -1189,7 +1189,7 @@ components:
       type: object
       description: 'An **ItemRequestWrapping** represents required information relating to completing tax calculations for a specific line item, including the information used to calculate wrapping tax.'
       title: ItemRequestWrapping
-      x-internal: false
+      x-internal: true
       properties:
         id:
           type: string
@@ -1249,7 +1249,7 @@ components:
       type: object
       description: 'Each **QuoteRequest** represents an order. In addition to transaction details, it contains a `documents` array of one or more **DocumentRequest** objects, which represent distinct combinations of origin and fulfillment addresses and the tax-relevant contents of those consignments. This is similar to an "order" in other BigCommerce APIs.'
       title: QuoteRequest
-      x-internal: false
+      x-internal: true
       properties:
         id:
           type: string
@@ -1292,7 +1292,7 @@ components:
       type: object
       description: 'Each **DocumentRequest** represents an order or part of an order of items fulfilled from a single origin address to a single destination address. In addition to shipping and billing details, it contains an `items` array of one or more **ItemRequest** objects, which represent the shipment’s tax-relevant contents. Multi-address orders, in which items ship to or from multiple addresses, require at least one **DocumentRequest** per combination of sender-recipient addresses. These are similar to "consignments" or "shipments" in other BigCommerce APIs.'
       title: DocumentRequest
-      x-internal: false
+      x-internal: true
       properties:
         id:
           type: string
@@ -1329,7 +1329,7 @@ components:
               description: 'Specifies the reason for the adjustment operation, for auditing purposes. May be a custom, user-entered description.'
         - $ref: '#/components/schemas/request-quote'
       title: AdjustRequest
-      x-internal: false
+      x-internal: true
     Address:
       type: object
       description: 'Requests may have partial Address data. For example, the BigCommerce Cart page has the "Estimate Shipping & Tax" feature which is only expected to supply Country, Region and Postal Code.'
@@ -1373,7 +1373,7 @@ components:
           enum:
             - RESIDENTIAL
             - COMMERCIAL
-      x-internal: false
+      x-internal: true
     destination_address:
       type: object
       description: 'Requests may have partial Address data. For example, the BigCommerce Cart page has the "Estimate Shipping & Tax" feature which is only expected to supply Country, Region and Postal Code.'
@@ -1417,7 +1417,7 @@ components:
           enum:
             - RESIDENTIAL
             - COMMERCIAL
-      x-internal: false
+      x-internal: true
     origin_address:
       type: object
       description: 'Requests may have partial Address data. For example, the BigCommerce Cart page has the "Estimate Shipping & Tax" feature which is only expected to supply Country, Region and Postal Code.'
@@ -1461,7 +1461,7 @@ components:
           enum:
             - RESIDENTIAL
             - COMMERCIAL
-      x-internal: false
+      x-internal: true
     TaxClass:
       type: object
       properties:
@@ -1478,7 +1478,7 @@ components:
         - code
         - class_id
         - name
-      x-internal: false
+      x-internal: true
     response-quote:
       type: object
       properties:
@@ -1494,11 +1494,11 @@ components:
         - id
         - documents
       title: Quote
-      x-internal: false
+      x-internal: true
     response-document:
       type: object
       title: Document
-      x-internal: false
+      x-internal: true
       properties:
         id:
           type: string
@@ -1545,7 +1545,7 @@ components:
         - id
         - price
         - type
-      x-internal: false
+      x-internal: true
     response-item-wrapping:
       type: object
       description: |-
@@ -1573,7 +1573,7 @@ components:
         - id
         - price
         - type
-      x-internal: false
+      x-internal: true
     response-taxprice:
       type: object
       properties:
@@ -1602,7 +1602,7 @@ components:
         - tax_rate
         - sales_tax_summary
       title: TaxPrice
-      x-internal: false
+      x-internal: true
     SalesTax:
       type: object
       properties:
@@ -1633,7 +1633,7 @@ components:
         - name
         - rate
         - amount
-      x-internal: false
+      x-internal: true
   securitySchemes:
     Authorization:
       type: http
