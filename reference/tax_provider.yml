@@ -1400,9 +1400,9 @@ components:
           items:
             $ref: '#/components/schemas/items2'
         shipping:
-          $ref: '#/components/schemas/response-item'
+          $ref: '#/components/schemas/shipping'
         handling:
-          $ref: '#/components/schemas/response-item'
+          $ref: '#/components/schemas/handling'
       required:
         - id
         - items
