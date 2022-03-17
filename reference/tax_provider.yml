@@ -975,7 +975,7 @@ components:
         destination_address:
           $ref: '#/components/schemas/destination_address'
         origin_address:
-          $ref: '#/components/schemas/Address3'
+          $ref: '#/components/schemas/origin_address'
         shipping:
           $ref: '#/components/schemas/request-item'
         handling:
@@ -1134,7 +1134,7 @@ components:
             - RESIDENTIAL
             - COMMERCIAL
       x-internal: true
-    Address3:
+    origin_address:
       type: object
       description: 'Requests may have partial Address data. For example, the BigCommerce Cart page has the "Estimate Shipping & Tax" feature which is only expected to supply Country, Region and Postal Code.'
       properties:
