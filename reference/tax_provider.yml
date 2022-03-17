@@ -981,7 +981,10 @@ components:
         handling:
           $ref: '#/components/schemas/request-item'
         items:
-          $ref: '#/components/schemas/request-item-wrapping'
+          description: Collection of one or more items contained within this consignment that need to be assessed for tax liabilities.
+          type: array
+          items:
+            $ref: '#/components/schemas/request-item-wrapping'
       required:
         - id
         - destination_address
