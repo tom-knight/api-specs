@@ -1,5 +1,14 @@
 {
   "items": [
+        {
+      "type": "divider",
+      "title": "GQL Test Docs"
+    },
+        {
+      "type": "item",
+      "title": "checkoutstatus",
+      "uri": "docs/gql.md"
+    },
     {
       "type": "divider",
       "title": "Storefront APIs"
