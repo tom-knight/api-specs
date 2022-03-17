@@ -996,6 +996,7 @@ components:
       type: object
       description: 'Each **QuoteRequest** represents an order. In addition to transaction details, it contains a `documents` array of one or more **DocumentRequest** objects, which represent distinct combinations of origin and fulfillment addresses and the tax-relevant contents of those consignments. This is similar to an "order" in other BigCommerce APIs.'
       title: QuoteRequest
+      x-internal: true
       properties:
         id:
           type: string
@@ -1016,7 +1017,7 @@ components:
             customer_group_id:
               type: string
               description: The BigCommerce customer group ID assigned to this customer. The default value will be provided if the customer has no group assigned. May be provided as a UUID.
-              default: '0'
+              default: 0
             taxability_code:
               type: string
               description: 'If applicable, the tax exemption code of the shopper’s customer account. A taxability code is intended to apply to multiple customers. This code should match the exemption codes provided by the third-party integration.'
@@ -1025,17 +1026,13 @@ components:
           format: date-time
           description: ISO 8601 formatted date the shopper placed this order. Dates will be provided in UTC.
         documents:
-          type: array
-          description: 'One or more consignments containing items being purchased by the shopper, including shipping and handling fees that are charged for each consignment. Most orders will contain a single consignment (to a single shipping address), however the BigCommerce platform also supports "Multi-address orders" which allow shoppers to place a single order with items shipped to different addresses.'
-          items:
-            $ref: '#/components/schemas/request-document'
+          $ref: '#/components/schemas/request-document'
       required:
         - id
         - currency_code
         - customer
         - transaction_date
         - documents
-      x-internal: true
     request-adjust:
       description: An **AdjustRequest** contains the same data as a standard **QuoteRequest** with added detail of the adjustment operation.
       allOf:
