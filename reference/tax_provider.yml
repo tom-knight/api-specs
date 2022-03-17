@@ -900,7 +900,7 @@ components:
         - price
         - quantity
         - type
-      x-internal: true
+      x-internal: false
     handling:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
@@ -956,7 +956,7 @@ components:
         - price
         - quantity
         - type
-      x-internal: true
+      x-internal: false
     handling2:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
@@ -1012,7 +1012,7 @@ components:
         - price
         - quantity
         - type
-      x-internal: true
+      x-internal: false
     shipping:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
@@ -1068,7 +1068,7 @@ components:
         - price
         - quantity
         - type
-      x-internal: true
+      x-internal: false
     shipping2:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
@@ -1124,12 +1124,12 @@ components:
         - price
         - quantity
         - type
-      x-internal: true
+      x-internal: false
     items:
       type: object
       description: 'An **ItemRequestWrapping** represents required information relating to completing tax calculations for a specific line item, including the information used to calculate wrapping tax.'
       title: ItemRequestWrapping
-      x-internal: true
+      x-internal: false
       properties:
         id:
           type: string
@@ -1189,7 +1189,7 @@ components:
       type: object
       description: 'An **ItemRequestWrapping** represents required information relating to completing tax calculations for a specific line item, including the information used to calculate wrapping tax.'
       title: ItemRequestWrapping
-      x-internal: true
+      x-internal: false
       properties:
         id:
           type: string
@@ -1249,7 +1249,7 @@ components:
       type: object
       description: 'Each **QuoteRequest** represents an order. In addition to transaction details, it contains a `documents` array of one or more **DocumentRequest** objects, which represent distinct combinations of origin and fulfillment addresses and the tax-relevant contents of those consignments. This is similar to an "order" in other BigCommerce APIs.'
       title: QuoteRequest
-      x-internal: true
+      x-internal: false
       properties:
         id:
           type: string
@@ -1292,7 +1292,7 @@ components:
       type: object
       description: 'Each **DocumentRequest** represents an order or part of an order of items fulfilled from a single origin address to a single destination address. In addition to shipping and billing details, it contains an `items` array of one or more **ItemRequest** objects, which represent the shipment’s tax-relevant contents. Multi-address orders, in which items ship to or from multiple addresses, require at least one **DocumentRequest** per combination of sender-recipient addresses. These are similar to "consignments" or "shipments" in other BigCommerce APIs.'
       title: DocumentRequest
-      x-internal: true
+      x-internal: false
       properties:
         id:
           type: string
@@ -1329,7 +1329,7 @@ components:
               description: 'Specifies the reason for the adjustment operation, for auditing purposes. May be a custom, user-entered description.'
         - $ref: '#/components/schemas/request-quote'
       title: AdjustRequest
-      x-internal: true
+      x-internal: false
     Address:
       type: object
       description: 'Requests may have partial Address data. For example, the BigCommerce Cart page has the "Estimate Shipping & Tax" feature which is only expected to supply Country, Region and Postal Code.'
@@ -1373,7 +1373,7 @@ components:
           enum:
             - RESIDENTIAL
             - COMMERCIAL
-      x-internal: true
+      x-internal: false
     destination_address:
       type: object
       description: 'Requests may have partial Address data. For example, the BigCommerce Cart page has the "Estimate Shipping & Tax" feature which is only expected to supply Country, Region and Postal Code.'
@@ -1417,7 +1417,7 @@ components:
           enum:
             - RESIDENTIAL
             - COMMERCIAL
-      x-internal: true
+      x-internal: false
     origin_address:
       type: object
       description: 'Requests may have partial Address data. For example, the BigCommerce Cart page has the "Estimate Shipping & Tax" feature which is only expected to supply Country, Region and Postal Code.'
@@ -1461,7 +1461,7 @@ components:
           enum:
             - RESIDENTIAL
             - COMMERCIAL
-      x-internal: true
+      x-internal: false
     TaxClass:
       type: object
       properties:
@@ -1478,7 +1478,7 @@ components:
         - code
         - class_id
         - name
-      x-internal: true
+      x-internal: false
     response-quote:
       type: object
       properties:
@@ -1494,11 +1494,11 @@ components:
         - id
         - documents
       title: Quote
-      x-internal: true
+      x-internal: false
     response-document:
       type: object
       title: Document
-      x-internal: true
+      x-internal: false
       properties:
         id:
           type: string
@@ -1545,7 +1545,7 @@ components:
         - id
         - price
         - type
-      x-internal: true
+      x-internal: false
     response-item-wrapping:
       type: object
       description: |-
@@ -1573,7 +1573,7 @@ components:
         - id
         - price
         - type
-      x-internal: true
+      x-internal: false
     response-taxprice:
       type: object
       properties:
@@ -1602,7 +1602,7 @@ components:
         - tax_rate
         - sales_tax_summary
       title: TaxPrice
-      x-internal: true
+      x-internal: false
     SalesTax:
       type: object
       properties:
@@ -1633,7 +1633,7 @@ components:
         - name
         - rate
         - amount
-      x-internal: true
+      x-internal: false
   securitySchemes:
     Authorization:
       type: http
