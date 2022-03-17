@@ -1013,7 +1013,7 @@ components:
         - quantity
         - type
       x-internal: true
-    request-item-wrapping:
+    items:
       type: object
       description: 'An **ItemRequestWrapping** represents required information relating to completing tax calculations for a specific line item, including the information used to calculate wrapping tax.'
       title: ItemRequestWrapping
@@ -1139,7 +1139,7 @@ components:
           description: Collection of one or more items contained within this consignment that need to be assessed for tax liabilities.
           type: array
           items:
-            $ref: '#/components/schemas/request-item-wrapping'
+            $ref: '#/components/schemas/items'
       required:
         - id
         - destination_address
