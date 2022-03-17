@@ -1028,7 +1028,9 @@ components:
           format: date-time
           description: ISO 8601 formatted date the shopper placed this order. Dates will be provided in UTC.
         documents:
-          $ref: '#/components/schemas/request-document'
+          type: array
+          items:
+            $ref: '#/components/schemas/request-document'
       required:
         - id
         - currency_code
