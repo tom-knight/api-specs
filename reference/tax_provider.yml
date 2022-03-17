@@ -1326,6 +1326,7 @@ components:
     response-document:
       type: object
       title: Document
+      x-internal: true
       properties:
         id:
           type: string
@@ -1337,7 +1338,7 @@ components:
           type: array
           description: Collection of items contained within this consignment that have had tax liabilities calculated.
           items:
-            $ref: '#/components/schemas/response-item-wrapping'
+            $ref: '#/components/schemas/items'
         shipping:
           $ref: '#/components/schemas/response-item'
         handling:
@@ -1347,7 +1348,6 @@ components:
         - items
         - shipping
         - handling
-      x-internal: true
     response-item:
       type: object
       description: |-
