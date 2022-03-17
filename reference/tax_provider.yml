@@ -901,7 +901,7 @@ components:
         - quantity
         - type
       x-internal: true
-    request-item2:
+    shipping:
       type: object
       description: An **ItemRequest** represents required information relating to completing tax calculations for a specific line item.
       title: ItemRequest
@@ -1076,7 +1076,7 @@ components:
         origin_address:
           $ref: '#/components/schemas/origin_address'
         shipping:
-          $ref: '#/components/schemas/request-item2'
+          $ref: '#/components/schemas/shipping'
         handling:
           $ref: '#/components/schemas/request-item'
         items:
