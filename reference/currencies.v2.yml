@@ -283,7 +283,7 @@ definitions:
   currency_Post:
     $ref: '#/definitions/currency_Base'
     title: currency_Post
-    x-internal: true
+    x-internal: false
   currency_Base:
     title: currency_Base
     example:
@@ -383,11 +383,11 @@ definitions:
       - thousands_token
       - decimal_places
       - name
-    x-internal: true
+    x-internal: false
   currency_Put:
     $ref: '#/definitions/currency_Post'
     title: currency_Put
-    x-internal: true
+    x-internal: false
   currency_Full:
     title: currency_Full
     allOf:
@@ -402,7 +402,7 @@ definitions:
             type: string
             description: 'Date the currency was last updated, created or modified.'
             format: date-time
-    x-internal: true
+    x-internal: false
 tags:
   - name: /currencies
     description: ''

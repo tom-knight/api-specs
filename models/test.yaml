@@ -3,4 +3,4 @@ type: object
 properties:
   id:
     type: string
-x-internal: true
+x-internal: false
