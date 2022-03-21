@@ -8089,6 +8089,7 @@ paths:
           required: true
       tags:
         - Product Modifier Values
+      x-internal: true
   '/stores/{store_hash}/v3/catalog/products/{product_id}/modifiers/{modifier_id}/values/{value_id}/image':
     parameters:
       - name: product_id
