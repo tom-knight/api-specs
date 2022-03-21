@@ -487,7 +487,7 @@ servers:
 x-stoplight:
   docs:
     includeDownloadLink: true
-    showModels: false
+    showSchemas: false
 components:
   schemas:
     BaseError:
@@ -1028,6 +1028,67 @@ components:
       title: PageFull
       allOf:
         - $ref: '#/components/schemas/Page'
+    anyTypePage:
+      type: object
+      description: |
+        Properties of all Pages V3 pages.
+      properties:
+        id:
+          type: integer
+
+        channel_id:
+          type: integer
+
+        name:
+          type: string
+
+        type:
+          type: string
+          description: |-
+            Indicates the type of the Page object. The required properties for a Page vary based on its type. 
+            The Page object represents
+
+            |Value|Description|
+            |-|-|
+            |`page`|a user-defined plain-text page|
+            |`raw`|a user-defined page that contains markup, such as HTML.|
+            |`contact_form`|a page that contains a contact form|
+            |`feed`|contains syndicated content from an RSS feed|
+            |`link`|link to another absolute URL|
+            | `blog` | blog page. Read-only; blog pages can only be created in the store control panel. |
+          example: page
+          enum:
+            - page
+            - raw
+            - contact_form
+            - feed
+            - link
+            - blog
+
+        is_visible:
+          type: boolean
+
+        parent_id:
+          type: integer
+
+        sort_order:
+          type: integer
+
+        is_homepage:
+          type: boolean
+
+        is_customers_only:
+          type: boolean
+
+        
+    typePage:
+      type: object
+      description: |
+        Schema for a Pages V3 page with `type: page`
+      properties:
+        
+      required:
+        - 
   responses:
     HTTP200:
       description: ''
