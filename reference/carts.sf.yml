@@ -32,7 +32,7 @@ paths:
       summary: Create a Cart
       description: |-
         Creates a *Cart*.
-
+ 
         <!-- theme: info -->
         > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
@@ -259,30 +259,34 @@ paths:
 components:
   schemas:
     responseCartCoupons:
-      description: ''
-      type: object
-      properties:
-        code:
-          type: string
-          minLength: 1
-        couponType:
-          type: number
-        discountedAmount:
-          type: number
-        id:
-          type: string
-          minLength: 1
-      required:
-        - code
-        - couponType
-        - discountedAmount
-        - id
-      x-examples:
-        example-1:
-          code: string
-          couponType: 0
-          discountedAmount: -3.402823669209385e+38
-          id: string
+      title: Response Cart Coupons
+      type: array
+      items:
+        required:
+          - code
+        type: object
+        properties:
+          code:
+            type: string
+            description: The coupon code.
+          couponType:
+            type: integer
+            description: |-
+              |Type `int`|Type Name|
+              |-|-|
+              |`0`|`per_item_discount`|
+              |`1`|`percentage_discount`|
+              |`2`|`per_total_discount`|
+              |`3`|`shipping_discount`|
+              |`4`|`free_shipping`|
+              |`5`|`promotion`|
+          discountedAmount:
+            type: number
+            description: The discounted amount applied within a given context.
+            format: float
+          id:
+            type: string
+            description: The coupon ID.
       x-internal: false
     responseCartDiscounts:
       title: responseCartDiscounts
@@ -349,6 +353,7 @@ components:
         locale:
           type: string
           description: Locale of the cart.
+      x-internal: false
     requestCart:
       title: Create Cart Request Object
       description: Cart object used in create cart requests.
@@ -380,6 +385,8 @@ components:
           required:
             - lineItems
             - giftCertificates
+      type: object
+      x-internal: false
     responseCartLineItemsPhysicalItemGiftWrapping:
       title: Gift Wrapping
       type: object
@@ -494,7 +501,11 @@ components:
       properties:
         string:
           type: string
-          minLength: 1
+          description: 'ISO-4217 currency code. (See: http://en.wikipedia.org/wiki/ISO_4217.)'
+          format: ISO-4217
+      description: This will always be the same between cart and checkout.
+      x-go-gen-location: models
+      x-internal: false
     responseCartLineItems:
       title: Response Line Items Object
       type: object

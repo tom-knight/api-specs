@@ -10878,14 +10878,13 @@ paths:
             description: |
               Response payload for the BigCommerce API.
             type: object
+            title: Product Review Response
             properties:
               data:
-                type: object
                 description: |
                   A product review model.
                 allOf:
-                  - type: object
-                    title: Product Review Base
+                  - title: Product Review Base
                     properties:
                       title:
                         type: string
@@ -10921,15 +10920,10 @@ paths:
                     required:
                       - title
                       - date_reviewed
-                  - type: object
-                    properties:
+                  - properties:
                       id:
                         description: |
                           The unique numeric ID of the product review; increments sequentially.
-                        type: integer
-                      product_id:
-                        description: |
-                          The unique numeric identifier for the product with which the review is associated.
                         type: integer
                       date_created:
                         type: string
@@ -10942,11 +10936,11 @@ paths:
                         description: |
                           Date the product review was modified.
                 title: Product Review
+                type: object
               meta:
                 type: object
                 description: Empty meta object; may be used later.
                 title: Meta
-            title: Product Review Response
           examples:
             application/json:
               data:
@@ -18918,6 +18912,9 @@ definitions:
       mpn:
         type: string
         description: The Manufacturer Part Number (MPN) for the variant.
+      gtin:
+        type: string
+        example: '012345678905'
     x-internal: false
   productVariant_Full:
     allOf:
@@ -18959,53 +18956,53 @@ definitions:
             type: number
             format: double
             description: The cost price of the variant. Not affected by Price List prices.
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           price:
             type: number
             format: double
             description: 'This variant’s base price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is `null`, the product’s default price (set in the Product resource’s `price` field) will be used as the base price.'
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           sale_price:
             type: number
             format: double
             description: 'This variant’s sale price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s sale price (set in the Product resource’s `price` field) will be used as the sale price.'
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           retail_price:
             type: number
             format: double
             description: 'This variant’s retail price on the storefront. If a Price List ID is used, the Price List value will be used. If a Price List ID is not used, and this value is null, the product’s retail price (set in the Product resource’s `price` field) will be used as the retail price.'
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           weight:
             type: number
             format: double
             description: 'This variant’s base weight on the storefront. If this value is null, the product’s default weight (set in the Product resource’s weight field) will be used as the base weight.'
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           width:
             type: number
             format: double
             description: |
               Width of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default width (set in the Product resource's `width` field) will be used as the base width.
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           height:
             type: number
             format: double
             description: |
               Height of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default height (set in the Product resource's `height` field) will be used as the base height.
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           depth:
             type: number
             format: double
             description: |
               Depth of the variant, which can be used when calculating shipping costs. If this value is `null`, the product's default depth (set in the Product resource's `depth` field) will be used as the base depth.
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           is_free_shipping:
             type: boolean
             description: |
@@ -19015,8 +19012,8 @@ definitions:
             format: double
             description: |
               A fixed shipping cost for the variant. If defined, this value will be used during checkout instead of normal shipping-cost calculation.
-            x-nullable: true
             minimum: 0
+            x-nullable: true
           purchasing_disabled:
             type: boolean
             description: 'If `true`, this variant will not be purchasable on the storefront.'
@@ -19040,12 +19037,20 @@ definitions:
           bin_picking_number:
             type: string
             description: Identifies where in a warehouse the variant is located.
-            x-nullable: true
             minLength: 0
             maxLength: 255
+            x-nullable: true
           image_url:
             type: string
             description: Publicly available image url
+          gtin:
+            type: string
+            example: '012345678905'
+            description: Global Trade Item Number
+          mpn:
+            type: string
+            description: Manufacturer Part Number
+            example: HV-HM02
       - properties:
           product_id:
             type: integer
@@ -19065,8 +19070,8 @@ definitions:
             items:
               $ref: '#/definitions/productVariantOptionValue_Full'
     title: productVariant_Post
-    type: object
     x-internal: false
+    type: object
   variantCollection_Put:
     type: array
     title: variantCollection_Put
@@ -20016,6 +20021,8 @@ definitions:
   metafield_Base:
     type: object
     title: metafield_Base
+    description: 'Metafield for products, categories, variants, and brands. The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.'
+    x-internal: false
     properties:
       id:
         type: integer
@@ -20042,7 +20049,7 @@ definitions:
       namespace:
         type: string
         description: |
-          Namespace for the metafield, for organizational purposes. This is set set by the developer. Required for POST.
+          Namespace for the metafield, for organizational purposes. This is set by the developer. Required for POST.
         x-required:
           - post
         minLength: 1
@@ -20111,8 +20118,6 @@ definitions:
       - namespace
       - key
       - value
-    description: 'Metafield for products, categories, variants, and brands. The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.'
-    x-internal: false
   complexRule_Base:
     type: object
     description: Common ComplexRule properties.

@@ -1318,10 +1318,10 @@ components:
         - created
       type: object
       x-internal: false
-    store_customer_address_created:
-      title: store/customer/address/created
+    store_customer_address_updated:
+      title: store/customer/address/updated
       description: |-
-        This webhook fires when a customer address is created.
+        This webhook fires when a customer address is updated.
 
         ### Example callback:
 
@@ -1330,7 +1330,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/customer/address/created",
+          "scope": "store/customer/address/updated",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "customer",
@@ -1371,10 +1371,10 @@ components:
         - created
       type: object
       x-internal: false
-    store_customer_address_updated:
-      title: store/customer/address/updated
+    store_customer_address_created:
+      title: store/customer/address/created
       description: |-
-        This webhook fires when a customer address is updated.
+        This webhook fires when a customer address is created.
 
         ### Example callback:
 
@@ -1383,7 +1383,7 @@ components:
           "created_at": 1561482670,
           "store_id": "1025646",
           "producer": "stores/{store_hash}",
-          "scope": "store/customer/address/updated",
+          "scope": "store/customer/address/created",
           "hash": "352e4afc6dd3fc85ea26bfdf3f91852604d57528",
           "data": {
             "type": "customer",
