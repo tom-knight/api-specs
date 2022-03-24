@@ -8227,29 +8227,6 @@ paths:
       summary: Create Modifier Image
       tags:
         - Product Modifier Images
-    delete:
-      description: |-
-        Deletes a *Modifier Image*.
-
-        Deletes the image that was set to show when the modifier value is selected.
-      operationId: deleteModifierImage
-      responses:
-        '204':
-          description: ''
-      summary: Delete Modifier Image
-      parameters:
-        - in: header
-          type: string
-          name: Accept
-          default: application/json
-          required: true
-        - name: Content-Type
-          in: header
-          type: string
-          default: application/json
-          required: true
-      tags:
-        - Product Modifier Images
   '/stores/{store_hash}/v3/catalog/products/{product_id}/complex-rules':
     parameters:
       - name: product_id
