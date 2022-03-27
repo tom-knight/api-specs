@@ -3421,6 +3421,7 @@ components:
           type: string
           example: Towel Type 1
           description: The product name that is shown to merchant in Control Panel.
+      x-internal: false
     orderCount:
       title: orderCount
       example:
@@ -3566,7 +3567,7 @@ components:
             - shipping
             - handling
             - gift-wrapping
-          description: Type of tax on item.
+          description: Type of tax on item
       x-internal: false
     orderShipment:
       title: orderShipment

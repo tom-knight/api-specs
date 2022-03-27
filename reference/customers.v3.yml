@@ -3647,9 +3647,9 @@ components:
           description: Identifies whether this stored instrument is default for the customer.
         email:
           type: string
-          description: PayPal email address.
-          example: bc-buyer-paypal-express@example.com
-      description: A PayPal account stored instrument.
+          description: PayPal email address
+          example: bc-buyer-paypal-express@bigcommerce.com
+      description: A PayPal account stored instrument
       x-internal: false
     BankAccountInstrument:
       type: object
@@ -3675,7 +3675,7 @@ components:
           type: string
           description: Issuer identifier for the account.
           example: DE001
-      description: A stored bank account instrument.
+      description: A stored bank account instrument
       x-internal: false
     BillingAddress:
       type: object
@@ -3830,7 +3830,7 @@ components:
           description: Customer password.
         channel_id:
           type: integer
-          description: ChannelId to check the customer credentials against - If this field is empty we will use channel 1.
+          description: ChannelId to check the customer credentials against - If this field is empty we will use channel 1
       x-internal: false
     ValidateCustomerCredentialsResponseObject:
       title: ValidateCustomerCredentialsResponseObject
@@ -3842,5 +3842,5 @@ components:
           description: Returns the customer ID.
         is_valid:
           type: boolean
-          description: indicates if the provided credentials are valid.
+          description: indicates if the provided credentials are valid
       x-internal: false
