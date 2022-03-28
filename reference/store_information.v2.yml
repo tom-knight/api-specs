@@ -415,7 +415,7 @@ components:
           type: boolean
         date_format:
           $ref: '#/components/schemas/DateFormat'
-      x-internal: false
+      x-internal: true
     DateFormat:
       title: Date Format
       type: object
@@ -432,7 +432,7 @@ components:
           description: 'string that defines dates’ extended-display format, in the pattern: M jS Y @ g:i A.'
           example: 'M jS Y @ g:i A'
           type: string
-      x-internal: false
+      x-internal: true
     timeStamp_Full:
       type: object
       properties:
@@ -442,4 +442,4 @@ components:
           minimum: 0
       description: Store Time in Unix format.
       title: timeStamp_Full
-      x-internal: false
+      x-internal: true

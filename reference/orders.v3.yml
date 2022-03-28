@@ -1096,7 +1096,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PreferredOutcome'
-      x-internal: false
+      x-internal: true
     Reason:
       type: object
       properties:
@@ -1109,7 +1109,7 @@ components:
         is_archived:
           type: boolean
           description: Indicates whether or not the reason has been archived
-      x-internal: false
+      x-internal: true
     PreferredOutcome:
       type: object
       properties:
@@ -1122,7 +1122,7 @@ components:
         is_archived:
           type: boolean
           description: Indicates whether or not the outcome has been archived
-      x-internal: false
+      x-internal: true
     CreateReturnRequest:
       type: object
       required:
@@ -1137,7 +1137,7 @@ components:
           description: A comment provided to the merchant for review
           type: string
       title: CreateReturnRequest
-      x-internal: false
+      x-internal: true
     CreateReturnRequestItem:
       type: object
       required:
@@ -1157,7 +1157,7 @@ components:
         reason_id:
           type: integer
           format: int64
-      x-internal: false
+      x-internal: true
     CreateReturn:
       $ref: '#/components/schemas/Return_Full'
     Return_Full:
@@ -1193,7 +1193,7 @@ components:
         date_modified:
           type: string
           format: date-time
-      x-internal: false
+      x-internal: true
     ReturnItem:
       type: object
       description: A view of a return item
@@ -1252,7 +1252,7 @@ components:
             rejected_quantity:
               type: integer
               description: The quantity of items rejected by the merchant
-      x-internal: false
+      x-internal: true
     StatusUpdate_Full:
       type: object
       properties:
@@ -1263,7 +1263,7 @@ components:
         new_status:
           $ref: '#/components/schemas/Status_Full'
       title: StatusUpdate_Full
-      x-internal: false
+      x-internal: true
     Status_Full:
       type: string
       enum:
@@ -1272,13 +1272,13 @@ components:
         - REMOVED
       description: The status of the return.
       title: Status_Full
-      x-internal: false
+      x-internal: true
     UpdateReturnStatusesRequest:
       type: array
       items:
         $ref: '#/components/schemas/StatusUpdate_Full'
       title: UpdateReturnStatusesRequest
-      x-internal: false
+      x-internal: true
     UpdateReturnStatuses:
       type: array
       items:
@@ -1290,7 +1290,7 @@ components:
             description: The ID of the return for which the status was updated
           status:
             $ref: '#/components/schemas/Status_Full'
-      x-internal: false
+      x-internal: true
     Problem:
       type: object
       properties:
@@ -1304,7 +1304,7 @@ components:
           type: string
           format: url
           description: A resource describing the problem
-      x-internal: false
+      x-internal: true
     BatchOperationMeta:
       type: object
       properties:
@@ -1317,7 +1317,7 @@ components:
         failed:
           type: integer
           description: The number of failed operations in the batch
-      x-internal: false
+      x-internal: true
     Pagination:
       type: object
       description: 'Data about the response, including pagination and collection totals.'
@@ -1366,7 +1366,7 @@ components:
               type: string
               description: |
                 Link to the next page returned in the response.
-      x-internal: false
+      x-internal: true
     ReceivedItems_Put:
       type: array
       items:
@@ -1387,7 +1387,7 @@ components:
             type: integer
             description: The quantity of items to be marked as pending
       title: ReceivedItems_Put
-      x-internal: false
+      x-internal: true
     ReceivedItems_Base:
       type: array
       items:
@@ -1406,7 +1406,7 @@ components:
             format: int64
             description: The quantity of items marked as pending
       title: ReceivedItems_Base
-      x-internal: false
+      x-internal: true
     ReviewedItems_Put:
       type: array
       items:
@@ -1431,7 +1431,7 @@ components:
             type: integer
             description: The quantity of items to be marked as pending
       title: ReviewedItems_Put
-      x-internal: false
+      x-internal: true
     ReviewedItems_Base:
       type: array
       items:
@@ -1454,7 +1454,7 @@ components:
             format: int64
             description: The quantity of items marked as pending
       title: ReviewedItems_Base
-      x-internal: false
+      x-internal: true
     GetReturnableItems:
       type: array
       items:
@@ -1485,7 +1485,7 @@ components:
                   description: A displayable value for the option
               description: An item available for return
             description: A collection of options configured for the order product
-      x-internal: false
+      x-internal: true
     ItemReferenceId:
       type: object
       properties:
@@ -1500,7 +1500,7 @@ components:
       required:
         - type
         - value
-      x-internal: false
+      x-internal: true
     CollectionMeta:
       type: object
       description: 'Data about the response, including pagination and collection totals.'
@@ -1554,7 +1554,7 @@ components:
                   description: |
                     Link to the next page returned in the response.
       title: Collection Meta
-      x-internal: false
+      x-internal: true
     Meta:
       type: object
       title: Meta
@@ -1607,7 +1607,7 @@ components:
                   type: string
                   description: |
                     Link to the next page returned in the response.
-      x-internal: false
+      x-internal: true
     ErrorResponse:
       allOf:
         - $ref: '#/components/schemas/error_Base'
@@ -1619,13 +1619,13 @@ components:
                 type: string
               title: DetailedErrors
       title: ErrorResponse
-      x-internal: false
+      x-internal: true
     DetailedErrors:
       type: object
       additionalProperties:
         type: string
       title: DetailedErrors
-      x-internal: false
+      x-internal: true
     Transaction_Post:
       type: object
       title: Transaction_Post
@@ -1739,7 +1739,7 @@ components:
         - amount
         - currency
         - gateway
-      x-internal: false
+      x-internal: true
     NotFound:
       description: Error payload for the BigCommerce API.
       type: object
@@ -1756,7 +1756,7 @@ components:
         instance:
           type: string
       title: Not Found
-      x-internal: false
+      x-internal: true
     Transaction:
       description: A BigCommerce Transaction object describes a single transaction.
       allOf:
@@ -1987,7 +1987,7 @@ components:
                   format: float
                   example: 35.42
       title: Transaction
-      x-internal: false
+      x-internal: true
       type: object
     CreditCard:
       type: object
@@ -2034,7 +2034,7 @@ components:
           description: |
             The expiry year of a credit-card.
           type: integer
-      x-internal: false
+      x-internal: true
     StoreCredit:
       type: object
       description: |
@@ -2046,7 +2046,7 @@ components:
           type: number
           format: float
           example: 35.42
-      x-internal: false
+      x-internal: true
     Custom:
       type: object
       description: Custom payment from manual order.
@@ -2056,7 +2056,7 @@ components:
             Text entered for the payment method in the control panel.
           type: string
       title: Custom
-      x-internal: false
+      x-internal: true
     Offline:
       type: object
       description: 'Offline payment (e.g., check or purchase order).'
@@ -2066,12 +2066,12 @@ components:
             Display name for the offline payment.
           type: string
       title: Offline
-      x-internal: false
+      x-internal: true
     GiftCertificate:
       type: object
       description: A gift-certificate model.
       title: Gift Certificate
-      x-internal: false
+      x-internal: true
       properties:
         code:
           description: |
@@ -2125,7 +2125,7 @@ components:
           description: AVS Code for postal matching result.
           type: string
       title: AVS Results
-      x-internal: false
+      x-internal: true
     CVVResult:
       description: Card Verification Value result from the payment gateway.
       type: object
@@ -2137,7 +2137,7 @@ components:
           description: CVV message.
           type: string
       title: CVV Result
-      x-internal: false
+      x-internal: true
     NoContent:
       description: No-content response for the BigCommerce API.
       type: object
@@ -2154,11 +2154,11 @@ components:
         instance:
           type: string
       title: No Content
-      x-internal: false
+      x-internal: true
     metaEmpty_Full:
       type: object
       title: metaEmpty_Full
-      x-internal: false
+      x-internal: true
       properties:
         meta:
           type: object
@@ -2188,14 +2188,14 @@ components:
           format: int32
         links:
           $ref: '#/components/schemas/links_Full'
-      x-internal: false
+      x-internal: true
     metaCollection_Full:
       type: object
       title: metaCollection_Full
       properties:
         pagination:
           $ref: '#/components/schemas/pagination_Full'
-      x-internal: false
+      x-internal: true
     links_Full:
       type: object
       properties:
@@ -2213,7 +2213,7 @@ components:
           description: |
             Link to the next page returned in the response.
       title: links_Full
-      x-internal: false
+      x-internal: true
     error_Base:
       type: object
       title: error_Base
@@ -2229,7 +2229,7 @@ components:
         type:
           type: string
       description: Error payload for the BigCommerce API.
-      x-internal: false
+      x-internal: true
     errorDetailed_Full:
       type: object
       properties:
@@ -2239,14 +2239,14 @@ components:
             type: string
           title: DetailedErrors
       title: errorDetailed_Full
-      x-internal: false
+      x-internal: true
     PostRefundQuotesRequest:
       type: array
       description: Request body for batch refund quotes.
       title: Refund Quotes Request - BATCH
       items:
         $ref: '#/components/schemas/RefundQuote_Post'
-      x-internal: false
+      x-internal: true
     RefundQuote_Post:
       type: object
       title: RefundQuote_Post
@@ -2261,7 +2261,7 @@ components:
       required:
         - order_id
         - items
-      x-internal: false
+      x-internal: true
     RefundQuote_Full:
       type: object
       title: RefundQuote_Full
@@ -2343,7 +2343,7 @@ components:
             >
           items:
             $ref: '#/components/schemas/RefundMethod'
-      x-internal: false
+      x-internal: true
     RefundRequest_Post:
       type: object
       description: Request body for refund requests.
@@ -2364,14 +2364,14 @@ components:
       required:
         - items
         - payments
-      x-internal: false
+      x-internal: true
     PostRefundsRequest:
       type: array
       description: Request body for batch refunds
       title: Refunds Request - BATCH
       items:
         $ref: '#/components/schemas/RefundRequest_Post'
-      x-internal: false
+      x-internal: true
     FailedQuoteError:
       type: object
       description: Failed quote response.
@@ -2386,7 +2386,7 @@ components:
           type: string
           description: details why the request failed
       title: FailedQuoteError
-      x-internal: false
+      x-internal: true
     ItemsRefund:
       title: ItemsRefund
       type: array
@@ -2395,7 +2395,7 @@ components:
           - $ref: '#/components/schemas/AmountBoundItem'
           - $ref: '#/components/schemas/QuantityBoundItem'
           - $ref: '#/components/schemas/TaxExemptItem'
-      x-internal: false
+      x-internal: true
     PaymentRequest:
       type: object
       properties:
@@ -2418,14 +2418,14 @@ components:
             "offline": true
         }
       title: Payment Request
-      x-internal: false
+      x-internal: true
     RefundMethod:
       type: array
       minItems: 1
       items:
         $ref: '#/components/schemas/PaymentOption'
       title: Refund Method
-      x-internal: false
+      x-internal: true
     QuantityBoundItem:
       type: object
       title: Quantity Bound Item
@@ -2454,7 +2454,7 @@ components:
           description: Reason for refund
           minLength: 0
           maxLength: 1000
-      x-internal: false
+      x-internal: true
     TaxExemptItem:
       type: object
       title: Tax Exempt (Order Level)
@@ -2473,7 +2473,7 @@ components:
           description: Reason for the refund.
           minLength: 0
           maxLength: 1000
-      x-internal: false
+      x-internal: true
     AmountBoundItem:
       type: object
       title: Amount Bound Item
@@ -2501,7 +2501,7 @@ components:
           type: string
           minLength: 0
           maxLength: 1000
-      x-internal: false
+      x-internal: true
     MerchantOverride:
       type: object
       title: Merchant Calculated Override
@@ -2522,7 +2522,7 @@ components:
       required:
         - total_amount
         - total_tax
-      x-internal: false
+      x-internal: true
     Refund:
       type: object
       title: Refund
@@ -2566,7 +2566,7 @@ components:
           minItems: 1
           items:
             $ref: '#/components/schemas/RefundPayment'
-      x-internal: false
+      x-internal: true
     RefundItem:
       type: object
       properties:
@@ -2591,7 +2591,7 @@ components:
         requested_amount:
           $ref: '#/components/schemas/Amount'
       title: Refund Item
-      x-internal: false
+      x-internal: true
     RefundPayment:
       type: object
       title: Refund Payment
@@ -2615,7 +2615,7 @@ components:
         declined_message:
           type: string
           description: Message indicate why payment was declined
-      x-internal: false
+      x-internal: true
     PaymentOption:
       type: object
       example:
@@ -2651,21 +2651,21 @@ components:
           type: string
           description: 'Reason the payment option is offline only, if applicable.'
           example: Multiple online refunds are not available
-      x-internal: false
+      x-internal: true
     Amount:
       type: number
       format: float
       description: A non-negative 2 decimal place rounded value that represents the amount that can be charged/refunded via payment providers.
       example: 1.99
       title: Amount
-      x-internal: false
+      x-internal: true
     AdjustmentAmount:
       type: number
       format: float
       description: 'A negative or positive 2 decimal place rounded value that represents the difference between the refund amount requested in the refund quote and the actual amount that is refundable on the order. This value is negative when the refund amount requested in the refund quote is more than the total refundable amount. This value is positive when the total refundable amount has increased, e.g. as a result of rounding.'
       example: -10.2
       title: Adjustment Amount
-      x-internal: false
+      x-internal: true
     MetaRefund:
       type: object
       title: MetaRefund
@@ -2677,7 +2677,7 @@ components:
         total:
           type: integer
       description: 'Describes refund failures, success and totals.'
-      x-internal: false
+      x-internal: true
     MetaFieldCollectionResponse:
       type: object
       description: |
@@ -2689,7 +2689,7 @@ components:
             $ref: '#/components/schemas/Metafield'
         meta:
           $ref: '#/components/schemas/CollectionMeta'
-      x-internal: false
+      x-internal: true
     MetafieldResponse:
       description: |
         Response payload for the BigCommerce API.
@@ -2699,7 +2699,7 @@ components:
           $ref: '#/components/schemas/Metafield'
         meta:
           $ref: '#/components/schemas/Meta'
-      x-internal: false
+      x-internal: true
     MetafieldBase:
       type: object
       description: |
@@ -2776,7 +2776,7 @@ components:
             - post
       required:
         - permission_set
-      x-internal: false
+      x-internal: true
     Metafield:
       type: object
       description: |
@@ -2799,14 +2799,14 @@ components:
               format: date-time
               description: |
                 Date and time when the metafield was last updated.
-      x-internal: false
+      x-internal: true
     MetafieldPost:
       type: object
       description: |
         The model for a POST to create metafield.
       allOf:
         - $ref: '#/components/schemas/MetafieldBase'
-      x-internal: false
+      x-internal: true
     MetafieldPut:
       type: object
       description: |
@@ -2823,7 +2823,7 @@ components:
               maximum: 10000000000
               required:
                 - put
-      x-internal: false
+      x-internal: true
     GlobalOrderSettings:
       type: object
       properties:

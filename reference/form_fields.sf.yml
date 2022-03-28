@@ -155,13 +155,13 @@ definitions:
         $ref: '#/definitions/FormFields'
       billingAddress:
         $ref: '#/definitions/FormFields'
-    x-internal: false
+    x-internal: true
   FormFields:
     type: array
     description: List of form fields for the group
     items:
       $ref: '#/definitions/FormField'
-    x-internal: false
+    x-internal: true
   FormField:
     type: object
     description: Form Field
@@ -231,7 +231,7 @@ definitions:
                   type: string
                 value:
                   type: string
-    x-internal: false
+    x-internal: true
 tags:
   - name: Form Fields
 basePath: /api/storefront
