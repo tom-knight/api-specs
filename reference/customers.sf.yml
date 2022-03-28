@@ -73,7 +73,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomFields'
-      x-internal: false
+      x-internal: true
     CustomFields:
       title: CustomFields
       type: object
@@ -82,7 +82,7 @@ components:
           type: string
         fieldValue:
           type: string
-      x-internal: false
+      x-internal: true
 x-stoplight:
   docs:
     includeDownloadLink: false
