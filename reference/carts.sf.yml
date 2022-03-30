@@ -250,6 +250,12 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/deleteCartsItems'
+  /carts/change-currency:
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses: {}
+      operationId: post-carts-change-currency
 components:
   schemas:
     responseCartCoupons:
