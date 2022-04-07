@@ -292,7 +292,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RefundRequest_Post'
+              type: object
+              properties: 
+                  data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/RefundRequest_Post'
         required: true
         x-examples:
           Quantity:
@@ -434,7 +439,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostRefundQuotesRequest'
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PostRefundQuotesRequest'
         required: true
         x-examples:
           application/json:
@@ -625,7 +635,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostRefundsRequest'
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                   $ref: '#/components/schemas/PostRefundsRequest'
             examples: {}
         required: true
         x-examples:
