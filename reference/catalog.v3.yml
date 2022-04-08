@@ -18792,7 +18792,7 @@ paths:
 
         **Usage Notes**
         * `channel_id` is required to create a *Category Tree*.
-      operationId: UpsertsCategoryTrees
+      operationId: UpsertCategoryTrees
       requestBody:
         required: true
         content:
