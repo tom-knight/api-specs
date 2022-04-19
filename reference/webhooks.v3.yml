@@ -135,12 +135,12 @@ x-stoplight:
 servers:
   - url: 'https://api.bigcommerce.com'
     variables:
-      $$.env.store_hash:
-        default: '{$$.env.store_hash}'
+      store_hash:
+        default: '{store_hash}'
   - url: 'https://api.bigcommerce.com'
     variables:
-      $$.env.store_hash:
-        default: '{$$.env.store_hash}'
+      store_hash:
+        default: '{store_hash}'
 components:
   parameters:
     WebhookId:
@@ -451,7 +451,7 @@ components:
         ### Example
 
         ```http
-        GET /stores/{$$.env.store_hash}/v3/catalog/summary
+        GET /stores/{store_hash}/v3/catalog/summary
         host: api.bigcommerce.com
         Content-Type: application/json
         X-Auth-Token: {access_token}
