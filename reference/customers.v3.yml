@@ -666,7 +666,6 @@ paths:
 
         **Required Fields**
         * **id** -- ID of the *Customer Address*
-        * **customer_id** -- ID of the *Customer*.
 
         **Limits**
         * Limit of **3** concurrent requests.
@@ -721,14 +720,12 @@ paths:
                     country_code: US
                     phone: '1234567890'
                     address_type: residential
-                    customer_id: 11
                     form_fields: 
                       - name: "test"
                         value: "test"
               example-2-form-fields:
                 value:
                   - id: 11
-                    customer_id: 11
                     form_fields: 
                       - name: "test"
                         value: "test"
@@ -746,7 +743,6 @@ paths:
               country_code: US
               phone: '1234567890'
               address_type: residential
-              customer_id: 23
       responses:
         '200':
           $ref: '#/components/responses/AddressCollectionResponsePostPut'
@@ -3367,11 +3363,6 @@ components:
           enum:
             - residential
             - commercial
-        customer_id:
-          description: The customer ID.
-          type: integer
-          format: int32
-          example: 1
         id:
           description: The unique numeric ID of the address.
           type: integer
@@ -3384,13 +3375,11 @@ components:
           items:
             $ref: "#/components/schemas/formFieldValue"  
       required:
-        - customer_id
         - id
       x-examples:
         example-1:
           value:
-            - customer_id: 1
-              id: 18
+            - id: 18
               first_name: sam
       x-internal: false
     address_Post:
