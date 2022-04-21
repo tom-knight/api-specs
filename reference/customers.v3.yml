@@ -22,7 +22,6 @@ x-stoplight:
     includeDownloadLink: false
     showModels: false
 security:
-  - X-Auth-Client: []
   - X-Auth-Token: []
 info:
   version: ''
