@@ -623,7 +623,6 @@ paths:
 
         **Notes**
         * A unique customer address is a combination of the following core address fields:
-          * **customer_id**
           * **first_name**
           * **last_name**
           * **company**
@@ -635,7 +634,7 @@ paths:
           * **country_code**
           * **state_or_province**
           * **postal_code**
-        * An attempt to update an address such that it becomes identical to another address that already exists will result in no change to the target address or custom form field values, an HTTP 200 return code, and the address will be absent from the response body.
+        * An attempt to update an address such that it becomes identical to another address that already exists will result in no change to the target address or custom form field values. The response will have an HTTP 200 return code, and the address will be absent from the response body.
       summary: Update a Customer Address
       operationId: CustomersAddressesPut
       deprecated: false
