@@ -1679,7 +1679,7 @@ paths:
                         email: example@email.com
                         company: Test Company
                         address1: 1 Sample Street
-                        address2: Appt 1
+                        address2: Apt 1
                         city: Las Vegas
                         postal_code: '90854'
                         state_or_province: Nevada
@@ -1754,7 +1754,7 @@ components:
                       - first_name: string
                         last_name: string
                         address1: Addr1
-                        addres2: ''
+                        address2: ''
                         city: string
                         state_or_province: string
                         postal_code: string
@@ -2736,7 +2736,7 @@ components:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
         accepts_product_review_abandoned_cart_emails:
           type: boolean
-          description: Determines if the customer is signed up to receive either product review or abandoned cart emails or recieve both emails.
+          description: Determines if the customer is signed up to receive either product review or abandoned cart emails or receive both emails.
         origin_channel_id: 
           type: integer
           description: Channel ID of the customer that has created the form.
@@ -2800,7 +2800,7 @@ components:
           $ref: '#/components/schemas/customerAuthentication_PostPut'
         accepts_product_review_abandoned_cart_emails:
           type: boolean
-          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or recieve both emails.
+          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or receive both emails.
         store_credit_amounts:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
         origin_channel_id: 
@@ -2877,7 +2877,7 @@ components:
           $ref: '#/components/schemas/customerAuthentication_PostPut'
         accepts_product_review_abandoned_cart_emails:
           type: boolean
-          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or recieve both emails.
+          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or receive both emails.
         store_credit_amounts:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
         origin_channel_id: 
@@ -3670,7 +3670,7 @@ components:
           example: 1 Sample Street
         address2:
           type: string
-          example: Appt 1
+          example: Apt 1
         city:
           type: string
           example: Las Vegas
