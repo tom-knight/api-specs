@@ -356,7 +356,7 @@ paths:
       description: |-
         Updates a *Checkout Line Item*. Updates an existing, single line item in the cart.
 
-        If a variant needs to be changed or updated, the product will need to be removed and re-added to the cart with the correct variants using the [Add Cart Line Items](/api-reference/cart-checkout/storefront-cart-api/cart-items/addcartlineitem) endpoint.
+        If a variant needs to be changed or updated, the product will need to be removed and re-added to the cart with the correct variants using the [Add Cart Line Items](/api-reference/storefront/carts/cart-items/addcartlineitem) endpoint.
 
 
         <!-- theme: info -->
@@ -1194,7 +1194,7 @@ paths:
         1. Add a new Consignment to Checkout.
           * Send a POST to Consignments with each shipping address and line items IDs. Each address can have its own line item IDs.
           * As part of the request URL make sure to add `include=consignments.availableShippingOptions` to return the available shipping options based on line items and shipping locations. This will return `availableShippingOptions` in the response.
-        2. [Update the Consignment](/api-reference/cart-checkout/storefront-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.
+        2. [Update the Consignment](/api-reference/storefront/checkouts/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.
         
         **Required Query**
         * consignments.availableShippingOptions
@@ -1203,7 +1203,7 @@ paths:
         * shipping_address (deprecated) or address
         * line_items
         
-        To learn more about creating a Checkout Consignment see [Working with the Fetch API](/api-docs/cart-and-checkout/working-sf-apis).
+        To learn more about creating a Checkout Consignment, see the [Carts and Checkouts Tutorial](/api-docs/storefront/tutorials/carts).
         
         <!-- theme: info --> 
         > #### Note
