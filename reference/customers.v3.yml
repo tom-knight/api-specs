@@ -31,23 +31,23 @@ info:
 
     ## Authentication
 
-    Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
+    Authenticate requests by passing an API account `access_token` in the `X-Auth-Token` HTTP header:
 
     ```http
-    GET /stores/{store_hash}/v3/customers
+    GET /stores/{{STORE_HASH}}/v3/customers
     host: api.bigcommerce.com
     Accept: application/json
-    X-Auth-Token: {access_token}
+    X-Auth-Token: {{ACCESS_TOKEN}}
     ```
 
-    |Header|Parameter|Description|
-    |-|-|-|
-    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+    | Header | Parameter | Description |
+    |:-------|:----------|:------------|
+    | `X-Auth-Token` | `access_token` | Obtained by creating an API account or installing an app in a BigCommerce control panel. |
 
     ### OAuth Scopes
 
     | UI Name                                      | Permission | Parameter                                     |
-    |----------------------------------------------|------------|-----------------------------------------------|
+    |:---------------------------------------------|:-----------|:----------------------------------------------|
     | Customers                                    | modify     | `store_v2_customers`                          |
     | Customers                                    | read-only  | `store_v2_customers_read_only`                |
     | Stored Payment Instruments                   | modify     | `store_stored_payment_instruments`            |
@@ -56,7 +56,7 @@ info:
     For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 
     ## Resources
-    * [Customer and Subscribers Overview](/api-docs/customers/customers-subscribers-overview).
+    * [Customer and Subscribers Overview](/api-docs/store-management/customers).
   contact: {}
 paths:
   '/stores/{store_hash}/v3/customers':
@@ -2764,31 +2764,6 @@ components:
       type: apiKey
       name: X-Auth-Token
       in: header
-      description: |-
-        ### OAuth Scopes
-        |  **UI Name** | **Permission** | **Parameter** |
-        | --- | --- | --- |
-        |  Customers | modify | `store_v2_customers` |
-        |  Customers | read-only | `store_v2_customers_read_only` |
-        | Stored Payment Instruments| modify | `store_stored_payment_instruments`|
-        | Stored Payment Instruments| read-only | `store_stored_payment_instruments_read_only` |
-
-        ### Headers
-
-        |Header|Parameter|Description|
-        |-|-|-|
-        |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
-
-        ### Example
-
-        ```http
-        GET /stores/{store_hash}/v3/catalog/summary
-        host: api.bigcommerce.com
-        Content-Type: application/json
-        X-Auth-Token: {access_token}
-        ```
-
-        * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
   schemas:
     Pagination:
       title: Pagination
