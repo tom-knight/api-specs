@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: ''
   title: Storefront Checkouts
-  description: Manage checkout operations and data via front-end JavaScript on BigCommerce stencil powered storefronts.
+  description: Manage checkout operations and data using front-end JavaScript on BigCommerce Stencil-powered storefronts.
 host: '{$$.env.store_domain}'
 basePath: /api/storefront
 consumes:
