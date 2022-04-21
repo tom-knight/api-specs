@@ -87,7 +87,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -158,7 +158,7 @@ paths:
                     postalCode: '96720'
                     phone: '8081234567'
                     customFields: []
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -260,7 +260,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -331,7 +331,7 @@ paths:
                     postalCode: '96720'
                     phone: '8081234567'
                     customFields: []
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -424,7 +424,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -495,7 +495,7 @@ paths:
                     postalCode: '96720'
                     phone: '8081234567'
                     customFields: []
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -563,10 +563,10 @@ paths:
                 discountAmount: 0
                 cartAmount: 112.93
                 coupons:
-                  - id: 1
+                  - id: 69791a88-85c9-4c19-8042-e537621e758a
                     code: S2549JM0Y
                     displayName: $5.00 off the order total
-                    couponType: per_total_discount
+                    couponType: 2
                     discountedAmount: 5
                 discounts:
                   - id: 69791a88-85c9-4c19-8042-e537621e8a55
@@ -582,7 +582,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 69791a88-85c9-4c19-8042-e537621e8a55
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 364
                       productId: 184
                       sku: SMA-RED
@@ -606,7 +606,7 @@ paths:
                       giftWrapping: {}
                       addedByPromotion: false
                     - id: ba2c619d-e6b4-48c2-8809-d88e424ed450
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 341
                       productId: 170
                       sku: ''
@@ -628,7 +628,7 @@ paths:
                       giftWrapping: {}
                       addedByPromotion: false
                     - id: c72d6651-978d-45e5-881b-c2bb5f7ff1d5
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 376
                       productId: 158
                       sku: SKU-A0C8A203
@@ -651,7 +651,7 @@ paths:
                       addedByPromotion: false
                   digitalItems:
                     - id: 6477a4a1-02cf-4287-8bf2-fd043bdd5234
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 360
                       productId: 189
                       name: Gather Journal Issue 7 - Digital
@@ -691,9 +691,9 @@ paths:
                 firstName: Jane
                 lastName: Doe
                 email: janedoe@example.com
-                company: {}
+                company: ''
                 address1: 123 Main Street
-                address2: {}
+                address2: ''
                 city: Austin
                 stateOrProvince: Texas
                 stateOrProvinceCode: TX
@@ -738,16 +738,16 @@ paths:
                     customFields:
                       - fieldId: field_25
                         fieldValue: Leave in backyard
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 69.94
               shippingCostBeforeDiscount: 69.94
               handlingCostTotal: 0
               taxTotal: 28.62
               coupons:
-                - id: 1
+                - id: 69791a88-85c9-4c19-8042-e537621e758a
                   code: S2549JM0Y
                   displayName: $5.00 off the order total
-                  couponType: per_total_discount
+                  couponType: 2
                   discountedAmount: 5
               taxes:
                 - name: Store Tax
@@ -827,7 +827,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -898,7 +898,7 @@ paths:
                     postalCode: '96720'
                     phone: '8081234567'
                     customFields: []
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -986,10 +986,10 @@ paths:
                 discountAmount: 0
                 cartAmount: 112.93
                 coupons:
-                  - id: 1
+                  - id: 69791a88-85c9-4c19-8042-e537621e758a
                     code: S2549JM0Y
                     displayName: $5.00 off the order total
-                    couponType: per_total_discount
+                    couponType: 2
                     discountedAmount: 5
                 discounts:
                   - id: 69791a88-85c9-4c19-8042-e537621e8a55
@@ -1005,7 +1005,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 69791a88-85c9-4c19-8042-e537621e8a55
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 364
                       productId: 184
                       sku: SMA-RED
@@ -1029,7 +1029,7 @@ paths:
                       giftWrapping: {}
                       addedByPromotion: false
                     - id: ba2c619d-e6b4-48c2-8809-d88e424ed450
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 341
                       productId: 170
                       sku: ''
@@ -1051,7 +1051,7 @@ paths:
                       giftWrapping: {}
                       addedByPromotion: false
                     - id: c72d6651-978d-45e5-881b-c2bb5f7ff1d5
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 376
                       productId: 158
                       sku: SKU-A0C8A203
@@ -1074,7 +1074,7 @@ paths:
                       addedByPromotion: false
                   digitalItems:
                     - id: 6477a4a1-02cf-4287-8bf2-fd043bdd5234
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 360
                       productId: 189
                       name: Gather Journal Issue 7 - Digital
@@ -1114,9 +1114,9 @@ paths:
                 firstName: Jane
                 lastName: Doe
                 email: janedoe@example.com
-                company: {}
+                company: ''
                 address1: 123 Main Street
-                address2: {}
+                address2: ''
                 city: Austin
                 stateOrProvince: Texas
                 stateOrProvinceCode: TX
@@ -1161,16 +1161,16 @@ paths:
                     customFields:
                       - fieldId: field_25
                         fieldValue: Leave in backyard
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 69.94
               shippingCostBeforeDiscount: 69.94
               handlingCostTotal: 0
               taxTotal: 28.62
               coupons:
-                - id: 1
+                - id: 69791a88-85c9-4c19-8042-e537621e758a
                   code: S2549JM0Y
                   displayName: $5.00 off the order total
-                  couponType: per_total_discount
+                  couponType: 2
                   discountedAmount: 5
               taxes:
                 - name: Store Tax
@@ -1276,7 +1276,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -1348,7 +1348,7 @@ paths:
                     phone: '8081234567'
                     customFields: []
                     shouldSaveAddress: true
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -1442,7 +1442,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -1514,7 +1514,7 @@ paths:
                     phone: '8081234567'
                     customFields: []
                     shouldSaveAddress: true
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -1582,7 +1582,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -1653,7 +1653,7 @@ paths:
                     postalCode: '96720'
                     phone: '8081234567'
                     customFields: []
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -1729,7 +1729,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -1800,7 +1800,7 @@ paths:
                     postalCode: '96720'
                     phone: '8081234567'
                     customFields: []
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -1917,7 +1917,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                      parentId: {}
+                      parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                       variantId: 345
                       productId: 174
                       sku: ''
@@ -1988,7 +1988,7 @@ paths:
                     postalCode: '96720'
                     phone: '8081234567'
                     customFields: []
-              orderId: {}
+              orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
               shippingCostTotal: 8
               shippingCostBeforeDiscount: 8
               handlingCostTotal: 0
@@ -2064,7 +2064,7 @@ paths:
                 lineItems:
                   physicalItems:
                     - id: 69791a88-85c9-4c19-8042-e537621e8a55
-                      parentId: null
+                      parentId: ''
                       variantId: 364
                       productId: 184
                       sku: SMA-RED
@@ -2083,10 +2083,10 @@ paths:
                       extendedListPrice: 15.99
                       extendedSalePrice: 13.99
                       isShippingRequired: true
-                      giftWrapping: null
+                      giftWrapping: {}
                       addedByPromotion: false
                     - id: ba2c619d-e6b4-48c2-8809-d88e424ed450
-                      parentId: null
+                      parentId: ''
                       variantId: 341
                       productId: 170
                       sku: ''
@@ -2103,10 +2103,10 @@ paths:
                       extendedListPrice: 25
                       extendedSalePrice: 25
                       isShippingRequired: true
-                      giftWrapping: null
+                      giftWrapping: {}
                       addedByPromotion: false
                     - id: c72d6651-978d-45e5-881b-c2bb5f7ff1d5
-                      parentId: null
+                      parentId: ''
                       variantId: 376
                       productId: 158
                       sku: SKU-A0C8A203
@@ -2123,11 +2123,11 @@ paths:
                       extendedListPrice: 49.99
                       extendedSalePrice: 49.99
                       isShippingRequired: true
-                      giftWrapping: null
+                      giftWrapping: {}
                       addedByPromotion: false
                   digitalItems:
                     - id: 6477a4a1-02cf-4287-8bf2-fd043bdd5234
-                      parentId: null
+                      parentId: ''
                       variantId: 360
                       productId: 189
                       name: Gather Journal Issue 7 - Digital
@@ -2165,9 +2165,9 @@ paths:
                 firstName: Jane
                 lastName: Doe
                 email: janedoe@example.com
-                company: null
+                company: ''
                 address1: 123 Main Street
-                address2: null
+                address2: ''
                 city: Austin
                 stateOrProvince: Texas
                 stateOrProvinceCode: TX
@@ -2238,7 +2238,7 @@ paths:
                     postalCode: '78751'
                     phone: '1234567890'
                     customFields: []
-              orderId: null
+              orderId: ''
               shippingCostTotal: 70.63
               shippingCostBeforeDiscount: 70.63
               handlingCostTotal: 0
@@ -2728,27 +2728,7 @@ definitions:
                 description: ''
                 type: array
                 items:
-                  title: Applied Coupon
-                  type: object
-                  properties:
-                    id:
-                      description: The coupon ID.
-                      type: string
-                    code:
-                      description: the coupon code
-                      type: string
-                    displayName:
-                      description: The coupon title based on different types provided in control panel section
-                      type: string
-                    couponType:
-                      description: Key name to identify the type of coupon.
-                      type: string
-                    discountedAmount:
-                      description: The discounted amount applied within a given context.
-                      type: number
-                      format: double
-                  required:
-                    - code
+                  $ref: '#/definitions/AppliedCoupon' 
               discounts:
                 description: ''
                 type: array
@@ -2765,301 +2745,298 @@ definitions:
                       format: double
               lineItems:
                 description: ''
-                type: array
-                items:
-                  title: Line Item
-                  type: object
-                  properties:
-                    physicalItems:
-                      description: ''
-                      type: array
-                      items:
-                        title: Item Physical
-                        type: object
-                        properties:
-                          id:
-                            description: The line-item ID.
-                            type: string
-                          parentId:
-                            description: 'The product is part of a bundle such as a product pick list, then the parentId or the main product id will populate.'
-                            type: string
-                          variantId:
-                            description: ID of the variant.
-                            type: number
-                            format: double
-                          productId:
-                            description: ID of the product.
-                            type: number
-                            format: double
-                          sku:
-                            description: SKU of the variant.
-                            type: string
-                          name:
-                            description: The item's product name.
-                            type: string
-                          url:
-                            description: The product URL.
-                            type: string
-                          quantity:
-                            description: Quantity of this item.
-                            type: number
-                            format: double
-                          isTaxable:
-                            description: Whether the item is taxable.
-                            type: boolean
-                          imageUrl:
-                            description: 'URL of an image of this item, accessible on the internet.'
-                            type: string
-                          discounts:
-                            description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
-                            type: array
-                            items:
-                              title: Applied Discount
-                              type: object
-                              properties:
-                                name:
-                                  description: The name provided by the merchant.
-                                  type: string
-                                discountedAmount:
-                                  description: The discounted amount applied within a given context.
-                                  type: number
-                                  format: double
-                          discountAmount:
-                            description: The total value of all discounts applied to this item (excluding coupon).
-                            type: number
-                            format: double
-                          couponAmount:
-                            description: The total value of all coupons applied to this item.
-                            type: number
-                            format: double
-                          listPrice:
-                            description: 'Item’s list price, as quoted by the manufacturer/distributor.'
-                            type: number
-                            format: double
-                          salePrice:
-                            description: Item's price after all discounts are applied. (The final price before tax calculation.)
-                            type: number
-                            format: double
-                          extendedListPrice:
-                            description: Item's list price multiplied by the quantity.
-                            type: number
-                            format: double
-                          extendedSalePrice:
-                            description: Item's sale price multiplied by the quantity.
-                            type: number
-                            format: double
-                          type:
-                            description: the product type - physical or digital
-                            type: string
-                          addedByPromotion:
-                            description: 'If the item was added automatically by a promotion such as a coupon or buy one, get one.'
-                            type: boolean
-                          isShippingRequired:
-                            description: Whether this item requires shipping to a physical address.
-                            type: boolean
-                          isMutable:
-                            description: ''
-                            type: boolean
-                          giftWrapping:
-                            title: Gift Wrapping
+                type: object
+                properties:
+                  physicalItems:
+                    description: ''
+                    type: array
+                    items:
+                      title: Item Physical
+                      type: object
+                      properties:
+                        id:
+                          description: The line-item ID.
+                          type: string
+                        parentId:
+                          description: 'The product is part of a bundle such as a product pick list, then the parentId or the main product id will populate.'
+                          type: string
+                        variantId:
+                          description: ID of the variant.
+                          type: number
+                          format: double
+                        productId:
+                          description: ID of the product.
+                          type: number
+                          format: double
+                        sku:
+                          description: SKU of the variant.
+                          type: string
+                        name:
+                          description: The item's product name.
+                          type: string
+                        url:
+                          description: The product URL.
+                          type: string
+                        quantity:
+                          description: Quantity of this item.
+                          type: number
+                          format: double
+                        isTaxable:
+                          description: Whether the item is taxable.
+                          type: boolean
+                        imageUrl:
+                          description: 'URL of an image of this item, accessible on the internet.'
+                          type: string
+                        discounts:
+                          description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
+                          type: array
+                          items:
+                            title: Applied Discount
                             type: object
                             properties:
                               name:
-                                description: ''
+                                description: The name provided by the merchant.
                                 type: string
-                              message:
-                                description: ''
-                                type: string
-                              amount:
-                                description: ''
+                              discountedAmount:
+                                description: The discounted amount applied within a given context.
                                 type: number
                                 format: double
-                        required:
-                          - quantity
-                    digitalItems:
-                      description: ''
-                      type: array
-                      items:
-                        title: Item Digital
-                        type: object
-                        properties:
-                          id:
-                            description: The line-item ID.
-                            type: string
-                          parentId:
-                            description: Bundled items will have their parent's item Id.
-                            type: string
-                          variantId:
-                            description: ID of the variant.
-                            type: number
-                            format: double
-                          productId:
-                            description: ID of the product.
-                            type: number
-                            format: double
-                          sku:
-                            description: SKU of the variant.
-                            type: string
-                          name:
-                            description: The item's product name.
-                            type: string
-                          url:
-                            description: The product URL.
-                            type: string
-                          quantity:
-                            description: Quantity of this item.
-                            type: number
-                            format: double
-                          brand:
-                            description: The item's brand.
-                            type: string
-                          isTaxable:
-                            description: Whether the item is taxable.
-                            type: boolean
-                          imageUrl:
-                            description: 'URL of an image of this item, accessible on the internet.'
-                            type: string
-                          discounts:
-                            description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
-                            type: array
-                            items:
-                              title: Applied Discount
-                              type: object
-                              properties:
-                                name:
-                                  description: The name provided by the merchant.
-                                  type: string
-                                discountedAmount:
-                                  description: The discounted amount applied within a given context.
-                                  type: number
-                                  format: double
-                          discountAmount:
-                            description: The total value of all discounts applied to this item (excluding coupon).
-                            type: number
-                            format: double
-                          couponAmount:
-                            description: The total value of all coupons applied to this item.
-                            type: number
-                            format: double
-                          listPrice:
-                            description: 'Item’s list price, as quoted by the manufacturer/distributor.'
-                            type: number
-                            format: double
-                          salePrice:
-                            description: Item's price after all discounts are applied. (The final price before tax calculation.)
-                            type: number
-                            format: double
-                          extendedListPrice:
-                            description: Item's list price multiplied by the quantity.
-                            type: number
-                            format: double
-                          extendedSalePrice:
-                            description: Item's sale price multiplied by the quantity.
-                            type: number
-                            format: double
-                          type:
-                            description: the product type - physical or digital
-                            type: string
-                          isMutable:
-                            description: ''
-                            type: boolean
-                          isShippingRequired:
-                            description: Whether this item requires shipping to a physical address.
-                            type: boolean
-                          downloadFileUrls:
-                            description: URLs to download all product files.
-                            type: array
-                            items:
+                        discountAmount:
+                          description: The total value of all discounts applied to this item (excluding coupon).
+                          type: number
+                          format: double
+                        couponAmount:
+                          description: The total value of all coupons applied to this item.
+                          type: number
+                          format: double
+                        listPrice:
+                          description: 'Item’s list price, as quoted by the manufacturer/distributor.'
+                          type: number
+                          format: double
+                        salePrice:
+                          description: Item's price after all discounts are applied. (The final price before tax calculation.)
+                          type: number
+                          format: double
+                        extendedListPrice:
+                          description: Item's list price multiplied by the quantity.
+                          type: number
+                          format: double
+                        extendedSalePrice:
+                          description: Item's sale price multiplied by the quantity.
+                          type: number
+                          format: double
+                        type:
+                          description: the product type - physical or digital
+                          type: string
+                        addedByPromotion:
+                          description: 'If the item was added automatically by a promotion such as a coupon or buy one, get one.'
+                          type: boolean
+                        isShippingRequired:
+                          description: Whether this item requires shipping to a physical address.
+                          type: boolean
+                        isMutable:
+                          description: ''
+                          type: boolean
+                        giftWrapping:
+                          title: Gift Wrapping
+                          type: object
+                          properties:
+                            name:
+                              description: ''
                               type: string
-                          downloadPageUrl:
-                            description: The URL for the combined downloads page.
-                            type: string
-                          downloadSize:
-                            description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
-                            type: string
-                        required:
-                          - quantity
-                    giftCertificate:
-                      type: array
-                      description: ''
-                      items:
-                        title: Item Gift Certificate
-                        type: object
-                        properties:
-                          id:
-                            description: Gift certificate identifier
-                            type: string
-                          name:
-                            description: Name of the purchased gift certificate e.g. $20 Gift Certificate
-                            type: string
-                          theme:
-                            description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
-                            type: string
-                          amount:
-                            description: 'Value must be between $1.00 and $1,000.00.'
-                            type: number
-                            format: double
-                          taxable:
-                            description: ''
-                            type: boolean
-                          sender:
-                            title: Contact Entity
+                            message:
+                              description: ''
+                              type: string
+                            amount:
+                              description: ''
+                              type: number
+                              format: double
+                      required:
+                        - quantity
+                  digitalItems:
+                    description: ''
+                    type: array
+                    items:
+                      title: Item Digital
+                      type: object
+                      properties:
+                        id:
+                          description: The line-item ID.
+                          type: string
+                        parentId:
+                          description: Bundled items will have their parent's item Id.
+                          type: string
+                        variantId:
+                          description: ID of the variant.
+                          type: number
+                          format: double
+                        productId:
+                          description: ID of the product.
+                          type: number
+                          format: double
+                        sku:
+                          description: SKU of the variant.
+                          type: string
+                        name:
+                          description: The item's product name.
+                          type: string
+                        url:
+                          description: The product URL.
+                          type: string
+                        quantity:
+                          description: Quantity of this item.
+                          type: number
+                          format: double
+                        brand:
+                          description: The item's brand.
+                          type: string
+                        isTaxable:
+                          description: Whether the item is taxable.
+                          type: boolean
+                        imageUrl:
+                          description: 'URL of an image of this item, accessible on the internet.'
+                          type: string
+                        discounts:
+                          description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
+                          type: array
+                          items:
+                            title: Applied Discount
                             type: object
                             properties:
                               name:
-                                description: ''
+                                description: The name provided by the merchant.
                                 type: string
-                              email:
-                                description: ''
-                                type: string
-                          recipient:
-                            title: Contact Entity
-                            type: object
-                            properties:
-                              name:
-                                description: ''
-                                type: string
-                              email:
-                                description: ''
-                                type: string
-                          message:
-                            description: Limited to 200 characters.
+                              discountedAmount:
+                                description: The discounted amount applied within a given context.
+                                type: number
+                                format: double
+                        discountAmount:
+                          description: The total value of all discounts applied to this item (excluding coupon).
+                          type: number
+                          format: double
+                        couponAmount:
+                          description: The total value of all coupons applied to this item.
+                          type: number
+                          format: double
+                        listPrice:
+                          description: 'Item’s list price, as quoted by the manufacturer/distributor.'
+                          type: number
+                          format: double
+                        salePrice:
+                          description: Item's price after all discounts are applied. (The final price before tax calculation.)
+                          type: number
+                          format: double
+                        extendedListPrice:
+                          description: Item's list price multiplied by the quantity.
+                          type: number
+                          format: double
+                        extendedSalePrice:
+                          description: Item's sale price multiplied by the quantity.
+                          type: number
+                          format: double
+                        type:
+                          description: the product type - physical or digital
+                          type: string
+                        isMutable:
+                          description: ''
+                          type: boolean
+                        isShippingRequired:
+                          description: Whether this item requires shipping to a physical address.
+                          type: boolean
+                        downloadFileUrls:
+                          description: URLs to download all product files.
+                          type: array
+                          items:
                             type: string
-                          type:
-                            description: Explicitly specifying the gift certificate type
-                            type: string
-                        required:
-                          - theme
-                          - amount
-                          - sender
-                          - recipient
-                    customItems:
-                      type: array
-                      items:
-                        type: object
-                        title: Item Custom
-                        description: |-
-                          Add a custom item to the shoppers cart.
-                          * Custom items are not added to the catalog.
-                          * The price should be set to match the store settings for taxes.
-                        properties:
-                          id:
-                            type: string
-                            description: Id of the custom item
-                          sku:
-                            type: string
-                            description: Custom item sku
-                          name:
-                            type: string
-                            description: Item name
-                          quantity:
-                            type: string
-                          listPrice:
-                            type: string
-                            description: Price of the item. With or without tax depending on your stores set up.
-                  required:
-                    - physicalItems
-                    - digitalItems
+                        downloadPageUrl:
+                          description: The URL for the combined downloads page.
+                          type: string
+                        downloadSize:
+                          description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
+                          type: string
+                      required:
+                        - quantity
+                  giftCertificate:
+                    type: array
+                    description: ''
+                    items:
+                      title: Item Gift Certificate
+                      type: object
+                      properties:
+                        id:
+                          description: Gift certificate identifier
+                          type: string
+                        name:
+                          description: Name of the purchased gift certificate e.g. $20 Gift Certificate
+                          type: string
+                        theme:
+                          description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
+                          type: string
+                        amount:
+                          description: 'Value must be between $1.00 and $1,000.00.'
+                          type: number
+                          format: double
+                        taxable:
+                          description: ''
+                          type: boolean
+                        sender:
+                          title: Contact Entity
+                          type: object
+                          properties:
+                            name:
+                              description: ''
+                              type: string
+                            email:
+                              description: ''
+                              type: string
+                        recipient:
+                          title: Contact Entity
+                          type: object
+                          properties:
+                            name:
+                              description: ''
+                              type: string
+                            email:
+                              description: ''
+                              type: string
+                        message:
+                          description: Limited to 200 characters.
+                          type: string
+                        type:
+                          description: Explicitly specifying the gift certificate type
+                          type: string
+                      required:
+                        - theme
+                        - amount
+                        - sender
+                        - recipient
+                  customItems:
+                    type: array
+                    items:
+                      type: object
+                      title: Item Custom
+                      description: |-
+                        Add a custom item to the shoppers cart.
+                        * Custom items are not added to the catalog.
+                        * The price should be set to match the store settings for taxes.
+                      properties:
+                        id:
+                          type: string
+                          description: Id of the custom item
+                        sku:
+                          type: string
+                          description: Custom item sku
+                        name:
+                          type: string
+                          description: Item name
+                        quantity:
+                          type: string
+                        listPrice:
+                          type: string
+                          description: Price of the item. With or without tax depending on your stores set up.
+                required:
+                  - physicalItems
+                  - digitalItems
               createdTime:
                 description: Time when the cart was created.
                 type: string
@@ -3668,27 +3645,7 @@ definitions:
         description: ''
         type: array
         items:
-          title: Applied Coupon
-          type: object
-          properties:
-            id:
-              description: The coupon ID.
-              type: string
-            code:
-              description: the coupon code
-              type: string
-            displayName:
-              description: The coupon title based on different types provided in control panel section
-              type: string
-            couponType:
-              description: Key name to identify the type of coupon.
-              type: string
-            discountedAmount:
-              description: The discounted amount applied within a given context.
-              type: number
-              format: double
-          required:
-            - code
+          $ref: '#/definitions/AppliedCoupon'
       discounts:
         description: ''
         type: array
@@ -3705,301 +3662,298 @@ definitions:
               format: double
       lineItems:
         description: ''
-        type: array
-        items:
-          title: Line Item
-          type: object
-          properties:
-            physicalItems:
-              description: ''
-              type: array
-              items:
-                title: Item Physical
-                type: object
-                properties:
-                  id:
-                    description: The line-item ID.
-                    type: string
-                  parentId:
-                    description: 'The product is part of a bundle such as a product pick list, then the parentId or the main product id will populate.'
-                    type: string
-                  variantId:
-                    description: ID of the variant.
-                    type: number
-                    format: double
-                  productId:
-                    description: ID of the product.
-                    type: number
-                    format: double
-                  sku:
-                    description: SKU of the variant.
-                    type: string
-                  name:
-                    description: The item's product name.
-                    type: string
-                  url:
-                    description: The product URL.
-                    type: string
-                  quantity:
-                    description: Quantity of this item.
-                    type: number
-                    format: double
-                  isTaxable:
-                    description: Whether the item is taxable.
-                    type: boolean
-                  imageUrl:
-                    description: 'URL of an image of this item, accessible on the internet.'
-                    type: string
-                  discounts:
-                    description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
-                    type: array
-                    items:
-                      title: Applied Discount
-                      type: object
-                      properties:
-                        name:
-                          description: The name provided by the merchant.
-                          type: string
-                        discountedAmount:
-                          description: The discounted amount applied within a given context.
-                          type: number
-                          format: double
-                  discountAmount:
-                    description: The total value of all discounts applied to this item (excluding coupon).
-                    type: number
-                    format: double
-                  couponAmount:
-                    description: The total value of all coupons applied to this item.
-                    type: number
-                    format: double
-                  listPrice:
-                    description: 'Item’s list price, as quoted by the manufacturer/distributor.'
-                    type: number
-                    format: double
-                  salePrice:
-                    description: Item's price after all discounts are applied. (The final price before tax calculation.)
-                    type: number
-                    format: double
-                  extendedListPrice:
-                    description: Item's list price multiplied by the quantity.
-                    type: number
-                    format: double
-                  extendedSalePrice:
-                    description: Item's sale price multiplied by the quantity.
-                    type: number
-                    format: double
-                  comparisonPrice:
-                    description: Item's comparison price
-                    type: number
-                  extendedComparisonPrice:
-                    description: Item's comparison price multiplied by the quantity.
-                    type: number
-                  type:
-                    description: the product type - physical or digital
-                    type: string
-                  addedByPromotion:
-                    description: 'If the item was added automatically by a promotion such as a coupon or buy one, get one.'
-                    type: boolean
-                  isShippingRequired:
-                    description: Whether this item requires shipping to a physical address.
-                    type: boolean
-                  isMutable:
-                    description: ''
-                    type: boolean
-                  giftWrapping:
-                    title: Gift Wrapping
+        type: object
+        properties:
+          physicalItems:
+            description: ''
+            type: array
+            items:
+              title: Item Physical
+              type: object
+              properties:
+                id:
+                  description: The line-item ID.
+                  type: string
+                parentId:
+                  description: 'The product is part of a bundle such as a product pick list, then the parentId or the main product id will populate.'
+                  type: string
+                variantId:
+                  description: ID of the variant.
+                  type: number
+                  format: double
+                productId:
+                  description: ID of the product.
+                  type: number
+                  format: double
+                sku:
+                  description: SKU of the variant.
+                  type: string
+                name:
+                  description: The item's product name.
+                  type: string
+                url:
+                  description: The product URL.
+                  type: string
+                quantity:
+                  description: Quantity of this item.
+                  type: number
+                  format: double
+                isTaxable:
+                  description: Whether the item is taxable.
+                  type: boolean
+                imageUrl:
+                  description: 'URL of an image of this item, accessible on the internet.'
+                  type: string
+                discounts:
+                  description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
+                  type: array
+                  items:
+                    title: Applied Discount
                     type: object
                     properties:
                       name:
-                        description: ''
+                        description: The name provided by the merchant.
                         type: string
-                      message:
-                        description: ''
-                        type: string
-                      amount:
-                        description: ''
+                      discountedAmount:
+                        description: The discounted amount applied within a given context.
                         type: number
                         format: double
-                required:
-                  - quantity
-            digitalItems:
-              description: ''
-              type: array
-              items:
-                title: Item Digital
-                type: object
-                properties:
-                  id:
-                    description: The line-item ID.
-                    type: string
-                  parentId:
-                    description: Bundled items will have their parent's item Id.
-                    type: string
-                  variantId:
-                    description: ID of the variant.
-                    type: number
-                    format: double
-                  productId:
-                    description: ID of the product.
-                    type: number
-                    format: double
-                  sku:
-                    description: SKU of the variant.
-                    type: string
-                  name:
-                    description: The item's product name.
-                    type: string
-                  url:
-                    description: The product URL.
-                    type: string
-                  quantity:
-                    description: Quantity of this item.
-                    type: number
-                    format: double
-                  isTaxable:
-                    description: Whether the item is taxable.
-                    type: boolean
-                  imageUrl:
-                    description: 'URL of an image of this item, accessible on the internet.'
-                    type: string
-                  discounts:
-                    description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
-                    type: array
-                    items:
-                      title: Applied Discount
-                      type: object
-                      properties:
-                        name:
-                          description: The name provided by the merchant.
-                          type: string
-                        discountedAmount:
-                          description: The discounted amount applied within a given context.
-                          type: number
-                          format: double
-                  discountAmount:
-                    description: The total value of all discounts applied to this item (excluding coupon).
-                    type: number
-                    format: double
-                  couponAmount:
-                    description: The total value of all coupons applied to this item.
-                    type: number
-                    format: double
-                  listPrice:
-                    description: 'Item’s list price, as quoted by the manufacturer/distributor.'
-                    type: number
-                    format: double
-                  salePrice:
-                    description: Item's price after all discounts are applied. (The final price before tax calculation.)
-                    type: number
-                    format: double
-                  extendedListPrice:
-                    description: Item's list price multiplied by the quantity.
-                    type: number
-                    format: double
-                  extendedSalePrice:
-                    description: Item's sale price multiplied by the quantity.
-                    type: number
-                    format: double
-                  type:
-                    description: the product type - physical or digital
-                    type: string
-                  isShippingRequired:
-                    description: Whether this item requires shipping to a physical address.
-                    type: boolean
-                  downloadFileUrls:
-                    description: URLs to download all product files.
-                    type: array
-                    items:
+                discountAmount:
+                  description: The total value of all discounts applied to this item (excluding coupon).
+                  type: number
+                  format: double
+                couponAmount:
+                  description: The total value of all coupons applied to this item.
+                  type: number
+                  format: double
+                listPrice:
+                  description: 'Item’s list price, as quoted by the manufacturer/distributor.'
+                  type: number
+                  format: double
+                salePrice:
+                  description: Item's price after all discounts are applied. (The final price before tax calculation.)
+                  type: number
+                  format: double
+                extendedListPrice:
+                  description: Item's list price multiplied by the quantity.
+                  type: number
+                  format: double
+                extendedSalePrice:
+                  description: Item's sale price multiplied by the quantity.
+                  type: number
+                  format: double
+                comparisonPrice:
+                  description: Item's comparison price
+                  type: number
+                extendedComparisonPrice:
+                  description: Item's comparison price multiplied by the quantity.
+                  type: number
+                type:
+                  description: the product type - physical or digital
+                  type: string
+                addedByPromotion:
+                  description: 'If the item was added automatically by a promotion such as a coupon or buy one, get one.'
+                  type: boolean
+                isShippingRequired:
+                  description: Whether this item requires shipping to a physical address.
+                  type: boolean
+                isMutable:
+                  description: ''
+                  type: boolean
+                giftWrapping:
+                  title: Gift Wrapping
+                  type: object
+                  properties:
+                    name:
+                      description: ''
                       type: string
-                  downloadPageUrl:
-                    description: The URL for the combined downloads page.
-                    type: string
-                  downloadSize:
-                    description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
-                    type: string
-                required:
-                  - quantity
-            giftCertificate:
-              type: array
-              description: ''
-              items:
-                title: Item Gift Certificate
-                type: object
-                properties:
-                  id:
-                    description: Gift certificate identifier
-                    type: string
-                  name:
-                    description: Name of the purchased gift certificate e.g. $20 Gift Certificate
-                    type: string
-                  theme:
-                    description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
-                    type: string
-                  amount:
-                    description: 'Value must be between $1.00 and $1,000.00.'
-                    type: number
-                    format: double
-                  taxable:
-                    description: ''
-                    type: boolean
-                  sender:
-                    title: Contact Entity
+                    message:
+                      description: ''
+                      type: string
+                    amount:
+                      description: ''
+                      type: number
+                      format: double
+              required:
+                - quantity
+          digitalItems:
+            description: ''
+            type: array
+            items:
+              title: Item Digital
+              type: object
+              properties:
+                id:
+                  description: The line-item ID.
+                  type: string
+                parentId:
+                  description: Bundled items will have their parent's item Id.
+                  type: string
+                variantId:
+                  description: ID of the variant.
+                  type: number
+                  format: double
+                productId:
+                  description: ID of the product.
+                  type: number
+                  format: double
+                sku:
+                  description: SKU of the variant.
+                  type: string
+                name:
+                  description: The item's product name.
+                  type: string
+                url:
+                  description: The product URL.
+                  type: string
+                quantity:
+                  description: Quantity of this item.
+                  type: number
+                  format: double
+                isTaxable:
+                  description: Whether the item is taxable.
+                  type: boolean
+                imageUrl:
+                  description: 'URL of an image of this item, accessible on the internet.'
+                  type: string
+                discounts:
+                  description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
+                  type: array
+                  items:
+                    title: Applied Discount
                     type: object
                     properties:
                       name:
-                        description: ''
+                        description: The name provided by the merchant.
                         type: string
-                      email:
-                        description: ''
-                        type: string
-                  recipient:
-                    title: Contact Entity
-                    type: object
-                    properties:
-                      name:
-                        description: ''
-                        type: string
-                      email:
-                        description: ''
-                        type: string
-                  message:
-                    description: Limited to 200 characters.
+                      discountedAmount:
+                        description: The discounted amount applied within a given context.
+                        type: number
+                        format: double
+                discountAmount:
+                  description: The total value of all discounts applied to this item (excluding coupon).
+                  type: number
+                  format: double
+                couponAmount:
+                  description: The total value of all coupons applied to this item.
+                  type: number
+                  format: double
+                listPrice:
+                  description: 'Item’s list price, as quoted by the manufacturer/distributor.'
+                  type: number
+                  format: double
+                salePrice:
+                  description: Item's price after all discounts are applied. (The final price before tax calculation.)
+                  type: number
+                  format: double
+                extendedListPrice:
+                  description: Item's list price multiplied by the quantity.
+                  type: number
+                  format: double
+                extendedSalePrice:
+                  description: Item's sale price multiplied by the quantity.
+                  type: number
+                  format: double
+                type:
+                  description: the product type - physical or digital
+                  type: string
+                isShippingRequired:
+                  description: Whether this item requires shipping to a physical address.
+                  type: boolean
+                downloadFileUrls:
+                  description: URLs to download all product files.
+                  type: array
+                  items:
                     type: string
-                  type:
-                    description: Explicitly specifying the gift certificate type
-                    type: string
-                required:
-                  - theme
-                  - amount
-                  - sender
-                  - recipient
-            customItems:
-              type: array
-              items:
-                type: object
-                title: Item Custom
-                description: |-
-                  Add a custom item to the shoppers cart.
-                  * Custom items are not added to the catalog.
-                  * The price should be set to match the store settings for taxes.
-                properties:
-                  id:
-                    type: string
-                    description: Id of the custom item
-                  sku:
-                    type: string
-                    description: Custom item sku
-                  name:
-                    type: string
-                    description: Item name
-                  quantity:
-                    type: string
-                  listPrice:
-                    type: string
-                    description: Price of the item. With or without tax depending on your stores set up.
-          required:
-            - physicalItems
-            - digitalItems
+                downloadPageUrl:
+                  description: The URL for the combined downloads page.
+                  type: string
+                downloadSize:
+                  description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
+                  type: string
+              required:
+                - quantity
+          giftCertificate:
+            type: array
+            description: ''
+            items:
+              title: Item Gift Certificate
+              type: object
+              properties:
+                id:
+                  description: Gift certificate identifier
+                  type: string
+                name:
+                  description: Name of the purchased gift certificate e.g. $20 Gift Certificate
+                  type: string
+                theme:
+                  description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
+                  type: string
+                amount:
+                  description: 'Value must be between $1.00 and $1,000.00.'
+                  type: number
+                  format: double
+                taxable:
+                  description: ''
+                  type: boolean
+                sender:
+                  title: Contact Entity
+                  type: object
+                  properties:
+                    name:
+                      description: ''
+                      type: string
+                    email:
+                      description: ''
+                      type: string
+                recipient:
+                  title: Contact Entity
+                  type: object
+                  properties:
+                    name:
+                      description: ''
+                      type: string
+                    email:
+                      description: ''
+                      type: string
+                message:
+                  description: Limited to 200 characters.
+                  type: string
+                type:
+                  description: Explicitly specifying the gift certificate type
+                  type: string
+              required:
+                - theme
+                - amount
+                - sender
+                - recipient
+          customItems:
+            type: array
+            items:
+              type: object
+              title: Item Custom
+              description: |-
+                Add a custom item to the shoppers cart.
+                * Custom items are not added to the catalog.
+                * The price should be set to match the store settings for taxes.
+              properties:
+                id:
+                  type: string
+                  description: Id of the custom item
+                sku:
+                  type: string
+                  description: Custom item sku
+                name:
+                  type: string
+                  description: Item name
+                quantity:
+                  type: string
+                listPrice:
+                  type: string
+                  description: Price of the item. With or without tax depending on your stores set up.
+        required:
+          - physicalItems
+          - digitalItems
       createdTime:
         description: Time when the cart was created.
         type: string
@@ -4096,7 +4050,7 @@ responses:
           lineItems:
             physicalItems:
               - id: 243c9ca2-22b4-417a-8b09-b3fc05778b52
-                parentId: {}
+                parentId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
                 variantId: 345
                 productId: 174
                 sku: ''
@@ -4167,7 +4121,7 @@ responses:
               postalCode: '96720'
               phone: '8081234567'
               customFields: []
-        orderId: {}
+        orderId: 243c9ca2-22b4-417a-8b09-b3fc0523f57d
         shippingCostTotal: 8
         shippingCostBeforeDiscount: 8
         handlingCostTotal: 0
