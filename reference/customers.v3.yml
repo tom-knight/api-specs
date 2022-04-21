@@ -308,24 +308,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
               examples:
                 response:
                   value:
@@ -366,24 +349,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       requestBody:
         content:
           application/json:
@@ -642,24 +608,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Addresses
     put:
@@ -754,24 +703,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Addresses
     delete:
@@ -854,50 +786,21 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
         '429':
           description: |
             Allowed number of requests exceeded.
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                    example: 429
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                    example: Too many requests
-                  type:
-                    type: string
-                    example: /api-docs/getting-started/api-status-codes
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
-                    example: {}
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                response:
+                  value:
+                    status: 429
+                    title: Too many requests
+                    type: /api-docs/getting-started/api-status-codes
+                    errors: {}
     parameters:
       - schema:
           type: string
@@ -1216,24 +1119,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Attributes
     put:
@@ -1282,24 +1168,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Attributes
     delete:
@@ -1498,24 +1367,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Attribute Values
     delete:
@@ -1573,24 +1425,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       summary: Get Customer Form Field Values
       description: |-
         Returns a list of form field values for the Customer or Customer Address object.
@@ -1667,24 +1502,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       summary: Upsert Customer Form Field Values
       description: |-
         Updates form field values on the Customer or Customer Address objects. Multiple form field values can be updated in one call.
@@ -2813,6 +2631,7 @@ components:
           description: The error title describing the particular error.
           type: string
         type:
+          description: A link to a list of BigCommerce API status codes.
           type: string
         instance:
           type: string
