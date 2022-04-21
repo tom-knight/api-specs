@@ -147,17 +147,11 @@ paths:
         required: true
   '/stores/{store_hash}/v3/checkouts/{checkoutId}/discounts':
     parameters:
-      - type: string
-        name: store_hash
-        in: path
-        required: true
-      - type: string
-        name: checkoutId
-        in: path
-        required: true
+      - $ref: '#/parameters/store_hash'
+      - $ref: '#/parameters/checkoutId'
     post:
       summary: Add Discount to Checkout
-      operationId: post-store_hash-v3-checkouts-checkoutId-discounts
+      operationId: CheckoutsAddDiscount
       responses:
         '200':
           $ref: '#/responses/CheckoutResponse'
@@ -167,9 +161,6 @@ paths:
         This discount only applies to `line_items`. When you call this API, you clear out all existing discounts applied to line items, including product and order-based discounts.
 
         This endpoint splits the discount between line items based on the item value.
-
-        Required Fields
-        * discounted_amount
       parameters:
         - in: body
           name: body
@@ -186,18 +177,16 @@ paths:
                       properties:
                         discounted_amount:
                           type: number
-                          example: 10
+                          example: 10.42
+                          minimum: 0
+                          description: Amount discounted from the `line_items` total
                         name:
                           type: string
                           example: manual
+                          description: ID or name of the applied discount.
                       required:
                         - discounted_amount
-          x-examples:
-            example-1:
-              cart:
-                discounts:
-                  - discounted_amount: 10
-                    name: manual
+          x-examples: {}
         - type: string
           in: header
           name: Accept
@@ -1774,7 +1763,7 @@ parameters:
     in: path
     type: string
     required: true
-    description: Id of the Checkout
+    description: ID of the Checkout
   addressId:
     name: addressId
     in: path
@@ -1809,6 +1798,12 @@ parameters:
     type: string
     enum:
       - consignments.available_shipping_options
+  store_hash:
+    name: store_hash
+    in: path
+    required: true
+    type: string
+    description: Store hash of the BigCommerce store
 securityDefinitions:
   Checkouts:
     name: X-Auth-Token
