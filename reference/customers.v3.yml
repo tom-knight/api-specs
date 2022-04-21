@@ -1331,7 +1331,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/attribueValue_Base'
+                $ref: '#/components/schemas/attributeValue_Base'
             examples:
               Example:
                 value:
@@ -2897,8 +2897,8 @@ components:
       required:
         - id
       x-internal: false
-    attribueValue_Base:
-      title: attribueValue_Base
+    attributeValue_Base:
+      title: attributeValue_Base
       type: object
       properties:
         id:
