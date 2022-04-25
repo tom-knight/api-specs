@@ -258,6 +258,11 @@
     },
     {
       "type": "item",
+      "title": "Data Solutions API",
+      "uri": "reference/data_solutions.yaml"
+    },
+    {
+      "type": "item",
       "title": "Shipping Provider API",
       "uri": "reference/shipping_provider.yml"
     },
