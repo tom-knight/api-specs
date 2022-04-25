@@ -10,8 +10,7 @@ servers:
 paths:
   /settings/analytics:
     get:
-      summary: Returns a list of all available Web Analytics data for a
-        specified Channel. If Channel ID is not set, returns for the default Channel.
+      summary: Get All Web Analytics
       description: Returns a list of all available Web Analytics data for
         a specified Channel. If Channel ID is not set, returns for the default Channel.
       parameters:
@@ -21,13 +20,13 @@ paths:
           schema:
             type: integer
       responses:
-        200:
+        "200":
           description: Successful operation.
           content:
             "application/json":
               schema:
                 $ref: '#/components/schemas/Analytics'
-        400:
+        "400":
           description: Bad request. Authentication Required.
           content:
             "application/json":
@@ -35,8 +34,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse400'
   /settings/analytics/{id}:
     get:
-      summary: Returns a single Web Analytics data for a specified Channel.
-        If Channel ID is not set, returns for the default Channel.
+      summary: Get a Web Analytic
       description: Returns a single Web Analytics data for a specified Channel.
         If Channel ID is not set, returns for the default Channel.
       parameters:
@@ -52,27 +50,26 @@ paths:
           schema:
             type: integer
       responses:
-        200:
+        "200":
           description: Successful operation.
           content:
             "application/json":
               schema:
                 $ref: '#/components/schemas/Analytic'
-        400:
+        "400":
           description: Bad request. Authentication Required.
           content:
             "application/json":
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
-        404:
+        "404":
           description: The requested resource was not found. Please specify valid Web Analytic ID.
           content:
             "application/json":
               schema:
                 $ref: '#/components/schemas/ErrorResponse404'
     put:
-      summary: Updates a single Web Analytics data for a specified Channel.
-        If Channel ID is not set, updates for a default Channel.
+      summary: Updates a Web Analytic 
       description: Updates a single Web Analytics data for a specified Channel.
         If Channel ID is not set, updates for a default Channel.
       parameters:
@@ -100,32 +97,32 @@ paths:
                 - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
                 - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
       responses:
-        200:
+        "200":
           description: Successful operation.
           content:
             "application/json":
               schema:
                 $ref: '#/components/schemas/Analytic'
-        400:
+        "400":
           description: Bad request. Authentication Required.
           content:
             "application/json":
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
-        404:
+        "404":
           description: The requested resource was not found. Please specify valid Web Analytic ID.
           content:
             "application/json":
               schema:
                 $ref: '#/components/schemas/ErrorResponse404'
-        409:
+        "409":
           description: Web Analytic was in conflict with another Web Analytic.
             This can be caused by duplicated unique values (such as ID).
           content:
             "application/json":
               schema:
                 $ref: '#/components/schemas/ErrorResponse409'
-        422:
+        "422":
           description: Web Analytic data was not valid. This is the result of missing required fields,
             or of invalid data. See the response for more details.
           content:
