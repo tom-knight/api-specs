@@ -5,10 +5,10 @@ info:
   termsOfService: https://www.bigcommerce.com/terms
   version: 1.0.1
 servers:
-  - url: https://api.bigcommerce.com/v3
+  - url: https://api.bigcommerce.com
 
 paths:
-  /settings/analytics:
+  /stores/{store_hash}/v3/settings/analytics:
     get:
       summary: Get All Web Analytics
       description: Returns a list of all available Web Analytics data for
@@ -19,6 +19,11 @@ paths:
           description: Channel ID. If empty, the default Channel ID will be used.
           schema:
             type: integer
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Successful operation.
@@ -32,7 +37,7 @@ paths:
             "application/json":
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
-  /settings/analytics/{id}:
+  /stores/{store_hash}/v3/settings/analytics/{id}:
     get:
       summary: Get a Web Analytic
       description: Returns a single Web Analytics data for a specified Channel.
@@ -49,6 +54,11 @@ paths:
           required: true
           schema:
             type: integer
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: Successful operation.
@@ -84,6 +94,11 @@ paths:
           required: true
           schema:
             type: integer
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
         description: A JSON Web Analytic object
         content:
