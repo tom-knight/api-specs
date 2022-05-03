@@ -404,3 +404,30 @@ components:
       properties:
         schema:
           $ref: '#/components/schemas/Error'
+  securitySchemes:
+    X-Auth-Client:
+      name: X-Auth-Client
+      type: apiKey
+      in: header
+    X-Auth-Token:
+      name: X-Auth-Token
+      type: apiKey
+      in: header
+      description: |-
+        ### OAuth Scopes
+        |  **UI Name** | **Permission** | **Parameter** |
+        | --- | --- | --- |
+        |  Information & Settings | read-only | `	store_v2_information_read_only` |
+        |  Information & Settings | modify | `store_v2_information` |
+
+        ### Headers
+
+        |Header|Parameter|Description|
+        |-|-|-|
+        |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+        |`X-Auth-Token`| | |
+        ```
+        For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
+security:
+  - X-Auth-Token: []
+  - X-Auth-Client: []
