@@ -212,6 +212,7 @@ components:
           type: object
           properties: {}
     AnalyticGoogle:
+      type: object
       properties:
         channel_id:
           type: integer
