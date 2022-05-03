@@ -152,7 +152,7 @@ components:
       properties:
         data:
           type: array
-          items:
+          allOf:
             - $ref: '#/components/schemas/AnalyticGoogle'
             - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
             - $ref: '#/components/schemas/AnalyticFacebookPixel'
