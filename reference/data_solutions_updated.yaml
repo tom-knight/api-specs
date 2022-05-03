@@ -148,7 +148,6 @@ paths:
 components:
   schemas:
     Analytics:
-      type: object
       properties:
         data:
           type: array
