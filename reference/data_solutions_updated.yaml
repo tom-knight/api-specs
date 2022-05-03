@@ -148,6 +148,7 @@ paths:
 components:
   schemas:
     Analytics:
+      type: object
       properties:
         data:
           type: array
@@ -211,6 +212,7 @@ components:
           type: object
           properties: {}
     AnalyticGoogle:
+      type: object
       properties:
         channel_id:
           type: integer
@@ -247,6 +249,7 @@ components:
         data_tag_enabled: true
         version: 1
     AnalyticVisualWebsiteOptimizer:
+      type: object
       properties:
         channel_id:
           type: integer
@@ -270,6 +273,7 @@ components:
         enabled: true
         vwo_smartcode: VWO-1234567890
     AnalyticFacebookPixel:
+      type: object
       properties:
         channel_id:
           type: integer
@@ -297,6 +301,7 @@ components:
         enabled: true
         is_oauth_connected: true
     AnalyticSegment:
+      type: object
       properties:
         channel_id:
           type: integer
@@ -324,6 +329,7 @@ components:
         enabled: true
         data_tag_enabled: true
     AnalyticSiteVerificationTags:
+      type: object
       properties:
         channel_id:
           type: integer
@@ -347,6 +353,7 @@ components:
         verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
         enabled: true
     AnalyticAffiliateConversionTracking:
+      type: object
       properties:
         channel_id:
           type: integer
