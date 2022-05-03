@@ -152,14 +152,13 @@ components:
       properties:
         data:
           type: array
-          items:
-            allOf:
-              - $ref: '#/components/schemas/AnalyticGoogle'
-              - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
-              - $ref: '#/components/schemas/AnalyticFacebookPixel'
-              - $ref: '#/components/schemas/AnalyticSegment'
-              - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
-              - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+          allOf:
+            - $ref: '#/components/schemas/AnalyticGoogle'
+            - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+            - $ref: '#/components/schemas/AnalyticFacebookPixel'
+            - $ref: '#/components/schemas/AnalyticSegment'
+            - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+            - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
         meta:
           type: object
           properties: {}
