@@ -242,13 +242,13 @@ components:
           type: integer
           description: Google Analytic version.
       example:
-        - channel_id: 1
-          id: 1
-          name: Google Analytics
-          tracking_code: GA-1234567890
-          enabled: true
-          data_tag_enabled: true
-          version: 1
+        channel_id: 1
+        id: 1
+        name: Google Analytics
+        tracking_code: GA-1234567890
+        enabled: true
+        data_tag_enabled: true
+        version: 1
     AnalyticVisualWebsiteOptimizer:
       type: object
       properties:
@@ -268,11 +268,11 @@ components:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
       example:
-        - channel_id: 1
-          id: 2
-          name: Visual Website Optimizer
-          enabled: true
-          vwo_smartcode: VWO-1234567890
+        channel_id: 1
+        id: 2
+        name: Visual Website Optimizer
+        enabled: true
+        vwo_smartcode: VWO-1234567890
     AnalyticFacebookPixel:
       type: object
       properties:
@@ -295,12 +295,12 @@ components:
           type: boolean
           description: Flag indicates if specific integration service grant OAuth token for Bigcommerce Store
       example:
-        - channel_id: 1
-          id: 3
-          name: Facebook Pixel
-          pixel_id: FP-1234567890
-          enabled: true
-          is_oauth_connected: true
+        channel_id: 1
+        id: 3
+        name: Facebook Pixel
+        pixel_id: FP-1234567890
+        enabled: true
+        is_oauth_connected: true
     AnalyticSegment:
       type: object
       properties:
@@ -323,12 +323,12 @@ components:
           type: boolean
           description: Flag indicates if data tags are enabled by Segment Analytic.
       example:
-        - channel_id: 1
-          id: 4
-          name: Segment.com
-          api_key: SEG-1234567890
-          enabled: true
-          data_tag_enabled: true
+        channel_id: 1
+        id: 4
+        name: Segment.com
+        api_key: SEG-1234567890
+        enabled: true
+        data_tag_enabled: true
     AnalyticSiteVerificationTags:
       type: object
       properties:
@@ -348,11 +348,11 @@ components:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
       example:
-        - channel_id: 1
-          id: 6
-          name: Site Verification Tags
-          verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
-          enabled: true
+        channel_id: 1
+        id: 6
+        name: Site Verification Tags
+        verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
+        enabled: true
     AnalyticAffiliateConversionTracking:
       type: object
       properties:
@@ -372,11 +372,11 @@ components:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
       example:
-        - channel_id: 1
-          id: 7
-          name: Affiliate Conversion Tracking
-          connection: <script>js code here...</script>
-          enabled: true
+        channel_id: 1
+        id: 7
+        name: Affiliate Conversion Tracking
+        connection: <script>js code here...</script>
+        enabled: true
     Error:
       type: object
       properties:
