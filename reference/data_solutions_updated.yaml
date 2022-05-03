@@ -6,11 +6,15 @@ info:
   version: 1.0.1
 servers:
   - url: https://api.bigcommerce.com
-
+tags:
+  - name: Analytics
 paths:
   /stores/{store_hash}/v3/settings/analytics:
     get:
       summary: Get All Web Analyticssss
+      tags:
+        - Analytics
+      operationId: getAllWebAnalytics
       description: Returns a list of all available Web Analytics data for
         a specified Channel. If Channel ID is not set, returns for the default Channel.
       parameters:
@@ -40,6 +44,9 @@ paths:
   /stores/{store_hash}/v3/settings/analytics/{id}:
     get:
       summary: Get a Web Analytic
+      operationId: getAWebAnalytics
+      tags:
+        - Analytics
       description: Returns a single Web Analytics data for a specified Channel.
         If Channel ID is not set, returns for the default Channel.
       parameters:
@@ -80,6 +87,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse404'
     put:
       summary: Updates a Web Analytic 
+      operationId: updateAWebAnalytic
+      tags:
+        - Analytics
       description: Updates a single Web Analytics data for a specified Channel.
         If Channel ID is not set, updates for a default Channel.
       parameters:
