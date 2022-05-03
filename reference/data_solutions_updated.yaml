@@ -201,7 +201,6 @@ components:
       type: object
       properties:
         data:
-          type: object
           oneOf:
             - $ref: '#/components/schemas/AnalyticGoogle'
             - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
