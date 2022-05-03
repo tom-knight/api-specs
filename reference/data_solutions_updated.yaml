@@ -10,7 +10,7 @@ servers:
 paths:
   /stores/{store_hash}/v3/settings/analytics:
     get:
-      summary: Get All Web Analytics
+      summary: Get All Web Analyticssss
       description: Returns a list of all available Web Analytics data for
         a specified Channel. If Channel ID is not set, returns for the default Channel.
       parameters:
