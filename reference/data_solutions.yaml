@@ -369,7 +369,7 @@ components:
       name: X-Auth-Token
       type: apiKey
       in: header
-      description: "### OAuth Scopes\n|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Information & Settings | read-only | `\tstore_v2_information_read_only` |\n|  Information & Settings | modify | `store_v2_information` |\n\n### Headers\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`| | |\n```\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication)."
+      description: "### OAuth Scopes\n|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Information & Settings | read-only | `\tstore_v2_information_read_only` |\n|  Information & Settings | modify | `store_v2_information` |\n\n### Headers\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Client`| | |\n```\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication)."
 security:
   - X-Auth-Token: []
   - X-Auth-Client: []
