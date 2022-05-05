@@ -206,14 +206,6 @@ components:
           properties: {}
     AnalyticGoogle:
       type: object
-      example:
-        channel_id: 1
-        id: 1
-        name: Google Analytics
-        tracking_code: GA-1234567890
-        enabled: true
-        data_tag_enabled: true
-        version: 1
       title: Google Analytic
       properties:
         channel_id:
