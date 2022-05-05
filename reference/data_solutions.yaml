@@ -11,6 +11,8 @@ servers:
 paths:
   '/stores/{store_hash}/v3/settings/analytics':
     get:
+      tags:
+        - Analytics
       operationId: getAllAnalytics
       summary: Get All Web Analytics
       description: 'Returns a list of all available Web Analytics data for a specified Channel. If Channel ID is not set, returns for the default Channel.'
@@ -40,6 +42,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse400'
   '/stores/{store_hash}/v3/settings/analytics/{id}':
     get:
+      tags:
+        - Analytics
       operationId: getAnalytic
       summary: Get a Web Analytic
       description: 'Returns a single Web Analytics data for a specified Channel. If Channel ID is not set, returns for the default Channel.'
@@ -80,6 +84,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse404'
     put:
+      tags:
+        - Analytics
       operationId: updateAnalytic
       summary: Updates a Web Analytic
       description: 'Updates a single Web Analytics data for a specified Channel. If Channel ID is not set, updates for a default Channel.'
@@ -367,3 +373,5 @@ components:
 security:
   - X-Auth-Token: []
   - X-Auth-Client: []
+tags:
+  - name: Analytics
