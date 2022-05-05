@@ -239,7 +239,7 @@ components:
         version:
           type: integer
           description: Google Analytic version.
-          example: '1, 2'
+          example: 1
     AnalyticVisualWebsiteOptimizer:
       type: object
       example:
