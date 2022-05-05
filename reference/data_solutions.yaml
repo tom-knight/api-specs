@@ -1,4 +1,6 @@
 openapi: 3.0.1
+x-stoplight:
+  id: a1f443ded502b
 info:
   title: Web Analytics API
   description: API endpoints for Web Analytics.
@@ -299,7 +301,7 @@ components:
         verification_tag:
           type: string
           description: Site Verification Tag. May contain HTML meta tags.
-          example: "<meta name=\"google-site-verification\" content=\"twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY\" />"
+          example: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
