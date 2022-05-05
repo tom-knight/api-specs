@@ -2,21 +2,19 @@ openapi: 3.0.1
 info:
   title: Web Analytics API
   description: API endpoints for Web Analytics.
-  termsOfService: https://www.bigcommerce.com/terms
+  termsOfService: 'https://www.bigcommerce.com/terms'
   version: 1.0.1
 servers:
-  - url: https://api.bigcommerce.com
-
+  - url: 'https://api.bigcommerce.com'
 paths:
-  /stores/{store_hash}/v3/settings/analytics:
+  '/stores/{store_hash}/v3/settings/analytics':
     get:
       summary: Get All Web Analytics
-      description: Returns a list of all available Web Analytics data for
-        a specified Channel. If Channel ID is not set, returns for the default Channel.
+      description: 'Returns a list of all available Web Analytics data for a specified Channel. If Channel ID is not set, returns for the default Channel.'
       parameters:
         - name: channel_id
           in: query
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
           schema:
             type: integer
         - name: store_hash
@@ -25,27 +23,26 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: Successful operation.
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/Analytics'
-        "400":
+        '400':
           description: Bad request. Authentication Required.
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
-  /stores/{store_hash}/v3/settings/analytics/{id}:
+  '/stores/{store_hash}/v3/settings/analytics/{id}':
     get:
       summary: Get a Web Analytic
-      description: Returns a single Web Analytics data for a specified Channel.
-        If Channel ID is not set, returns for the default Channel.
+      description: 'Returns a single Web Analytics data for a specified Channel. If Channel ID is not set, returns for the default Channel.'
       parameters:
         - name: channel_id
           in: query
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
           schema:
             type: integer
         - name: id
@@ -60,32 +57,31 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: Successful operation.
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/Analytic'
-        "400":
+        '400':
           description: Bad request. Authentication Required.
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
-        "404":
+        '404':
           description: The requested resource was not found. Please specify valid Web Analytic ID.
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse404'
     put:
-      summary: Updates a Web Analytic 
-      description: Updates a single Web Analytics data for a specified Channel.
-        If Channel ID is not set, updates for a default Channel.
+      summary: Updates a Web Analytic
+      description: 'Updates a single Web Analytics data for a specified Channel. If Channel ID is not set, updates for a default Channel.'
       parameters:
         - name: channel_id
           in: query
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
           schema:
             type: integer
         - name: id
@@ -112,39 +108,36 @@ paths:
                 - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
                 - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
       responses:
-        "200":
+        '200':
           description: Successful operation.
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/Analytic'
-        "400":
+        '400':
           description: Bad request. Authentication Required.
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
-        "404":
+        '404':
           description: The requested resource was not found. Please specify valid Web Analytic ID.
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse404'
-        "409":
-          description: Web Analytic was in conflict with another Web Analytic.
-            This can be caused by duplicated unique values (such as ID).
+        '409':
+          description: Web Analytic was in conflict with another Web Analytic. This can be caused by duplicated unique values (such as ID).
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse409'
-        "422":
-          description: Web Analytic data was not valid. This is the result of missing required fields,
-            or of invalid data. See the response for more details.
+        '422':
+          description: 'Web Analytic data was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.'
           content:
-            "application/json":
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse422'
-
 components:
   schemas:
     Analytics:
@@ -216,7 +209,7 @@ components:
       properties:
         channel_id:
           type: integer
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
         id:
           type: integer
           description: Web Analytic ID.
@@ -248,12 +241,13 @@ components:
         enabled: true
         data_tag_enabled: true
         version: 1
+      title: Google Analytic
     AnalyticVisualWebsiteOptimizer:
       type: object
       properties:
         channel_id:
           type: integer
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
         id:
           type: integer
           description: Web Analytic ID.
@@ -272,12 +266,13 @@ components:
         name: Visual Website Optimizer
         enabled: true
         vwo_smartcode: VWO-1234567890
+      title: Visual Website Optimizer Analytic
     AnalyticFacebookPixel:
       type: object
       properties:
         channel_id:
           type: integer
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
         id:
           type: integer
           description: Web Analytic ID.
@@ -300,12 +295,13 @@ components:
         pixel_id: FP-1234567890
         enabled: true
         is_oauth_connected: true
+      title: Facebook Pixel Analytic
     AnalyticSegment:
       type: object
       properties:
         channel_id:
           type: integer
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
         id:
           type: integer
           description: Web Analytic ID.
@@ -328,12 +324,13 @@ components:
         api_key: SEG-1234567890
         enabled: true
         data_tag_enabled: true
+      title: Segment Analytic
     AnalyticSiteVerificationTags:
       type: object
       properties:
         channel_id:
           type: integer
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
         id:
           type: integer
           description: Web Analytic ID.
@@ -352,12 +349,13 @@ components:
         name: Site Verification Tags
         verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
         enabled: true
+      title: Site Verification Tags Analytic
     AnalyticAffiliateConversionTracking:
       type: object
       properties:
         channel_id:
           type: integer
-          description: Channel ID. If empty, the default Channel ID will be used.
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
         id:
           type: integer
           description: Web Analytic ID.
@@ -376,6 +374,7 @@ components:
         name: Affiliate Conversion Tracking
         connection: <script>js code here...</script>
         enabled: true
+      title: Affiliate Conversion Tracking Analytic
     Error:
       type: object
       properties:
@@ -412,21 +411,7 @@ components:
       name: X-Auth-Token
       type: apiKey
       in: header
-      description: |-
-        ### OAuth Scopes
-        |  **UI Name** | **Permission** | **Parameter** |
-        | --- | --- | --- |
-        |  Information & Settings | read-only | `	store_v2_information_read_only` |
-        |  Information & Settings | modify | `store_v2_information` |
-
-        ### Headers
-
-        |Header|Parameter|Description|
-        |-|-|-|
-        |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
-        |`X-Auth-Token`| | |
-        ```
-        For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
+      description: "### OAuth Scopes\n|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Information & Settings | read-only | `\tstore_v2_information_read_only` |\n|  Information & Settings | modify | `store_v2_information` |\n\n### Headers\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Token`| | |\n```\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication)."
 security:
   - X-Auth-Token: []
   - X-Auth-Client: []
