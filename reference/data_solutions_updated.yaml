@@ -206,23 +206,37 @@ components:
           properties: {}
     AnalyticGoogle:
       type: object
+      example:
+        channel_id: 1
+        id: 1
+        name: Google Analytics
+        tracking_code: GA-1234567890
+        enabled: true
+        data_tag_enabled: true
+        version: 1
+      title: Google Analytic
       properties:
         channel_id:
           type: integer
           description: 'Channel ID. If empty, the default Channel ID will be used.'
+          example: 1
         id:
           type: integer
           description: Web Analytic ID.
+          example: 1
         name:
           type: string
           description: Web Analytic title.
+          example: Google Analytics
         tracking_code:
           type: string
           description: Google Analytic tracking code. Required when version is 1
+          example: GA-1234567890
           nullable: true
         property_id:
           type: string
           description: Google Analytic property ID. Required when version is 2
+          example: GA-1234567890
           nullable: true
         enabled:
           type: boolean
@@ -233,33 +247,9 @@ components:
         version:
           type: integer
           description: Google Analytic version.
-      example:
-        channel_id: 1
-        id: 1
-        name: Google Analytics
-        tracking_code: GA-1234567890
-        enabled: true
-        data_tag_enabled: true
-        version: 1
-      title: Google Analytic
+          example: '1, 2'
     AnalyticVisualWebsiteOptimizer:
       type: object
-      properties:
-        channel_id:
-          type: integer
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
-        id:
-          type: integer
-          description: Web Analytic ID.
-        name:
-          type: string
-          description: Web Analytic title.
-        vwo_smartcode:
-          type: string
-          description: Visual Website Optimizer Smartcode.
-        enabled:
-          type: boolean
-          description: Flag indicates if Web Analytic is enabled or not.
       example:
         channel_id: 1
         id: 2
@@ -267,27 +257,28 @@ components:
         enabled: true
         vwo_smartcode: VWO-1234567890
       title: Visual Website Optimizer Analytic
-    AnalyticFacebookPixel:
-      type: object
       properties:
         channel_id:
           type: integer
           description: 'Channel ID. If empty, the default Channel ID will be used.'
+          example: 1
         id:
           type: integer
           description: Web Analytic ID.
+          example: 2
         name:
           type: string
           description: Web Analytic title.
-        pixel_id:
+          example: Visual Website Optimizer
+        vwo_smartcode:
           type: string
-          description: Facebook pixel ID.
+          description: Visual Website Optimizer Smartcode.
+          example: VWO-1234567890
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
-        is_oauth_connected:
-          type: boolean
-          description: Flag indicates if specific integration service grant OAuth token for Bigcommerce Store
+    AnalyticFacebookPixel:
+      type: object
       example:
         channel_id: 1
         id: 3
@@ -296,27 +287,31 @@ components:
         enabled: true
         is_oauth_connected: true
       title: Facebook Pixel Analytic
-    AnalyticSegment:
-      type: object
       properties:
         channel_id:
           type: integer
           description: 'Channel ID. If empty, the default Channel ID will be used.'
+          example: 1
         id:
           type: integer
           description: Web Analytic ID.
+          example: 3
         name:
           type: string
           description: Web Analytic title.
-        api_key:
+          example: Facebook Pixel
+        pixel_id:
           type: string
-          description: Segment API key.
+          description: Facebook pixel ID.
+          example: FP-1234567890
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
-        data_tag_enabled:
+        is_oauth_connected:
           type: boolean
-          description: Flag indicates if data tags are enabled by Segment Analytic.
+          description: Flag indicates if specific integration service grant OAuth token for Bigcommerce Store
+    AnalyticSegment:
+      type: object
       example:
         channel_id: 1
         id: 4
@@ -325,24 +320,31 @@ components:
         enabled: true
         data_tag_enabled: true
       title: Segment Analytic
-    AnalyticSiteVerificationTags:
-      type: object
       properties:
         channel_id:
           type: integer
           description: 'Channel ID. If empty, the default Channel ID will be used.'
+          example: 2
         id:
           type: integer
           description: Web Analytic ID.
+          example: 4
         name:
           type: string
           description: Web Analytic title.
-        verification_tag:
+          example: Segment.com
+        api_key:
           type: string
-          description: Site Verification Tag. May contain HTML meta tags.
+          description: Segment API key.
+          example: SEG-1234567890
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
+        data_tag_enabled:
+          type: boolean
+          description: Flag indicates if data tags are enabled by Segment Analytic.
+    AnalyticSiteVerificationTags:
+      type: object
       example:
         channel_id: 1
         id: 6
@@ -350,6 +352,25 @@ components:
         verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
         enabled: true
       title: Site Verification Tags Analytic
+      properties:
+        channel_id:
+          type: integer
+          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          example: 2
+        id:
+          type: integer
+          description: Web Analytic ID.
+          example: 6
+        name:
+          type: string
+          description: Web Analytic title.
+          example: Site Verification Tags
+        verification_tag:
+          type: string
+          description: Site Verification Tag. May contain HTML meta tags.
+        enabled:
+          type: boolean
+          description: Flag indicates if Web Analytic is enabled or not.
     AnalyticAffiliateConversionTracking:
       type: object
       properties:
