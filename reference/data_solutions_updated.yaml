@@ -145,7 +145,7 @@ components:
       properties:
         data:
           type: array
-          allOf:
+          items:
             - $ref: '#/components/schemas/AnalyticGoogle'
             - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
             - $ref: '#/components/schemas/AnalyticFacebookPixel'
