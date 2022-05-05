@@ -356,7 +356,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Cart_Line_Item_Update_Post'
+              $ref: '#/components/schemas/Cart_Line_Item_Update_Put'
         required: true
         x-examples:
           application/json:
