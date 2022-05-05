@@ -334,6 +334,7 @@ components:
         verification_tag:
           type: string
           description: Site Verification Tag. May contain HTML meta tags.
+          example: "<meta name=\"google-site-verification\" content=\"twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY\" />"
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
