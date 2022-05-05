@@ -183,11 +183,11 @@ paths:
   '/stores/{store_hash}/v3/carts/{cartId}/items':
     post:
       description: |-
-        Adds line item to the *Cart*.
+        Adds one or more line items to the cart.
 
         **Usage Notes**
 
-        To add a custom item use `custom_items`. 
+        To add one or more custom items use `custom_items`.
 
         If a product has modifiers, omit the `variant_id` and instead use the `option_selections` array to describe both the **variant** and the **modifier** selections.
       parameters:
@@ -227,40 +227,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Cart_Line_Item_Update_Post'
+              $ref: '#/components/schemas/Cart_Line_Item_Post'
         required: true
-        x-examples:
-          application/json:
-            line_items:
-              - quantity: 2
-                product_id: 77
-                list_price: 12.5
-                option_selections:
-                  - option_id: 8
-                    option_value: 'Yes'
-            gift_certificates:
-              - name: Happy Birthday
-                theme: Birthday
-                amount: 50
-                quantity: 1
-                sender:
-                  name: Jane Does
-                  email: janedoe@example.com
-                recipient:
-                  name: Jane Does
-                  email: janedoe@example.com
-                message: Happy Birthday Jane!
-          Custom Item: |-
-            {
-              "custom_items": [
-                {
-                  "sku": "abc-123",
-                  "name": "Custom Product",
-                  "quantity": 1,
-                  "list_price": 10
-                }
-              ]
-            }
       tags:
         - Cart Items
       responses:
@@ -2388,20 +2356,37 @@ components:
       type: object
       title: cart_PostVariant
       x-internal: false
+      x-examples:
+        example-1:
+          quantity: 5
+          product_id: 156
+          list_price: 10.25
+          variant_id: 3
+          name: Custom Name
+          gift_wrapping:
+            wrap_together: true
+            wrap_details:
+              - id: 1
+                message: Happy Birthday
       properties:
         quantity:
-          type: number
+          type: integer
+          example: 5
         product_id:
-          type: number
+          type: integer
+          example: 156
         list_price:
           type: number
           description: Optional price override
+          example: 10.25
         variant_id:
-          type: number
+          type: integer
           description: Exists only in Catalog V3
+          example: 3
         name:
           type: string
           description: 'Optionally, provide a value to override the product name'
+          example: Custom Name
         gift_wrapping:
           type: object
           properties:
@@ -2416,16 +2401,13 @@ components:
                 type: object
                 properties:
                   id:
-                    type: number
+                    type: integer
                     description: Identifier of the Gift Wrapping Option selected
-                    example: 0
+                    example: 1
                   message:
                     type: string
                     description: Custom gift message
                     example: Happy Birthday
-          required:
-            - quantity
-            - product_id
     cart_PostModifier:
       type: array
       title: cart_PostModifier
@@ -2467,15 +2449,17 @@ components:
           - product_id
       description: ''
       x-internal: false
-    Cart_Line_Item_Update_Post:
+    Cart_Line_Item_Post:
       type: object
-      title: Cart_Line_Item_Update_Post
+      title: Cart_Line_Item_Post
       x-internal: false
       properties:
-        line_item:
-          oneOf:
-            - $ref: '#/components/schemas/cart_PostVariant'
-            - $ref: '#/components/schemas/cart_PostModifier'
+        line_items:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/cart_PostVariant'
+              - $ref: '#/components/schemas/cart_PostModifier'
         gift_certificates:
           type: array
           items:
@@ -2503,6 +2487,8 @@ components:
                     type: string
                   email:
                     type: string
+                    format: email
+                    example: jane@example.com
               recipient:
                 title: Contact Entity
                 type: object
@@ -2511,6 +2497,8 @@ components:
                     type: string
                   email:
                     type: string
+                    example: james@example.com
+                    format: email
               message:
                 type: string
                 maximum: 200
@@ -2524,21 +2512,26 @@ components:
               - recipient
         custom_items:
           $ref: '#/components/schemas/cart_PostCustomItem'
+      x-examples: {}
     cart_PostCustomItem:
       type: array
       title: cart_PostCustomItem
+      x-internal: false
       items:
         type: object
         properties:
           sku:
             type: string
+            example: thx-10810
           name:
             type: string
+            example: Custom Item 01
           quantity:
-            type: number
+            type: integer
+            example: 1
           list_price:
             type: number
-      x-internal: false
+            example: 10
     CartSettings:
       description: Represents all settings related to the shopping cart functionality of a store
       type: object
