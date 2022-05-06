@@ -2822,11 +2822,11 @@ definitions:
                           variantId:
                             description: ID of the variant.
                             type: number
-                            format: double
+                            format: integer
                           productId:
                             description: ID of the product.
                             type: number
-                            format: double
+                            format: integer
                           sku:
                             description: SKU of the variant.
                             type: string
@@ -3762,11 +3762,11 @@ definitions:
                   variantId:
                     description: ID of the variant.
                     type: number
-                    format: double
+                    format: integer
                   productId:
                     description: ID of the product.
                     type: number
-                    format: double
+                    format: integer
                   sku:
                     description: SKU of the variant.
                     type: string
