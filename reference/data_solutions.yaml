@@ -15,7 +15,7 @@ paths:
         - Analytics
       operationId: getAllAnalytics
       summary: Get All Web Analytics
-      description: 'Returns a list of all available Web Analytics data for a specified Channel. If Channel ID is not set, returns for the default Channel.'
+      description: 'Returns a list of all available Web Analytics data for a specified channel. If the `channel_id` is empty, analytic data returns for the default channel.'
       parameters:
         - name: channel_id
           in: query
@@ -46,7 +46,7 @@ paths:
         - Analytics
       operationId: getAnalytic
       summary: Get a Web Analytic
-      description: 'Returns a single Web Analytics data for a specified Channel. If Channel ID is not set, returns for the default Channel.'
+      description: 'Returns a single Web Analytics data for a specified channel. If the `channel_id` is empty, analytic data returns for the default channel.'
       parameters:
         - name: channel_id
           in: query
@@ -88,7 +88,7 @@ paths:
         - Analytics
       operationId: updateAnalytic
       summary: Updates a Web Analytic
-      description: 'Updates a single Web Analytics data for a specified Channel. If Channel ID is not set, updates for a default Channel.'
+      description: 'Updates a single Web Analytics data for a specified channel. If `channel_id` is not set, analytic data updates for a default channel.'
       parameters:
         - name: channel_id
           in: query
@@ -166,6 +166,45 @@ components:
         meta:
           type: object
           properties: {}
+      x-examples:
+        example-1:
+          data:
+            - channel_id: 1
+              id: 1
+              name: Google Analytics
+              tracking_code: GA-1234567890
+              property_id: GA-1234567890
+              enabled: true
+              data_tag_enabled: true
+              version: 1
+            - channel_id: 1
+              id: 2
+              name: Visual Website Optimizer
+              vwo_smartcode: VWO-1234567890
+              enabled: true
+            - channel_id: 1
+              id: 3
+              name: Facebook Pixel
+              pixel_id: FP-1234567890
+              enabled: true
+              is_oauth_connected: true
+            - channel_id: 2
+              id: 4
+              name: Segment.com
+              api_key: SEG-1234567890
+              enabled: true
+              data_tag_enabled: true
+            - channel_id: 2
+              id: 6
+              name: Site Verification Tags
+              verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
+              enabled: true
+            - channel_id: 0
+              id: 0
+              name: string
+              connection: string
+              enabled: true
+          meta: {}
     Analytic:
       type: object
       properties:
@@ -257,7 +296,7 @@ components:
           example: Facebook Pixel
         pixel_id:
           type: string
-          description: Facebook pixel ID.
+          description: Facebook Pixel ID.
           example: FP-1234567890
         enabled:
           type: boolean
@@ -361,10 +400,6 @@ components:
         schema:
           $ref: '#/components/schemas/Error'
   securitySchemes:
-    X-Auth-Client:
-      name: X-Auth-Client
-      type: apiKey
-      in: header
     X-Auth-Token:
       name: X-Auth-Token
       type: apiKey
@@ -372,6 +407,5 @@ components:
       description: "### OAuth Scopes\n|  **UI Name** | **Permission** | **Parameter** |\n| --- | --- | --- |\n|  Information & Settings | read-only | `\tstore_v2_information_read_only` |\n|  Information & Settings | modify | `store_v2_information` |\n\n### Headers\n\n|Header|Parameter|Description|\n|-|-|-|\n|`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|\n|`X-Auth-Client`| | |\n```\nFor more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication)."
 security:
   - X-Auth-Token: []
-  - X-Auth-Client: []
 tags:
   - name: Analytics
