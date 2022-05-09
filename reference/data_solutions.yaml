@@ -166,45 +166,6 @@ components:
         meta:
           type: object
           properties: {}
-      x-examples:
-        example-1:
-          data:
-            - channel_id: 1
-              id: 1
-              name: Google Analytics
-              tracking_code: GA-1234567890
-              property_id: GA-1234567890
-              enabled: true
-              data_tag_enabled: true
-              version: 1
-            - channel_id: 1
-              id: 2
-              name: Visual Website Optimizer
-              vwo_smartcode: VWO-1234567890
-              enabled: true
-            - channel_id: 1
-              id: 3
-              name: Facebook Pixel
-              pixel_id: FP-1234567890
-              enabled: true
-              is_oauth_connected: true
-            - channel_id: 2
-              id: 4
-              name: Segment.com
-              api_key: SEG-1234567890
-              enabled: true
-              data_tag_enabled: true
-            - channel_id: 2
-              id: 6
-              name: Site Verification Tags
-              verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
-              enabled: true
-            - channel_id: 0
-              id: 0
-              name: string
-              connection: string
-              enabled: true
-          meta: {}
     Analytic:
       type: object
       properties:
@@ -248,9 +209,11 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
+          example: true
         data_tag_enabled:
           type: boolean
           description: Flag indicates if data tags are enabled by Google Analytic.
+          example: true
         version:
           type: integer
           description: Google Analytic version.
@@ -278,6 +241,7 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
+          example: false
     AnalyticFacebookPixel:
       type: object
       title: Facebook Pixel Analytic
@@ -301,9 +265,11 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
+          example: true
         is_oauth_connected:
           type: boolean
           description: Flag indicates if specific integration service grant OAuth token for Bigcommerce Store
+          example: true
     AnalyticSegment:
       type: object
       title: Segment Analytic
@@ -327,9 +293,11 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
+          example: true
         data_tag_enabled:
           type: boolean
           description: Flag indicates if data tags are enabled by Segment Analytic.
+          example: true
     AnalyticSiteVerificationTags:
       type: object
       title: Site Verification Tags Analytic
@@ -353,24 +321,30 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
+          example: true
     AnalyticAffiliateConversionTracking:
       type: object
       properties:
         channel_id:
           type: integer
           description: 'Channel ID. If empty, the default Channel ID will be used.'
+          example: 2
         id:
           type: integer
           description: Web Analytic ID.
+          example: 7
         name:
           type: string
           description: Web Analytic title.
+          example: Affiliate Conversion Tracking
         connection:
           type: string
           description: Connection code. May contain scripts.
+          example: <script>js code here...</script>
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
+          example: false
       title: Affiliate Conversion Tracking Analytic
     Error:
       type: object
