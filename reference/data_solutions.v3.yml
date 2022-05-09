@@ -39,6 +39,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Analytics'
+              examples:
+                Example:
+                  value:
+                    data:
+                      - channel_id: 1
+                        id: 1
+                        name: Google Analytics
+                        tracking_code: GA-1234567890
+                        property_id: GA-1234567890
+                        enabled: true
+                        data_tag_enabled: true
+                        version: 1
+                      - channel_id: 1
+                        id: 2
+                        name: Visual Website Optimizer
+                        vwo_smartcode: VWO-1234567890
+                        enabled: true
+                      - channel_id: 1
+                        id: 3
+                        name: Facebook Pixel
+                        pixel_id: FP-1234567890
+                        enabled: true
+                        is_oauth_connected: true
+                      - channel_id: 2
+                        id: 4
+                        name: Segment.com
+                        api_key: SEG-1234567890
+                        enabled: true
+                        data_tag_enabled: true
+                      - channel_id: 2
+                        id: 6
+                        name: Site Verification Tags
+                        verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
+                        enabled: true
+                      - channel_id: 2
+                        id: 7
+                        name: Affiliate Conversion Tracking
+                        connection: <script>js code here...</script>
+                        enabled: true
+                    meta: {}
         '400':
           description: Bad request. Authentication Required.
           content:
