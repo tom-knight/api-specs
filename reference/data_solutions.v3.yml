@@ -29,7 +29,12 @@ paths:
             type: string
       responses:
         '200':
-          description: Successful operation.
+          description: |-
+            Successful operation.
+
+            <!-- theme: info -->
+
+            > The `200` response body returns an array of all analytics objects. View each individual analytics type by clicking the dropdown next to **data**
           content:
             application/json:
               schema:
@@ -151,21 +156,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse422'
 components:
   schemas:
-    Analytics:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            - $ref: '#/components/schemas/AnalyticGoogle'
-            - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
-            - $ref: '#/components/schemas/AnalyticFacebookPixel'
-            - $ref: '#/components/schemas/AnalyticSegment'
-            - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
-            - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
-        meta:
-          type: object
-          properties: {}
     Analytic:
       type: object
       properties:
@@ -180,6 +170,23 @@ components:
         meta:
           type: object
           properties: {}
+    Analytics:
+      type: object
+      x-examples: {}
+      description: ''
+      properties:
+        data:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/AnalyticGoogle'
+              - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+              - $ref: '#/components/schemas/AnalyticFacebookPixel'
+              - $ref: '#/components/schemas/AnalyticSegment'
+              - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+              - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+        Meta:
+          type: object
     AnalyticGoogle:
       type: object
       title: Google Analytic
