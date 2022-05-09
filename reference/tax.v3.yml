@@ -131,9 +131,6 @@ tags:
   - name: Tax Provider Connection
 servers:
   - url: 'https://api.bigcommerce.com'
-    variables:
-      store_hash:
-        default: unknown
 components:
   parameters:
     provider_id:

@@ -134,13 +134,6 @@ x-stoplight:
     showModels: true
 servers:
   - url: 'https://api.bigcommerce.com'
-    variables:
-      store_hash:
-        default: '{store_hash}'
-  - url: 'https://api.bigcommerce.com'
-    variables:
-      store_hash:
-        default: '{store_hash}'
 components:
   parameters:
     WebhookId:
