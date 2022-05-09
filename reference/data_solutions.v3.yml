@@ -156,20 +156,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse422'
 components:
   schemas:
-    Analytic:
-      type: object
-      properties:
-        data:
-          oneOf:
-            - $ref: '#/components/schemas/AnalyticGoogle'
-            - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
-            - $ref: '#/components/schemas/AnalyticFacebookPixel'
-            - $ref: '#/components/schemas/AnalyticSegment'
-            - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
-            - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
-        meta:
-          type: object
-          properties: {}
     Analytics:
       type: object
       x-examples: {}
@@ -187,6 +173,20 @@ components:
               - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
         Meta:
           type: object
+    Analytic:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - $ref: '#/components/schemas/AnalyticGoogle'
+            - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+            - $ref: '#/components/schemas/AnalyticFacebookPixel'
+            - $ref: '#/components/schemas/AnalyticSegment'
+            - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+            - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+        meta:
+          type: object
+          properties: {}
     AnalyticGoogle:
       type: object
       title: Google Analytic
