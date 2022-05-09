@@ -29,7 +29,12 @@ paths:
             type: string
       responses:
         '200':
-          description: Successful operation.
+          description: |- 
+            Successful operation.
+
+            <!-- theme: info -->
+            > The `200` response body returns an array of all analytics objects. View each individual analytics type by clicking the dropdown next to **data**
+
           content:
             application/json:
               schema:
@@ -157,15 +162,15 @@ components:
         data:
           type: array
           items:
-            - $ref: '#/components/schemas/AnalyticGoogle'
-            - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
-            - $ref: '#/components/schemas/AnalyticFacebookPixel'
-            - $ref: '#/components/schemas/AnalyticSegment'
-            - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
-            - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+            anyOf:
+              - $ref: '#/components/schemas/AnalyticGoogle'
+              - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+              - $ref: '#/components/schemas/AnalyticFacebookPixel'
+              - $ref: '#/components/schemas/AnalyticSegment'
+              - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+              - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
         meta:
           type: object
-          properties: {}
     Analytic:
       type: object
       properties:
