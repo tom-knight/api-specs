@@ -207,11 +207,9 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
-          example: true
         data_tag_enabled:
           type: boolean
           description: Flag indicates if data tags are enabled by Google Analytic.
-          example: true
         version:
           type: integer
           description: Google Analytic version.
@@ -239,7 +237,6 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
-          example: false
     AnalyticFacebookPixel:
       type: object
       title: Facebook Pixel Analytic
@@ -263,11 +260,9 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
-          example: true
         is_oauth_connected:
           type: boolean
           description: Flag indicates if specific integration service grant OAuth token for Bigcommerce Store
-          example: true
     AnalyticSegment:
       type: object
       title: Segment Analytic
@@ -291,11 +286,9 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
-          example: true
         data_tag_enabled:
           type: boolean
           description: Flag indicates if data tags are enabled by Segment Analytic.
-          example: true
     AnalyticSiteVerificationTags:
       type: object
       title: Site Verification Tags Analytic
@@ -319,7 +312,6 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
-          example: true
     AnalyticAffiliateConversionTracking:
       type: object
       properties:
@@ -342,7 +334,6 @@ components:
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
-          example: false
       title: Affiliate Conversion Tracking Analytic
     Error:
       type: object
