@@ -7,61 +7,61 @@
     {
       "type": "item",
       "title": "Carts",
-      "slug": "/storefront/carts",
+      "slug": "storefront/carts",
       "uri": "reference/carts.sf.yml"
     },
     {
       "type": "item",
       "title": "Checkouts",
-      "slug": "/storefront/checkouts",
+      "slug": "storefront/checkouts",
       "uri": "reference/checkouts.sf.yml"
     },
     {
       "type": "item",
       "title": "Cookie Consent",
-      "slug": "/storefront/cookie-consent",
+      "slug": "storefront/cookie-consent",
       "uri": "reference/consent.sf.yml"
     },
     {
       "type": "item",
       "title": "Current Customers",
-      "slug": "/storefront/current-customers",
+      "slug": "storefront/current-customers",
       "uri": "reference/current_customer.yml"
     },
     {
       "type": "item",
       "title": "Customers",
-      "slug": "/storefront/customers",
+      "slug": "storefront/customers",
       "uri": "reference/customers.sf.yml"
     },
     {
       "type": "item",
       "title": "Customer Login SSO",
-      "slug": "/storefront/customer-login-sso",
+      "slug": "storefront/customer-login-sso",
       "uri": "docs/customer-login-sso.md"
     },
     {
       "type": "item",
       "title": "Customer Login",
-      "slug": "/storefront/customer-login",
+      "slug": "storefront/customer-login",
       "uri": "reference/customer_login.yml"
     },
     {
       "type": "item",
       "title": "Form Fields",
-      "slug": "/storefront/form-fields",
+      "slug": "storefront/form-fields",
       "uri": "reference/form_fields.sf.yml"
     },
     {
       "type": "item",
       "title": "Email Subscriptions",
-      "slug": "/storefront/subscriptions",
+      "slug": "storefront/subscriptions",
       "uri": "reference/subscriptions.sf.yml"
     },
     {
       "type": "item",
       "title": "Orders",
-      "slug": "/storefront/orders",
+      "slug": "storefront/orders",
       "uri": "reference/orders.sf.yml"
     },
     {
@@ -71,13 +71,13 @@
     {
       "type": "item",
       "title": "Storefront GraphQL API",
-      "slug": "/storefront/graphql",
+      "slug": "storefront/graphql",
       "uri": "docs/storefront-graphql.md"
     },
     {
       "type": "item",
       "title": "GraphQL Tokens (REST)",
-      "slug": "/store-management/tokens",
+      "slug": "store-management/tokens",
       "uri": "reference/storefront_tokens.v3.yml"
     },
     {
@@ -92,211 +92,211 @@
     {
       "type": "item",
       "title": "Abandoned Carts",
-      "slug": "/store-management/abandoned-carts",
+      "slug": "store-management/abandoned-carts",
       "uri": "reference/abandoned_carts.v3.yml"
     },
     {
       "type": "item",
       "title": "Abandoned Cart Emails (Beta)",
-      "slug": "/store-management/abandoned-cart-emails",
+      "slug": "store-management/abandoned-cart-emails",
       "uri": "reference/abandoned_cart_emails.v3.yaml"
     },
     {
       "type": "item",
       "title": "Carts",
-      "slug": "/store-management/carts",
+      "slug": "store-management/carts",
       "uri": "reference/carts.v3.yml"
     },
     {
       "type": "item",
       "title": "Catalog",
-      "slug": "/store-management/catalog",
+      "slug": "store-management/catalog",
       "uri": "reference/catalog.v3.yml"
     },
     {
       "type": "item",
       "title": "Channels",
-      "slug": "/store-management/channels",
+      "slug": "store-management/channels",
       "uri": "reference/channels.v3.yml"
     },
     {
       "type": "item",
       "title": "Checkouts",
-      "slug": "/store-management/checkouts",
+      "slug": "store-management/checkouts",
       "uri": "reference/checkouts.v3.yml"
     },
     {
       "type": "item",
       "title": "Currencies",
-      "slug": "/store-management/currencies",
+      "slug": "store-management/currencies",
       "uri": "reference/currencies.v2.yml"
     },
     {
       "type": "item",
       "title": "Customers v2",
-      "slug": "/store-management/customers-v2",
+      "slug": "store-management/customers-v2",
       "uri": "reference/customers.v2.yml"
     },
     {
       "type": "item",
       "title": "Customers v3",
-      "slug": "/store-management/customers-v3",
+      "slug": "store-management/customers-v3",
       "uri": "reference/customers.v3.yml"
     },
     {
       "type": "item",
       "title": "Custom Template Associations",
-      "slug": "/store-management/custom-template-associations",
+      "slug": "store-management/custom-template-associations",
       "uri": "reference/custom-template-associations.v3.yml"
     },
     {
       "type": "item",
       "title": "Email Templates",
-      "slug": "/store-management/email-templates",
+      "slug": "store-management/email-templates",
       "uri": "reference/email_templates.v3.yml"
     },
     {
       "type": "item",
       "title": "Geography",
-      "slug": "/store-management/geography",
+      "slug": "store-management/geography",
       "uri": "reference/geography.v2.yml"
     },
     {
       "type": "item",
       "title": "Marketing",
-      "slug": "/store-management/marketing",
+      "slug": "store-management/marketing",
       "uri": "reference/marketing.v2.yml"
     },
     {
       "type": "item",
       "title": "Orders v2",
-      "slug": "/store-management/orders-v2",
+      "slug": "store-management/orders-v2",
       "uri": "reference/orders.v2.oas2.yml"
     },
     {
       "type": "item",
       "title": "Orders v3",
-      "slug": "/store-management/orders-v3",
+      "slug": "store-management/orders-v3",
       "uri": "reference/orders.v3.yml"
     },
     {
       "type": "item",
       "title": "Pages v3",
-      "slug": "/store-management/pages",
+      "slug": "store-management/pages",
       "uri": "reference/pages.v3.yml"
     },
     {
       "type": "item",
       "title": "Payment Methods",
-      "slug": "/store-management/payment-methods",
+      "slug": "store-management/payment-methods",
       "uri": "reference/payment_methods.v2.yml"
     },
     {
       "type": "item",
       "title": "Payment Processing",
-      "slug": "/store-management/payment-processing",
+      "slug": "store-management/payment-processing",
       "uri": "reference/payment_processing.yml"
     },
     {
       "type": "item",
       "title": "Pricing",
-      "slug": "/store-management/pricing",
+      "slug": "store-management/pricing",
       "uri": "reference/pricing.sf.yml"
     },
     {
       "type": "item",
       "title": "Price Lists",
-      "slug": "/store-management/price-lists",
+      "slug": "store-management/price-lists",
       "uri": "reference/price_lists.v3.yml"
     },
     {
       "type": "item",
       "title": "Redirects v3",
-      "slug": "/store-management/redirects",
+      "slug": "store-management/redirects",
       "uri": "reference/redirects.v3.yml"
     },
     {
       "type": "item",
       "title": "Scripts",
-      "slug": "/store-management/scripts",
+      "slug": "store-management/scripts",
       "uri": "reference/scripts.v3.yml"
     },
     {
       "type": "item",
       "title": "Settings",
-      "slug": "/store-management/settings",
+      "slug": "store-management/settings",
       "uri": "reference/settings.v3.yml"
     },
     {
       "type": "item",
       "title": "Shipping v2",
-      "slug": "/store-management/shipping-v2",
+      "slug": "store-management/shipping-v2",
       "uri": "reference/shipping.v2.yml"
     },
     {
       "type": "item",
       "title": "Shipping v3",
-      "slug": "/store-management/shipping-v3",
+      "slug": "store-management/shipping-v3",
       "uri": "reference/shipping.v3.yml"
     },
     {
       "type": "item",
       "title": "Sites",
-      "slug": "/store-management/sites",
+      "slug": "store-management/sites",
       "uri": "reference/sites.v3.yml"
     },
     {
       "type": "item",
       "title": "Store Content",
-      "slug": "/store-management/store-content",
+      "slug": "store-management/store-content",
       "uri": "reference/store_content.v2.yml"
     },
     {
       "type": "item",
       "title": "Store Information",
-      "slug": "/store-management/store-information",
+      "slug": "store-management/store-information",
       "uri": "reference/store_information.v2.yml"
     },
     {
       "type": "item",
       "title": "Subscribers",
-      "slug": "/store-management/subscribers",
+      "slug": "store-management/subscribers",
       "uri": "reference/subscribers.v3.yml"
     },
     {
       "type": "item",
       "title": "Tax Classes",
-      "slug": "/store-management/tax-classes",
+      "slug": "store-management/tax-classes",
       "uri": "reference/tax_classes.v2.yml"
     },
     {
       "type": "item",
       "title": "Tax Provider Connection",
-      "slug": "/store-management/tax-connection",
+      "slug": "store-management/tax-connection",
       "uri": "reference/tax.v3.yml"
     },
     {
       "type": "item",
       "title": "Themes",
-      "slug": "/store-management/themes",
+      "slug": "store-management/themes",
       "uri": "reference/themes.v3.yml"
     },
     {
       "type": "item",
       "title": "Webhooks",
-      "slug": "/store-management/webhooks",
+      "slug": "store-management/webhooks",
       "uri": "reference/webhooks.v3.yml"
     },
     {
       "type": "item",
       "title": "Widgets",
-      "slug": "/store-management/widgets",
+      "slug": "store-management/widgets",
       "uri": "reference/widgets.v3.yml"
     },
     {
       "type": "item",
       "title": "Wishlists",
-      "slug": "/store-management/wishlists",
+      "slug": "store-management/wishlists",
       "uri": "reference/wishlists.v3.yml"
     },
     {
@@ -306,13 +306,13 @@
     {
       "type": "item",
       "title": "Shipping Provider API",
-      "slug": "/providers/shipping",
+      "slug": "providers/shipping",
       "uri": "reference/shipping_provider.yml"
     },
     {
       "type": "item",
       "title": "Tax Provider API",
-      "slug": "/providers/tax",
+      "slug": "providers/tax",
       "uri": "reference/tax_provider.yml"
     },
     {
@@ -322,7 +322,7 @@
     {
       "type": "item",
       "title": "Handlebars Email Template Objects",
-      "slug": "/store-management/email-templates/handlebars",
+      "slug": "store-management/email-templates/handlebars",
       "uri": "models/email_templates/_all.yml"
     }
   ]
