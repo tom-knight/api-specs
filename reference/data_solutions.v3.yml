@@ -213,9 +213,6 @@ components:
               - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
         meta:
           type: object
-      required:
-        - data
-        - meta
     Analytic:
       type: object
       properties:
