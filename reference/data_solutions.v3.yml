@@ -200,12 +200,10 @@ components:
           type: string
           description: Google Analytic tracking code. Required when version is 1
           example: GA-1234567890
-          nullable: true
         property_id:
           type: string
           description: Google Analytic property ID. Required when version is 2
           example: GA-1234567890
-          nullable: true
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
