@@ -38,22 +38,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      anyOf:
-                        - $ref: '#/components/schemas/AnalyticGoogle'
-                        - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
-                        - $ref: '#/components/schemas/AnalyticFacebookPixel'
-                        - $ref: '#/components/schemas/AnalyticSegment'
-                        - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
-                        - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
-                  meta:
-                    type: object
+                $ref: '#/components/schemas/Analytics'
               examples:
-                example-1:
+                Example:
                   value:
                     data:
                       - channel_id: 1
@@ -91,18 +78,6 @@ paths:
                         name: Affiliate Conversion Tracking
                         connection: <script>js code here...</script>
                         enabled: true
-                    meta: {}
-                example-2:
-                  value:
-                    data:
-                      - channel_id: 1
-                        id: 1
-                        name: Google Analytics
-                        tracking_code: GA-1234567890
-                        property_id: GA-1234567890
-                        enabled: true
-                        data_tag_enabled: true
-                        version: 1
                     meta: {}
         '400':
           description: Bad request. Authentication Required.
@@ -223,24 +198,13 @@ components:
   schemas:
     Analytics:
       type: object
-      x-examples:
-        example-1:
-          data:
-            - channel_id: 1
-              id: 1
-              name: Google Analytics
-              tracking_code: GA-1234567890
-              property_id: GA-1234567890
-              enabled: true
-              data_tag_enabled: true
-              version: 1
-          meta: {}
+      x-examples: {}
       description: ''
       properties:
         data:
           type: array
           items:
-            oneOf:
+            anyOf:
               - $ref: '#/components/schemas/AnalyticGoogle'
               - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
               - $ref: '#/components/schemas/AnalyticFacebookPixel'
