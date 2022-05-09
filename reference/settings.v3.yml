@@ -4,25 +4,7 @@ info:
     email: support@bigcommerce.com
     name: BigCommerce
     url: 'https://www.bigcommerce.com'
-  description: |-
-    Manage settings and configuration for BigCommerce hosted stores and headless storefronts.
-
-    ## Authentication
-
-    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request header.
-
-    ```http
-    GET /stores/{{STORE_HASH}}/v3/settings/storefront/status
-    host: api.bigcommerce.com
-    Accept: application/json
-    X-Auth-Token: {{ACCESS_TOKEN}}
-    ```
-
-    ### OAuth Scopes
-    |  **UI Name** | **Permission** | **Parameter** |
-    | --- | --- | --- |
-    |  Information & Settings | modify | `store_v2_information` |
-    |  Information & Settings | read-only | `store_v2_information_read_only` |
+  description: ''
   termsOfService: 'http://www.bigcommerce.com/terms'
   title: Settings V3
   version: 3.0.0
@@ -2150,24 +2132,22 @@ components:
                 type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
   securitySchemes:
     X-Auth-Token:
-      description: |-
-        Authenticate requests by including an [OAuth](/api-docs/getting-started/authentication/rest-api-authentication) `access_token` in the request header.
-
-        ```http
-        GET /stores/{{STORE_HASH}}/v3/settings/storefront/status
-        host: api.bigcommerce.com
-        Accept: application/json
-        X-Auth-Token: {{ACCESS_TOKEN}}
-        ```
-
-        ### OAuth Scopes
-        |  **UI Name** | **Permission** | **Parameter** |
-        | --- | --- | --- |
-        |  Information & Settings | modify | `store_v2_information` |
-        |  Information & Settings | read-only | `store_v2_information_read_only` |
+      description: ''
       in: header
       name: X-Auth-Token
       type: apiKey
+    API Key - 1:
+      type: oauth2
+      flows:
+        implicit:
+          scopes:
+            'write:pets': modify pets in your account
+            'read:pets': read your pets
+        authorizationCode:
+          scopes:
+            'write:pets': modify pets in your account
+            'read:pets': read your pets
+      description: ''
 tags:
   - name: Email Statuses
   - name: Search Filters
