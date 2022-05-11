@@ -33,7 +33,7 @@ paths:
   '/stores/{store_hash}/v3/settings/data-solutions/web-analytics':
     get:
       tags:
-        - Analytics
+        - Web Analytics
       operationId: getAllAnalytics
       summary: Get All Web Analytics
       description: 'Returns a list of all available Web Analytics data for a specified channel. If the `channel_id` is empty, analytic data returns for the default channel.'
@@ -109,7 +109,7 @@ paths:
   '/stores/{store_hash}/v3/settings/data-solutions/web-analytics/{id}':
     get:
       tags:
-        - Analytics
+        - Web Analytics
       operationId: getAnalytic
       summary: Get a Web Analytic
       description: 'Returns a single Web Analytics data for a specified channel. If the `channel_id` is empty, analytic data returns for the default channel.'
@@ -151,7 +151,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse404'
     put:
       tags:
-        - Analytics
+        - Web Analytics
       operationId: updateAnalytic
       summary: Updates a Web Analytic
       description: 'Updates a single Web Analytics data for a specified channel. If `channel_id` is not set, analytic data updates for a default channel.'
@@ -2381,7 +2381,7 @@ tags:
   - name: Storefront Security
   - name: Storefront SEO
   - name: Storefront Status
-  - name: Analytics
+  - name: Web Analytics
   - name: Catalog
   - name: Inventory
   - name: Logo
