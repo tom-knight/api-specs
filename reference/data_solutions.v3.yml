@@ -9,7 +9,7 @@ info:
 servers:
   - url: 'https://api.bigcommerce.com'
 paths:
-  '/stores/{store_hash}/v3/settings/analytics':
+  '/stores/{store_hash}/v3/settings/data-solutions/web-analytics':
     get:
       tags:
         - Analytics
@@ -85,7 +85,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
-  '/stores/{store_hash}/v3/settings/analytics/{id}':
+  '/stores/{store_hash}/v3/settings/data-solutions/web-analytics/{id}':
     get:
       tags:
         - Analytics
