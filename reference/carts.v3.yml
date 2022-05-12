@@ -356,14 +356,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Cart_Line_Item_Update_Put'
+              $ref: '#/components/schemas/CartUpdateRequest'
         required: true
-        x-examples:
-          application/json:
-            line_item:
-              quantity: 2
-              product_id: 152
-              list_price: 12.5
       tags:
         - Cart Items
       responses:
@@ -840,6 +834,9 @@ components:
   schemas:
     CartUpdateRequest:
       type: object
+      title: Cart Update Request
+      x-internal: false
+      x-examples: {}
       properties:
         line_item:
           type: object
@@ -849,71 +846,21 @@ components:
               type: number
             product_id:
               type: number
-            variant_id:
-              type: number
-              description: Required if the product has variants
             list_price:
               type: number
             option_selections:
               type: array
               items:
                 type: object
+                title: Product Option Selection
                 properties:
                   option_id:
                     type: number
                   option_value:
                     type: string
-                title: Product Option Selection
           required:
             - quantity
             - product_id
-            - variant_id
-        gift_certificate:
-          type: object
-          required:
-            - sender
-            - recipient
-            - amount
-            - theme
-            - name
-            - quantity
-          properties:
-            name:
-              type: string
-              description: Given name for gift certificate line item.
-            theme:
-              type: string
-              description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
-            amount:
-              type: number
-              minimum: 1
-              maximum: 1000
-            quantity:
-              type: integer
-              minimum: 1
-            sender:
-              title: Contact Entity
-              type: object
-              properties:
-                name:
-                  type: string
-                email:
-                  type: string
-            recipient:
-              title: Contact Entity
-              type: object
-              properties:
-                name:
-                  type: string
-                email:
-                  type: string
-            message:
-              type: string
-              maximum: 200
-              description: 'Message shown to recipient, as provided by sender.'
-          title: Line Item Gift Certificate Request Data
-      title: Cart Update Request
-      x-internal: false
     CartCreatePostData:
       type: object
       title: Cart Create Post Data
