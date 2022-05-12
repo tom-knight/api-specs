@@ -21,7 +21,7 @@ paths:
         - name: 'id:in'
           in: query
           type: string
-          example: '12,34,56'
+          description: Comma-separated list of Tax Property IDs. Example '12,34,56'
       responses:
         '200':
           description: OK
@@ -103,7 +103,7 @@ paths:
           in: query
           required: true
           type: string
-          example: '12,34,56'
+          description: Comma-separated list of Tax Property IDs? Example '12,34,56'
       responses:
         '204':
           description: No Content
@@ -123,7 +123,7 @@ paths:
           in: query
           required: true
           type: string
-          example: '12,34,56'
+          description: Comma-separated list of Tax Property IDs. Example '12,34,56'
       responses:
         '200':
           description: OK
