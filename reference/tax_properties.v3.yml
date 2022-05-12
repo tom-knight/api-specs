@@ -127,7 +127,7 @@ paths:
           description: Request parameters invalid
         '409':
           description: Tax Property is in use and cannot be deleted
-  stores/{store_hash}/v3/tax/properties/product:
+  /stores/{store_hash}/v3/tax/properties/product:
     get:
       tags:
         - Product Tax Properties
@@ -205,7 +205,7 @@ paths:
           in: query
           required: true
           type: string
-          example: '12,34,56'
+          description: 'Comma-separated list of Product IDs. Example ''12,34,56'''
       responses:
         '204':
           description: No Content
