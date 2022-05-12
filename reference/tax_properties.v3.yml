@@ -3,25 +3,29 @@ x-stoplight:
   id: af9eb7ad6774f
 info:
   title: Tax Properties
-  description: "Include tax properties and product tax properties in tax calcuations"
+  description: Include tax properties and product tax properties in tax calcuations
   version: ''
 host: api.bigcommerce.com
 basePath: /
 schemes:
   - https
 paths:
-  /tax/properties:
+  /stores/{store_hash}/v3/tax/properties:
     get:
-      tags: 
-        - "Tax Properties"
+      tags:
+        - Tax Properties
       summary: Get Tax Properties
       description: Retrieve all tax properties defined on this store.
       operationId: get
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          type: string
         - name: 'id:in'
           in: query
           type: string
-          description: Comma-separated list of Tax Property IDs. Example '12,34,56'
+          description: 'Comma-separated list of Tax Property IDs. Example ''12,34,56'''
       responses:
         '200':
           description: OK
@@ -38,11 +42,15 @@ paths:
           description: Request parameters invalid
     put:
       tags:
-        - "Tax Properties"
+        - Tax Properties
       summary: Update Tax Properties
       description: Update one or more tax properties. Only fields specified will be adjusted.
       operationId: update
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          type: string
         - name: body
           in: body
           required: true
@@ -66,11 +74,15 @@ paths:
           description: Request body does not meet specification
     post:
       tags:
-        - "Tax Properties"
+        - Tax Properties
       summary: Create Tax Properties
       description: Create one or more tax properties. A **code** and a **display name** must be included when creating tax properties.
       operationId: create
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          type: string
         - name: body
           in: body
           required: true
@@ -94,16 +106,20 @@ paths:
           description: Request body does not meet specification
     delete:
       tags:
-        - "Tax Properties"
+        - Tax Properties
       summary: Delete Tax Properties
       description: Delete one or multiple tax properties. A tax property must have zero usages within product tax properties before it can be deleted.
       operationId: delete
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          type: string
         - name: 'id:in'
           in: query
           required: true
           type: string
-          description: Comma-separated list of Tax Property IDs? Example '12,34,56'
+          description: 'Comma-separated list of Tax Property IDs? Example ''12,34,56'''
       responses:
         '204':
           description: No Content
@@ -111,19 +127,23 @@ paths:
           description: Request parameters invalid
         '409':
           description: Tax Property is in use and cannot be deleted
-  /tax/properties/product:
+  stores/{store_hash}/v3/tax/properties/product:
     get:
       tags:
-        - "Product Tax Properties"
+        - Product Tax Properties
       summary: Get Product Tax Properties
       description: Retrieve the tax properties that are associated to one or more products.
       operationId: get-product-tax-properties
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          type: string        
         - name: 'product_id:in'
           in: query
           required: true
           type: string
-          description: Comma-separated list of Tax Property IDs. Example '12,34,56'
+          description: 'Comma-separated list of Product IDs. Example 12,34,56'
       responses:
         '200':
           description: OK
@@ -140,11 +160,15 @@ paths:
           description: Request parameters invalid
     put:
       tags:
-        - "Product Tax Properties"
+        - Product Tax Properties
       summary: Update Product Tax Properties
       description: 'Update the tax properties that are associated to one or more products. This operation will be additive to any tax property values already associated with the product, overwriting any existing tax property values.'
       operationId: update-product-tax-properties
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          type: string
         - name: body
           in: body
           required: true
@@ -168,11 +192,15 @@ paths:
           description: Request body does not meet specification
     delete:
       tags:
-        - "Product Tax Properties"
+        - Product Tax Properties
       summary: Delete Product Tax Properties
       description: Delete tax properties that are associated to one or more products.
       operationId: delete-product-tax-properties
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          type: string        
         - name: 'product_id:in'
           in: query
           required: true
@@ -219,7 +247,7 @@ definitions:
         type: array
         description: A simple key value pairing. The tax property must be defined to associate a value. These values will be sent to the active tax provider during Tax Provider API operations whenever the associated product is included in the operation.
         items:
-          type: unknown
+          type: string
     required:
       - product_id
       - tax_properties
@@ -237,5 +265,5 @@ securityDefinitions:
     name: X-Auth-Token
     in: header
 tags:
-  - name: "Tax Properties" 
-  - name: "Product Tax Properties"
+  - name: Tax Properties
+  - name: Product Tax Properties
