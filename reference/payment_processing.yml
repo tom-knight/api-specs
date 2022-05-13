@@ -3,7 +3,7 @@ info:
   version: ''
   title: Payment Processing
   contact: {}
-  description: 'Process payments using payment instrument such as credit card. See [Payments Overview](https://developer.bigcommerce.com/api-docs/store-management/payment-processing) for more information.'
+  description: 'Process payments using payment instrument such as credit card. See [Payments Overview](/api-docs/store-management/payment-processing) for more information.'
 tags:
   - name: Accepted Methods
   - name: Access Tokens
@@ -13,30 +13,20 @@ x-stoplight:
     includeDownloadLink: true
     showModels: false
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
-    variables:
-      $$.env.store_hash:
-        default: store_hash
-  - url: 'https://payments.bigcommerce.com/stores/{$$.env.store_hash}'
-    variables:
-      $$.env.store_hash:
-        default: store_hash
+  - url: 'https://api.bigcommerce.com'
+  - url: 'https://payments.bigcommerce.com'
 security:
-  - X-Auth-Client: []
   - X-Auth-Token: []
 paths:
-  /payments:
+  '/stores/{store_hash}/payments':
     post:
       summary: Process Payment
       tags:
         - Process Payment
       operationId: PaymentsPost
-      description: 'Process payments for an order. See [Payment Processing](https://developer.bigcommerce.com/api-docs/store-management/payment-processing) for more information.'
+      description: 'Process payments for an order. See [Payment Processing](/api-docs/store-management/payment-processing) for more information.'
       servers:
-        - url: 'https://payments.bigcommerce.com/stores/{$$.env.store_hash}'
-          variables:
-            $$.env.store_hash:
-              default: store_hash
+        - url: 'https://payments.bigcommerce.com'
       parameters:
         - name: Authorization
           in: header
@@ -44,7 +34,7 @@ paths:
           description: 'Authorization header with a valid payment access token is required to access this endpoint e.g. Authorization: PAT a-valid-payment-access-token'
           schema:
             type: string
-            example: 'PAT {PAT} '
+            example: 'PAT {{PAT}}'
         - name: Accept
           in: header
           schema:
@@ -52,11 +42,14 @@ paths:
             enum:
               - application/vnd.bc.v1+json
             default: application/vnd.bc.v1+json
+          required: true
+          description: This required value must be `application/vnd.bc.v1+json`
         - name: Content-Type
           in: header
           schema:
             type: string
             default: application/json
+          required: true
       requestBody:
         content:
           application/json:
@@ -127,7 +120,7 @@ paths:
               currency_code: NYE
           Payment Access Token: |-
             curl -X POST \
-              https://payments.bigcommerce.com/stores/{$$.env.store_hash}/payments \
+              https://payments.bigcommerce.com/stores/{store_hash}/payments \
               -H 'Accept: application/vnd.bc.v1+json' \
               -H 'Authorization: PAT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NsdfasftIsIm5iZiI6MTU1MTM5MDU0MiwiaXNzIjoicGF5bWVudHMuYmlnY29tbWVyY2UuY29tIiwic3ViIjoianJhaDZnbW4iLCJqdGkiOiI3Nzg3ZmU1Zi01OWJmLTQ3ZWMtYTFmZC00ZDQ3ZTkwNjFlNWMiLCJpYXQiOjE1NTEzOTA1NDIsImRhdGEiOnsic3RvcmVfaWQiOjEwMjU2NDYsIm9yZGVyX2lkIjoyMTUsImFtb3VudCI6OTgwMCwiY3VycmVuY3kiOiJVU0QifX0.WbR90d8m4gn8wK7kPMDEoVq8B0hHC5Ul5H4Hpqq6Yvo' \
               -H 'Content-Type: application/json' \
@@ -324,12 +317,19 @@ paths:
                   - status
                   - title
                   - type
-  /payments/access_tokens:
+      security: []
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/payments/access_tokens':
     post:
       description: |-
         This endpoint provides the capability to create a payment access token. The payment access token is required when making request to Payment API for submitting payment for an order.
 
-        After the token is created then use the token to [Process Payments](/api-reference/payments/payments-process-payments/payment/paymentspost).
+        After the token is created, use the token to [Process Payments](/api-reference/payments/payments-process-payments/payment/paymentspost).
 
         **Required Fields**
         * order_id
@@ -338,10 +338,7 @@ paths:
         - Access Tokens
       operationId: PaymentsAccessTokensPost
       servers:
-        - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
-          variables:
-            $$.env.store_hash:
-              default: store_hash
+        - url: 'https://api.bigcommerce.com'
       deprecated: false
       parameters:
         - name: Accept
@@ -604,26 +601,31 @@ paths:
                   - status
                   - title
                   - type
-  /payments/methods:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/payments/methods':
     get:
       description: |-
-        Returns a list of accepted payment methods based on the `order_id`.
+        Returns a list of accepted payment methods based on the `order_id` or `checkout_id`.
 
         **Notes**
-        * Use the [Create an Order](https://developer.bigcommerce.com/api-reference/store-management/checkouts/checkout-orders/createanorder) endpoint, to generate the `order_id`.
+        * Use the [Create an Order](/api-reference/store-management/checkouts/checkout-orders/createanorder) endpoint, to generate the `order_id`.
         * Orders created will be set to incomplete order status.
+        * The cart ID and checkout ID are the same.
 
         **Required Fields**
         * order_id
+        * checkout_id
       summary: Get Accepted Payment Methods
       tags:
         - Accepted Methods
       operationId: PaymentsMethodsGet
       servers:
-        - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
-          variables:
-            $$.env.store_hash:
-              default: store_hash
+        - url: 'https://api.bigcommerce.com'
       deprecated: false
       parameters:
         - name: order_id
@@ -633,6 +635,14 @@ paths:
           schema:
             type: integer
             format: int32
+            exclusiveMinimum: false
+            exclusiveMaximum: false
+        - name: checkout_id
+          in: query
+          required: false
+          description: Identifier for the checkout (same as the cart ID)
+          schema:
+            type: string
             exclusiveMinimum: false
             exclusiveMaximum: false
         - name: Accept
@@ -821,15 +831,26 @@ paths:
               properties:
                 order_id:
                   type: integer
+                checkout_id:
+                  type: string
             examples:
-              example-1:
+              order_id:
                 value:
                   order_id: 155
+              checkout_id:
+                value:
+                  checkout_id: 69331902-b0f7-46b7-baec-852b318161f6
           application/xml:
             schema:
               type: object
               properties: {}
         description: ''
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
 components:
   parameters:
     Accept:
@@ -919,25 +940,26 @@ components:
         |Header|Parameter|Description|
         |-|-|-|
         |`X-Auth-Token`|`ACCESS_TOKEN`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
-        |`Authorization`|`{PAYMENT_ACCESS_TOKEN}`|Obtained using Create Access Token endpoint.|
+        |`Authorization`|`PAT {{PAYMENT_ACCESS_TOKEN}}`|Obtained using Create Access Token endpoint.|
 
-        ### Example
+        ### Examples
 
-        ```http
-        POST /stores/{$$.env.store_hash}/v3/payments/access_tokens
+        ```http title="Create payment access token"
+        POST /stores/{{STORE_HASH}}/v3/payments/access_tokens
         host: api.bigcommerce.com
         Content-Type: application/json
-        X-Auth-Token: {ACCESS_TOKEN}
+        X-Auth-Token: {{ACCESS_TOKEN}}
         ```
-
-        ```http
+        &nbsp;
+        ```http title="Process payment"
         POST /payments
         host: payments.bigcommerce.com
         Content-Type: application/json
-        Authorization: {PAYMENT_ACCESS_TOKEN}
+        Accept: application/vnd.bc.v1+json
+        Authorization: PAT {{PAYMENT_ACCESS_TOKEN}}
         ```
 
-        * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+        * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
   schemas:
     PaymentRequest:
       title: Payment Request
@@ -967,6 +989,7 @@ components:
               minLength: 1
       required:
         - payment
+      x-internal: false
     Payment:
       title: Payment
       type: object
@@ -989,6 +1012,7 @@ components:
       required:
         - instrument
         - payment_method_id
+      x-internal: false
     SuccessPaymentResponse:
       title: Success Payment Response
       type: object
@@ -1011,6 +1035,7 @@ components:
           enum:
             - success
             - pending
+      x-internal: false
     TransactionType:
       title: Transaction Type
       description: Transaction type for this payment
@@ -1019,6 +1044,7 @@ components:
       enum:
         - authorization
         - purchase
+      x-internal: false
     Status:
       type: string
       title: Status
@@ -1026,6 +1052,7 @@ components:
       enum:
         - success
         - pending
+      x-internal: false
     ErrorPaymentResponse:
       title: Error Payment Response
       type: object
@@ -1056,6 +1083,7 @@ components:
         - status
         - title
         - type
+      x-internal: false
     Card:
       title: Card
       type: object
@@ -1119,6 +1147,7 @@ components:
         - number
         - expiry_month
         - expiry_year
+      x-internal: false
     StoredCard:
       title: Stored Card
       type: object
@@ -1136,6 +1165,7 @@ components:
       required:
         - type
         - token
+      x-internal: false
     BasePaymentResponse:
       title: Base Payment Response
       type: object
@@ -1151,6 +1181,7 @@ components:
           enum:
             - authorization
             - purchase
+      x-internal: false
     PendingPaymentResponse:
       title: Pending Payment Response
       type: object
@@ -1173,6 +1204,7 @@ components:
           enum:
             - success
             - pending
+      x-internal: false
     StoredPaypalAccount:
       title: StoredPaypalAccount
       type: object
@@ -1190,6 +1222,7 @@ components:
       required:
         - type
         - token
+      x-internal: false
     Order:
       title: Order
       type: object
@@ -1210,6 +1243,7 @@ components:
         example-1:
           id: 1
           is_recurring: false
+      x-internal: false
     PaymentAccessTokenRequest:
       title: Payment Access Token Request
       type: object
@@ -1232,6 +1266,7 @@ components:
               default: false
       required:
         - order
+      x-internal: false
     PaymentAccessToken:
       title: Payment Access Token
       type: object
@@ -1242,6 +1277,7 @@ components:
           minLength: 1
       required:
         - id
+      x-internal: false
     paymentMethodStoredInstrument:
       title: paymentMethodStoredInstrument
       type: object
@@ -1271,7 +1307,7 @@ components:
           minLength: 4
           maxLength: 4
         token:
-          description: 'Identifier representing this stored card. This is used to identify cards within BigCommerce. It is the same as the `payment_access_token` that returns via the [Get Transactions endpoint](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api/orders/gettransactions).'
+          description: 'Identifier representing this stored card. This is used to identify cards within BigCommerce. It is the same as the `payment_access_token` that returns via the [Get Transactions endpoint](/api-reference/store-management/order-transactions/transactions/gettransactions).'
           type: string
           minLength: 64
           maxLength: 64
@@ -1304,6 +1340,7 @@ components:
           token: stringstringstringstringstringstringstringstringstringstringstri
           is_default: false
           type: stored_card
+      x-internal: false
     paymentMethod_Full:
       title: paymentMethod_Full
       type: object
@@ -1380,6 +1417,7 @@ components:
               verification_value_required: true
           test_mode: false
           type: card
+      x-internal: false
     SupportedCardInstrument:
       title: Supported Card Instrument
       type: object
@@ -1404,6 +1442,7 @@ components:
           type: boolean
       required:
         - instrument_type
+      x-internal: false
     Error:
       title: Error
       type: object
@@ -1429,6 +1468,7 @@ components:
         - status
         - title
         - type
+      x-internal: false
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -1458,6 +1498,7 @@ components:
         - status
         - title
         - type
+      x-internal: false
     InstrumentType:
       title: InstrumentType
       description: Type of this instrument
@@ -1473,6 +1514,7 @@ components:
         - DANKORT
         - MAESTRO
         - STORED_CARD
+      x-internal: false
     StoredPaypalAccountInstrument:
       title: StoredPaypalAccountInstrument
       type: object
@@ -1500,6 +1542,7 @@ components:
         - token
         - is_default
         - type
+      x-internal: false
     SupportedPaypalAccountInstrument:
       title: SupportedPaypalAccountInstrument
       type: object
@@ -1511,3 +1554,4 @@ components:
             - STORED_PAYPAL_ACCOUNT
       required:
         - instrument_type
+      x-internal: false

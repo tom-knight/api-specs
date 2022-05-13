@@ -1,8 +1,8 @@
 openapi: 3.0.0
 servers:
-  - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
+  - url: 'https://api.bigcommerce.com'
     variables:
-      $$.env.store_hash:
+      store_hash:
         default: store_hash
 tags:
   - name: Customers
@@ -22,7 +22,6 @@ x-stoplight:
     includeDownloadLink: false
     showModels: false
 security:
-  - X-Auth-Client: []
   - X-Auth-Token: []
 info:
   version: ''
@@ -30,40 +29,37 @@ info:
   description: |-
     Create and manage customers.
 
-    - [Authentication](#authentication)
-    - [Resources](#resources)
-
     ## Authentication
 
-    Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
+    Authenticate requests by passing an API account `access_token` in the `X-Auth-Token` HTTP header:
 
     ```http
-    GET /stores/{$$.env.store_hash}/v3/customers
+    GET /stores/{{STORE_HASH}}/v3/customers
     host: api.bigcommerce.com
     Accept: application/json
-    X-Auth-Token: {access_token}
+    X-Auth-Token: {{ACCESS_TOKEN}}
     ```
 
-    |Header|Parameter|Description|
-    |-|-|-|
-    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+    | Header | Parameter | Description |
+    |:-------|:----------|:------------|
+    | `X-Auth-Token` | `access_token` | Obtained by creating an API account or installing an app in a BigCommerce control panel. |
 
     ### OAuth Scopes
 
     | UI Name                                      | Permission | Parameter                                     |
-    |----------------------------------------------|------------|-----------------------------------------------|
+    |:---------------------------------------------|:-----------|:----------------------------------------------|
     | Customers                                    | modify     | `store_v2_customers`                          |
     | Customers                                    | read-only  | `store_v2_customers_read_only`                |
     | Stored Payment Instruments                   | modify     | `store_stored_payment_instruments`            |
     | Stored Payment Instruments                   | read-only  | `store_stored_payment_instruments_read_only`  |
 
-    For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+    For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
 
     ## Resources
-    * [Customer and Subscribers Overview](/api-docs/customers/customers-subscribers-overview).
+    * [Customer and Subscribers Overview](/api-docs/store-management/customers).
   contact: {}
 paths:
-  /customers:
+  '/stores/{store_hash}/v3/customers':
     get:
       description: |-
         Returns a list of Customers. Optional filter parameters can be passed in.
@@ -141,12 +137,12 @@ paths:
             format: date-time
         - name: 'date_modified:min'
           in: query
-          description: 'Filter items by mininum date_modified. `date_modified:min=2019-09-04T:00:00:00` or `date_modified:min=2019-09-04`'
+          description: 'Filter items by minimum date_modified. `date_modified:min=2019-09-04T:00:00:00` or `date_modified:min=2019-09-04`'
           schema:
             type: string
         - name: 'date_modified:max'
           in: query
-          description: 'Filter items by maximum date_modified `date_modified:max=2018-09-05T13:45:03` or `date_modified:max=2019-09-04`'
+          description: 'Filter items by maximum date_modified. `date_modified:max=2018-09-05T13:45:03` or `date_modified:max=2019-09-04`'
           schema:
             type: string
             format: date-time
@@ -232,13 +228,11 @@ paths:
         * first_name
         * city
         * country_code
-        * state_or_province
         * last_name
         * address1
-        * postal_code
 
         **Required Fields Attributes**
-        * Attributes must be [created](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes/customersattributespost) **BEFORE** creating a customer.
+        * Attributes must be [created](/api-reference/customer-subscribers/v3-customers-api/customer-attributes/customersattributespost) **BEFORE** creating a customer.
         * attribute_id
         * attribute_value -- This is input as a string, regardless of the [Type](/api-reference/customer-subscribers/v3-customers-api/models/type).
 
@@ -249,10 +243,10 @@ paths:
 
         A customer can be created with global access or channel-specific access.
         * **Global access:**
-          * Make sure the channel has `allow_global_logins` enabled. This is on by default only for the default storefront. Find more info at [Customer Settings > Channel](https://developer.bigcommerce.com/api-reference/store-management/customers-v3/customer-settings-channel/customersettingschannelget)
+          * Make sure the channel has `allow_global_logins` enabled. This is on by default only for the default storefront. Find more info at [Customer Settings > Channel](/api-reference/store-management/customers-v3/customer-settings-channel/customersettingschannelget).
           * Omit `channel_ids` field, or provide `channel_ids: null`.
         * **Channel-specific access:**
-          * Provide a `channel_ids` array containing the channels accessible by the customer.
+          * Provide a `channel_ids` array containing the channels accessible by the customer. This array cannot be empty.
       summary: Create Customers
       tags:
         - Customers
@@ -288,6 +282,9 @@ paths:
                         phone: '707070707'
                         postal_code: '33333'
                         state_or_province: California
+                        form_fields: 
+                        - name: "test"
+                          value: "test"
                     authentication:
                       force_password_reset: true
                       new_password: string123
@@ -297,6 +294,9 @@ paths:
                     origin_channel_id: 1
                     channel_ids:
                       - 1
+                    form_fields: 
+                      - name: "test"
+                        value: "test"
         required: true
         x-examples: {}
         description: ''
@@ -308,35 +308,18 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
               examples:
                 response:
                   value:
                     status: 422
                     title: Create customers failed.
-                    type: 'https://developer.bigcommerce.com/api#api-status-codes'
+                    type: /api-docs/getting-started/api-status-codes
                     errors:
                       .customer_create: Error creating customers
     put:
       description: |-
-        Updates Customers. Subresource updates are not supported. Multiple customers can be updated in one call.
+        Updates Customers. Subresource updates are not supported. Up to 10 customers can be updated in one call.
 
         **Required Fields**
         * id -- ID of the *Customer* This must be included in the request body
@@ -350,7 +333,7 @@ paths:
 
         **Notes**
 
-        * Attributes Values can not be updated using Update a Customer. Use the Update a [Customer Attribute Values](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values/customersattributevaluesput) endpoint.
+        * Attributes Values can not be updated using Update a Customer. Use the Update a [Customer Attribute Values](/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values/customersattributevaluesput) endpoint.
         * channel_ids -- Updating the list of channels a customer can access may create some side effects in a multi-storefront situation. This list determines which customer account we will use to authenticate a shopper given a channel.
       summary: Update Customers
       tags:
@@ -366,24 +349,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       requestBody:
         content:
           application/json:
@@ -393,25 +359,46 @@ paths:
                 $ref: '#/components/schemas/customer_Put'
             examples:
               example-1:
-                value:
-                  - email: string@examples.com
+                value: 
+                  - email: string
                     first_name: string
                     last_name: string
                     company: string
                     phone: string
-                    registration_ip_address: string
                     notes: string
                     tax_exempt_category: string
                     customer_group_id: 0
                     id: 1
+                    addresses: 
+                    - address1: string
+                      address2: string
+                      address_type: string
+                      city: string
+                      company: string
+                      country_code: string
+                      first_name: string
+                      last_name: string
+                      phone: string
+                      postal_code: string
+                      state_or_province: string
                     authentication:
                       force_password_reset: true
                       new_password: string123
                     accepts_product_review_abandoned_cart_emails: true
                     store_credit_amounts:
                       - amount: 43.15
+                    origin_channel_id: 1
                     channel_ids:
                       - 1
+                    form_fields: 
+                      - name: "test"
+                        value: "test"  
+              example-2-form-fields:
+                value:
+                  - id: 1
+                    form_fields: 
+                      - name: "test"
+                        value: "test"  
     delete:
       description: |-
         Deletes Customers.
@@ -444,7 +431,13 @@ paths:
         '204':
           description: ''
           headers: {}
-  /customers/addresses:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/addresses':
     get:
       description: Returns a list of Customer Addresses. Optional filter parameters can be passed in.
       summary: Get All Customer Addresses
@@ -525,7 +518,32 @@ paths:
       tags:
         - Customer Addresses
     post:
-      description: Creates a Customer Address. Multiple customer addresses can be created in one call.
+      description: |-
+        Creates a Customer Address. Multiple customer addresses can be created in one call.
+
+        **Required Fields**
+        * **customer_id**
+        * **first_name**
+        * **last_name**
+        * **city**
+        * **country_code**
+        * **address1**
+
+        **Notes**
+        * A unique customer address is a combination of the following core address fields:
+          * **customer_id**
+          * **first_name**
+          * **last_name**
+          * **company**
+          * **phone**
+          * **address_type**
+          * **address1**
+          * **address2**
+          * **city**
+          * **country_code**
+          * **state_or_province**
+          * **postal_code**
+        * An attempt to create an address that already exists will result in no change to the address or custom form field values, an HTTP 200 return code, and the address will be absent from the response body.
       summary: Create a Customer Address
       operationId: CustomersAddressesPost
       deprecated: false
@@ -547,7 +565,23 @@ paths:
               type: array
               items:
                 $ref: '#/components/schemas/address_Post'
-            examples: {}
+            examples: 
+              example-1:
+                value:
+                  - first_name: John
+                    last_name: Doe
+                    address1: 111 E West Street
+                    address2: '654'
+                    city: Akron
+                    state_or_province: Ohio
+                    postal_code: '44325'
+                    country_code: US
+                    phone: '1234567890'
+                    address_type: residential
+                    customer_id: 11
+                    form_fields: 
+                      - name: "test"
+                        value: "test"
         required: true
         x-examples:
           application/json:
@@ -562,6 +596,9 @@ paths:
               phone: '1234567890'
               address_type: residential
               customer_id: 11
+              form_fields: 
+                - name: "test"
+                  value: "test"
       responses:
         '200':
           $ref: '#/components/responses/AddressCollectionResponsePostPut'
@@ -571,24 +608,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Addresses
     put:
@@ -596,11 +616,25 @@ paths:
         Updates a Customer Address. Multiple customer addresses can be updated in one call.
 
         **Required Fields**
-        * id -- ID of the *Customer Address*
-        * customer_id -- ID of the *Customer*.
+        * **id** -- ID of the *Customer Address*
 
         **Limits**
-        * Limit of 3 concurrent requests. 
+        * Limit of **3** concurrent requests.
+
+        **Notes**
+        * A unique customer address is a combination of the following core address fields:
+          * **first_name**
+          * **last_name**
+          * **company**
+          * **phone**
+          * **address_type**
+          * **address1**
+          * **address2**
+          * **city**
+          * **country_code**
+          * **state_or_province**
+          * **postal_code**
+        * An attempt to update an address such that it becomes identical to another address that already exists will result in no change to the target address or custom form field values. The response will have an HTTP 200 return code, and the address will be absent from the response body.
       summary: Update a Customer Address
       operationId: CustomersAddressesPut
       deprecated: false
@@ -622,6 +656,29 @@ paths:
               type: array
               items:
                 $ref: '#/components/schemas/address_Put'
+            examples:
+              example-1:
+                value:
+                  - id: 11
+                    first_name: John
+                    last_name: Doe
+                    address1: 111 E West Street
+                    address2: '654'
+                    city: Akron
+                    state_or_province: Ohio
+                    postal_code: '44325'
+                    country_code: US
+                    phone: '1234567890'
+                    address_type: residential
+                    form_fields: 
+                      - name: "test"
+                        value: "test"
+              example-2-form-fields:
+                value:
+                  - id: 11
+                    form_fields: 
+                      - name: "test"
+                        value: "test"
         required: true
         x-examples:
           application/json:
@@ -636,7 +693,6 @@ paths:
               country_code: US
               phone: '1234567890'
               address_type: residential
-              customer_id: 23
       responses:
         '200':
           $ref: '#/components/responses/AddressCollectionResponsePostPut'
@@ -646,24 +702,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Addresses
     delete:
@@ -704,7 +743,13 @@ paths:
           headers: {}
       tags:
         - Customer Addresses
-  /customers/validate-credentials:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/validate-credentials':
     post:
       tags:
         - Customer Validate Credentials
@@ -725,7 +770,7 @@ paths:
                   channel_id: 1
       responses:
         '200':
-          description: Returns if the customer credentials provided are valid or not
+          description: Returns if the customer credentials provided are valid or not.
           content:
             application/json:
               schema:
@@ -740,51 +785,28 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
         '429':
           description: |
-            Allowed number of requests exceeded
+            Allowed number of requests exceeded.
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                    example: 429
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                    example: Too many requests
-                  type:
-                    type: string
-                    example: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
-                    example: {}
-  /customers/settings:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                response:
+                  value:
+                    status: 429
+                    title: Too many requests
+                    type: /api-docs/getting-started/api-status-codes
+                    errors: {}
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/settings':
     get:
       tags:
         - Customer Settings
@@ -793,7 +815,7 @@ paths:
       operationId: CustomerSettingsGet
       responses:
         '200':
-          description: Returns customer settings values for global level
+          description: Returns customer settings values for global level.
           content:
             application/json:
               schema:
@@ -845,7 +867,13 @@ paths:
                     customer_group_settings:
                       guest_customer_group_id: 0
                       default_customer_group_id: 0
-  '/customers/settings/channels/{channel_id}':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/settings/channels/{channel_id}':
     get:
       tags:
         - Customer Settings Channel
@@ -887,11 +915,11 @@ paths:
 
         **Required Fields**
 
-        * `channel_id`
+        * `channel_id`: Provide a `channel_id` array containing one or more channel IDs. Customers will have access to these channels and no others. This array cannot be empty.
 
         **Notes**
 
-        * Setting `null` will delete override per given channel and values will be inherited from the global level.
+        * Setting `null` will delete override per given channel, and values will be inherited from the global level. Make sure the channel has `allow_global_logins` enabled.
       summary: Update Customer Settings per Channel
       operationId: CustomerSettingsChannelPut
       parameters:
@@ -934,7 +962,18 @@ paths:
                       guest_customer_group_id: 0
                       default_customer_group_id: 0
                     allow_global_logins: true
-  /customers/attributes:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: channel_id
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/attributes':
     get:
       description: Returns a list of Customer Attributes. You can pass in optional filter parameters.
       summary: Get All Customer Attributes
@@ -954,7 +993,7 @@ paths:
         - name: name
           in: query
           required: false
-          description: Filter items by customer attribute name `name=Date+Joined`
+          description: Filter items by customer attribute name. `name=Date+Joined`
           schema:
             type: string
         - name: 'name:like'
@@ -1079,24 +1118,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Attributes
     put:
@@ -1107,10 +1129,9 @@ paths:
         * id -- ID of the *Customer Attribute*
 
         Once the data type is set, it can not be changed. The attribute will need to be deleted then created again with the new data type. This will also delete it from the customer.
-        
+
         **Limits**
         * Limit of 3 concurrent requests.
-
       summary: Update a Customer Attribute
       operationId: CustomersAttributesPut
       deprecated: false
@@ -1146,24 +1167,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Attributes
     delete:
@@ -1203,7 +1207,13 @@ paths:
           headers: {}
       tags:
         - Customer Attributes
-  /customers/attribute-values:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/attribute-values':
     get:
       description: Returns a list of Customer Attribute Values. Optional filter parameters can be passed in.
       summary: Get All Customer Attribute Values
@@ -1284,7 +1294,7 @@ paths:
             format: date-time
         - name: 'date_modified:min'
           in: query
-          description: 'Filter items by mininum `date_modified`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`'
+          description: 'Filter items by minimum `date_modified`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`'
           schema:
             type: string
       responses:
@@ -1320,7 +1330,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/attribueValue_Base'
+                $ref: '#/components/schemas/attributeValue_Base'
             examples:
               Example:
                 value:
@@ -1356,24 +1366,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       tags:
         - Customer Attribute Values
     delete:
@@ -1415,7 +1408,13 @@ paths:
           headers: {}
       tags:
         - Customer Attribute Values
-  /customers/form-field-values:
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/form-field-values':
     get:
       responses:
         '200':
@@ -1425,24 +1424,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       summary: Get Customer Form Field Values
       description: |-
         Returns a list of form field values for the Customer or Customer Address object.
@@ -1519,24 +1501,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Error Response
-                type: object
-                properties:
-                  status:
-                    description: The HTTP status code.
-                    type: integer
-                    format: int32
-                  title:
-                    description: The error title describing the particular error.
-                    type: string
-                  type:
-                    type: string
-                  instance:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: string
+                $ref: '#/components/schemas/ErrorResponse'
       summary: Upsert Customer Form Field Values
       description: |-
         Updates form field values on the Customer or Customer Address objects. Multiple form field values can be updated in one call.
@@ -1569,7 +1534,13 @@ paths:
                   - customer_id: 12
                     name: What is your favorite pizza topping?
                     value: Mushrooms
-  '/customers/{customerId}/consent':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/{customerId}/consent':
     get:
       description: Gets the status of a customer's consent to allow data collection by cookies and scripts while shopping on a storefront.
       summary: Get Customer Consent
@@ -1647,7 +1618,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  '/customers/{customerId}/stored-instruments':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: customerId
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/customers/{customerId}/stored-instruments':
     get:
       summary: Get Stored Instruments (Beta)
       tags:
@@ -1655,16 +1637,9 @@ paths:
       description: |-
         Lists all available stored instruments for a customer. This list will include all types of stored instruments namely card, account and bank_account instruments
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > * This endpoint is in beta.
-
-        </div>
-        </div>
-        </div>
       operationId: liststoredinstruments
       parameters:
         - $ref: '#/components/parameters/customerId'
@@ -1703,7 +1678,7 @@ paths:
                         email: example@email.com
                         company: Test Company
                         address1: 1 Sample Street
-                        address2: Appt 1
+                        address2: Apt 1
                         city: Las Vegas
                         postal_code: '90854'
                         state_or_province: Nevada
@@ -1728,6 +1703,17 @@ paths:
               example:
                 code: 403
                 message: Missing scope
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: customerId
+        in: path
+        required: true
 components:
   parameters:
     customerId:
@@ -1760,23 +1746,14 @@ components:
                     last_name: string
                     company: string
                     phone: string
-                    registration_ip_address: string
                     notes: string
                     tax_exempt_category: string
                     customer_group_id: 0
-                    id: 0
-                    date_modified: '2019-08-24T14:15:22Z'
-                    date_created: '2019-08-24T14:15:22Z'
-                    address_count: 0
-                    attribute_count: 0
-                    authentication:
-                      force_password_reset: true
-                    addresses:
+                    addresses: 
                       - first_name: string
                         last_name: string
-                        company: string
-                        address1: string
-                        address2: string
+                        address1: Addr1
+                        address2: ''
                         city: string
                         state_or_province: string
                         postal_code: string
@@ -1785,7 +1762,7 @@ components:
                         address_type: residential
                         customer_id: 0
                         id: 0
-                        country: string
+                        country: string 
                     store_credit_amounts:
                       - amount: 43.15
                     accepts_product_review_abandoned_cart_emails: true
@@ -1825,7 +1802,7 @@ components:
                       type: string
                     address_type:
                       title: Address Type
-                      description: The address type. Residential or Commercial
+                      description: The address type. Residential or Commercial.
                       example: residential
                       type: string
                       enum:
@@ -1886,16 +1863,9 @@ components:
                       description: Array of form fields. Controlled by `formfields` parameter.
                       type: array
                       items:
-                        oneOf:
-                          - allOf:
-                              - type: object
-                                title: Form Field Value Base
-                              - type: object
-                          - allOf:
-                              - type: object
-                                title: Form Field Value Base
-                              - type: object
-                        title: 'Form Field Value '
+                        allOf:
+                          - $ref: "#/components/schemas/formFieldValue_Address"
+                        title: 'Customer Address Form Field Value'
                   required:
                     - address1
                     - city
@@ -1938,8 +1908,116 @@ components:
       content:
         application/json:
           schema:
-            title: AddressCollectionResponse
-            description: Response payload for the BigCommerce API.
+            anyOf:
+              - title: AddressCollectionResponse
+                description: Response payload for the BigCommerce API.
+                example:
+                  data:
+                    - address1: 123 Example Street
+                      address2: Building 4
+                      address_type: residential
+                      city: Austin
+                      company: BigCommerce
+                      country: United States
+                      country_code: US
+                      customer_id: 1
+                      first_name: John
+                      id: 18
+                      last_name: Doe
+                      phone: '15551234567'
+                      postal_code: '78759'
+                      state_or_province: Texas
+                  meta: {}
+                properties:
+                  data:
+                    type: array
+                    items:
+                      title: Address
+                      type: object
+                      properties:
+                        address1:
+                          description: The address 1 line.
+                          type: string
+                        address2:
+                          description: The address 2 line.
+                          type: string
+                        address_type:
+                          title: Address Type
+                          description: The address type. Residential or Commercial.
+                          example: residential
+                          type: string
+                          enum:
+                            - residential
+                            - commercial
+                        city:
+                          description: The city of the customer address.
+                          type: string
+                          minLength: 0
+                          maxLength: 100
+                        company:
+                          description: The company of the customer address.
+                          type: string
+                          minLength: 0
+                          maxLength: 255
+                        country:
+                          description: The country name of the customer address.
+                          type: string
+                        country_code:
+                          description: The country code of the customer address.
+                          type: string
+                          minLength: 2
+                          maxLength: 2
+                        customer_id:
+                          description: The customer ID.
+                          type: integer
+                          format: int32
+                        first_name:
+                          description: The first name of the customer address.
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                        id:
+                          description: The unique numeric ID of the address.
+                          type: integer
+                          format: int32
+                        last_name:
+                          description: The last name of the customer address.
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                        phone:
+                          description: The phone number of the customer address.
+                          type: string
+                          minLength: 0
+                          maxLength: 50
+                        postal_code:
+                          description: The postal code of the customer address.
+                          type: string
+                          minLength: 0
+                          maxLength: 30
+                        state_or_province:
+                          description: The state or province name
+                          type: string
+                          minLength: 0
+                          maxLength: 100
+                        form_fields:
+                          description: Array of form fields. Controlled by `formfields` parameter.
+                          type: array
+                          items:
+                            oneOf:
+                              - allOf:
+                                  - type: object
+                                    title: Form Field Value Base
+                                  - type: object
+                              - allOf:
+                                  - type: object
+                                    title: Form Field Value Base
+                                  - type: object
+                            title: 'Form Field Value '
+                  meta:
+                    type: object
+              - title: DuplicateAddressCollectionResponse
+                example: {}
             type: object
             properties:
               data:
@@ -2009,7 +2087,7 @@ components:
                       minLength: 0
                       maxLength: 30
                     state_or_province:
-                      description: The state or province name
+                      description: The state or province name.
                       type: string
                       minLength: 0
                       maxLength: 100
@@ -2017,37 +2095,31 @@ components:
                       description: Array of form fields. Controlled by `formfields` parameter.
                       type: array
                       items:
-                        oneOf:
-                          - allOf:
-                              - type: object
-                                title: Form Field Value Base
-                              - type: object
-                          - allOf:
-                              - type: object
-                                title: Form Field Value Base
-                              - type: object
-                        title: 'Form Field Value '
+                        allOf:
+                          - $ref: "#/components/schemas/formFieldValue_Address"
+                        title: 'Customer Address Form Field Value'
               meta:
                 type: object
           examples:
-            response:
+            application/json:
               value:
-                data:
-                  - address1: 123 Example Street
-                    address2: Building 4
-                    address_type: residential
-                    city: Austin
-                    company: BigCommerce
-                    country: United States
-                    country_code: US
-                    customer_id: 1
-                    first_name: John
-                    id: 18
-                    last_name: Doe
-                    phone: '15551234567'
-                    postal_code: '78759'
-                    state_or_province: Texas
+                address1: 123 Example Street
+                address2: Building 4
+                address_type: residential
+                city: Austin
+                company: BigCommerce
+                country: United States
+                country_code: US
+                customer_id: 1
+                first_name: John
+                id: 18
+                last_name: Doe
+                phone: '15551234567'
+                postal_code: '78759'
+                state_or_province: Texas
                 meta: {}
+            duplicate:
+              value: {}
     CustomerAttributeValueCollectionResponse:
       description: ''
       content:
@@ -2509,31 +2581,6 @@ components:
       type: apiKey
       name: X-Auth-Token
       in: header
-      description: |-
-        ### OAuth Scopes
-        |  **UI Name** | **Permission** | **Parameter** |
-        | --- | --- | --- |
-        |  Customers | modify | `store_v2_customers` |
-        |  Customers | read-only | `store_v2_customers_read_only` |
-        | Stored Payment Instruments| modify | `store_stored_payment_instruments`|
-        | Stored Payment Instruments| read-only | `store_stored_payment_instruments_read_only` |
-
-        ### Headers
-
-        |Header|Parameter|Description|
-        |-|-|-|
-        |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
-
-        ### Example
-
-        ```http
-        GET /stores/{$$.env.store_hash}/v3/catalog/summary
-        host: api.bigcommerce.com
-        Content-Type: application/json
-        X-Auth-Token: {access_token}
-        ```
-
-        * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
   schemas:
     Pagination:
       title: Pagination
@@ -2562,6 +2609,7 @@ components:
           format: int32
         links:
           $ref: '#/components/schemas/Links'
+      x-internal: false
     _metaCollection:
       title: _metaCollection
       description: 'Data about the response, including pagination and collection totals.'
@@ -2569,6 +2617,7 @@ components:
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
+      x-internal: false
     ErrorResponse:
       title: Error Response
       type: object
@@ -2581,6 +2630,7 @@ components:
           description: The error title describing the particular error.
           type: string
         type:
+          description: A link to a list of BigCommerce API status codes.
           type: string
         instance:
           type: string
@@ -2588,6 +2638,7 @@ components:
           type: object
           additionalProperties:
             type: string
+      x-internal: false
     customer_Full:
       title: customer_Full
       type: object
@@ -2647,11 +2698,11 @@ components:
           type: string
           format: date-time
         address_count:
-          description: Total number of customer addresses
+          description: Total number of customer addresses.
           type: integer
           format: int32
         attribute_count:
-          description: Total number of customer attributes
+          description: Total number of customer attributes.
           type: integer
           format: int32
         authentication:
@@ -2664,7 +2715,7 @@ components:
               description: 'If `true`, this customer will be forced to change password on next login.'
               type: boolean
         addresses:
-          description: Array of customer addresses. Limited to 10
+          description: Array of customer addresses. Limited to 10.
           type: array
           maxItems: 10
           items:
@@ -2679,14 +2730,18 @@ components:
           description: Array of form fields. Controlled by `formfields` parameter.
           type: array
           items:
-            $ref: '#/components/schemas/formFieldValue_Full'
+            $ref: '#/components/schemas/formFieldValue_Customer'
         store_credit_amounts:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
         accepts_product_review_abandoned_cart_emails:
           type: boolean
-          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or recieve both emails.
+          description: Determines if the customer is signed up to receive either product review or abandoned cart emails or receive both emails.
+        origin_channel_id: 
+          type: integer
+          description: Channel ID of the customer that has created the form.
         channel_ids:
           $ref: '#/components/schemas/customerChannelIds'
+      x-internal: false
     customer_Post:
       title: customer_Post
       type: object
@@ -2729,11 +2784,11 @@ components:
           type: integer
           format: int32
         addresses:
-          description: Array of customer addresses. Limited to 10
+          description: Array of customer addresses. Limited to 10.
           type: array
           maxItems: 10
           items:
-            $ref: '#/components/schemas/customerAddresses_Base'
+            $ref: '#/components/schemas/customerAddresses_CustomerPost'
         attributes:
           description: Array of customer attributes. Limited to 10.
           type: array
@@ -2744,21 +2799,29 @@ components:
           $ref: '#/components/schemas/customerAuthentication_PostPut'
         accepts_product_review_abandoned_cart_emails:
           type: boolean
-          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or recieve both emails.
+          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or receive both emails.
         store_credit_amounts:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
-        origin_channel_id:
-          description: Channel ID the customer has been created from
+        origin_channel_id: 
           type: integer
+          description: Channel ID of the customer that has created the form.
         channel_ids:
-          description: Array of channels the customer can access
+          description: Array of channels the customer can access.
           type: array
+          example: [1,2]
           items:
             type: integer
+        form_fields:
+          type: array
+          description: |
+            Array of form fields. Controlled by formfields parameter.
+          items:
+            $ref: "#/components/schemas/formFieldValue"    
       required:
         - email
         - first_name
         - last_name
+      x-internal: false
     customer_Put:
       title: customer_Put
       type: object
@@ -2813,18 +2876,28 @@ components:
           $ref: '#/components/schemas/customerAuthentication_PostPut'
         accepts_product_review_abandoned_cart_emails:
           type: boolean
-          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or recieve both emails.
+          description: It determines if the customer is signed up to receive either product review or abandoned cart emails or receive both emails.
         store_credit_amounts:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
+        origin_channel_id: 
+          type: integer
+          description: Channel ID of the customer that has created the form.
         channel_ids:
-          description: Arrays of channels the customer can access
+          description: Arrays of channels the customer can access.
           type: array
           items:
             type: integer
+        form_fields:
+          type: array
+          description: |
+            Array of form fields. Controlled by formfields parameter.
+          items:
+            $ref: "#/components/schemas/formFieldValue"    
       required:
         - id
-    attribueValue_Base:
-      title: attribueValue_Base
+      x-internal: false
+    attributeValue_Base:
+      title: attributeValue_Base
       type: object
       properties:
         id:
@@ -2853,6 +2926,7 @@ components:
         - attribute_id
         - value
         - customer_id
+      x-internal: false
     attribute_Full:
       description: ''
       type: object
@@ -2867,34 +2941,35 @@ components:
       properties:
         attribute_id:
           type: integer
-          description: Attribute ID
+          description: Attribute ID.
           format: int32
           example: 2
         attribute_value:
           type: string
           minLength: 1
-          description: Attribute value
+          description: Attribute value.
           example: 'Yes'
         customer_id:
           type: integer
-          description: Customer ID
+          description: Customer ID.
           example: 1
           format: int32
         date_created:
           type: string
           minLength: 1
-          description: The date the customer attribute was created
+          description: The date the customer attribute was created.
           format: date-time
         date_modified:
           type: string
           minLength: 1
-          description: The date the customer attribute was modified
+          description: The date the customer attribute was modified.
           format: date-time
         id:
           type: integer
-          description: Attribute value ID
+          description: Attribute value ID.
           format: int32
           example: 2
+      x-internal: false
     attribute_Put:
       title: attribute_Put
       type: object
@@ -2912,6 +2987,7 @@ components:
         - name
         - id
       description: 'Once the data type is set, it can not be changed. The attribute will need to be deleted then created again with the new data type. This will also delete it from the customer.'
+      x-internal: false
     attribute_Post:
       title: attribute_Post
       example:
@@ -2936,6 +3012,7 @@ components:
       required:
         - name
         - type
+      x-internal: false
     address_Full:
       title: address_Full
       type: object
@@ -2967,7 +3044,7 @@ components:
           minLength: 0
           maxLength: 100
         state_or_province:
-          description: The state or province name
+          description: The state or province name.
           type: string
           minLength: 0
           maxLength: 100
@@ -2988,7 +3065,7 @@ components:
           maxLength: 50
         address_type:
           title: Address Type
-          description: The address type. Residential or Commercial
+          description: The address type. Residential or Commercial.
           example: residential
           type: string
           enum:
@@ -3006,10 +3083,12 @@ components:
           description: The country name of the customer address.
           type: string
         form_fields:
-          description: Array of form fields. Controlled by `formfields` parameter.
-          type: array
-          items:
-            $ref: '#/components/schemas/formFieldValue_Full'
+                description: Array of form fields. Controlled by `formfields` parameter.
+                type: array
+                items:
+                  allOf:
+                    - $ref: "#/components/schemas/formFieldValue"
+                  title: 'Customer Address Form Field Value'
       required:
         - first_name
         - last_name
@@ -3020,6 +3099,7 @@ components:
         - country_code
         - customer_id
         - id
+      x-internal: false
     address_Put:
       title: address_Put
       type: object
@@ -3051,7 +3131,7 @@ components:
           minLength: 0
           maxLength: 100
         state_or_province:
-          description: The state or province name
+          description: The state or province name.
           type: string
           minLength: 0
           maxLength: 100
@@ -3074,31 +3154,31 @@ components:
           maxLength: 50
         address_type:
           title: Address Type
-          description: The address type. Residential or Commercial
+          description: The address type. Residential or Commercial.
           example: residential
           type: string
           enum:
             - residential
             - commercial
-        customer_id:
-          description: The customer ID.
-          type: integer
-          format: int32
-          example: 1
         id:
           description: The unique numeric ID of the address.
           type: integer
           format: int32
           example: 1
+        form_fields:
+          type: array
+          description: |
+            Array of form fields. Controlled by formfields parameter.
+          items:
+            $ref: "#/components/schemas/formFieldValue"  
       required:
-        - customer_id
         - id
       x-examples:
         example-1:
           value:
-            - customer_id: 1
-              id: 18
+            - id: 18
               first_name: sam
+      x-internal: false
     address_Post:
       title: address_Post
       type: object
@@ -3137,13 +3217,13 @@ components:
           example: Austin
         state_or_province:
           type: string
-          description: The state or province name spelled out in full. State or province codes not accepted.
+          description: The state or province name spelled out in full. It is required for countries that need a state/province to complete an address. State or province codes not accepted.
           example: Texas
           minLength: 0
           maxLength: 100
         postal_code:
           type: string
-          description: The postal code of the customer address.
+          description: The postal code of the customer address. It is required for countries that need postal codes to complete an address.
           minLength: 0
           maxLength: 30
           example: '78759'
@@ -3161,7 +3241,7 @@ components:
           example: '15551234567'
         address_type:
           title: Address Type
-          description: The address type. Residential or Commercial
+          description: The address type. Residential or Commercial.
           example: residential
           type: string
           enum:
@@ -3172,13 +3252,17 @@ components:
           type: integer
           format: int32
           example: 1
+        form_fields:
+          type: array
+          description: |
+            The address custom form field values
+          items:
+            $ref: "#/components/schemas/formFieldValue"
       required:
         - first_name
         - last_name
         - address1
         - city
-        - state_or_province
-        - postal_code
         - country_code
         - customer_id
       x-examples:
@@ -3196,6 +3280,7 @@ components:
             phone: '15551234567'
             address_type: residential
             customer_id: 1
+      x-internal: false
     customerAddresses_Base:
       title: customerAddresses_Base
       example:
@@ -3239,12 +3324,12 @@ components:
           minLength: 0
           maxLength: 100
         state_or_province:
-          description: The state or province name
+          description: The state or province name. It is required for countries that need a state/province to complete an address.
           type: string
           minLength: 0
           maxLength: 100
         postal_code:
-          description: The postal code of the customer address.
+          description: The postal code of the customer address. It is required for countries that need postal codes to complete an address.
           type: string
           minLength: 0
           maxLength: 30
@@ -3260,7 +3345,7 @@ components:
           maxLength: 50
         address_type:
           title: Address Type
-          description: The address type. Residential or Commercial
+          description: The address type. Residential or Commercial.
           example: residential
           type: string
           enum:
@@ -3271,10 +3356,97 @@ components:
         - last_name
         - address1
         - city
-        - state_or_province
-        - postal_code
         - country_code
       description: The `address` object for the `customer` object's `addresses` array.
+      x-internal: false
+    customerAddresses_CustomerPost:
+      title: customerAddresses_CustomerPost
+      example:
+        address1: Addr 1
+        address2: ''
+        address_type: residential
+        city: San Francisco
+        company: History
+        country_code: US
+        first_name: Ronald
+        last_name: Swimmer
+        phone: '707070707'
+        postal_code: '33333'
+        state_or_province: California
+        form_fields: 
+          - name: "test"
+            value: "test"
+      type: object
+      properties:
+        first_name:
+          description: The first name associated with the customer address.
+          type: string
+          minLength: 1
+          maxLength: 255
+        last_name:
+          description: The last name of the customer address.
+          type: string
+          minLength: 1
+          maxLength: 255
+        company:
+          description: The company of the customer address.
+          type: string
+          minLength: 0
+          maxLength: 255
+        address1:
+          description: The address 1 line.
+          type: string
+        address2:
+          description: The address 2 line.
+          type: string
+        city:
+          description: The city of the customer address.
+          type: string
+          minLength: 0
+          maxLength: 100
+        state_or_province:
+          description: The state or province name. Required for countries in which valid addresses must contain a state/province.
+          type: string
+          minLength: 0
+          maxLength: 100
+        postal_code:
+          description: The postal code of the customer address. Required for countries in which valid addresses must have postal codes.
+          type: string
+          minLength: 0
+          maxLength: 30
+        country_code:
+          description: The country code of the customer address.
+          type: string
+          minLength: 2
+          maxLength: 2
+        phone:
+          description: The phone number of the customer address.
+          type: string
+          minLength: 0
+          maxLength: 50
+        address_type:
+          title: Address Type
+          description: The address type. Residential or Commercial.
+          example: residential
+          type: string
+          enum:
+            - residential
+            - commercial
+        form_fields:
+          description: Array of form fields. Controlled by `formfields` parameter.
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/formFieldValue"
+            title: 'Customer Address Form Field Value'    
+      required:
+        - first_name
+        - last_name
+        - address1
+        - city
+        - country_code
+      description: The `address` object for the `customer` object's `addresses` array.
+      x-internal: false  
     customerAuthentication_PostPut:
       title: customerAuthentication_PostPut
       allOf:
@@ -3284,9 +3456,10 @@ components:
               type: boolean
         - properties:
             new_password:
-              description: New password for customer. Write only field
+              description: New password for customer. Write only field.
               type: string
       type: object
+      x-internal: false
     Links:
       title: Links
       description: Pagination links for the previous and next parts of the whole collection.
@@ -3301,64 +3474,96 @@ components:
         next:
           description: Link to the next page returned in the response.
           type: string
+    formFieldValue:
+      title: Generic Form Field Value
+      type: object
+      required:
+        - name
+        - value
+      properties:
+        name:
+          type: string
+          description: The form field name.
+          example: color
+        value:
+          oneOf:
+            - type: string
+              example: blue
+            - type: number
+              format: double
+              example: 12.345
+            - type: array
+              example:
+                - red
+                - green
+                - black
+              items:
+                type: string      
+    formFieldValue_Customer:
+      title: Customer Form Field Value
+      type: object
+      required:
+        - customer_id
+        - name
+        - value
+      properties:
+        name:
+          type: string
+          description: The form field name.
+          example: color
+        value:
+          oneOf:
+            - type: string
+              example: blue
+            - type: number
+              format: double
+              example: 12.345
+            - type: array
+              example:
+                - red
+                - green
+                - black
+              items:
+                type: string
+        customer_id:
+          type: integer      
+    formFieldValue_Address:
+      title: Customer Address Form Field Value
+      type: object
+      required:
+        - address_id
+        - name
+        - value
+      properties:
+        name:
+          type: string
+          description: The form field name.
+          example: color
+        value:
+          oneOf:
+            - type: string
+              example: blue
+            - type: number
+              format: double
+              example: 12.345
+            - type: array
+              example:
+                - red
+                - green
+                - black
+              items:
+                type: string
+        address_id:
+          type: integer
+          description: The Customer Address ID.
+          example: 1
+      x-internal: false
     formFieldValue_Full:
       oneOf:
-        - title: Customer Form Field Value
-          type: object
-          required:
-            - customer_id
-            - name
-            - value
-          properties:
-            name:
-              type: string
-              description: The form field name.
-              example: color
-            value:
-              oneOf:
-                - type: string
-                  example: blue
-                - type: number
-                  format: double
-                  example: 12.345
-                - type: array
-                  example:
-                    - red
-                    - green
-                    - black
-                  items:
-                    type: string
-            customer_id:
-              type: integer
-        - title: Customer Address Form Field Value
-          type: object
-          required:
-            - address_id
-            - name
-            - value
-          properties:
-            name:
-              type: string
-              description: The form field name.
-              example: color
-            value:
-              oneOf:
-                - type: string
-                  example: blue
-                - type: number
-                  format: double
-                  example: 12.345
-                - type: array
-                  example:
-                    - red
-                    - green
-                    - black
-                  items:
-                    type: string
-            address_id:
-              type: integer
-              description: The Customer Address ID.
+        - $ref: "#/components/schemas/formFieldValue_Customer"
+        - $ref: "#/components/schemas/formFieldValue_Address"
       title: formFieldValue_Full
+      x-internal: false
     consent_Full:
       title: consent_Full
       description: Response payload for the BigCommerce API.
@@ -3372,6 +3577,7 @@ components:
           description: The date of which the customer consent was last updated.
           type: string
           format: date-time
+      x-internal: false
     consentAllow:
       title: consentAllow
       type: array
@@ -3388,6 +3594,7 @@ components:
           - functional
           - analytics
           - targeting
+      x-internal: false
     Deny:
       title: Deny
       type: array
@@ -3402,6 +3609,7 @@ components:
           - functional
           - analytics
           - targeting
+      x-internal: false
     DeclareCustomerConsentRequest:
       title: DeclareCustomerConsentRequest
       description: Request payload for the BigCommerce API.
@@ -3411,6 +3619,7 @@ components:
           $ref: '#/components/schemas/consentAllow'
         deny:
           $ref: '#/components/schemas/Deny'
+      x-internal: false
     customerAttributes_Base:
       description: ''
       title: customerAttributes_Base
@@ -3426,119 +3635,129 @@ components:
           example: string
           minLength: 0
           maxLength: 255
-          description: 'Attribute value. This will always be a string, regardless of the attribute''s type.'
+          description: 'Attribute value. This will always be a string, regardless of the attribute’s type.'
+      x-internal: false
     customerChannelIds:
       type: array
       title: customerChannelIds
       description: Array of channel ids the Customer has access to.
       items:
-        type: integer
+        example:
+          - 1
+          - 2
+      x-internal: false
     CardInstrument:
       type: object
+      title: Card Instrument
       properties:
         type:
           type: string
-          description: Type of instrument
+          description: Type of instrument.
           enum:
             - stored_card
         token:
           type: string
-          description: An identifier representing this stored instrument
+          description: An identifier representing this stored instrument.
           example: 84596bea275fa254da820056bdc3e495bdf01fd11c51b0336347d447ee16200c
         is_default:
           type: boolean
-          description: Identifies whether this stored instrument is default for the customer
+          description: Identifies whether this stored instrument is default for the customer.
         brand:
           type: string
-          description: Card brand
+          description: Card brand.
           example: VISA
         expiry_month:
           maximum: 12
           minimum: 1
           type: integer
-          description: Expiry month for this card
+          description: Expiry month for this card.
         expiry_year:
           type: integer
-          description: Expiry year for this card
+          description: Expiry year for this card.
         issuer_identification_number:
           type: string
-          description: Issuer identification number for this card
+          description: Issuer identification number for this card.
           example: '411111'
         last_4:
           type: string
-          description: Last four digits of this card
+          description: Last four digits of this card.
           example: '1111'
         billing_address:
           $ref: '#/components/schemas/BillingAddress'
       description: 'Details about a stored card instrument which includes details around billing, last 4 digits, issuer, etc.'
+      x-internal: false
     PayPalAccountInstrument:
       type: object
+      title: PayPal Account Instrument
       properties:
         type:
           type: string
-          description: Instrument type
+          description: Instrument type.
           enum:
             - stored_paypal_account
         token:
           type: string
-          description: An identifier representing this stored instrument
+          description: An identifier representing this stored instrument.
           example: 84596bea275fa254da820056bdc3e495bdf01fd11c51b0336347d447ee16200c
         is_default:
           type: boolean
-          description: Identifies whether this stored instrument is default for the customer
+          description: Identifies whether this stored instrument is default for the customer.
         email:
           type: string
-          description: PayPal email address
-          example: bc-buyer-paypal-express@bigcommerce.com
-      description: A PayPal account stored instrument
+          description: PayPal email address.
+          example: bc-buyer-paypal-express@example.com
+      description: A PayPal account stored instrument.
+      x-internal: false
     BankAccountInstrument:
       type: object
+      title: Bank Account Instrument
       properties:
         type:
           type: string
-          description: Instrument type
+          description: Instrument type.
           enum:
             - stored_bank_account
         token:
           type: string
-          description: An identifier representing this stored instrument
+          description: An identifier representing this stored instrument.
           example: 84596bea275fa254da820056bdc3e495bdf01fd11c51b0336347d447ee16200c
         is_default:
           type: boolean
-          description: Identifies whether this stored instrument is default for the customer
+          description: Identifies whether this stored instrument is default for the customer.
         masked_account_number:
           type: string
-          description: A masked bank account number
+          description: A masked bank account number.
           example: 12XXX56
         issuer:
           type: string
-          description: Issuer identifier for the account
+          description: Issuer identifier for the account.
           example: DE001
-      description: A stored bank account instrument
+      description: A stored bank account instrument.
+      x-internal: false
     BillingAddress:
       type: object
       properties:
         first_name:
           type: string
-          description: First name of the card holder
+          description: First name of the card holder.
           example: Tester
         last_name:
           type: string
-          description: Last name of the card holder
+          description: Last name of the card holder.
           example: Tester
         email:
           type: string
           example: example@example.com
         company:
           type: string
-          description: Company of the card holder
+          description: Company of the card holder.
           example: Test Company
         address1:
           type: string
           example: 1 Sample Street
         address2:
           type: string
-          example: Appt 1
+          example: Apt 1
         city:
           type: string
           example: Las Vegas
@@ -3547,18 +3766,19 @@ components:
           example: '90854'
         state_or_province:
           type: string
-          description: Represents state or province
+          description: Represents state or province.
           example: Nevada
         state_or_province_code:
           type: string
           example: NV
         country_code:
           type: string
-          description: ISO-3166-1 2 letter country code
+          description: ISO-3166-1 2 letter country code.
           example: US
         phone:
           type: string
           example: 101-192-0293
+      x-internal: false
     CustomerStoredCreditAmounts:
       description: 'Store credit. '
       type: array
@@ -3570,14 +3790,15 @@ components:
             type: number
             format: float
             example: 43.15
+      x-internal: false
     CustomerSettingsObject:
       title: CustomerSettingsObject
       type: object
-      description: Customer Settings
+      description: Customer Settings.
       properties:
         privacy_settings:
           type: object
-          description: Controls the privacy settings
+          description: Controls the privacy settings.
           properties:
             ask_shopper_for_tracking_consent:
               type: boolean
@@ -3585,19 +3806,19 @@ components:
             policy_url:
               type: string
               example: 'https://bigcommmerce.com/policy'
-              description: The URL for a website's privacy policy
+              description: The URL for a website's privacy policy.
         customer_group_settings:
           type: object
-          description: The settings for a collection of customers
+          description: The settings for a collection of customers.
           properties:
             guest_customer_group_id:
               type: integer
               example: 0
-              description: The ID for a guest customer group
+              description: The ID for a guest customer group.
             default_customer_group_id:
               type: integer
               example: 0
-              description: The ID for a default customer group
+              description: The ID for a default customer group.
       x-examples:
         example-1:
           value:
@@ -3607,33 +3828,34 @@ components:
             customer_group_settings:
               guest_customer_group_id: 0
               default_customer_group_id: 0
+      x-internal: false
     CustomerChannelSettingsObject:
       title: CustomerChannelSettingsObject
       type: object
       properties:
         privacy_settings:
           type: object
-          description: Controls the privacy settings
+          description: Controls the privacy settings.
           properties:
             ask_shopper_for_tracking_consent:
               type: boolean
-              description: Determines if a customer requires consent for tracking privacy
+              description: Determines if a customer requires consent for tracking privacy.
             policy_url:
               type: string
               example: 'https://bigcommmerce.com/policy'
-              description: The URL for a website's privacy policy
+              description: The URL for a website's privacy policy.
         customer_group_settings:
           type: object
-          description: The settings for a collection of customers
+          description: The settings for a collection of customers.
           properties:
             guest_customer_group_id:
               type: integer
               example: 0
-              description: The ID for a guest customer group
+              description: The ID for a guest customer group.
             default_customer_group_id:
               type: integer
               example: 0
-              description: The ID for a default customer group
+              description: The ID for a default customer group.
         allow_global_logins:
           type: boolean
           description: |-
@@ -3649,6 +3871,7 @@ components:
               guest_customer_group_id: 0
               default_customer_group_id: 0
             allow_global_logins: true
+      x-internal: false
     ValidateCustomerCredentialsObject:
       title: ValidateCustomerCredentialsObject
       type: object
@@ -3658,13 +3881,14 @@ components:
       properties:
         email:
           type: string
-          description: Customer email address
+          description: Customer email address.
         password:
           type: string
-          description: Customer password
+          description: Customer password.
         channel_id:
           type: integer
-          description: ChannelId to check the customer credentials against - If this field is empty we will use channel 1
+          description: ChannelId to check the customer credentials against - If this field is empty we will use channel 1.
+      x-internal: false
     ValidateCustomerCredentialsResponseObject:
       title: ValidateCustomerCredentialsResponseObject
       type: object
@@ -3672,7 +3896,8 @@ components:
         customer_id:
           type: integer
           nullable: true
-          description: returns the customer Id
+          description: Returns the customer ID.
         is_valid:
           type: boolean
-          description: indicates if the provided credentials are valid
+          description: indicates if the provided credentials are valid.
+      x-internal: false

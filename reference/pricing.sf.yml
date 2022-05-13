@@ -1,5 +1,5 @@
 swagger: '2.0'
-basePath: '/stores/{$$.env.store_hash}/v3'
+basePath: /
 info:
   title: Pricing
   description: |-
@@ -7,10 +7,10 @@ info:
 
     ## Authentication
 
-    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request header.
+    Authenticate requests by including an [OAuth](/api-docs/getting-started/authentication/rest-api-authentication) `access_token` in the request header.
 
     ```http
-    GET /stores/{{STORE_HASH}}/v3/pricing/products
+    POST /stores/{{STORE_HASH}}/v3/pricing/products
     host: api.bigcommerce.com
     Accept: application/json
     X-Auth-Token: {{ACCESS_TOKEN}}
@@ -22,11 +22,15 @@ info:
     | Products | read-only  | `store_v2_products_read_only` |
   version: ''
 paths:
-  /pricing/products:
+  '/stores/{store_hash}/v3/pricing/products':
     post:
       summary: Get Prices (Batch)
       operationId: get-prices
       parameters:
+        - name: store_hash 
+          type: string
+          in: path
+          required: true
         - name: body
           in: body
           required: true
@@ -115,7 +119,7 @@ paths:
                             description: The selected value ID for the configured option.
                             type: integer
                     retail_price:
-                      description: The (optional) RRP/retail price configured for this product
+                      description: The (optional) RRP/retail price configured for this product. Used for price comparison and storefront display purposes.
                       type: object
                       properties:
                         as_entered:
@@ -132,7 +136,7 @@ paths:
                           type: number
                     sale_price:
                       type: object
-                      description: The price for a product including estimates for tax
+                      description: The merchant-entered sale price for a product overwrites the default price. The sale_price is optional.
                       properties:
                         as_entered:
                           description: The price provided by the merchant as entered in their catalog/price list (may be inc or ex)
@@ -148,7 +152,7 @@ paths:
                           type: number
                     minimum_advertised_price:
                       type: object
-                      description: The price for a product including estimates for tax
+                      description: The minimum advertised price (MAP) allowed to be shown on a storefront. A value supplied by the merchant and used for display purposes.
                       properties:
                         as_entered:
                           description: The price provided by the merchant as entered in their catalog/price list (may be inc or ex)
@@ -164,7 +168,7 @@ paths:
                           type: number
                     price:
                       type: object
-                      description: The price for a product including estimates for tax
+                      description: The merchant-entered price for a product could be including or excluding tax. Price must be defined when creating a product and serves as the default price.
                       properties:
                         as_entered:
                           description: The price provided by the merchant as entered in their catalog/price list (may be inc or ex)
@@ -180,7 +184,7 @@ paths:
                           type: number
                     calculated_price:
                       type: object
-                      description: The price for a product including estimates for tax
+                      description: 'The shopper price for a product including modifier, option, and option set rules.  Calculated_price may include or exclude estimates for tax.'
                       properties:
                         as_entered:
                           description: The price provided by the merchant as entered in their catalog/price list (may be inc or ex)
@@ -196,7 +200,7 @@ paths:
                           type: number
                     price_range:
                       type: object
-                      description: 'For estimated prices, the minimum/maximum price that will typically apply to this product'
+                      description: The minimum and maximum price that will typically apply to this product. Only used for complex products (products with variants).
                       properties:
                         minimum:
                           type: object
@@ -232,7 +236,7 @@ paths:
                               type: number
                     retail_price_range:
                       type: object
-                      description: 'For estimated prices, the minimum/maximum price that will typically apply to this product'
+                      description: The product's variants that will typically apply to this product.
                       properties:
                         minimum:
                           type: object
@@ -358,6 +362,7 @@ definitions:
           - percent
           - fixed
         type: string
+    x-internal: false
   PricingResponse:
     type: object
     properties:
@@ -557,6 +562,7 @@ definitions:
                     type: string
       meta:
         type: object
+    x-internal: false
   PriceRange:
     type: object
     description: 'For estimated prices, the minimum/maximum price that will typically apply to this product'
@@ -593,6 +599,7 @@ definitions:
           tax_inclusive:
             description: The estimated tax inclusive price for this product based on the provided customer group
             type: number
+    x-internal: false
   TaxPrice:
     type: object
     description: The price for a product including estimates for tax
@@ -609,6 +616,7 @@ definitions:
       tax_inclusive:
         description: The estimated tax inclusive price for this product based on the provided customer group
         type: number
+    x-internal: false
   ItemPricing:
     type: object
     properties:
@@ -786,6 +794,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/BulkPricingTier'
+    x-internal: false
   Item:
     type: object
     description: Details/configuration for the product to request a price for.
@@ -808,6 +817,7 @@ definitions:
             value_id:
               type: integer
               description: 'The ID of the value matching the option being configured. Note: must be ID, not the value.'
+    x-internal: false
   PricingRequest:
     type: object
     properties:
@@ -847,6 +857,7 @@ definitions:
                   value_id:
                     type: integer
                     description: 'The ID of the value matching the option being configured. Note: must be ID, not the value.'
+    x-internal: false
 host: api.bigcommerce.com
 schemes:
   - https

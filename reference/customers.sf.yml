@@ -15,21 +15,16 @@ paths:
       description: |-
         Creates a *Customer*.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content">
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-
-        </div>
-        </div>
-        </div>
       responses:
         '204':
           description: Customer succesfully created
         '400':
-          description: ' Could not create customer'
+          description: Could not create customer
+        '409':
+          description: There's already an account for the provided email. Please enter a different email address or sign-in.
         '422':
           description: Missing Required Fields
         '429':
@@ -78,6 +73,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomFields'
+      x-internal: false
     CustomFields:
       title: CustomFields
       type: object
@@ -86,6 +82,7 @@ components:
           type: string
         fieldValue:
           type: string
+      x-internal: false
 x-stoplight:
   docs:
     includeDownloadLink: false

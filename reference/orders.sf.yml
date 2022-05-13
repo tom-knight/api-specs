@@ -20,16 +20,9 @@ paths:
       description: |-
         Returns *Order* data. This will return order data immediately after an order is placed on the storefront.
 
-        <div class="HubBlock--callout">
-        <div class="CalloutBlock--info">
-        <div class="HubBlock-content"> 
-
-        > ### Note
+        <!-- theme: info -->
+        > #### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-         
-        </div>
-        </div>
-        </div>
       summary: Get Order
       tags:
         - Order
@@ -56,6 +49,7 @@ definitions:
     properties:
       order:
         $ref: '#/definitions/Order'
+    x-internal: false
   Order:
     title: Order
     type: object
@@ -76,7 +70,7 @@ definitions:
         description: Whether this item is taxable.
         type: boolean
       baseAmount:
-        description: "Cost of cart's contents, before applying discounts."
+        description: 'Cost of cart''s contents, before applying discounts.'
         type: number
         format: double
       discountAmount:
@@ -85,7 +79,7 @@ definitions:
         format: float
       giftWrappingCostTotal:
         type: number
-        description: Gift wrapping for all items, including or excluding tax.
+        description: 'Gift wrapping for all items, including or excluding tax.'
       orderAmount:
         description: 'Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).'
         type: number
@@ -145,6 +139,9 @@ definitions:
       channelId:
         type: number
         description: Id of the channel which the order belongs to.
+      consignments:
+        $ref: '#/definitions/Consignments'
+    x-internal: false
   Currency:
     title: Currency
     description: This will always be the same between cart and checkout.
@@ -163,6 +160,7 @@ definitions:
         description: 'Number of decimal places for the currency. For example, USD currency has two decimal places.'
         type: number
         format: double
+    x-internal: false
   AppliedCoupon:
     title: Applied Coupon
     type: object
@@ -185,17 +183,16 @@ definitions:
         format: double
     required:
       - code
+    x-internal: false
   AppliedDiscount:
     title: Applied Discount
     type: object
     properties:
-      name:
-        description: The name provided by the merchant.
-        type: string
-      discountedAmount:
-        description: The discounted amount applied within a given context.
+      coupon:
         type: number
-        format: double
+        description: 'Property key is discount ID, value is discount amount.'
+        example: 8.28
+    x-internal: false
   OrderLineItem:
     title: Order Line Item
     type: object
@@ -219,6 +216,7 @@ definitions:
       - physicalItems
       - digitalItems
       - giftCertificate
+    x-internal: false
   ItemPhysical:
     title: Item Physical
     type: object
@@ -257,10 +255,10 @@ definitions:
         description: 'URL of an image of this item, accessible on the internet.'
         type: string
       discounts:
-        description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
-        type: array
-        items:
-          $ref: '#/definitions/AppliedDiscount'
+        description: 'List of discounts applied to this item. If no discount applied, empty array is returned. If discount has been applied, discount object returned. '
+        oneOf:
+          - $ref: '#/definitions/AppliedDiscount'
+          - type: array
       discountAmount:
         description: The total value of all discounts applied to this item (excluding coupon).
         type: number
@@ -270,7 +268,7 @@ definitions:
         type: number
         format: double
       listPrice:
-        description: "Item's list price, as quoted by the manufacturer/distributor."
+        description: 'Item''s list price, as quoted by the manufacturer/distributor.'
         type: number
         format: double
       salePrice:
@@ -302,6 +300,7 @@ definitions:
         items: {}
     required:
       - quantity
+    x-internal: false
   GiftWrapping:
     title: Gift Wrapping
     type: object
@@ -316,6 +315,7 @@ definitions:
         description: ''
         type: number
         format: double
+    x-internal: false
   OrderItemDigital:
     title: Order Item Digital
     type: object
@@ -367,7 +367,7 @@ definitions:
         type: number
         format: double
       listPrice:
-        description: "Item's list price, as quoted by the manufacturer/distributor."
+        description: 'Item''s list price, as quoted by the manufacturer/distributor.'
         type: number
         format: double
       salePrice:
@@ -402,6 +402,7 @@ definitions:
         items: {}
     required:
       - quantity
+    x-internal: false
   OrderItemGiftCertificate:
     title: Order Item Gift Certificate
     type: object
@@ -423,6 +424,7 @@ definitions:
       type:
         description: Explicitly specifying the gift certificate type
         type: string
+    x-internal: false
   AddressResponse:
     title: Address Response
     allOf:
@@ -432,6 +434,7 @@ definitions:
           id:
             description: ''
             type: string
+    x-internal: false
   AddressProperties:
     title: Address Properties
     type: object
@@ -483,6 +486,7 @@ definitions:
           $ref: '#/definitions/CustomField'
     required:
       - countryCode
+    x-internal: false
   CustomField:
     title: Custom Field
     type: object
@@ -493,6 +497,7 @@ definitions:
       fieldValue:
         description: 'This can also be an array for fields that need to support list of values (e.g., a set of check boxes.)'
         type: string
+    x-internal: false
   Status:
     title: Status
     description: Order status.
@@ -514,6 +519,7 @@ definitions:
       - MANUAL_VERIFICATION_REQUIRED
       - DISPUTED
       - PARTIALLY_REFUNDED
+    x-internal: false
   BaseItem:
     title: Base Item
     type: object
@@ -565,7 +571,7 @@ definitions:
         type: number
         format: double
       listPrice:
-        description: "Item's list price, as quoted by the manufacturer/distributor."
+        description: 'Item''s list price, as quoted by the manufacturer/distributor.'
         type: number
         format: double
       salePrice:
@@ -585,6 +591,7 @@ definitions:
         type: string
     required:
       - quantity
+    x-internal: false
   order_Nate:
     type: object
     properties:
@@ -735,6 +742,306 @@ definitions:
               type: integer
       taxTotal:
         type: integer
+    x-internal: false
+  Consignments:
+    title: Consignments
+    type: object
+    description: All the consignments of the order
+    x-examples:
+      example-1:
+        shipping:
+          - lineItems:
+              - id: 8
+            shippingAddressId: 1
+            firstName: first1
+            lastName: last1
+            company: company1
+            address1: 2802 Skyway Cir
+            address2: Balcony
+            city: Austin
+            stateOrProvince: Texas
+            postalCode: '78704'
+            country: United States
+            countryCode: US
+            email: first1@bigcommerce.com
+            phone: '0410123452'
+            itemsTotal: 1
+            itemsShipped: 0
+            shippingMethod: Flat Rate
+            baseCost: 15.5
+            costExTax: 15.5
+            costIncTax: 16.7
+            costTax: 1.2
+            costTaxClassId: 2
+            baseHandlingCost: 0
+            handlingCostExTax: 0
+            handlingCostIncTax: 0
+            handlingCostTax: 0
+            handlingCostTaxClassId: 2
+            shippingZoneId: 1
+            shippingZoneName: United States
+            customFields:
+              - name: special note
+                value: super rare
+    properties:
+      shipping:
+        type: array
+        description: List of shipping consignments
+        items:
+          $ref: '#/definitions/ShippingConsignment'
+    x-internal: false
+  ShippingConsignment:
+    title: ShippingConsignment
+    type: object
+    description: Shipping consignment
+    x-examples:
+      example-1:
+        lineItems:
+          - id: 4
+        shippingAddressId: 1
+        firstName: first1
+        lastName: last1
+        company: company1
+        address1: 2802 Skyway Cir
+        address2: Balcony
+        city: Austin
+        stateOrProvince: Texas
+        postalCode: '78704'
+        country: United States
+        countryCode: US
+        email: first1@bigcommerce.com
+        phone: '0410123452'
+        itemsTotal: 1
+        itemsShipped: 0
+        shippingMethod: Flat Rate
+        baseCost: 15.5
+        costExTax: 15.5
+        costIncTax: 16.7
+        costTax: 1.2
+        costTaxClassId: 2
+        baseHandlingCost: 0
+        handlingCostExTax: 0
+        handlingCostIncTax: 0
+        handlingCostTax: 0
+        handlingCostTaxClassId: 2
+        shippingZoneId: 1
+        shippingZoneName: United States
+        customFields:
+          - name: special note
+            value: super rare
+    properties:
+      lineItems:
+        type: array
+        items:
+          $ref: '#/definitions/ConsignmentLineItem'
+      shippingAddressId:
+        type: integer
+        example: 1
+      firstName:
+        type: string
+        example: first1
+      lastName:
+        type: string
+        example: last1
+      company:
+        type: string
+        example: company1
+      address1:
+        type: string
+        example: 2802 Skyway Cir
+      address2:
+        type: string
+        example: Balcony
+      city:
+        type: string
+        example: Austin
+      stateOrProvince:
+        type: string
+        example: Texas
+      postalCode:
+        type: string
+        example: '78704'
+      country:
+        type: string
+        example: United States
+      countryCode:
+        type: string
+        example: US
+      email:
+        type: string
+        example: first1@bigcommerce.com
+      phone:
+        type: string
+        example: '0410123452'
+      itemsTotal:
+        type: integer
+        example: 1
+      itemsShipped:
+        type: integer
+        example: 0
+      shippingMethod:
+        type: string
+        example: Flat Rate
+      baseCost:
+        type: number
+        example: 15.5
+      costExTax:
+        type: number
+        example: 15.5
+      costIncTax:
+        type: number
+        example: 16.7
+      costTax:
+        type: number
+        example: 1.2
+      costTaxClassId:
+        type: integer
+        example: 2
+      baseHandlingCost:
+        type: number
+        example: 0
+      handlingCostExTax:
+        type: number
+        example: 0
+      handlingCostIncTax:
+        type: number
+        example: 0
+      handlingCostTax:
+        type: number
+        example: 0
+      handlingCostTaxClassId:
+        type: integer
+        example: 2
+      shippingZoneId:
+        type: number
+        example: 1
+      shippingZoneName:
+        type: string
+        example: United States
+      customFields:
+        type: array
+        items:
+          $ref: '#/definitions/ConsignmentFormField'
+    x-internal: false
+  ConsignmentLineItem:
+    title: ConsignmentLineItem
+    type: object
+    description: ''
+    properties:
+      id:
+        type: integer
+        example: 4
+    x-internal: false
+  ConsignmentFormField:
+    title: ConsignmentFormField
+    type: object
+    properties:
+      name:
+        type: string
+        example: special note
+      value:
+        type: string
+        example: super rare
+        x-nullable: true
+    x-internal: false
+  PickupConsignment:
+    title: PickupConsignment
+    type: object
+    description: Pickup consignment
+    x-examples:
+      example-1:
+        id: 3
+        lineItems:
+          - id: 4
+        pickupMethodId: 10
+        pickupMethodDisplayName: 'Pickup Method 10: Pickup at Location 1'
+        collectionInstructions: Pickup Method 10 Collection Instructions
+        collectionTimeDescription: Pickup Method 10 Collection Time Description
+        location:
+          id: 1
+          name: Location 1
+          address1: 2802 Skyway Cir
+          address2: string
+          city: Austin
+          stateOrProvince: Texas
+          postalCode: '78704'
+          country: United States
+          countryCode: US
+          email: loc1@bigcommerce.com
+          phone: '0410123452'
+    properties:
+      id:
+        type: integer
+        example: 3
+      lineItems:
+        type: array
+        items:
+          $ref: '#/definitions/ConsignmentLineItem'
+      pickupMethodId:
+        type: integer
+        example: 10
+      pickupMethodDisplayName:
+        type: string
+        example: 'Pickup Method 10: Pickup at Location 1'
+      collectionInstructions:
+        type: string
+        example: Pickup Method 10 Collection Instructions
+      collectionTimeDescription:
+        type: string
+        example: Pickup Method 10 Collection Time Description
+      location:
+        $ref: '#/definitions/PickupConsignmentLocation'
+    x-internal: false
+  PickupConsignmentLocation:
+    title: PickupConsignmentLocation
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: Location 1
+      address1:
+        type: string
+        example: 2802 Skyway Cir
+      address2:
+        type: string
+      city:
+        type: string
+        example: Austin
+      stateOrProvince:
+        type: string
+        example: Texas
+      postalCode:
+        type: string
+        example: '78704'
+      country:
+        type: string
+        example: United States
+      countryCode:
+        type: string
+        example: US
+      email:
+        type: string
+        example: loc1@bigcommerce.com
+      phone:
+        type: string
+        example: '0410123452'
+    x-examples:
+      example-1:
+        id: 1
+        name: Location 1
+        address1: 2802 Skyway Cir
+        address2: string
+        city: Austin
+        stateOrProvince: Texas
+        postalCode: '78704'
+        country: United States
+        countryCode: US
+        email: loc1@bigcommerce.com
+        phone: '0410123452'
+    x-internal: false
 x-stoplight:
   docs:
     includeDownloadLink: true
