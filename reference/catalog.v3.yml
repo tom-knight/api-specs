@@ -23087,12 +23087,14 @@ components:
       x-internal: false
     product_Base:
       title: product_Base
-      required:
-        - name
-        - price
-        - type
-        - weight
       type: object
+      description: |-
+        Shared `Product` properties used in:
+        * `POST`
+        * `PUT`
+        * `GET`
+      x-internal: false
+      x-examples: {}
       properties:
         name:
           maxLength: 250
@@ -23196,16 +23198,25 @@ components:
           type: array
           description: |
             An array of IDs for the categories to which this product belongs. When updating a product, if an array of categories is supplied, all product categories will be overwritten. Does not accept more than 1,000 ID values.
-          items:
-            type: integer
           x-required:
             - post
+          items:
+            type: integer
         brand_id:
           maximum: 1000000000
           minimum: 0
           type: integer
           description: |
             A product can be added to an existing brand during a product /PUT or /POST.
+        channel_id:
+          description: The ID of the channel or channels to which the product is assigned. May be null, a single ID, or an array of IDs.
+          anyOf:
+            - nullable: true
+              items:
+                type: integer
+          type:
+            - integer
+            - array
         inventory_level:
           maximum: 1000000000
           minimum: 0
@@ -23467,13 +23478,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/productVideo_Full'
-      description: |-
-        Shared `Product` properties used in:
-        * `POST`
-        * `PUT`
-        * `GET`
-      x-internal: false
-      x-examples: {}
+      required:
+        - name
+        - type
+        - weight
+        - price
     metafield_Put:
       title: metafield_Put
       description: Properties for updating metafields.
