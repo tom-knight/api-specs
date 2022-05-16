@@ -137,7 +137,7 @@ paths:
           description: Request parameters invalid
         '409':
           description: Tax Property is in use and cannot be deleted
-  '/stores/{store_hash}/v3/tax/properties/product':
+  '/stores/{store_hash}/v3/tax/products/properties':
     get:
       tags:
         - Product Tax Properties
