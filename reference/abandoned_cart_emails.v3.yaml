@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Abandoned Cart Emails V3 API (open beta)
+  title: Abandoned Cart Emails
   version: 3.0.0
   termsOfService: 'https://www.bigcommerce.com/terms'
   description: Abandoned Cart Emails V3 API managing Handlebars-based emails.
@@ -17,10 +17,6 @@ produces:
 servers:
   - url: 'https://api.bigcommerce.com'
     description: BigCommerce API Gateway
-    variables:
-      store_hash:
-        default: abc123
-        description: Store hash used to identify the store.
 paths:
   '/stores/{store_hash}/v3/settings/marketing/abandoned-cart-emails':
     get:
