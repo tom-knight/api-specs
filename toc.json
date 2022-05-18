@@ -229,6 +229,11 @@
     },
     {
       "type": "item",
+      "title": "Tax Properties",
+      "uri": "reference/tax_properties.v3.yml"
+    },
+    {
+      "type": "item",
       "title": "Tax Provider Connection",
       "uri": "reference/tax.v3.yml"
     },
