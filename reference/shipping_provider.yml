@@ -27,7 +27,7 @@ info:
     - [Shipping Methods](/api-reference/store-management/shipping-api/shipping-method)
     - [Shipping Carriers](/api-reference/store-management/shipping-api/shipping-carrier)
   termsOfService: ''
-host: api.bigcommerce.com
+host: example.com
 schemes:
   - https
 consumes:
@@ -35,7 +35,7 @@ consumes:
 produces:
   - application/json
 paths:
-  '/stores/{store_hash}/v3/rate':
+  '/rate_example':
     post:
       description: Request shipping rates.
       parameters:
@@ -348,7 +348,7 @@ paths:
         name: store_hash
         in: path
         required: true
-  '/stores/{store_hash}/v3/check_connection_options':
+  '/check_connection_options_example':
     post:
       description: Validate connection options.
       parameters:
