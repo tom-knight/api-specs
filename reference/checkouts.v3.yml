@@ -2,9 +2,12 @@ swagger: '2.0'
 info:
   version: '3.0'
   title: Checkouts
-  description: Create checkouts from existing carts using BigCommerce checkout logic.
+  description: |-
+    For more information on authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
+
+    Create and manage checkouts from existing carts using BigCommerce checkout logic.
 host: api.bigcommerce.com
-basePath: /
+basePath: null
 schemes:
   - https
 consumes:
@@ -12,7 +15,7 @@ consumes:
 produces:
   - application/json
 paths:
-  'stores/{store_hash}/v3/checkouts/{checkoutId}':
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}':
     get:
       description: |-
         Returns a *Checkout*.
@@ -145,7 +148,72 @@ paths:
         name: checkoutId
         in: path
         required: true
-  'stores/{store_hash}/v3/checkouts/{checkoutId}/billing-address':
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}/discounts':
+    parameters:
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+      - type: string
+        name: checkoutId
+        in: path
+        required: true
+    post:
+      summary: Add Discount to Checkout
+      operationId: post-store_hash-v3-checkouts-checkoutId-discounts
+      responses:
+        '200':
+          $ref: '#/responses/CheckoutResponse'
+      description: |-
+        Adds a discount to an existing *checkout*.
+
+        This discount only applies to `line_items`. When you call this API, you clear out all existing discounts applied to line items, including product and order-based discounts.
+
+        This endpoint splits the discount between line items based on the item value.
+
+        Required Fields
+        * discounted_amount
+      tags:
+        - Checkout Discounts
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              cart:
+                type: object
+                properties:
+                  discounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        discounted_amount:
+                          type: number
+                          example: 10
+                        name:
+                          type: string
+                          example: manual
+                      required:
+                        - discounted_amount
+          x-examples:
+            example-1:
+              cart:
+                discounts:
+                  - discounted_amount: 10
+                    name: manual
+        - type: string
+          in: header
+          name: Accept
+          required: true
+          default: application/json
+        - type: string
+          in: header
+          name: Content-Type
+          required: true
+          default: application/json
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}/billing-address':
     post:
       description: |-
         Adds a billing address to an existing *Checkout*.
@@ -212,7 +280,7 @@ paths:
         name: checkoutId
         in: path
         required: true
-  'stores/{store_hash}/v3/checkouts/{checkoutId}/billing-address/{addressId}':
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}/billing-address/{addressId}':
     put:
       description: Updates an existing billing address on *Checkout*.
       summary: Update Checkout Billing Address
@@ -273,18 +341,14 @@ paths:
         name: addressId
         in: path
         required: true
-  'stores/{store_hash}/v3/checkouts/{checkoutId}/consignments':
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}/consignments':
     post:
       description: |-
         Adds a new consignment to a checkout.
 
-        **Limits:**
-        * 50 line item limit for guest shoppers
-        * 600 line item limit for logged-in shoppers
-
         For more information about working with consignments, see [Checkout consignment](/api-docs/checkouts/checkout-consignment).  
 
-        Though the only required `shipping_address` properties to create a consignment are `email` and `country_code`, to successfully [create an order](/api-reference/store-management/checkouts/checkout-orders/createanorder) the `shipping_address` requires the following properties:
+        Though the only required `address` properties to create a consignment are `email` and `country_code`, to successfully [create an order](/api-reference/store-management/checkouts/checkout-orders/createanorder) the `address` requires the following properties:
         * `first_name`
         * `last_name`
         * `address1`
@@ -293,7 +357,7 @@ paths:
         * `email`
         * `country_code`
 
-        Depending on the country, the following `shipping_address` properties can also be required:
+        Depending on the country, the following `address` properties can also be required:
 
         * `postal_code`
         * `state_or_province`
@@ -327,7 +391,7 @@ paths:
             $ref: '#/definitions/CreateConsignmentRequest'
           x-examples:
             application/json:
-              - shipping_address:
+              - address:
                   email: jane2@example.com
                   country_code: US
                   first_name: BigCommerce
@@ -344,7 +408,7 @@ paths:
                 line_items:
                   - item_id: 27556eb3-6537-4d08-b75e-1ac32d80934b
                     quantity: 1
-              - shipping_address:
+              - address:
                   email: testing@example.com
                   country_code: US
                   first_name: Testing
@@ -391,12 +455,12 @@ paths:
         name: checkoutId
         in: path
         required: true
-  'stores/{store_hash}/v3/checkouts/{checkoutId}/consignments/{consignmentId}':
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}/consignments/{consignmentId}':
     put:
       description: |-
-        Updates an existing consignment. Shipping address, line item IDs or the shipping option ID can be updated using this endpoint.
+        Updates an existing consignment. Address, line item IDs or the shipping option ID can be updated using this endpoint.
 
-        There are two steps to add a new shipping address and shipping options with line items. 
+        There are two steps to add a new address and shipping options with line items. 
         1. Add a new [consignment](/api-reference/store-management/checkouts/checkout-consignments/checkoutsconsignmentsbycheckoutidpost) to a checkout.
         2. Assign a shipping option to the new consignment by sending a `PUT` request to update the consignment's `shipping_option_id` with a returned value from `data.consignments[N].available_shipping_option[N].id` in step one.
       summary: Update Checkout Consignment
@@ -434,8 +498,8 @@ paths:
           x-examples:
             Updating shipping optionID:
               shipping_option_id: 9241669174884c2f2e83b3adabf03f83
-            Updating shipping address:
-              shipping_address:
+            Updating address:
+              address:
                 email: jane2@example.com
                 country_code: US
                 first_name: Testing
@@ -514,7 +578,7 @@ paths:
         name: consignmentId
         in: path
         required: true
-  'stores/{store_hash}/v3/checkouts/{checkoutId}/coupons':
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}/coupons':
     post:
       description: |-
         Adds a *Coupon Code* to *Checkout*.
@@ -573,7 +637,7 @@ paths:
         name: checkoutId
         in: path
         required: true
-  'stores/{store_hash}/v3/checkouts/{checkoutId}/coupons/{couponCode}':
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}/coupons/{couponCode}':
     delete:
       description: Deletes a *Coupon Code* from *Checkout*.
       summary: Delete Checkout Coupon
@@ -625,7 +689,7 @@ paths:
         name: couponCode
         in: path
         required: true
-  'stores/{store_hash}/v3/checkouts/{checkoutId}/orders':
+  '/stores/{store_hash}/v3/checkouts/{checkoutId}/orders':
     post:
       responses:
         '200':
@@ -664,6 +728,36 @@ paths:
         in: path
         type: string
         required: true
+      - type: string
+        name: store_hash
+        in: path
+        required: true
+  '/stores/{store_hash}/v3/checkouts/settings':
+    get:
+      tags:
+        - Checkout Settings
+      operationId: GetCheckoutSettings
+      responses:
+        '200':
+          $ref: '#/responses/checkout_settings_resp'
+      description: Get checkout settings
+      summary: Get Checkout Settings
+    put:
+      tags:
+        - Checkout Settings
+      operationId: UpdateCheckoutSettings
+      responses:
+        '200':
+          $ref: '#/responses/checkout_settings_resp'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CheckoutsSettingsRequest'
+      summary: Update Checkout Settings
+      description: Update checkout settings
+    parameters:
       - type: string
         name: store_hash
         in: path
@@ -1116,13 +1210,16 @@ definitions:
         type: array
         items:
           title: Consignment
-          description: 'This allows us to have multiple shipping addresses. Where there is only one shipping address, this array will contain only one value, with all the items.'
+          description: 'This allows us to have multiple addresses. Where there is only one address, this array will contain only one value, with all the items.'
           type: object
           properties:
             id:
               description: ''
               type: string
-            shipping_address:
+            shippingAddress:
+              type: object
+              x-deprecated: true
+            address:
               title: Address Response
               allOf:
                 - title: Address Properties
@@ -1186,7 +1283,7 @@ definitions:
                       type: string
               type: object
             available_shipping_options:
-              description: This is available only when "include=available_shipping_options" is presented in the URL.
+              description: This is available only when "include=consignments.available_shipping_options" is presented in the URL.
               type: array
               items:
                 title: Selected Shipping Option
@@ -1369,7 +1466,7 @@ definitions:
               text:
                 description: Text of the banner
                 type: string
-    x-internal: true
+    x-internal: false
   Checkout_Put:
     title: Checkout_Put
     type: object
@@ -1379,7 +1476,7 @@ definitions:
         type: string
     required:
       - customer_message
-    x-internal: true
+    x-internal: false
   AppliedCoupon:
     title: Applied Coupon
     type: object
@@ -1413,7 +1510,7 @@ definitions:
           |`5`|`promotion`|
     required:
       - code
-    x-internal: true
+    x-internal: false
   AddressProperties:
     title: Address Properties
     type: object
@@ -1471,12 +1568,12 @@ definitions:
     required:
       - email
       - country_code
-    x-internal: true
+    x-internal: false
   CreateConsignmentRequest:
     title: Create Consignment Request
     type: object
     properties:
-      shipping_address:
+      address:
         title: Address Properties
         type: object
         properties:
@@ -1550,13 +1647,13 @@ definitions:
           required:
             - item_id
             - quantity
-    x-internal: true
+    x-internal: false
   UpdateConsignmentRequest:
     title: Update Consignment Request
-    description: One or more of these three fields are mandatory. `shipping_address` and `line_items` can be updated in one request. `shipping_option_id` has to be updated in a separate request since changing the address or line items can invalidate the previously available shipping options.
+    description: One or more of these three fields are mandatory. `address` and `line_items` can be updated in one request. `shipping_option_id` has to be updated in a separate request since changing the address or line items can invalidate the previously available shipping options.
     type: object
     properties:
-      shipping_address:
+      address:
         title: Address Properties
         type: object
         properties:
@@ -1633,7 +1730,7 @@ definitions:
       shipping_option_id:
         description: ''
         type: string
-    x-internal: true
+    x-internal: false
   CouponCodeRequest:
     title: Coupon Code Request
     type: object
@@ -1641,7 +1738,7 @@ definitions:
       coupon_code:
         description: Coupon codes have a 50 character limit.
         type: string
-    x-internal: true
+    x-internal: false
   Order:
     type: object
     title: Order
@@ -1650,7 +1747,31 @@ definitions:
         type: integer
         example: 75
         description: The order Id.
-    x-internal: true
+    x-internal: false
+  CheckoutsSettings:
+    type: object
+    title: Checkouts Settings
+    properties:
+      custom_checkout_script_url:
+        type: string
+      order_confirmation_use_custom_checkout_script:
+        type: boolean
+      custom_order_confirmation_script_url:
+        type: string
+  CheckoutsSettingsRequest:
+    title: Checkouts settings request
+    type: object
+    properties:
+      custom_checkout_script_url:
+        type: string
+        description: 'Custom checkout script url to replace our default checkout. To reset a store to optimized one-page checkout, pass an empty string for `custom_checkout_script_url` and `custom_order_confirmation_script_url`.'
+      order_confirmation_use_custom_checkout_script:
+        type: boolean
+        description: When order_confirmation_use_custom_checkout_script=true we default custom_order_confirmation_script_url to empty string.
+      custom_order_confirmation_script_url:
+        type: string
+        description: 'Custom order confirmation script url to replace our default order confirmation. To reset a store to optimized one-page checkout, pass an empty string for `custom_checkout_script_url` and `custom_order_confirmation_script_url`.'
+    description: ''
 parameters:
   checkoutId:
     name: checkoutId
@@ -1695,44 +1816,17 @@ parameters:
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
-    name: X-Auth-Token
     in: header
-    description: |-
-      ### OAuth Scopes
-      |  **UI Name** | **Permission** | **Parameter** |
-      | --- | --- | --- |
-      |  Checkouts | modify | `store_checkout` |
-      |  Checkouts | read-only | `store_checkout_read_only` |
-
-      ### Headers
-
-      |Header|Parameter|Description|
-      |-|-|-|
-      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
-
-      ### Example
-
-      ```http
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
-      host: api.bigcommerce.com
-      Content-Type: application/json
-      X-Auth-Token: {access_token}
-      ```
-
-      * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication).
+    name: X-Auth-Token
+    description: ''
 tags:
   - name: Checkout
   - name: Checkout Billing Address
   - name: Checkout Consignments
   - name: Checkout Coupons
+  - name: Checkout Discounts
   - name: Checkout Orders
-security:
-  - X-Auth-Client: []
-  - X-Auth-Token: []
-x-stoplight:
-  docs:
-    includeDownloadLink: true
-    showModels: false
+  - name: Checkout Settings
 responses:
   CheckoutResponse:
     description: ''
@@ -1813,7 +1907,7 @@ responses:
               discounts: []
               line_item_ids:
                 - 8edef915-8e8e-4ebd-bece-31fbb1191a7e
-              shipping_address:
+              address:
                 first_name: BigCommerce
                 last_name: Cart/Checkout
                 email: jane2@example.com
@@ -1895,7 +1989,7 @@ responses:
                   product_id: 188
                   sku: DUST1
                   name: Hello
-                  url: 'https://{$$.env.store_hash}/all/dustpan-brush/'
+                  url: 'https://{store_hash}/all/dustpan-brush/'
                   quantity: 1
                   is_taxable: true
                   image_url: 'https://cdn11.bigcommerce.com/s-{store_hash}/products/188/images/460/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.330.500.jpg?c=2'
@@ -1948,7 +2042,7 @@ responses:
                 cost: 8
                 transit_time: ''
                 additional_description: ''
-              shipping_address:
+              address:
                 first_name: BigCommerce
                 last_name: Cart/Checkout
                 email: jane2@example.com
@@ -2278,6 +2372,194 @@ responses:
                     - cartpage
                   text: Some text
         meta: {}
+      example-1:
+        data:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          cart:
+            id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+            customer_id: 0
+            email: string
+            currency:
+              code: string
+            base_amount: 0
+            channel_id: 0
+            discount_amount: 0
+            cart_amount_inc_tax: 0
+            cart_amount_ex_tax: 0
+            coupons:
+              - code: string
+                id: 0
+                coupon_type: string
+                discounted_amount: 0
+            discounts:
+              - id: string
+                discounted_amount: 0
+            line_items:
+              physical_items:
+                - quantity: 0
+                  id: string
+                  variant_id: 0
+                  product_id: 0
+                  sku: string
+                  name: string
+                  url: string
+                  is_taxable: true
+                  image_url: string
+                  discounts:
+                    - id: string
+                      discounted_amount: 0
+                  coupons: 0
+                  discount_amount: 0
+                  coupon_amount: 0
+                  list_price: 0
+                  sale_price: 0
+                  extended_list_price: 0
+                  extended_sale_price: 0
+                  is_require_shipping: true
+                  is_mutable: true
+                  parent_id: 0
+                  gift_wrapping:
+                    name: string
+                    message: string
+                    amount: 0
+                    amount_as_integer: 0
+              digital_items:
+                - quantity: 0
+                  id: string
+                  variant_id: 0
+                  parent_id: 0
+                  product_id: 0
+                  sku: string
+                  name: string
+                  url: string
+                  is_mutable: true
+                  is_require_shipping: true
+                  is_taxable: true
+                  image_url: string
+                  discounts:
+                    - id: string
+                      discounted_amount: 0
+                  coupons: 0
+                  discount_amount: 0
+                  coupon_amount: 0
+                  list_price: 0
+                  sale_price: 0
+                  extended_list_price: 0
+                  extended_sale_price: 0
+              gift_certificates:
+                - theme: string
+                  amount: 0
+                  sender:
+                    name: string
+                    email: string
+                  recipient:
+                    name: string
+                    email: string
+                  id: string
+                  name: string
+                  taxable: true
+                  message: string
+              custom_items:
+                - quantity: 0
+                  id: string
+                  extended_list_price: 0
+                  list_price: 0
+                  sku: string
+                  name: string
+                  image_url: string
+            created_time: string
+            updated_time: string
+          billing_address:
+            first_name: string
+            last_name: string
+            email: string
+            company: string
+            address1: string
+            address2: string
+            city: string
+            state_or_province: string
+            state_or_province_code: string
+            country_code: string
+            postal_code: string
+            phone: string
+            custom_fields:
+              - field_id: string
+                field_value: string
+            id: string
+          consignments:
+            - id: string
+              shippingAddress: {}
+              address:
+                first_name: string
+                last_name: string
+                email: string
+                company: string
+                address1: string
+                address2: string
+                city: string
+                state_or_province: string
+                state_or_province_code: string
+                country_code: string
+                postal_code: string
+                phone: string
+                custom_fields:
+                  - field_id: string
+                    field_value: string
+                id: string
+              available_shipping_options:
+                - description: string
+                  id: string
+                  type: string
+                  image_url: string
+                  cost: 0
+                  transit_time: string
+                  additional_description: string
+              selected_shipping_option:
+                description: string
+                id: string
+                type: string
+                image_url: string
+                cost: 0
+                transit_time: string
+                additional_description: string
+              coupon_discounts:
+                - code: string
+                  amount: 0
+              discounts:
+                - id: 0
+              shipping_cost_inc_tax: 0
+              shipping_cost_ex_tax: 0
+              handling_cost_inc_tax: 0
+              handling_cost_ex_tax: 0
+              line_item_ids:
+                - string
+          taxes:
+            - name: string
+              amount: 0
+          coupons:
+            - code: string
+              id: 0
+              discounted_amount: 0
+              coupon_type: 1
+          order_id: string
+          shipping_cost_total_inc_tax: 0
+          shipping_cost_total_ex_tax: 0
+          handling_cost_total_inc_tax: 0
+          handling_cost_total_ex_tax: 0
+          tax_total: 0
+          subtotal_inc_tax: 0
+          subtotal_ex_tax: 0
+          grand_total: 0
+          created_time: string
+          updated_time: string
+          customer_message: string
+          promotions:
+            banners:
+              id: string
+              type: string
+              page:
+                - string
+              text: string
   order_Resp:
     description: ''
     schema:
@@ -2291,4 +2573,26 @@ responses:
       application/json:
         data:
           id: 75
+        meta: {}
+  checkout_settings_resp:
+    description: ''
+    schema:
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/CheckoutsSettings'
+        meta:
+          type: object
+    examples:
+      application/json:
+        data:
+          custom_checkout_script_url: 'https://example.com/custom-checkout-script.js'
+          order_confirmation_use_custom_checkout_script: false
+          custom_order_confirmation_script_url: 'https://example.com/custom-order-confirmation-script.js'
+        meta: {}
+      WebDAV protocol:
+        data:
+          custom_checkout_script_url: 'webdav:vtz-checkout/dist/auto-loader.js'
+          order_confirmation_use_custom_checkout_script: false
+          custom_order_confirmation_script_url: 'webdav:vtz-order-confirmation/dist/auto-loader.js'
         meta: {}

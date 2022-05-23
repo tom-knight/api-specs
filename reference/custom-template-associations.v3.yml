@@ -143,10 +143,6 @@ info:
 servers:
   - url: 'https://api.bigcommerce.com'
     description: Production API Gateway
-    variables:
-      store_hash:
-        default: abc123
-        description: Store hash used to identify the store.
 paths:
   '/stores/{store_hash}/v3/storefront/custom-template-associations':
     get:
@@ -322,31 +318,31 @@ components:
           type: integer
         message:
           type: string
-      x-internal: true
+      x-internal: false
     ErrorResponse400:
       type: object
       properties:
         schema:
           $ref: '#/components/schemas/Error'
-      x-internal: true
+      x-internal: false
     ErrorResponse404:
       type: object
       properties:
         schema:
           $ref: '#/components/schemas/Error'
-      x-internal: true
+      x-internal: false
     ErrorResponse409:
       type: object
       properties:
         schema:
           $ref: '#/components/schemas/Error'
-      x-internal: true
+      x-internal: false
     ErrorResponse422:
       type: object
       properties:
         schema:
           $ref: '#/components/schemas/Error'
-      x-internal: true
+      x-internal: false
     MetaPaginationObject:
       type: object
       properties:
@@ -382,12 +378,12 @@ components:
                 current:
                   type: string
                   example: '?limit=5&page=1'
-      x-internal: true
+      x-internal: false
     DetailedErrors:
       type: object
       additionalProperties:
         type: string
-      x-internal: true
+      x-internal: false
     BaseError:
       type: object
       description: |
@@ -405,7 +401,7 @@ components:
           type: string
         instance:
           type: string
-      x-internal: true
+      x-internal: false
     ErrorResponse:
       allOf:
         - $ref: '#/components/schemas/BaseError'
@@ -413,7 +409,7 @@ components:
           properties:
             errors:
               $ref: '#/components/schemas/DetailedErrors'
-      x-internal: true
+      x-internal: false
     CustomTemplateAssociation:
       title: CustomTemplateAssociation
       type: object
@@ -441,7 +437,7 @@ components:
           type: string
         date_modified:
           type: string
-      x-internal: true
+      x-internal: false
     CustomTemplateAssociationUpsert:
       title: CustomTemplateAssociation
       type: object
@@ -465,7 +461,7 @@ components:
         - entity_type
         - entity_id
         - file_name
-      x-internal: true
+      x-internal: false
   securitySchemes:
     X-Auth-Token:
       name: X-Auth-Token

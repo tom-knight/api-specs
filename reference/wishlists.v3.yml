@@ -522,7 +522,7 @@ definitions:
               example: 152
     required:
       - customer_id
-    x-internal: true
+    x-internal: false
   wishlist_Put:
     title: wishlist_Put
     type: object
@@ -562,7 +562,7 @@ definitions:
     required:
       - customer_id
       - items
-    x-internal: true
+    x-internal: false
   wishlist_Full:
     title: wishlist_Full
     type: object
@@ -595,7 +595,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/wishlistItem_Full'
-    x-internal: true
+    x-internal: false
   wishlistItem_Full:
     title: wishlistItem_Full
     type: object
@@ -615,7 +615,7 @@ definitions:
         type: integer
         format: int32
         example: 22
-    x-internal: true
+    x-internal: false
   wishlistItem_Post:
     title: wishlistItem_Post
     type: object
@@ -630,7 +630,7 @@ definitions:
         type: integer
         format: int32
         example: 152
-    x-internal: true
+    x-internal: false
   pagination:
     title: pagination
     description: 'Data about the response, including pagination and collection totals.'
@@ -656,7 +656,7 @@ definitions:
         description: The total number of pages in the collection.
         type: integer
         format: int32
-    x-internal: true
+    x-internal: false
   error:
     title: error
     type: object
@@ -668,14 +668,14 @@ definitions:
         type: string
       type:
         type: string
-    x-internal: true
+    x-internal: false
   metaCollection:
     type: object
     title: metaCollection
     properties:
       pagination:
         $ref: '#/definitions/pagination'
-    x-internal: true
+    x-internal: false
 tags:
   - name: Wishlists
     description: ''
@@ -852,7 +852,7 @@ securityDefinitions:
       ### Example
 
       ```http
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
+      GET /stores/{store_hash}/v3/catalog/summary
       host: api.bigcommerce.com
       Content-Type: application/json
       X-Auth-Token: {access_token}
@@ -860,7 +860,6 @@ securityDefinitions:
 
       * For more information on Authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
 security:
-  - X-Auth-Client: []
   - X-Auth-Token: []
 x-stoplight:
   docs:
