@@ -153,7 +153,7 @@ paths:
       tags:
         - Web Analytics
       operationId: updateAnalytic
-      summary: Updates a Web Analytic
+      summary: Update a Web Analytic
       description: 'Updates a single Web Analytics data for a specified channel. If `channel_id` is not set, analytic data updates for a default channel.'
       parameters:
         - name: channel_id
