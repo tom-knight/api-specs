@@ -2025,6 +2025,8 @@ components:
     ChannelConfigMeta:
       type: object
       description: Optional channel configuration object.
+      x-internal: false
+      deprecated: true
       properties:
         app:
           type: object
@@ -2046,8 +2048,6 @@ components:
                   query_path:
                     type: string
                     description: The value that will be passed to the app's iFrame in the URL and will allow the app to display the appropriate section within the app iFrame in the control panel.
-              deprecated: true
-      x-internal: false
     CurrencyNotRequiredWithChannelId:
       type: object
       description: Details about currency assignments for a specific channel.
