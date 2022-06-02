@@ -10,7 +10,7 @@ info:
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
 
     ```http
-    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+    GET /stores/{store_hash}/v3/catalog/summary
     host: api.bigcommerce.com
     Accept: application/json
     X-Auth-Token: {access_token}
@@ -156,7 +156,7 @@ paths:
                 reset_pass_on_login: false
                 accepts_marketing: true
                 addresses:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/1/addresses'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/1/addresses'
                   resource: /customers/1/addresses
               - id: 2
                 company: ''
@@ -175,7 +175,7 @@ paths:
                 reset_pass_on_login: false
                 accepts_marketing: true
                 addresses:
-                  url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/2/addresses'
+                  url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/2/addresses'
                   resource: /customers/2/addresses
             Response Schema:
               - first_name: in
@@ -472,7 +472,7 @@ paths:
               tax_exempt_category: ''
               accepts_marketing: true
               addresses:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/5/addresses'
                 resource: /customers/5/addresses
               form_fields:
                 - name: ''
@@ -536,11 +536,10 @@ paths:
       x-unitTests:
         - request:
             method: DELETE
-            uri: '/stores/{$$.env.store_hash}/v2/customers'
+            uri: '/stores/{store_hash}/v2/customers'
             headers:
               Accept: application/json
               Content-Type: application/json
-              X-Auth-Client: Your Client Id
               X-Auth-Token: Your Token
           expectedResponse:
             x-allowExtraHeaders: true
@@ -617,7 +616,7 @@ paths:
               tax_exempt_category: ''
               accepts_marketing: true
               addresses:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/5/addresses'
                 resource: /customers/5/addresses
               form_fields:
                 - name: ''
@@ -726,7 +725,7 @@ paths:
               reset_pass_on_login: false
               accepts_marketing: true
               addresses:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/1/addresses'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/1/addresses'
                 resource: /customers/1/addresses
             Response Schema:
               first_name: ut tempor aute consectetur
@@ -800,7 +799,7 @@ paths:
               tax_exempt_category: ''
               accepts_marketing: true
               addresses:
-                url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses'
+                url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/5/addresses'
                 resource: /customers/5/addresses
               form_fields:
                 - name: ''
@@ -882,7 +881,7 @@ paths:
                 properties:
                   url:
                     description: Full URL of where the resource is located.
-                    example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses'
+                    example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/5/addresses'
                     type: string
                   resource:
                     description: Resource being accessed.
@@ -1047,11 +1046,10 @@ paths:
       x-unitTests:
         - request:
             method: GET
-            uri: '/stores/{$$.env.store_hash}/v2/customers/count'
+            uri: '/stores/{store_hash}/v2/customers/count'
             headers:
               Accept: application/json
               Content-Type: application/json
-              X-Auth-Client: Your Client Id
               X-Auth-Token: Your Token
           expectedResponse:
             x-allowExtraHeaders: true
@@ -1959,11 +1957,6 @@ paths:
           type: string
           description: ''
           default: application/json
-        - name: X-Auth-Client
-          in: header
-          required: true
-          type: string
-          description: ''
         - name: X-Auth-Token
           in: header
           required: true
@@ -2420,7 +2413,7 @@ definitions:
               description: Value of the form field
               type: string
               example: 123BAF
-    x-internal: true
+    x-internal: false
   customerFormFields:
     title: customerFormFields
     type: object
@@ -2433,20 +2426,20 @@ definitions:
         description: Value of the form field
         type: string
         example: 123BAF
-    x-internal: true
+    x-internal: false
   shippingAddress_Full:
     title: shippingAddress_Full
     type: object
     properties:
       url:
         description: URL of the shipping address for api requests
-        example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/shippingaddresses'
+        example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/orders/129/shippingaddresses'
         type: string
       resource:
         description: ''
         example: /orders/129/shippingaddresses
         type: string
-    x-internal: true
+    x-internal: false
   customer_Full:
     title: customer_Full
     example:
@@ -2466,7 +2459,7 @@ definitions:
       tax_exempt_category: ''
       accepts_marketing: true
       addresses:
-        url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses'
+        url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/5/addresses'
         resource: /customers/5/addresses
       form_fields:
         - name: ''
@@ -2491,7 +2484,7 @@ definitions:
             type: string
             format: date-time
       - $ref: '#/definitions/customer_Base'
-    x-internal: true
+    x-internal: false
   categoryAccessLevel_Full:
     title: categoryAccessLevel_Full
     type: object
@@ -2512,7 +2505,7 @@ definitions:
         example: '18,19,23,34'
         items:
           type: integer
-    x-internal: true
+    x-internal: false
   count_Full:
     title: count_Full
     example:
@@ -2523,7 +2516,7 @@ definitions:
         description: ''
         example: 27
         type: number
-    x-internal: true
+    x-internal: false
   customerAddress_Full:
     title: customerAddress_Full
     example:
@@ -2553,7 +2546,7 @@ definitions:
             example: US
             type: string
       - $ref: '#/definitions/customerAddress_Base'
-    x-internal: true
+    x-internal: false
   customerGroup_Full:
     title: customerGroup_Full
     type: object
@@ -2603,7 +2596,7 @@ definitions:
       is_group_for_guests:
         type: boolean
         description: If the groups is for guests. There can only be one customer group for guests at a time.
-    x-internal: true
+    x-internal: false
   country_Full:
     title: country_Full
     example:
@@ -2612,7 +2605,7 @@ definitions:
       country_iso2: AU
       country_iso3: AUS
       states:
-        url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states'
+        url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states'
         resource: /countries/13/states
     type: object
     properties:
@@ -2638,26 +2631,26 @@ definitions:
         properties:
           url:
             description: ''
-            example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states'
+            example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states'
             type: string
           resource:
             description: ''
             example: /countries/13/states
             type: string
-    x-internal: true
+    x-internal: false
   statesResource_Full:
     title: statesResource_Full
     type: object
     properties:
       url:
         description: ''
-        example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/countries/13/states'
+        example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/countries/13/states'
         type: string
       resource:
         description: ''
         example: /countries/13/states
         type: string
-    x-internal: true
+    x-internal: false
   state_Full:
     title: state_Full
     example:
@@ -2683,7 +2676,7 @@ definitions:
         description: Numeric ID of the state’s/province’s associated country.
         example: 13
         type: integer
-    x-internal: true
+    x-internal: false
   customerGroup_Post:
     title: customerGroup_Post
     type: object
@@ -2729,14 +2722,14 @@ definitions:
       is_group_for_guests:
         type: boolean
         description: If the groups is for guests. There can only be one customer group for guests at a time.
-    x-internal: true
+    x-internal: false
   validatePassword:
     type: object
     properties:
       success:
         type: boolean
         description: Will return `true` or `false`
-    x-internal: true
+    x-internal: false
   customer_Base:
     title: customer_Base
     example:
@@ -2756,7 +2749,7 @@ definitions:
       tax_exempt_category: ''
       accepts_marketing: true
       addresses:
-        url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses'
+        url: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/5/addresses'
         resource: /customers/5/addresses
       form_fields:
         - name: ''
@@ -2823,7 +2816,7 @@ definitions:
         properties:
           url:
             description: Full URL of where the resource is located.
-            example: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/customers/5/addresses'
+            example: 'https://api.bigcommerce.com/stores/{store_hash}/v2/customers/5/addresses'
             type: string
           resource:
             description: Resource being accessed.
@@ -2852,7 +2845,7 @@ definitions:
       - first_name
       - last_name
       - email
-    x-internal: true
+    x-internal: false
   customerAddress_Base:
     title: customerAddress_Base
     example:
@@ -2930,7 +2923,7 @@ definitions:
       - zip
       - country
       - phone
-    x-internal: true
+    x-internal: false
 tags:
   - name: Customers
   - name: Customer Groups
@@ -2957,7 +2950,7 @@ securityDefinitions:
       ### Example
 
       ```http
-      GET /stores/{$$.env.store_hash}/v3/catalog/summary
+      GET /stores/{store_hash}/v3/catalog/summary
       host: api.bigcommerce.com
       Content-Type: application/json
       X-Auth-Token: {access_token}
@@ -2966,7 +2959,6 @@ securityDefinitions:
       * For more information on Authenticating BigCommerce APIs, see: [Authentication](/api-docs/getting-started/authentication). 
 security:
   - X-Auth-Token: []
-  - X-Auth-Client: []
 parameters:
   customer_id:
     name: customer_id
