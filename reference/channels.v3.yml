@@ -2026,7 +2026,6 @@ components:
       type: object
       description: Optional channel configuration object.
       x-internal: false
-      deprecated: true
       properties:
         app:
           type: object
@@ -2038,16 +2037,20 @@ components:
             sections:
               type: array
               description: 'Sections are now deprecated under config_meta. The new /channel-menus endpoints should be used instead. If set, when the app is loaded within the control panel, the navigation `sections` will be directly embedded in the control panel navigation.'
+              deprecated: true
               items:
                 type: object
+                deprecated: true
                 properties:
                   title:
                     type: string
                     description: The title of the navigation section.
                     example: '"Settings"'
+                    deprecated: true
                   query_path:
                     type: string
                     description: The value that will be passed to the app's iFrame in the URL and will allow the app to display the appropriate section within the app iFrame in the control panel.
+                    deprecated: true
     CurrencyNotRequiredWithChannelId:
       type: object
       description: Details about currency assignments for a specific channel.
