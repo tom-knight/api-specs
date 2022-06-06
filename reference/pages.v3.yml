@@ -23,7 +23,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PagesCollectionResponse'
               examples:
-                $ref: '#/components/examples/Get Pages 200'
+                $ref: '#/components/examples/GetPages200'
         '400':
           description: 'Bad Request; reasons for failure include passing query parameters that are not supported on this endpoint, but are common on other BigCommerce endpoints.'
           content:
@@ -1196,7 +1196,7 @@ components:
         type: string
       in: query
       name: 'name:like'
-      description: One word from the name of the page. Does not search substrings. Does not return pages with names that match exactly. Does not support fuzzy search.
+      description: Return only pages whose `name` or `body` contain the supplied string.
     limitQuery:
       schema:
         type: integer
@@ -1210,7 +1210,7 @@ components:
       name: page
       description: The ordered grouping of results to return. See `meta.pagination.current_page` in the response body.
   examples:
-    Get Pages 200:
+    GetPages200:
       value:
         data:
           - id: 1
