@@ -29,13 +29,13 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/DetailedErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorDetailed'
         '422':
           description: Invalid input. Reasons for failure include passing supported parameters with values that have the incorrect datatype.
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ListedErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorItemized'
       parameters:
         - $ref: '#/components/parameters/channelIdQuery'
         - $ref: '#/components/parameters/idInQueryGet'
@@ -84,7 +84,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/DetailedErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorDetailed'
       parameters:
         - $ref: '#/components/parameters/includeQuery'
       summary: Create Pages
@@ -148,7 +148,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorBrief'
               examples:
                 example-1:
                   value:
@@ -160,7 +160,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/DetailedErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorDetailed'
               examples:
                 missing required field for type raw:
                   value:
@@ -189,7 +189,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorBrief'
               examples:
                 Page not found:
                   value:
@@ -201,7 +201,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/DetailedErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorDetailed'
               examples:
                 Missing ID:
                   value:
@@ -376,7 +376,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorBrief'
               examples:
                 pageId does not exist:
                   value:
@@ -388,7 +388,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ListedErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorItemized'
               examples:
                 pageId is bar:
                   value:
@@ -425,13 +425,13 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/DetailedErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorDetailed'
         '404':
           description: Not Found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorBrief'
               examples:
                 not found:
                   value:
@@ -443,7 +443,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/DetailedErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorDetailed'
       parameters:
         - $ref: '#/components/parameters/includeQuery'
       summary: Update a Page
@@ -465,7 +465,7 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ResponseErrorBrief'
               examples:
                 example-1:
                   value:
@@ -483,14 +483,14 @@ servers:
     variables:
       store_hash:
         default: abc123
-        description: Store hash used to identify the store.
+        description: The store’s unique ID
 x-stoplight:
   docs:
     includeDownloadLink: true
     showSchemas: false
 components:
   schemas:
-    BaseError:
+    ResponseErrorBrief:
       type: object
       description: |
         Error payload for the BigCommerce API.
@@ -507,7 +507,7 @@ components:
           type: string
       required:
         - status
-    DetailedError:
+    ResponseErrorDetailed:
       type: object
       description: |
         Error payload for the BigCommerce API.
@@ -526,11 +526,11 @@ components:
           type: string
       required:
         - status
-    ListedError:
+    ResponseErrorItemized:
       type: object
       description: |
         Error payload for the BigCommerce API.
-      title: ListedError
+      title: ResponseErrorItemized
       properties:
         status:
           description: |
@@ -548,22 +548,53 @@ components:
             type: string
       required:
         - status
-    ErrorResponse:
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    ListedErrorResponse:
-      allOf:
-        - $ref: '#/components/schemas/ListedError'
-    DetailedErrorResponse:
-      allOf:
-        - $ref: '#/components/schemas/DetailedError'
-    CollectionMeta:
+    ResponseMeta:
       type: object
       description: |
         Data about the response, including pagination and collection totals.
       properties:
         pagination:
-          $ref: '#/components/schemas/Pagination'
+          type: object
+          description: |
+            Data about the response, including pagination and collection totals.
+          properties:
+            total:
+              type: integer
+              description: |
+                Total number of items in the result set.
+            count:
+              type: integer
+              description: |
+                Total number of items in the collection response.
+            per_page:
+              type: integer
+              description: |
+                The amount of items returned in the collection per page, controlled by the limit parameter.
+            current_page:
+              type: integer
+              description: |
+                The page you are currently on within the collection.
+            total_pages:
+              type: integer
+              description: |
+                The total number of pages in the collection.
+            links:
+              type: object
+              description: |
+                Pagination links for the previous and next parts of the whole collection.
+              properties:
+                previous:
+                  type: string
+                  description: |
+                    Link to the previous page returned in the response.
+                current:
+                  type: string
+                  description: |
+                    Link to the current page returned in the response.
+                next:
+                  type: string
+                  description: |
+                    Link to the next page returned in the response.
     PagesCollectionResponse:
       description: |
         Response payload for the BigCommerce API.
@@ -575,7 +606,7 @@ components:
           items:
             $ref: '#/components/schemas/Page'
         meta:
-          $ref: '#/components/schemas/CollectionMeta'
+          $ref: '#/components/schemas/ResponseMeta'
     PageResponse:
       description: |
         Response payload for the BigCommerce API.
@@ -587,7 +618,7 @@ components:
               items:
                 $ref: '#/components/schemas/Page'
             meta:
-              $ref: '#/components/schemas/CollectionMeta'
+              $ref: '#/components/schemas/ResponseMeta'
       title: PageResponseObject
       type: object
     ContactFields:
@@ -982,48 +1013,6 @@ components:
       required:
         - name
         - type
-    Pagination:
-      type: object
-      description: |
-        Data about the response, including pagination and collection totals.
-      properties:
-        total:
-          type: integer
-          description: |
-            Total number of items in the result set.
-        count:
-          type: integer
-          description: |
-            Total number of items in the collection response.
-        per_page:
-          type: integer
-          description: |
-            The amount of items returned in the collection per page, controlled by the limit parameter.
-        current_page:
-          type: integer
-          description: |
-            The page you are currently on within the collection.
-        total_pages:
-          type: integer
-          description: |
-            The total number of pages in the collection.
-        links:
-          type: object
-          description: |
-            Pagination links for the previous and next parts of the whole collection.
-          properties:
-            previous:
-              type: string
-              description: |
-                Link to the previous page returned in the response.
-            current:
-              type: string
-              description: |
-                Link to the current page returned in the response.
-            next:
-              type: string
-              description: |
-                Link to the next page returned in the response.
     PageFull:
       title: PageFull
       allOf:
@@ -1079,8 +1068,6 @@ components:
 
         is_customers_only:
           type: boolean
-
-        
     typePage:
       type: object
       description: |
@@ -1122,7 +1109,7 @@ components:
                         data:
                           $ref: '#/components/schemas/PageBase'
               meta:
-                $ref: '#/components/schemas/CollectionMeta'
+                $ref: '#/components/schemas/ResponseMeta'
     HTTP204:
       description: No content. A 204 response with no payload indicates successful deletion of all specified pages.
     HTTP400:
@@ -1130,19 +1117,19 @@ components:
       content:
         application/problem+json:
           schema: 
-            $ref: '#/components/schemas/DetailedErrorResponse'
+            $ref: '#/components/schemas/ResponseErrorBrief'
     HTTP404:
       description: ''
       content:
         application/problem+json:
           schema: 
-            $ref: '#/components/schemas/DetailedErrorResponse'
+            $ref: '#/components/schemas/ResponseErrorDetailed'
     HTTP422:
       description: ''
       content:
         application/problem+json:
           schema: 
-            $ref: '#/components/schemas/DetailedErrorResponse'
+            $ref: '#/components/schemas/ResponseErrorDetailed'
   parameters:
     storeHashPath: 
       schema:
@@ -1165,7 +1152,7 @@ components:
           - body
       in: query
       name: include
-      description: Explicitly request the page’s `body` property to include the page’s markup in the response.
+      description: Include the requested property in the response. The `body` property returns the page’s markup, text, or raw content.
     channelIdQuery:
       schema:
         type: integer
