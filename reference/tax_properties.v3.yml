@@ -249,11 +249,11 @@ definitions:
         description: Optional. Additional detail about this tax property that may help guide merchants. This string will be displayed on the Products screen as a tooltip associated to the relevant field.
         example: Food Industry
       created_at:
-        type: integer
+        type: string
         description: Datetime.
         readOnly: true
       updated_at:
-        type: integer
+        type: string
         description: Datetime.
         readOnly: true
   ProductTaxProperty:
