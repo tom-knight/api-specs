@@ -110,6 +110,19 @@ paths:
                       token: 57606614f6b7a50bddc927d40399e47ed2c8d874a9f131b4861c650073fe17f5
                       verification_value: '123'
                     payment_method_id: braintree.card
+              Gift Certificate:
+                value:
+                  payment:
+                    instrument:
+                      type: gift_certificate
+                      gift_certificate_code: S85-2D7-83R-ZMC
+                    payment_method_id: bigcommerce.gift_certificate
+              Store Credit:
+                value:
+                  payment:
+                    instrument:
+                      type: store_credit
+                    payment_method_id: bigcommerce.store_credit
         required: true
         x-examples:
           application/json:
