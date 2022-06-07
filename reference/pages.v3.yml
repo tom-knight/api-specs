@@ -18,6 +18,12 @@ info:
 
     All endpoints without a `pageId` path parameter support bulk operations.
   termsOfService: 'http://www.bigcommerce.com/terms'
+  x-exampleRequests:
+    name: Example Requests
+    url: 'https://developer.bigcommerce.com/api-docs/getting-started/authentication#x-auth-token-header-example-requests'
+  x-oAuthScopes:
+    name: List of OAuth Scopes
+    url: 'https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication#oauth-scopes'
 tags:
   - name: Pages
 security:
@@ -1286,7 +1292,7 @@ components:
       schema:
         type: string
   securitySchemes:
-    X-Auth-Token:
+    Access Token:
       description: |-
         You can use this API with a store API account or an app API account. Pass the access_token provided with your store API account or generated with your app's `/auth` callback.
 
@@ -1298,6 +1304,6 @@ components:
           scopes: 
             store_v2_content: Modify store content 
             store_v2_content_read_only: Read store content
-          x-appTokenUrl: 'https://devtools.bigcommerce.com'
+          x-tokenUrl: 'https://devtools.bigcommerce.com'
         
 
