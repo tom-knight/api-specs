@@ -18,12 +18,6 @@ info:
 
     All endpoints without a `pageId` path parameter support bulk operations.
   termsOfService: 'http://www.bigcommerce.com/terms'
-  x-exampleRequests:
-    name: Example Requests
-    url: 'https://developer.bigcommerce.com/api-docs/getting-started/authentication#x-auth-token-header-example-requests'
-  x-oAuthScopes:
-    name: List of OAuth Scopes
-    url: 'https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication#oauth-scopes'
 tags:
   - name: Pages
 security:
@@ -1300,10 +1294,11 @@ components:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: 'https://store-STORE_HASH.mybigcommerce.com/manage/settings/api-accounts/create'
+          tokenUrl: 
+            - 'https://store-STORE_HASH.mybigcommerce.com/manage/settings/api-accounts/create'
+            - 'https://devtools.bigcommerce.com'
           scopes: 
             store_v2_content: Modify store content 
             store_v2_content_read_only: Read store content
-          x-tokenUrl: 'https://devtools.bigcommerce.com'
         
 
