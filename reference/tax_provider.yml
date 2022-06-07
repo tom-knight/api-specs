@@ -36,9 +36,9 @@ paths:
 
         The following control panel actions can also trigger tax estimate requests.
 
-        - Order refund
-        - Edit order
-        - Test connection feature in Tax Settings
+        - Order refund.
+        - Edit order.
+        - Test connection feature in Tax Settings.
       operationId: estimate
       parameters:
         - $ref: '#/components/parameters/header-storehash'
