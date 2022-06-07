@@ -343,11 +343,6 @@ paths:
       tags:
         - Shipping Provider
       operationId: requestShippingRates
-    parameters:
-      - type: string
-        name: store_hash
-        in: path
-        required: true
   '/check_connection_options_example':
     post:
       description: Validate connection options.
@@ -377,11 +372,6 @@ paths:
       tags:
         - Shipping Provider
       operationId: validateConnectionOptions
-    parameters:
-      - type: string
-        name: store_hash
-        in: path
-        required: true
 tags:
   - name: Shipping Provider
 x-stoplight:
