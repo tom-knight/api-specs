@@ -1211,8 +1211,6 @@ components:
       in: query
       name: page
       description: The ordered grouping of results to return. See `meta.pagination.current_page` in the response body.
-  examples:
-    GetPages200:
       value:
         data:
           - id: 1
@@ -1273,7 +1271,6 @@ components:
               total_pages: 1
               links:
                 current: '?page=1&limit=50'
-  requestBodies:
   headers:
     Content-Type: 
       description: 'The [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) of the request body.'
@@ -1303,5 +1300,3 @@ components:
         [Example requests](https://developer.bigcommerce.com/api-docs/getting-started/authentication#x-auth-token-header-example-requests) and a full list of [OAuth scopes](https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication#oauth-scopes) are available in our narrative documentation.
       type: apiKey
       in: header
-  links:
-  callbacks:
