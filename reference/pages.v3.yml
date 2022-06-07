@@ -1289,14 +1289,12 @@ components:
         You can use this API with a store API account or an app API account.
 
         ## OAuth scopes
-
         | UI Name | Permission | Parameter |
         |:--------|:-----------|:----------|
         | Content | modify     |`store_v2_content`|
         | Content | read-only  |`store_v2_content_read_only`|
 
         ## Getting started
-
         [Example requests](https://developer.bigcommerce.com/api-docs/getting-started/authentication#x-auth-token-header-example-requests) and a full list of [OAuth scopes](https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication#oauth-scopes) are available in our narrative documentation.
       type: apiKey
       in: header
