@@ -1299,7 +1299,7 @@ components:
       description: |-
         ## API account
 
-        You can use this API with a store API account or an app API account. 
+        You can use this API with a [store API account or an app API account](https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication). 
 
         ## OAuth scopes 
  
