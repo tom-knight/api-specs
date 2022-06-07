@@ -3,7 +3,6 @@ info:
   title: Pages V3
   version: '3.0'
   description: |-
-
     ## Overview
 
     A **page** appears on a **site** that is associated with a **channel**. 
@@ -25,7 +24,7 @@ info:
     | `blog` | A page that contains blog posts. Use caution; `blog`-type pages can only be created in the store control panel, but you may be able to change the type of a blog page to something else with this API. Use the [Store Content API](/api-reference/store-management/store-content/blog-posts/createablogposts) to work with blog posts and tags. | empty string |
     | `feed` | Makes RSS-syndicated content feeds available in the menu of other pages that contain markup. | &mdash; |
     | `link` | A link to an external absolute URL. Displays in the menu of other pages that contain markup. | &mdash; |
-  termsOfService: 'http://www.bigcommerce.com/terms'
+  # termsOfService: 'http://www.bigcommerce.com/terms'
 tags:
   - name: Pages
 security:
@@ -1322,6 +1321,10 @@ components:
 
         For detailed examples, consult our [X-Auth-Token example requests](https://developer.bigcommerce.com/api-docs/getting-started/authentication#x-auth-token-header-example-requests).
         
+        ## Additional information
+        
+        [BigCommerce Terms of Service](http://www.bigcommerce.com/terms)
+
       type: oauth2
       # flows:
       #   clientCredentials:
