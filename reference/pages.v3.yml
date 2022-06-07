@@ -21,8 +21,7 @@ info:
 tags:
   - name: Pages
 security:
-  - X-Auth-Token:
-      $ref: '#/components/securitySchemes/X-Auth-Token'
+  - X-Auth-Token: []
 paths:
   '/stores/{store_hash}/v3/content/pages':
     get:
@@ -1282,19 +1281,25 @@ components:
       schema:
         type: string
         default: 'application/json'
+    X-Auth-Token:
+      description: Your API account's access token.
+      schema:
+        type: string
   securitySchemes:
     X-Auth-Token:
-      name: X-Auth-Token
-      description: |
-        You can use this API with a store API account or an app API account.
-
-        ## OAuth scopes
-        | UI Name | Permission | Parameter |
-        |:--------|:-----------|:----------|
-        | Content | modify     |`store_v2_content`|
-        | Content | read-only  |`store_v2_content_read_only`|
-
+      description: |-
         ## Getting started
+
+        You can use this API with a store API account or an app API account. Pass the access_token provided with your store API account or generated with your app's `/auth` callback.
+
         [Example requests](https://developer.bigcommerce.com/api-docs/getting-started/authentication#x-auth-token-header-example-requests) and a full list of [OAuth scopes](https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication#oauth-scopes) are available in our narrative documentation.
-      type: apiKey
-      in: header
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://store-STORE_HASH.mybigcommerce.com/manage/settings/api-accounts/create'
+          scopes: 
+            store_v2_content: Modify store content 
+            store_v2_content_read_only: Read store content
+          x-appTokenUrl: 'https://devtools.bigcommerce.com'
+        
+
