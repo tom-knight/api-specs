@@ -1288,8 +1288,6 @@ components:
   securitySchemes:
     X-Auth-Token:
       description: |-
-        ## Getting started
-        
         You can use this API with a store API account or an app API account. Pass the access_token provided with your store API account or generated with your app's `/auth` callback.
 
         [Example requests](https://developer.bigcommerce.com/api-docs/getting-started/authentication#x-auth-token-header-example-requests) and a full list of [OAuth scopes](https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication#oauth-scopes) are available in our narrative documentation.
