@@ -69,6 +69,8 @@ paths:
                         - $ref: '#/components/schemas/Card'
                         - $ref: '#/components/schemas/StoredCard'
                         - $ref: '#/components/schemas/StoredPaypalAccount'
+                        - $ref: '#/components/schemas/GiftCertificate'
+                        - $ref: '#/components/schemas/StoreCredit'
                     payment_method_id:
                       description: Identifier for payment method that will be used for this payment and `id` from the Get Accepted Payment Methods API
                       type: string
@@ -110,6 +112,19 @@ paths:
                       token: 57606614f6b7a50bddc927d40399e47ed2c8d874a9f131b4861c650073fe17f5
                       verification_value: '123'
                     payment_method_id: braintree.card
+              Gift Certificate:
+                value:
+                  payment:
+                    instrument:
+                      type: gift_certificate
+                      gift_certificate_code: ABC-DEF-GXX
+                    payment_method_id: bigcommerce.gift_certificate
+              Store Credit:
+                value:
+                  payment:
+                    instrument:
+                      type: store_credit
+                    payment_method_id: bigcommerce.store_credit
         required: true
         x-examples:
           application/json:
@@ -1098,74 +1113,75 @@ components:
           issue_month: 1
           issue_year: 0
           issue_number: 0
-      properties:
-        type:
-          description: Type to classify this payment instrument
-          example: card
-          type: string
-          default: card
-        cardholder_name:
-          description: Cardholder's full name
-          type: string
-          minLength: 1
-        number:
-          description: Credit card number
-          type: string
-          minLength: 1
-        expiry_month:
-          description: Expiry month of this card
-          type: integer
-          minimum: 1
-          maximum: 12
-          format: int32
-        expiry_year:
-          description: Expiry year of this card
-          type: integer
-          format: int32
-        verification_value:
-          type: string
-          description: Verification value of this card (CVV or last_4)
-          minLength: 3
-          maxLength: 4
-        issue_month:
-          description: Issue month of this card
-          type: integer
-          minimum: 1
-          maximum: 12
-          format: int32
-        issue_year:
-          description: Issue year of this card
-          type: integer
-          format: int32
-        issue_number:
-          description: Issue number of this card
-          type: integer
-          format: int32
-      required:
-        - type
-        - cardholder_name
-        - number
-        - expiry_month
-        - expiry_year
       x-internal: false
+      properties:
+        payment:
+          type: object
+          properties:
+            instrument:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: card
+                  example: card
+                  description: Type to classify this payment instrument (required)
+                cardholder_name:
+                  type: string
+                  minLength: 1
+                  description: Cardholder's full name (required)
+                number:
+                  type: string
+                  minLength: 1
+                  description: Credit card number (required)
+                expiry_month:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  maximum: 12
+                  description: Expiry month of this card (required)
+                expiry_year:
+                  type: integer
+                  format: int32
+                  description: Expiry year of this card (required)
+                verification_value:
+                  type: string
+                  minLength: 3
+                  maxLength: 4
+                  description: Verification value of this card (CVV or last_4)
+                issue_month:
+                  type: integer
+                  description: Issue month of this card
+                  format: int32
+                  minimum: 1
+                  maximum: 12
+                issue_year:
+                  type: integer
+                  format: int32
+                  description: Issue year of this card
+                issue_number:
+                  type: integer
+                  format: int32
+                  description: Issue number of this card
     StoredCard:
       title: Stored Card
       type: object
+      x-internal: false
+      x-examples:
+        example-1:
+          type: stored_card
+          token: stringstringstringstringstringstringstringstringstringstringstri
       properties:
         type:
-          description: Type to classify this payment instrument
+          description: Type to classify this payment instrument (required)
           example: stored_card
           type: string
           default: stored_card
         token:
-          description: Identifier representing this stored card
+          description: Identifier representing this stored card (required)
           type: string
           minLength: 64
           maxLength: 64
-      required:
-        - type
-        - token
-      x-internal: false
     BasePaymentResponse:
       title: Base Payment Response
       type: object
@@ -1208,21 +1224,22 @@ components:
     StoredPaypalAccount:
       title: StoredPaypalAccount
       type: object
+      x-internal: false
       properties:
         type:
           type: string
-          description: Type to classify this payment instrument
+          description: Type to classify this payment instrument (required)
           enum:
             - stored_paypal_account
         token:
-          description: Identifier representing this stored paypal account
+          description: Identifier representing this stored paypal account (required)
           type: string
           minLength: 64
           maxLength: 64
-      required:
-        - type
-        - token
-      x-internal: false
+      x-examples:
+        example-1:
+          type: stored_paypal_account
+          token: stringstringstringstringstringstringstringstringstringstringstri
     Order:
       title: Order
       type: object
@@ -1555,3 +1572,31 @@ components:
       required:
         - instrument_type
       x-internal: false
+    GiftCertificate:
+      title: GiftCertificate
+      x-stoplight:
+        id: azxvgrjgbxoew
+      type: object
+      properties:
+        type:
+          type: string
+          example: gift_certificate
+        gift_certificate_code:
+          type: string
+          example: ABC-DEF-GXX
+      x-examples:
+        example-1:
+          type: gift_certificate
+          gift_certificate_code: ABC-DEF-GXX
+    StoreCredit:
+      title: StoreCredit
+      x-stoplight:
+        id: f7p4sz9rsvsyf
+      type: object
+      properties:
+        type:
+          type: string
+          example: store_credit
+      x-examples:
+        example-1:
+          type: store_credit
