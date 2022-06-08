@@ -1097,6 +1097,51 @@ components:
         
       required:
         - 
+    ReadShared:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the page. Must be unique.
+          minLength: 1
+          maxLength: 100
+          uniqueItems: true
+          example: About Our Company
+        is_visible:
+          type: boolean
+          description: Indicates whether the page is available to users and visible in any menus.
+        parent_id:
+          type: integer
+          description: ID of the parent page, if any. 
+          example: 0
+          default: 0
+        sort_order:
+          type: integer
+          description: Determines the order in which the page is displayed in the parent page’s menu. Pages with lower integers display earlier.
+          example: 0
+          default: 0
+        type:
+          type: string
+          description: 'Determines the type of page. See [Pages v3 page types](/api-reference/store-management/pages#page-types) for more about the differences.'
+          example: page
+          enum:
+            - page
+            - contact_form
+            - raw
+            - blog
+            - feed
+            - link
+        is_homepage:
+          type: boolean
+          description: 'Determines whether this page loads at the siteʼs root route. For example, at `https://example.com/`.'
+          default: false
+        is_customers_only:
+          type: boolean
+          description: 'When `true`, this page is not visible to merchant users who are signed in to the store control panel.'
+          default: false
+      required:
+        - name
+        - type
   responses:
     HTTP200:
       description: ''
