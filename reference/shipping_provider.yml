@@ -35,9 +35,15 @@ consumes:
 produces:
   - application/json
 paths:
-  '/rate_example':
+  '/rate':
     post:
-      description: Request shipping rates.
+      description: |-
+        Request shipping rates.
+
+        <!-- theme:info -->
+        > #### Note
+        > Replace `example.com` and `rate` with the host and path specific to the shipping provider. 
+
       parameters:
         - in: body
           name: body
@@ -343,9 +349,15 @@ paths:
       tags:
         - Shipping Provider
       operationId: requestShippingRates
-  '/check_connection_options_example':
+  '/check_connection_options':
     post:
-      description: Validate connection options.
+      description: |-
+        Validate connection options.
+
+        <!-- theme:info -->
+        > #### Note
+        > Replace `example.com` and `check_connection_options` with the host and path specific to the shipping provider. 
+        
       parameters:
         - in: body
           name: body
