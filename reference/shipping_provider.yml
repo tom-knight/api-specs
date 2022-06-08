@@ -38,11 +38,11 @@ paths:
   '/rate':
     post:
       description: |-
-        Request shipping rates.
+        Request shipping rates. BigCommerce sends a request for shipping quotes to the shipping provider's URL. The shipping provider responds with shipping quotes.
 
         <!-- theme:info -->
         > #### Note
-        > Replace `example.com` and `rate` with the host and path specific to the shipping provider. 
+        > The `example.com` and `rate` are the host and path specific to the shipping provider. 
 
       parameters:
         - in: body
@@ -352,12 +352,12 @@ paths:
   '/check_connection_options':
     post:
       description: |-
-        Validate connection options.
+        Validate connection options. BigCommerce sends a request to the shipping provider's URL in order to check a merchant's connection credentials. The shipping provider sends a response indicating whether a merchant has valid credentials. 
 
         <!-- theme:info -->
         > #### Note
-        > Replace `example.com` and `check_connection_options` with the host and path specific to the shipping provider. 
-        
+        > The `example.com` and `check_connection_options` are the host and path specific to the shipping provider.  
+
       parameters:
         - in: body
           name: body
