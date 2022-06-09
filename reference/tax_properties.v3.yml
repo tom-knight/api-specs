@@ -262,7 +262,7 @@ definitions:
     properties:
       product_id:
         type: integer
-        description: A reference to the product that the product tax properties are associated to.
+        description: A reference to the product that the product tax properties are associated with.
         example: 1
       tax_properties:
         type: object
