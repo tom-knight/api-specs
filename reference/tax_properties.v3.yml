@@ -142,7 +142,7 @@ paths:
       tags:
         - Product Tax Properties
       summary: Get Product Tax Properties
-      description: Retrieve the tax properties that are associated to one or more products.
+      description: Retrieve the tax properties that are associated with one or more products.
       operationId: get-product-tax-properties
       parameters:
         - name: store_hash
