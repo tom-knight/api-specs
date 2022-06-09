@@ -205,7 +205,7 @@ paths:
               meta:
                 type: object
         '422':
-          description: Request body does not meet specification
+          description: The request body does not meet specifications.
     delete:
       tags:
         - Product Tax Properties
