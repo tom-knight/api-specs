@@ -15,7 +15,7 @@ paths:
       tags:
         - Tax Properties
       summary: Get Tax Properties
-      description: Retrieve all tax properties defined on this store.
+      description: Retrieve all tax properties defined in this store.
       operationId: get
       parameters:
         - name: store_hash
