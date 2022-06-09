@@ -3,7 +3,7 @@ x-stoplight:
   id: af9eb7ad6774f
 info:
   title: Tax Properties
-  description: Include tax properties and product tax properties in tax calcuations
+  description: Include tax properties and product tax properties in tax calculations.
   version: ''
 host: api.bigcommerce.com
 basePath: /
