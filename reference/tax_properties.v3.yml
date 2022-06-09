@@ -210,7 +210,7 @@ paths:
       tags:
         - Product Tax Properties
       summary: Delete Product Tax Properties
-      description: Delete tax properties that are associated to one or more products.
+      description: Delete tax properties that are associated with one or more products.
       operationId: delete-product-tax-properties
       parameters:
         - name: store_hash
