@@ -285,14 +285,22 @@ securityDefinitions:
     type: apiKey
     name: X-Auth-Token
     in: header
-  BigCommerce API Key:
-    type: apiKey
-    name: X-Auth-Token
-    in: header
-  BigCommerce API:
-    type: apiKey
-    name: X-Auth-Token
-    in: header
+    description: |-
+      ### OAuth Scopes
+      |  **UI Name** | **Permission** | **Parameter** |
+      | --- | --- | --- |
+      |  Information & Settings | modify | `store_v2_information` |
+      |  Information & Settings | read-only | `store_v2_information_read_only` |
+
+      ### Headers
+
+      |Header|Parameter|Description|
+      |-|-|-|
+      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+
+      * For more information on Authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
+security:
+  - API Key: []
 tags:
   - name: Tax Properties
   - name: Product Tax Properties
