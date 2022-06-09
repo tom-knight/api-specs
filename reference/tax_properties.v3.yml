@@ -258,7 +258,7 @@ definitions:
         readOnly: true
   ProductTaxProperty:
     type: object
-    description: A collection of tax property values associated to a product.
+    description: A collection of tax property values associated with a product.
     properties:
       product_id:
         type: integer
