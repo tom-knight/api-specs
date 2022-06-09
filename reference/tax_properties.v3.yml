@@ -238,7 +238,7 @@ definitions:
         readOnly: true
       code:
         type: string
-        description: The unique string that will be used to programmatically reference this unique tax property by the tax provider. Merchants should liase with their tax provider to explore supported values and their function.
+        description: The unique string programmatically references this unique tax property by the tax provider. Merchants should liaise with their tax provider to explore supported values and functions.
         example: A-123456789
       display_name:
         type: string
