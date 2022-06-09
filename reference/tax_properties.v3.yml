@@ -246,7 +246,7 @@ definitions:
         example: Example Tax Property 1
       description:
         type: string
-        description: Optional. Additional detail about this tax property that may help guide merchants. This string will be displayed on the Products screen as a tooltip associated to the relevant field.
+        description: Optional. Additional detail about this tax property may help guide merchants. This string will be displayed on the Products screen as a tooltip associated with the relevant field.
         example: Food Industry
       created_at:
         type: string
