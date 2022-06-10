@@ -219,7 +219,7 @@ paths:
           required: true
           description: ''
           schema:
-            $ref: '#/definitions/blogPost_Base'
+            $ref: '#/definitions/blogPost_Put'
           x-examples:
             application/json:
               title: A Sample Blog Post
@@ -235,7 +235,7 @@ paths:
         '200':
           description: ''
           schema:
-            $ref: '#/definitions/blogPost_Base'
+            $ref: '#/definitions/blogPost_Full'
           examples:
             application/json:
               id: 3
@@ -400,7 +400,7 @@ paths:
           required: true
           description: ''
           schema:
-            $ref: '#/definitions/blogPost_Base'
+            $ref: '#/definitions/blogPost_Put'
           x-examples:
             application/json:
               title: 'New: A Sample Blog Post'
@@ -410,7 +410,7 @@ paths:
         '200':
           description: ''
           schema:
-            $ref: '#/definitions/blogPost_Base'
+            $ref: '#/definitions/blogPost_Full'
           examples:
             application/json:
               id: 3
@@ -1216,6 +1216,10 @@ definitions:
             description: ID of this blog post. (READ-ONLY)
             example: 3
             type: integer
+      - type: object
+        properties:
+          published_date:
+            $ref: '#/definitions/publishedDate'
       - $ref: '#/definitions/blogPost_Base'
     x-internal: false
   addresses:
@@ -1505,12 +1509,8 @@ definitions:
         description: Whether the blog post is published.
         example: true
         type: boolean
-      published_date:
-        $ref: '#/definitions/publishedDate'
       published_date_iso8601:
-        description: Published date in `ISO 8601` format.
-        example: '5/18/2018 1:26:42 PM'
-        type: string
+        $ref: '#/definitions/publishedDateISO8601'
       meta_description:
         description: Description text for this blog post’s `<meta/>` element.
         example: Welcome Post
@@ -1530,7 +1530,17 @@ definitions:
       - title
       - body
     x-internal: false
+  blogPost_Put:
+    title: blogPost_Put
+    allOf:
+      - $ref: '#/definitions/blogPost_Base'
+      - type: object
+        properties:
+          published_date:
+            $ref: '#/definitions/publishedDateRFC2822'
+    x-internal: false
   publishedDate:
+    title: publishedDate
     type: object
     properties:
       timezone_type:
@@ -1544,6 +1554,18 @@ definitions:
         type: string
         format: time
         example: '+00:00'
+    x-internal: false
+  publishedDateRFC2822:
+    title: publishedDateRFC2822
+    description: Published date in `RFC2822` format.
+    example: 'Fri, 18 May 2018 13:26:42 GMT'
+    type: string
+    x-internal: false
+  publishedDateISO8601:
+    title: publishedDateISO8601
+    description: Published date in `ISO 8601` format.
+    example: '2018-05-18T08:26:42.000Z'
+    type: string
     x-internal: false
   authentication:
     description: 'Not returned in any responses, but accepts up to two fields allowing you to set the customer’s password. If a password is not supplied, it is generated automatically. For further information about using this object, please see the Customers resource documentation.'
