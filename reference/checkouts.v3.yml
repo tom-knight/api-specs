@@ -740,7 +740,7 @@ paths:
       responses:
         '200':
           $ref: '#/responses/checkout_settings_resp'
-      description: Get checkout settings
+      description: Get checkout settings  
       summary: Get Checkout Settings
     put:
       tags:

@@ -69,6 +69,8 @@ paths:
                         - $ref: '#/components/schemas/Card'
                         - $ref: '#/components/schemas/StoredCard'
                         - $ref: '#/components/schemas/StoredPaypalAccount'
+                        - $ref: '#/components/schemas/StoreCredit'
+                        - $ref: '#/components/schemas/GiftCertificate'
                     payment_method_id:
                       description: Identifier for payment method that will be used for this payment and `id` from the Get Accepted Payment Methods API
                       type: string
@@ -110,6 +112,19 @@ paths:
                       token: 57606614f6b7a50bddc927d40399e47ed2c8d874a9f131b4861c650073fe17f5
                       verification_value: '123'
                     payment_method_id: braintree.card
+              Store Credit:
+                value:
+                  payment:
+                    instrument:
+                      type: store_credit
+                    payment_method_id: bigcommerce.store_credit
+              Gift Certificate:
+                value:
+                  payment:
+                    instrument:
+                      type: gift_certificate
+                      gift_certificate_code: O92-A1F-3I7-S7P
+                    payment_method_id: bigcommerce.gift_certificate
         required: true
         x-examples:
           application/json:
@@ -884,6 +899,18 @@ components:
             response:
               value:
                 data:
+                  - id: bigcommerce.gift_certificate
+                    name: Gift Certificate
+                    test_mode: false
+                    type: gift_certificate
+                    supported_instruments: []
+                    stored_instruments: []
+                  - id: bigcommerce.store_credit
+                    name: Store Credit
+                    test_mode: false
+                    type: store_credit
+                    supported_instruments: []
+                    stored_instruments: []
                   - id: stripe.card
                     name: Stripe
                     test_mode: true
@@ -1223,6 +1250,33 @@ components:
         - type
         - token
       x-internal: false
+    StoreCredit:
+      title: StoreCredit
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type to classify this payment instrument
+          enum:
+            - store_credit
+      required:
+        - type
+    GiftCertificate:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type to classify this payment instrument
+          enum:
+            - gift_certificate
+        gift_certificate_code:
+          description: Identifier representing this gift certificate
+          type: string
+          minLength: 15
+          maxLength: 15
+      required:
+        - type
+        - gift_certificate_code
     Order:
       title: Order
       type: object
