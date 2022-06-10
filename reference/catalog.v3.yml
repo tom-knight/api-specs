@@ -21903,6 +21903,11 @@ components:
       allOf:
         - $ref: '#/components/schemas/product_Base'
         - type: object
+          required:
+            - name
+            - price
+            - weight
+            - type
           properties:
             variants:
               type: array
@@ -23090,11 +23095,6 @@ components:
       x-internal: false
     product_Base:
       title: product_Base
-      required:
-        - name
-        - price
-        - type
-        - weight
       type: object
       properties:
         name:
