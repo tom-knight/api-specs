@@ -264,7 +264,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PageResponse' 
+                $ref: '#/components/schemas/PageResponse'
         '404':
           description: Not Found.
           content:
@@ -961,7 +961,6 @@ components:
         - $ref: '#/components/schemas/PageProp_meta_description'
         - $ref: '#/components/schemas/PageProp_search_keywords'
     PageCollectionResp_shared:
-      x-examples: {}
       allOf:
         - $ref: '#/components/schemas/PageProp_id'
         - $ref: '#/components/schemas/PageProp_channel_id'
@@ -972,21 +971,19 @@ components:
         - $ref: '#/components/schemas/PageProp_sort_order'
         - $ref: '#/components/schemas/PageProp_is_homepage'
         - $ref: '#/components/schemas/PageProp_is_customers_only'
+      title: ''
     PagesCollectionResp_blog:
-      type: object
       allOf:
         - $ref: '#/components/schemas/PageCollectionResp_shared'
         - $ref: '#/components/schemas/PageProp_url'
       title: blog
     PagesCollectionResp_contact_form:
-      type: object
       allOf:
         - $ref: '#/components/schemas/PageCollectionResp_shared'
         - $ref: '#/components/schemas/PageProp_email'
         - $ref: '#/components/schemas/PageProp_contact_fields'
       title: contact_form
     PagesCollectionResp_raw:
-      type: object
       allOf:
         - $ref: '#/components/schemas/PageCollectionResp_shared'
         - $ref: '#/components/schemas/PageProp_body'
@@ -998,7 +995,6 @@ components:
         - $ref: '#/components/schemas/PageProp_link'
       title: link
     PagesCollectionResp_feed:
-      type: object
       allOf:
         - $ref: '#/components/schemas/PageCollectionResp_shared'
         - $ref: '#/components/schemas/PageProp_feed'
