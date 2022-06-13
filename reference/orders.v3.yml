@@ -834,10 +834,9 @@ paths:
               examples:
                 example-1:
                   value:
-                    status: 0
-                    title: string
-                    type: string
-                    instance: string
+                    status: 404
+                    title: 'There was no order found with ID 1010'
+                    type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
     post:
       summary: Create Metafields
       tags:
