@@ -41,7 +41,313 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PagesCollectionResponse'
+                type: object
+                x-examples:
+                  example-1:
+                    data:
+                      - id: 3
+                        channel_id: 1
+                        name: Blog
+                        meta_title: Blog
+                        is_visible: true
+                        parent_id: 0
+                        sort_order: 0
+                        meta_keywords: string
+                        type: page
+                        meta_description: ''
+                        is_homepage: true
+                        is_customers_only: true
+                        search_keywords: 'trousers,pockets,luxury'
+                        url: /blog/
+                      - id: 4
+                        channel_id: 1
+                        name: bundleb2b
+                        meta_title: ''
+                        is_visible: false
+                        parent_id: 0
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /bundleb2b/
+                      - id: 5
+                        channel_id: 1
+                        name: Dashboard
+                        meta_title: Dashboard
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /dashboard/
+                      - id: 6
+                        channel_id: 1
+                        name: Trade Professional Application
+                        meta_title: Trade Professional Application
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /trade-professional-application/
+                      - id: 7
+                        channel_id: 1
+                        name: Shopping Lists
+                        meta_title: Shopping Lists
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /shopping-lists/
+                      - id: 8
+                        channel_id: 1
+                        name: Shopping List
+                        meta_title: Shopping List
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /shopping-list/
+                      - id: 9
+                        channel_id: 1
+                        name: Content Page1
+                        meta_title: Content Page
+                        is_visible: false
+                        parent_id: 0
+                        sort_order: 0
+                        meta_keywords: ''
+                        type: page
+                        meta_description: string
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: 'content, api'
+                        url: /my-content-page1
+                      - id: 10
+                        channel_id: 1
+                        name: Order Detail
+                        meta_title: Order Detail
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /order-detail/
+                      - id: 11
+                        channel_id: 1
+                        name: Quick Order Pad
+                        meta_title: Quick Order Pad
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /quick-order-pad/
+                      - id: 12
+                        channel_id: 1
+                        name: Address Book
+                        meta_title: Address Book
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /address-book/
+                      - id: 13
+                        channel_id: 1
+                        name: Create Quote
+                        meta_title: Create Quote
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /create-quote/
+                      - id: 14
+                        channel_id: 1
+                        name: Quote List
+                        meta_title: Quote List
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /quote-list/
+                      - id: 15
+                        channel_id: 1
+                        name: Quote Detail
+                        meta_title: Quote Detail
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /quote-detail/
+                      - id: 16
+                        channel_id: 1
+                        name: Buy Again
+                        meta_title: Buy Again
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /buy-again/
+                      - id: 17
+                        channel_id: 1
+                        name: Quote Edit
+                        meta_title: Quote Edit
+                        is_visible: true
+                        parent_id: 4
+                        sort_order: 0
+                        meta_keywords: null
+                        type: page
+                        meta_description: ''
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: ''
+                        url: /quote-edit/
+                      - id: 18
+                        channel_id: 1
+                        name: Content Page
+                        meta_title: My Content page
+                        is_visible: false
+                        parent_id: 0
+                        sort_order: 0
+                        meta_keywords: string
+                        type: page
+                        meta_description: string
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: string
+                        url: /my-content-page
+                      - id: 19
+                        channel_id: 1
+                        name: Content Page3
+                        meta_title: My Content page
+                        is_visible: false
+                        parent_id: 0
+                        sort_order: 0
+                        meta_keywords: ''
+                        type: page
+                        meta_description: string
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: stringpage3
+                        url: /my-content-page3
+                      - id: 20
+                        channel_id: 1
+                        name: Content Page2222
+                        meta_title: Content Page
+                        is_visible: false
+                        parent_id: 0
+                        sort_order: 0
+                        meta_keywords: 'page, shop'
+                        type: page
+                        meta_description: string
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: 'content, api'
+                        url: /my-content-page2222
+                      - id: 21
+                        channel_id: 1
+                        name: Content Page22
+                        meta_title: My Content page
+                        is_visible: false
+                        parent_id: 0
+                        sort_order: 0
+                        meta_keywords: string
+                        type: page
+                        meta_description: string
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: string
+                        url: /my-content-page22
+                      - id: 22
+                        channel_id: 1
+                        name: Content Pa22ge
+                        meta_title: My Content page
+                        is_visible: false
+                        parent_id: 0
+                        sort_order: 0
+                        meta_keywords: string
+                        type: page
+                        meta_description: string
+                        is_homepage: false
+                        is_customers_only: false
+                        search_keywords: string
+                        url: /my-content-pa22ge
+                    meta:
+                      pagination:
+                        total: 21
+                        count: 21
+                        per_page: 50
+                        current_page: 1
+                        total_pages: 1
+                        links:
+                          current: '?page=1&limit=50'
+                properties:
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: '#/components/schemas/PageCollectionResp_shared'
+                        - anyOf:
+                            - $ref: '#/components/schemas/PagesCollectionResp_page'
+                            - $ref: '#/components/schemas/PagesCollectionResp_blog'
+                            - $ref: '#/components/schemas/PagesCollectionResp_contact_form'
+                            - $ref: '#/components/schemas/PagesCollectionResp_raw'
+                            - $ref: '#/components/schemas/PagesCollectionResp_link'
+                  meta:
+                    $ref: '#/components/schemas/ResponseMeta'
               examples:
                 $ref: '#/components/examples/GetPages200'
         '400':
@@ -616,16 +922,14 @@ components:
                   description: |
                     Link to the next page returned in the response.
     PagesCollectionResponse:
-      description: |
-        Response payload for the BigCommerce API.
-      title: ''
-      anyOf:
+      allOf:
         - $ref: '#/components/schemas/PageCollectionResp_shared'
-        - $ref: '#/components/schemas/PagesCollectionResp_page'
-        - $ref: '#/components/schemas/PagesCollectionResp_blog'
-        - $ref: '#/components/schemas/PagesCollectionResp_contact_form'
-        - $ref: '#/components/schemas/PagesCollectionResp_raw'
-        - $ref: '#/components/schemas/PagesCollectionResp_link'
+        - anyOf:
+            - $ref: '#/components/schemas/PagesCollectionResp_page'
+            - $ref: '#/components/schemas/PagesCollectionResp_blog'
+            - $ref: '#/components/schemas/PagesCollectionResp_contact_form'
+            - $ref: '#/components/schemas/PagesCollectionResp_raw'
+            - $ref: '#/components/schemas/PagesCollectionResp_link'
     PageResponse:
       description: |
         Response payload for the BigCommerce API.
@@ -1080,112 +1384,31 @@ components:
         is_customers_only:
           type: boolean
     PagesCollectionResp_page:
-      type: object
-      properties:
-        id:
-          type: string
-        channel_id:
-          type: string
-        name:
-          type: string
-        meta_title:
-          type: string
-        is_visible:
-          type: string
-        parent_id:
-          type: string
-        sort_order:
-          type: string
-        meta_keywords:
-          type: string
-        type:
-          type: string
-        meta_description:
-          type: string
-        is_homepage:
-          type: string
-        is_customers_only:
-          type: string
-        search_keywords:
-          type: string
-      x-examples:
-        example-1:
-          id: '16'
-          channel_id: '1'
-          name: all about powder detergents 2
-          meta_title: ''''''
-          is_visible: 'false'
-          parent_id: '0'
-          sort_order: '0'
-          meta_keywords: 'null'
-          type: page
-          meta_description: ''''''
-          is_homepage: 'false'
-          is_customers_only: 'false'
-          search_keywords: ''''''
+      x-examples: {}
+      title: page
+      allOf:
+        - $ref: '#/components/schemas/PageCollectionResp_shared'
+        - $ref: '#/components/schemas/PageProp_meta_title'
+        - $ref: '#/components/schemas/PageProp_meta_keywords'
+        - $ref: '#/components/schemas/PageProp_meta_description'
+        - $ref: '#/components/schemas/PageProp_search_keywords'
     PageCollectionResp_shared:
-      type: object
-      properties:
-        id:
-          type: string
-        channel_id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        is_visible:
-          type: string
-        parent_id:
-          type: string
-        sort_order:
-          type: string
-        is_homepage:
-          type: string
-        is_customers_only:
-          type: string
-      x-examples:
-        example-1:
-          id: '16'
-          channel_id: '1'
-          name: all about powder detergents 2
-          type: page
-          is_visible: 'false'
-          parent_id: '0'
-          sort_order: '0'
-          is_homepage: 'false'
-          is_customers_only: 'false'
+      x-examples: {}
+      allOf:
+        - $ref: '#/components/schemas/PageProp_id'
+        - $ref: '#/components/schemas/PageProp_channel_id'
+        - $ref: '#/components/schemas/PageProp_name'
+        - $ref: '#/components/schemas/PageProp_type'
+        - $ref: '#/components/schemas/PageProp_is_visible'
+        - $ref: '#/components/schemas/PageProp_parent_id'
+        - $ref: '#/components/schemas/PageProp_sort_order'
+        - $ref: '#/components/schemas/PageProp_is_homepage'
+        - $ref: '#/components/schemas/PageProp_is_customers_only'
     PagesCollectionResp_blog:
       type: object
-      properties:
-        id:
-          type: string
-        channel_id:
-          type: string
-        name:
-          type: string
-        meta_title:
-          type: string
-        is_visible:
-          type: string
-        parent_id:
-          type: string
-        sort_order:
-          type: string
-        meta_keywords:
-          type: string
-        type:
-          type: string
-        meta_description:
-          type: string
-        is_homepage:
-          type: string
-        is_customers_only:
-          type: string
-        search_keywords:
-          type: string
-        url:
-          type: string
+      allOf:
+        - $ref: '#/components/schemas/PageCollectionResp_shared'
+        - $ref: '#/components/schemas/PageProp_url'
       x-examples:
         example-1:
           id: '3'
@@ -1202,39 +1425,13 @@ components:
           is_customers_only: 'false'
           search_keywords: '''0'''
           url: /blog/
+      title: blog
     PagesCollectionResp_contact_form:
       type: object
-      properties:
-        id:
-          type: string
-        channel_id:
-          type: string
-        name:
-          type: string
-        meta_title:
-          type: string
-        email:
-          type: string
-        is_visible:
-          type: string
-        parent_id:
-          type: string
-        sort_order:
-          type: string
-        meta_keywords:
-          type: string
-        contact_fields:
-          type: string
-        type:
-          type: string
-        meta_description:
-          type: string
-        is_homepage:
-          type: string
-        is_customers_only:
-          type: string
-        search_keywords:
-          type: string
+      allOf:
+        - $ref: '#/components/schemas/PageCollectionResp_shared'
+        - $ref: '#/components/schemas/PageProp_email'
+        - $ref: '#/components/schemas/PageProp_contact_fields'
       x-examples:
         example-1:
           id: '5'
@@ -1252,33 +1449,13 @@ components:
           is_homepage: 'false'
           is_customers_only: 'true'
           search_keywords: contact search keyword
+      title: contact_form
     PagesCollectionResp_raw:
       type: object
-      properties:
-        id:
-          type: string
-        channel_id:
-          type: string
-        name:
-          type: string
-        is_visible:
-          type: string
-        parent_id:
-          type: string
-        sort_order:
-          type: string
-        type:
-          type: string
-        is_homepage:
-          type: string
-        is_customers_only:
-          type: string
-        search_keywords:
-          type: string
-        body:
-          type: string
-        content_type:
-          type: string
+      allOf:
+        - $ref: '#/components/schemas/PageCollectionResp_shared'
+        - $ref: '#/components/schemas/PageProp_body'
+        - $ref: '#/components/schemas/PageProp_content_type'
       x-examples:
         example-1:
           id: '17'
@@ -1293,88 +1470,229 @@ components:
           search_keywords: ''''''
           body: <p>foo</p>
           content_type: text/html
+      title: raw
     PagesCollectionResp_link:
-      type: object
-      properties:
-        id:
-          type: string
-        channel_id:
-          type: string
-        name:
-          type: string
-        is_visible:
-          type: string
-        parent_id:
-          type: string
-        sort_order:
-          type: string
-        link:
-          type: string
-        type:
-          type: string
-        is_homepage:
-          type: string
-        is_customers_only:
-          type: string
-      x-examples:
-        example-1:
-          id: '18'
-          channel_id: '1'
-          name: diaper pin purveyors 3
-          is_visible: 'false'
-          parent_id: '0'
-          sort_order: '0'
-          link: '''https://example.com/diaper-pins'''
-          type: link
-          is_homepage: 'false'
-          is_customers_only: 'false'
+      allOf:
+        - $ref: '#/components/schemas/PageCollectionResp_shared'
+        - $ref: '#/components/schemas/PageProp_link'
+      title: link
     PagesCollectionResp_feed:
       type: object
+      allOf:
+        - $ref: '#/components/schemas/PageCollectionResp_shared'
+        - $ref: '#/components/schemas/PageProp_feed'
+      title: feed
+    PageProp_email:
+      title: PageProp_email
+      x-stoplight:
+        id: k97fehqscc4r3
+      type: object
       properties:
         id:
           type: string
-        channel_id:
+    PageProp_meta_title:
+      title: PageProp_meta_title
+      x-stoplight:
+        id: 7131a0mze03zu
+      type: object
+      properties:
+        id:
           type: string
-        name:
+    PageProp_body:
+      title: PageProp_body
+      x-stoplight:
+        id: h03ym6td87jnm
+      type: object
+      properties:
+        id:
           type: string
-        meta_title:
-          type: string
-        is_visible:
-          type: string
-        parent_id:
-          type: string
-        sort_order:
-          type: string
-        meta_keywords:
-          type: string
+    PageProp_feed:
+      title: PageProp_feed
+      x-stoplight:
+        id: 3annf2vjhua3b
+      type: object
+      properties:
         feed:
           type: string
-        type:
+          example: /rss/monsters
+    PageProp_link:
+      title: PageProp_link
+      x-stoplight:
+        id: 9u43ia6tw8uaq
+      type: object
+      properties:
+        link:
           type: string
+          example: 'https://example.com/diaper-pins'
+    PageProp_contact_fields:
+      title: PageProp_contact_fields
+      x-stoplight:
+        id: 706j6c08u94n2
+      type: object
+      properties:
+        id:
+          type: string
+    PageProp_meta_keywords:
+      title: PageProp_meta_keywords
+      x-stoplight:
+        id: 4ht317ll9wbmj
+      type: object
+      properties:
+        meta_keywords:
+          description: |
+            Comma-separated list of SEO-relevant keywords to include in the page’s element.
+          default: ''
+          type: string
+          nullable: true
+    PageProp_meta_description:
+      title: PageProp_meta_description
+      x-stoplight:
+        id: hchmdxxis81i0
+      type: object
+      properties:
         meta_description:
           type: string
-        is_homepage:
-          type: string
-        is_customers_only:
-          type: string
+          description: |
+            Description contained within this page’s element.
+          nullable: true
+    PageProp_search_keywords:
+      title: PageProp_search_keywords
+      x-stoplight:
+        id: lv0urcbzx75by
+      type: object
+      properties:
         search_keywords:
           type: string
-      x-examples:
-        example-1:
-          id: '21'
-          channel_id: '1'
-          name: feed monsters 3
-          meta_title: ''''''
-          is_visible: 'false'
-          parent_id: '0'
-          sort_order: '0'
-          meta_keywords: 'null'
-          feed: /rss/monsters
-          type: feed
-          meta_description: ''''''
-          is_homepage: 'false'
-          is_customers_only: 'false'
-          search_keywords: ''''''
+          description: |
+            Comma-separated list of keywords that shoppers can use to locate this page when searching the store.
+          example: 'trousers,pockets,luxury'
+          nullable: true
+    PageProp_url:
+      title: PageProp_url
+      x-stoplight:
+        id: qkjca6alabaso
+      type: object
+      properties:
+        id:
+          type: string
+    PageProp_channel_id:
+      title: PageProp_channel_id
+      x-stoplight:
+        id: qfvva68pdahhb
+      type: object
+      properties:
+        channel_id:
+          type: string
+    PageProp_name:
+      title: PageProp_name
+      x-stoplight:
+        id: seh4y5b3o4eg7
+      type: object
+      properties:
+        name:
+          type: string
+          description: |
+            The name of the page. Must be unique.
+          minLength: 1
+          maxLength: 100
+          example: My Store Page
+    PageProp_is_visible:
+      title: PageProp_is_visible
+      x-stoplight:
+        id: o6u9p6p50xjd4
+      type: object
+      properties:
+        is_visible:
+          type: boolean
+          description: |
+            Determines the visibility of the page in the storefront’s navigation menu.
+    PageProp_parent_id:
+      title: PageProp_parent_id
+      x-stoplight:
+        id: f9nwg6wrwt60y
+      type: object
+      properties:
+        parent_id:
+          type: integer
+          description: |
+            ID of any parent Web page.
+          example: 0
+          default: 0
+    PageProp_sort_order:
+      title: PageProp_sort_order
+      x-stoplight:
+        id: fxd6v10ce7eet
+      type: object
+      properties:
+        sort_order:
+          type: integer
+          description: |
+            Determines the order in which the page is displayed on the storefront. (Lower integers specify earlier display.)
+          example: 0
+          default: 0
+    PageProp_type:
+      title: PageProp_type
+      x-stoplight:
+        id: pdo12b60xpr9t
+      type: object
+      properties:
+        type:
+          type: string
+          description: |-
+            Determines the type of the page.
+
+            |Value|Description|
+            |-|-|
+            | `blog` | blog page. Read-only; blog pages can only be created in the store control panel. |
+            |`contact_form`|hosts the store's contact form|
+            |`link`|link to another absolute URL|
+            |`page`|user-defined plain-text page|
+            |`raw`|page that contains markup, such as HTML.|
+            |`rss_feed`|contains syndicated content from an RSS feed|
+          example: page
+          enum:
+            - page
+            - raw
+            - contact_form
+            - feed
+            - link
+            - blog
+    PageProp_is_homepage:
+      title: PageProp_is_homepage
+      x-stoplight:
+        id: 7zvxvewjvjfxi
+      type: object
+      properties:
+        is_homepage:
+          type: boolean
+          description: |
+            Determines whether this page is the storefront’s home page.
+    PageProp_is_customers_only:
+      title: PageProp_is_customers_only
+      x-stoplight:
+        id: bg9qd04ruppdo
+      type: object
+      properties:
+        is_customers_only:
+          type: boolean
+          description: |
+            If `true`, this page will only be visible to customers that are logged in to the store.
+    PageProp_id:
+      title: PageProp_id
+      x-stoplight:
+        id: 694rj9hovjk22
+      type: object
+      properties:
+        id:
+          type: string
+    PageProp_content_type:
+      title: PageProp_content_type
+      x-stoplight:
+        id: sx7fnvpeki65o
+      type: object
+      properties:
+        content_type:
+          type: string
   responses:
     HTTP200:
       description: ''
