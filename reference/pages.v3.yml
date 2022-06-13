@@ -6,7 +6,7 @@ info:
     ## Overview
 
     A **page** appears on a **site** that is associated with a **channel**. 
-    
+
     Some pages, such as blog pages, contact forms, and plain-text or HTML pages, are web pages in the traditional sense. They contain markup (a `body`) and load at a relative page location on the site itself (the `url`). Other pages, such as link and feed pages, make external or non-visual content available from the menu of a parent page or by direct link.
 
     ### Bulk operations
@@ -24,7 +24,6 @@ info:
     | `blog` | A page that contains blog posts. Use caution; `blog`-type pages can only be created in the store control panel, but you may be able to change the type of a blog page to something else with this API. Use the [Store Content API](/api-reference/store-management/store-content/blog-posts/createablogposts) to work with blog posts and tags. | empty string |
     | `feed` | Makes RSS-syndicated content feeds available in the menu of other pages that contain markup. | &mdash; |
     | `link` | A link to an external absolute URL. Displays in the menu of other pages that contain markup. | &mdash; |
-  # termsOfService: 'http://www.bigcommerce.com/terms'
 tags:
   - name: Pages
 security:
@@ -619,15 +618,14 @@ components:
     PagesCollectionResponse:
       description: |
         Response payload for the BigCommerce API.
-      type: object
       title: ''
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Page'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
+      anyOf:
+        - $ref: '#/components/schemas/PageCollectionResp_shared'
+        - $ref: '#/components/schemas/PagesCollectionResp_page'
+        - $ref: '#/components/schemas/PagesCollectionResp_blog'
+        - $ref: '#/components/schemas/PagesCollectionResp_contact_form'
+        - $ref: '#/components/schemas/PagesCollectionResp_raw'
+        - $ref: '#/components/schemas/PagesCollectionResp_link'
     PageResponse:
       description: |
         Response payload for the BigCommerce API.
@@ -1045,13 +1043,10 @@ components:
       properties:
         id:
           type: integer
-
         channel_id:
           type: integer
-
         name:
           type: string
-
         type:
           type: string
           description: |-
@@ -1074,29 +1069,312 @@ components:
             - feed
             - link
             - blog
-
         is_visible:
           type: boolean
-
         parent_id:
           type: integer
-
         sort_order:
           type: integer
-
         is_homepage:
           type: boolean
-
         is_customers_only:
           type: boolean
-    typePage:
+    PagesCollectionResp_page:
       type: object
-      description: |
-        Schema for a Pages V3 page with `type: page`
       properties:
-        
-      required:
-        - 
+        id:
+          type: string
+        channel_id:
+          type: string
+        name:
+          type: string
+        meta_title:
+          type: string
+        is_visible:
+          type: string
+        parent_id:
+          type: string
+        sort_order:
+          type: string
+        meta_keywords:
+          type: string
+        type:
+          type: string
+        meta_description:
+          type: string
+        is_homepage:
+          type: string
+        is_customers_only:
+          type: string
+        search_keywords:
+          type: string
+      x-examples:
+        example-1:
+          id: '16'
+          channel_id: '1'
+          name: all about powder detergents 2
+          meta_title: ''''''
+          is_visible: 'false'
+          parent_id: '0'
+          sort_order: '0'
+          meta_keywords: 'null'
+          type: page
+          meta_description: ''''''
+          is_homepage: 'false'
+          is_customers_only: 'false'
+          search_keywords: ''''''
+    PageCollectionResp_shared:
+      type: object
+      properties:
+        id:
+          type: string
+        channel_id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        is_visible:
+          type: string
+        parent_id:
+          type: string
+        sort_order:
+          type: string
+        is_homepage:
+          type: string
+        is_customers_only:
+          type: string
+      x-examples:
+        example-1:
+          id: '16'
+          channel_id: '1'
+          name: all about powder detergents 2
+          type: page
+          is_visible: 'false'
+          parent_id: '0'
+          sort_order: '0'
+          is_homepage: 'false'
+          is_customers_only: 'false'
+    PagesCollectionResp_blog:
+      type: object
+      properties:
+        id:
+          type: string
+        channel_id:
+          type: string
+        name:
+          type: string
+        meta_title:
+          type: string
+        is_visible:
+          type: string
+        parent_id:
+          type: string
+        sort_order:
+          type: string
+        meta_keywords:
+          type: string
+        type:
+          type: string
+        meta_description:
+          type: string
+        is_homepage:
+          type: string
+        is_customers_only:
+          type: string
+        search_keywords:
+          type: string
+        url:
+          type: string
+      x-examples:
+        example-1:
+          id: '3'
+          channel_id: '1'
+          name: Blog
+          meta_title: Blog
+          is_visible: 'false'
+          parent_id: '0'
+          sort_order: '4'
+          meta_keywords: ''''''
+          type: blog
+          meta_description: ''''''
+          is_homepage: 'false'
+          is_customers_only: 'false'
+          search_keywords: '''0'''
+          url: /blog/
+    PagesCollectionResp_contact_form:
+      type: object
+      properties:
+        id:
+          type: string
+        channel_id:
+          type: string
+        name:
+          type: string
+        meta_title:
+          type: string
+        email:
+          type: string
+        is_visible:
+          type: string
+        parent_id:
+          type: string
+        sort_order:
+          type: string
+        meta_keywords:
+          type: string
+        contact_fields:
+          type: string
+        type:
+          type: string
+        meta_description:
+          type: string
+        is_homepage:
+          type: string
+        is_customers_only:
+          type: string
+        search_keywords:
+          type: string
+      x-examples:
+        example-1:
+          id: '5'
+          channel_id: '1'
+          name: Contact Us
+          meta_title: ''''''
+          email: ''''''
+          is_visible: 'true'
+          parent_id: '0'
+          sort_order: '3'
+          meta_keywords: contact keyword
+          contact_fields: '''fullname,companyname,phone,orderno,rma'''
+          type: contact_form
+          meta_description: contact meta desc
+          is_homepage: 'false'
+          is_customers_only: 'true'
+          search_keywords: contact search keyword
+    PagesCollectionResp_raw:
+      type: object
+      properties:
+        id:
+          type: string
+        channel_id:
+          type: string
+        name:
+          type: string
+        is_visible:
+          type: string
+        parent_id:
+          type: string
+        sort_order:
+          type: string
+        type:
+          type: string
+        is_homepage:
+          type: string
+        is_customers_only:
+          type: string
+        search_keywords:
+          type: string
+        body:
+          type: string
+        content_type:
+          type: string
+      x-examples:
+        example-1:
+          id: '17'
+          channel_id: '1'
+          name: one hundred million red balloons 3
+          is_visible: 'false'
+          parent_id: '0'
+          sort_order: '0'
+          type: raw
+          is_homepage: 'false'
+          is_customers_only: 'false'
+          search_keywords: ''''''
+          body: <p>foo</p>
+          content_type: text/html
+    PagesCollectionResp_link:
+      type: object
+      properties:
+        id:
+          type: string
+        channel_id:
+          type: string
+        name:
+          type: string
+        is_visible:
+          type: string
+        parent_id:
+          type: string
+        sort_order:
+          type: string
+        link:
+          type: string
+        type:
+          type: string
+        is_homepage:
+          type: string
+        is_customers_only:
+          type: string
+      x-examples:
+        example-1:
+          id: '18'
+          channel_id: '1'
+          name: diaper pin purveyors 3
+          is_visible: 'false'
+          parent_id: '0'
+          sort_order: '0'
+          link: '''https://example.com/diaper-pins'''
+          type: link
+          is_homepage: 'false'
+          is_customers_only: 'false'
+    PagesCollectionResp_feed:
+      type: object
+      properties:
+        id:
+          type: string
+        channel_id:
+          type: string
+        name:
+          type: string
+        meta_title:
+          type: string
+        is_visible:
+          type: string
+        parent_id:
+          type: string
+        sort_order:
+          type: string
+        meta_keywords:
+          type: string
+        feed:
+          type: string
+        type:
+          type: string
+        meta_description:
+          type: string
+        is_homepage:
+          type: string
+        is_customers_only:
+          type: string
+        search_keywords:
+          type: string
+      x-examples:
+        example-1:
+          id: '21'
+          channel_id: '1'
+          name: feed monsters 3
+          meta_title: ''''''
+          is_visible: 'false'
+          parent_id: '0'
+          sort_order: '0'
+          meta_keywords: 'null'
+          feed: /rss/monsters
+          type: feed
+          meta_description: ''''''
+          is_homepage: 'false'
+          is_customers_only: 'false'
+          search_keywords: ''''''
   responses:
     HTTP200:
       description: ''
@@ -1114,7 +1392,7 @@ components:
         When making bulk requests, an invalid input in any one entry will return 422. The entries that are valid will still be created.
       content:
         application/json:
-          schema: 
+          schema:
             type: object
             properties:
               data:
@@ -1137,22 +1415,22 @@ components:
       description: ''
       content:
         application/problem+json:
-          schema: 
+          schema:
             $ref: '#/components/schemas/ResponseErrorBrief'
     HTTP404:
       description: ''
       content:
         application/problem+json:
-          schema: 
+          schema:
             $ref: '#/components/schemas/ResponseErrorDetailed'
     HTTP422:
       description: ''
       content:
         application/problem+json:
-          schema: 
+          schema:
             $ref: '#/components/schemas/ResponseErrorDetailed'
   parameters:
-    storeHashPath: 
+    storeHashPath:
       schema:
         type: string
       name: store_hash
@@ -1169,11 +1447,11 @@ components:
     includeQuery:
       schema:
         type: string
-        enum: 
+        enum:
           - body
       in: query
       name: include
-      description: Include the requested property in the response. The `body` property returns the page’s markup, text, or raw content.
+      description: 'Include the requested property in the response. The `body` property returns the page’s markup, text, or raw content.'
     channelIdQuery:
       schema:
         type: integer
@@ -1269,30 +1547,29 @@ components:
             search_keywords: ''
             content_type: text/html
         meta:
-            pagination:
-              total: 3
-              count: 3
-              per_page: 50
-              current_page: 1
-              total_pages: 1
-              links:
-                current: '?page=1&limit=50'
+          pagination:
+            total: 3
+            count: 3
+            per_page: 50
+            current_page: 1
+            total_pages: 1
+            links:
+              current: '?page=1&limit=50'
   headers:
-    Content-Type: 
+    Content-Type:
       description: 'The [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) of the request body.'
       schema:
         type: string
-        default: 'application/json'
-    Accept: 
+        default: application/json
+    Accept:
       description: 'The [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) of the response body.'
       schema:
         type: string
-        default: 'application/json'
+        default: application/json
     X-Auth-Token:
       description: Your API account's access token.
       schema:
         type: string
-      # $ref: ''
   securitySchemes:
     X-Auth-Token:
       description: |-
@@ -1301,18 +1578,18 @@ components:
         You can use this API with a [store API account or an app API account](https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication). 
 
         ## OAuth scopes 
- 
+
         | UI Name | Permission | Parameter | 
         |:--------|:-----------|:----------| 
         | Content | modify     |`store_v2_content`| 
         | Content | read-only  |`store_v2_content_read_only`| 
 
         For a [full list of OAuth scopes](https://developer.bigcommerce.com/api-docs/getting-started/rest-api-authentication#oauth-scopes), see our narrative documentation.
-        
+
         ## Security header        
-        
+
         Include a header parameter called `X-Auth-Token` and pass it the `access_token` provided with your store API account or generated with your app's `/auth` callback.
-        
+
         ```http title="Security header example"
           X-Auth-Token: example_access_token
         ```
@@ -1320,18 +1597,8 @@ components:
         ## Example requests
 
         For detailed examples, consult our [X-Auth-Token example requests](https://developer.bigcommerce.com/api-docs/getting-started/authentication#x-auth-token-header-example-requests).
-        
+
         ## Additional information
-        
+
         [BigCommerce Terms of Service](http://www.bigcommerce.com/terms)
-
       type: oauth2
-      # flows:
-      #   clientCredentials:
-      #     tokenUrl: 'https://store-STORE_HASH.mybigcommerce.com/manage/settings/api-accounts/create'
-      #       # - 'https://devtools.bigcommerce.com'
-      #     scopes: 
-      #       store_v2_content: Modify store content 
-      #       store_v2_content_read_only: Read store content
-        
-
