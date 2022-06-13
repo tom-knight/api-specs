@@ -807,9 +807,9 @@ paths:
                         namespace: 'Sale Department'
                         key: 'Staff Name'
                         value: 'Ronaldo'
-                        description: 'Name of the sale staff'
+                        description: 'Name of the sale staff.'
                         resource_type: 'order'
-                        resource_id: 101
+                        resource_id: '101'
                         id: 1
                         created_at: '2019-08-24T14:15:22Z'
                         updated_at: '2019-08-24T14:15:22Z'
@@ -835,7 +835,7 @@ paths:
                 example-1:
                   value:
                     status: 404
-                    title: 'There was no order found with ID 1010'
+                    title: There was no order found with ID 1010
                     type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
     post:
       summary: Create Metafields
@@ -889,7 +889,7 @@ paths:
                           next: string
         '409':
           description: |
-            The `Metafield` was in conflict with another `Metafield`. This can be the result of duplicate unique key combinations of the app's client id, namespace, key, resource_type, and resource_id.
+            The `Metafield` is conflicted with another `Metafield`. This can be the result of duplicate unique key combinations of the app's client id, namespace, key, resource_type, and resource_id.
           content:
             application/json:
               schema:
@@ -905,7 +905,7 @@ paths:
                       property2: string
         '422':
           description: |
-            The `Metafield` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
+            The `Metafield` is not valid. This is the result of missing required fields or of invalid data. See the response for more details.
           content:
             application/json:
               schema:
@@ -2846,6 +2846,17 @@ components:
       type: object
       description: |
         Common Metafield properties.
+      x-internal: false
+      title: ''
+      x-examples:
+        example-1:
+          permission_set: app_only
+          namespace: Sale Department
+          key: Staff Name
+          value: Ronaldo
+          description: Name of the sale staff
+          resource_type: order
+          resource_id: 101
       properties:
         permission_set:
           type: string
@@ -2865,42 +2876,34 @@ components:
             - write
             - read_and_sf_access
             - write_and_sf_access
-          required:
-            - post
         namespace:
           type: string
           description: |
             Namespace for the metafield, for organizational purposes.
-          enum:
-            - 'minLength: 1'
-            - 'maxLength: 64'
-          required:
-            - post
+          example: Sale Department
+          minLength: 1
+          maxLength: 64
         key:
           type: string
           description: |
             The name of the field, for example: `location_id`, `color`.
-          enum:
-            - 'minLength: 1'
-            - 'maxLength: 64'
-          required:
-            - post
+          minLength: 1
+          maxLength: 64
+          example: Staff Name
         value:
           type: string
           description: |
             The value of the field, for example: `1`, `blue`.
-          enum:
-            - 'minLength: 1'
-            - 'maxLength: 65535'
-          required:
-            - post
+          minLength: 1
+          maxLength: 65535
+          example: Ronaldo
         description:
           type: string
           description: |
             Description for the metafields.
-          enum:
-            - 'minLength: 0'
-            - 'maxLength: 255'
+          example: order
+          minLength: 0
+          maxLength: 255
         resource_type:
           type: string
           description: |
@@ -2911,30 +2914,15 @@ components:
             - brand
             - product
             - variant
-          required:
-            - post
         resource_id:
           type: string
           description: |
             The unique identifier for the resource with which the metafield is associated.
-          enum:
-            - 'minimum: 0'
-            - 'maximum: 10000000000'
-          required:
-            - post
+          maxLength: 10000000000
+          minLength: 0
+          example: Name of the sale staff
       required:
         - permission_set
-      x-internal: false
-      title: ''
-      x-examples:
-        example-1:
-          permission_set: app_only
-          namespace: string
-          key: string
-          value: string
-          description: string
-          resource_type: order
-          resource_id: 0
     Metafield:
       type: object
       description: |
