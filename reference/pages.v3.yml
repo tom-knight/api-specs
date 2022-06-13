@@ -42,298 +42,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    data:
-                      - id: 3
-                        channel_id: 1
-                        name: Blog
-                        meta_title: Blog
-                        is_visible: true
-                        parent_id: 0
-                        sort_order: 0
-                        meta_keywords: string
-                        type: page
-                        meta_description: ''
-                        is_homepage: true
-                        is_customers_only: true
-                        search_keywords: 'trousers,pockets,luxury'
-                        url: /blog/
-                      - id: 4
-                        channel_id: 1
-                        name: bundleb2b
-                        meta_title: ''
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /bundleb2b/
-                      - id: 5
-                        channel_id: 1
-                        name: Dashboard
-                        meta_title: Dashboard
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /dashboard/
-                      - id: 6
-                        channel_id: 1
-                        name: Trade Professional Application
-                        meta_title: Trade Professional Application
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /trade-professional-application/
-                      - id: 7
-                        channel_id: 1
-                        name: Shopping Lists
-                        meta_title: Shopping Lists
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /shopping-lists/
-                      - id: 8
-                        channel_id: 1
-                        name: Shopping List
-                        meta_title: Shopping List
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /shopping-list/
-                      - id: 9
-                        channel_id: 1
-                        name: Content Page1
-                        meta_title: Content Page
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        meta_keywords: ''
-                        type: page
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: 'content, api'
-                        url: /my-content-page1
-                      - id: 10
-                        channel_id: 1
-                        name: Order Detail
-                        meta_title: Order Detail
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /order-detail/
-                      - id: 11
-                        channel_id: 1
-                        name: Quick Order Pad
-                        meta_title: Quick Order Pad
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /quick-order-pad/
-                      - id: 12
-                        channel_id: 1
-                        name: Address Book
-                        meta_title: Address Book
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /address-book/
-                      - id: 13
-                        channel_id: 1
-                        name: Create Quote
-                        meta_title: Create Quote
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /create-quote/
-                      - id: 14
-                        channel_id: 1
-                        name: Quote List
-                        meta_title: Quote List
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /quote-list/
-                      - id: 15
-                        channel_id: 1
-                        name: Quote Detail
-                        meta_title: Quote Detail
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /quote-detail/
-                      - id: 16
-                        channel_id: 1
-                        name: Buy Again
-                        meta_title: Buy Again
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /buy-again/
-                      - id: 17
-                        channel_id: 1
-                        name: Quote Edit
-                        meta_title: Quote Edit
-                        is_visible: true
-                        parent_id: 4
-                        sort_order: 0
-                        meta_keywords: null
-                        type: page
-                        meta_description: ''
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: ''
-                        url: /quote-edit/
-                      - id: 18
-                        channel_id: 1
-                        name: Content Page
-                        meta_title: My Content page
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        meta_keywords: string
-                        type: page
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: string
-                        url: /my-content-page
-                      - id: 19
-                        channel_id: 1
-                        name: Content Page3
-                        meta_title: My Content page
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        meta_keywords: ''
-                        type: page
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: stringpage3
-                        url: /my-content-page3
-                      - id: 20
-                        channel_id: 1
-                        name: Content Page2222
-                        meta_title: Content Page
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        meta_keywords: 'page, shop'
-                        type: page
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: 'content, api'
-                        url: /my-content-page2222
-                      - id: 21
-                        channel_id: 1
-                        name: Content Page22
-                        meta_title: My Content page
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        meta_keywords: string
-                        type: page
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: string
-                        url: /my-content-page22
-                      - id: 22
-                        channel_id: 1
-                        name: Content Pa22ge
-                        meta_title: My Content page
-                        is_visible: false
-                        parent_id: 0
-                        sort_order: 0
-                        meta_keywords: string
-                        type: page
-                        meta_description: string
-                        is_homepage: false
-                        is_customers_only: false
-                        search_keywords: string
-                        url: /my-content-pa22ge
-                    meta:
-                      pagination:
-                        total: 21
-                        count: 21
-                        per_page: 50
-                        current_page: 1
-                        total_pages: 1
-                        links:
-                          current: '?page=1&limit=50'
                 properties:
                   data:
                     type: array
@@ -348,8 +56,7 @@ paths:
                             - $ref: '#/components/schemas/PagesCollectionResp_link'
                   meta:
                     $ref: '#/components/schemas/ResponseMeta'
-              examples:
-                $ref: '#/components/examples/GetPages200'
+              examples: {}
         '400':
           description: 'Bad Request; reasons for failure include passing query parameters that are not supported on this endpoint, but are common on other BigCommerce endpoints.'
           content:
@@ -1432,23 +1139,6 @@ components:
         - $ref: '#/components/schemas/PageCollectionResp_shared'
         - $ref: '#/components/schemas/PageProp_email'
         - $ref: '#/components/schemas/PageProp_contact_fields'
-      x-examples:
-        example-1:
-          id: '5'
-          channel_id: '1'
-          name: Contact Us
-          meta_title: ''''''
-          email: ''''''
-          is_visible: 'true'
-          parent_id: '0'
-          sort_order: '3'
-          meta_keywords: contact keyword
-          contact_fields: '''fullname,companyname,phone,orderno,rma'''
-          type: contact_form
-          meta_description: contact meta desc
-          is_homepage: 'false'
-          is_customers_only: 'true'
-          search_keywords: contact search keyword
       title: contact_form
     PagesCollectionResp_raw:
       type: object
@@ -1456,20 +1146,6 @@ components:
         - $ref: '#/components/schemas/PageCollectionResp_shared'
         - $ref: '#/components/schemas/PageProp_body'
         - $ref: '#/components/schemas/PageProp_content_type'
-      x-examples:
-        example-1:
-          id: '17'
-          channel_id: '1'
-          name: one hundred million red balloons 3
-          is_visible: 'false'
-          parent_id: '0'
-          sort_order: '0'
-          type: raw
-          is_homepage: 'false'
-          is_customers_only: 'false'
-          search_keywords: ''''''
-          body: <p>foo</p>
-          content_type: text/html
       title: raw
     PagesCollectionResp_link:
       allOf:
@@ -1488,7 +1164,7 @@ components:
         id: k97fehqscc4r3
       type: object
       properties:
-        id:
+        email:
           type: string
     PageProp_meta_title:
       title: PageProp_meta_title
@@ -1496,7 +1172,7 @@ components:
         id: 7131a0mze03zu
       type: object
       properties:
-        id:
+        meta_title:
           type: string
     PageProp_body:
       title: PageProp_body
@@ -1504,7 +1180,7 @@ components:
         id: h03ym6td87jnm
       type: object
       properties:
-        id:
+        body:
           type: string
     PageProp_feed:
       title: PageProp_feed
