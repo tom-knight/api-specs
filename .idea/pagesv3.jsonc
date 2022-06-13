@@ -1,0 +1,111 @@
+[
+  {
+    //default shared properties
+    "id": "16",
+    "channel_id": "1",
+    "name": "all about powder detergents 2",
+    "type": "page",
+    "is_visible": "false",
+    "parent_id": "0",
+    "sort_order": "0",
+    "is_homepage": "false",
+    "is_customers_only": "false",
+  },
+  {
+    // "id": "16",
+    // "channel_id": "1",
+    // "name": "all about powder detergents 2",
+    "meta_title": "''",
+    // "is_visible": "false",
+    // "parent_id": "0",
+    // "sort_order": "0",
+    "meta_keywords": "null",
+    // "type": "page",
+    "meta_description": "''",
+    // "is_homepage": "false",
+    // "is_customers_only": "false",
+    "search_keywords": "''",
+  }, {
+    // "id": "3",
+    // "channel_id": "1",
+    // "name": "Blog",
+    // "meta_title": "Blog",
+    // "is_visible": "false",
+    // "parent_id": "0",
+    // "sort_order": "4",
+    // "meta_keywords": "''",
+    // "type": "blog",
+    // "meta_description": "''",
+    // "is_homepage": "false",
+    // "is_customers_only": "false",
+    // "search_keywords": "'0'",
+    "url": "/blog/",
+  }, {
+    // "id": "5",
+    // "channel_id": "1",
+    // "name": "Contact Us",
+    // "meta_title": "''",
+    "email": "''",
+    // "is_visible": "true",
+    // "parent_id": "0",
+    // "sort_order": "3",
+    // "meta_keywords": "contact keyword",
+    "contact_fields": "'fullname,companyname,phone,orderno,rma'",
+    // "type": "contact_form",
+    // "meta_description": "contact meta desc",
+    // "is_homepage": "false",
+    // "is_customers_only": "true",
+    // "search_keywords": "contact search keyword",
+  }, {
+    // "id": "17",
+    // "channel_id": "1",
+    // "name": "one hundred million red balloons 3",
+    // "is_visible": "false",
+    // "parent_id": "0",
+    // "sort_order": "0",
+    // "type": "raw",
+    // "is_homepage": "false",
+    // "is_customers_only": "false",
+    // "search_keywords": "''",
+    "body": "<p>foo</p>",
+    "content_type": "text/html",
+  }, {
+    // "id": "18",
+    // "channel_id": "1",
+    // "name": "diaper pin purveyors 3",
+    // "is_visible": "false",
+    // "parent_id": "0",
+    // "sort_order": "0",
+    "link": "'https://example.com/diaper-pins'",
+    // "type": "link",
+    // "is_homepage": "false",
+    // "is_customers_only": "false",
+  }, {
+    // "id": "21",
+    // "channel_id": "1",
+    // "name": "feed monsters 3",
+    // "meta_title": "''",
+    // "is_visible": "false",
+    // "parent_id": "0",
+    // "sort_order": "0",
+    // "meta_keywords": "null",
+    "feed": "/rss/monsters",
+    // "type": "feed",
+    // "meta_description": "''",
+    // "is_homepage": "false",
+    // "is_customers_only": "false",
+    // "search_keywords": "''",
+  }
+]
+
+// | Type | Contains Body |
+// |:-----|:-------------:|
+// | Page | x |
+// | Blog | x |
+// | Contact Form | x |
+// | Raw | x |
+// | Link |  |
+// | Feed |  |
+
+
+
