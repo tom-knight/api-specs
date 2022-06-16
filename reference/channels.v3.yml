@@ -1838,7 +1838,7 @@ components:
         ### Example
 
         ```http
-        GET /stores/{store_hash}/v3/catalog/summary
+        GET /stores/{{STORE_HASH}}/v3/channels
         host: api.bigcommerce.com
         Content-Type: application/json
         X-Auth-Token: {access_token}
