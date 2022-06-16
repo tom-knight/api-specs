@@ -839,45 +839,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetafieldResponse'
-              examples:
-                example-1:
-                  value:
-                    data:
-                      id: 9
-                      key: in eu culpa qui
-                      value: ut nulla ipsum ad aliquip
-                      namespace: non magna
-                      permission_set: write
-                      resource_type: order
-                      resource_id: 120
-                      description: culpa ut et Duis
-                      date_created: '2022-06-16T18:59:38+00:00'
-                      date_modified: '2022-06-16T18:59:38+00:00'
-                    meta: {}
-                example-2:
-                  value:
-                    data:
-                      permission_set: app_only
-                      namespace: Sale Department
-                      key: Staff Name
-                      value: Ronaldo
-                      description: order
-                      resource_type: order
-                      resource_id: 0
-                      id: 0
-                      date_created: '2022-06-16T18:39:00+00:00'
-                      date_modified: '2022-06-16T18:39:00+00:00'
-                    meta:
-                      meta:
-                        total: 36
-                        count: 36
-                        per_page: 50
-                        current_page: 1
-                        total_pages: 1
-                        links:
-                          previous: string
-                          current: '?page=1&limit=50'
-                          next: string
         '409':
           description: |
             The `Metafield` is conflicted with another `Metafield`. This can be the result of duplicate unique key combinations of the app's client id, namespace, key, resource_type, and resource_id.
@@ -885,15 +846,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                example-1:
-                  value:
-                    status: 0
-                    title: string
-                    type: string
-                    errors:
-                      property1: string
-                      property2: string
         '422':
           description: |
             The `Metafield` is not valid. This is the result of missing required fields or of invalid data. See the response for more details.
@@ -901,15 +853,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                example-1:
-                  value:
-                    status: 0
-                    title: string
-                    type: string
-                    errors:
-                      property1: string
-                      property2: string
   '/stores/{store_hash}/v3/orders/{order_id}/metafields/{metafield_id}':
     parameters:
       - name: order_id
