@@ -827,16 +827,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MetafieldPost'
-            examples:
-              example-1:
-                value:
-                  permission_set: app_only
-                  namespace: Sale Department
-                  key: Staff Name
-                  value: Ronaldo
-                  description: order
-                  resource_type: order
-                  resource_id: 10
+            examples: {}
         description: |
           A `Metafield` object.
         required: true
@@ -2894,7 +2885,7 @@ components:
           type: string
           description: |
             Namespace for the metafield, for organizational purposes.
-          example: Sale Department
+          example: Sales Department
           minLength: 1
           maxLength: 64
         key:
