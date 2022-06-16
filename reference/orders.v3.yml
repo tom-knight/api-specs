@@ -799,31 +799,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetaFieldCollectionResponse'
-              examples:
-                example-1:
-                  value:
-                    data:
-                      - permission_set: 'app_only'
-                        namespace: 'Sale Department'
-                        key: 'Staff Name'
-                        value: 'Ronaldo'
-                        description: 'Name of the sale staff.'
-                        resource_type: 'order'
-                        resource_id: '101'
-                        id: 1
-                        created_at: '2019-08-24T14:15:22Z'
-                        updated_at: '2019-08-24T14:15:22Z'
-                    meta:
-                      pagination:
-                        total: 1
-                        count: 1
-                        per_page: 50
-                        current_page: 1
-                        total_pages: 1
-                        links:
-                          previous: ''
-                          current: '?page=1&limit=50'
-                          next: ''
+              examples: {}
         '404':
           description: |
             The resource was not found.
@@ -851,6 +827,16 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MetafieldPost'
+            examples:
+              example-1:
+                value:
+                  permission_set: app_only
+                  namespace: Sale Department
+                  key: Staff Name
+                  value: Ronaldo
+                  description: order
+                  resource_type: order
+                  resource_id: 10
         description: |
           A `Metafield` object.
         required: true
@@ -866,16 +852,30 @@ paths:
                 example-1:
                   value:
                     data:
-                      permission_set: app_only
-                      namespace: 'minLength: 1'
-                      key: 'minLength: 1'
-                      value: 'minLength: 1'
-                      description: 'minLength: 0'
+                      id: 9
+                      key: in eu culpa qui
+                      value: ut nulla ipsum ad aliquip
+                      namespace: non magna
+                      permission_set: write
                       resource_type: order
-                      resource_id: 'minimum: 0'
+                      resource_id: 120
+                      description: culpa ut et Duis
+                      date_created: '2022-06-16T18:59:38+00:00'
+                      date_modified: '2022-06-16T18:59:38+00:00'
+                    meta: {}
+                example-2:
+                  value:
+                    data:
+                      permission_set: app_only
+                      namespace: Sale Department
+                      key: Staff Name
+                      value: Ronaldo
+                      description: order
+                      resource_type: order
+                      resource_id: 0
                       id: 0
-                      created_at: '2019-08-24T14:15:22Z'
-                      updated_at: '2019-08-24T14:15:22Z'
+                      date_created: '2022-06-16T18:39:00+00:00'
+                      date_modified: '2022-06-16T18:39:00+00:00'
                     meta:
                       meta:
                         total: 36
@@ -2784,79 +2784,22 @@ components:
         meta:
           $ref: '#/components/schemas/CollectionMeta'
       x-internal: false
-      x-examples:
-        example-1:
-          data:
-            - permission_set: app_only
-              namespace: 'minLength: 1'
-              key: 'minLength: 1'
-              value: 'minLength: 1'
-              description: 'minLength: 0'
-              resource_type: order
-              resource_id: 'minimum: 0'
-              id: 0
-              created_at: '2019-08-24T14:15:22Z'
-              updated_at: '2019-08-24T14:15:22Z'
-          meta:
-            pagination:
-              total: 36
-              count: 36
-              per_page: 50
-              current_page: 1
-              total_pages: 1
-              links:
-                previous: string
-                current: '?page=1&limit=50'
-                next: string
     MetafieldResponse:
       description: |
         Response payload for the BigCommerce API.
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Metafield'
-        meta:
-          $ref: '#/components/schemas/Meta'
       x-internal: false
-      x-examples:
-        example-1:
-          data:
-            permission_set: app_only
-            namespace: 'minLength: 1'
-            key: 'minLength: 1'
-            value: 'minLength: 1'
-            description: 'minLength: 0'
-            resource_type: order
-            resource_id: 'minimum: 0'
-            id: 0
-            created_at: '2019-08-24T14:15:22Z'
-            updated_at: '2019-08-24T14:15:22Z'
-          meta:
-            meta:
-              total: 36
-              count: 36
-              per_page: 50
-              current_page: 1
-              total_pages: 1
-              links:
-                previous: string
-                current: '?page=1&limit=50'
-                next: string
+      x-examples: {}
+      allOf:
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Metafield'
+        - $ref: '#/components/schemas/Meta'
     MetafieldBase:
       type: object
       description: |
         Common Metafield properties.
       x-internal: false
-      title: ''
-      x-examples:
-        example-1:
-          permission_set: app_only
-          namespace: Sale Department
-          key: Staff Name
-          value: Ronaldo
-          description: Name of the sale staff
-          resource_type: order
-          resource_id: 101
       properties:
         permission_set:
           type: string
@@ -2909,22 +2852,78 @@ components:
           description: |
             The type of resource with which the metafield is associated.
           enum:
-            - category
             - order
             - brand
             - product
             - variant
+            - category
+          example: order
         resource_id:
-          type: string
+          type: integer
           description: |
             The unique identifier for the resource with which the metafield is associated.
-          maxLength: 10000000000
-          minLength: 0
-          example: Name of the sale staff
+          example: 0
+          readOnly: true
       required:
         - permission_set
-    Metafield:
+    MetafieldBase_Post:
       type: object
+      description: |
+        Common Metafield properties.
+      x-internal: false
+      properties:
+        permission_set:
+          type: string
+          description: |
+            Determines the visibility and writeability of the field by other API consumers.
+
+            |Value|Description
+            |-|-|
+            |`app_only`|Private to the app that owns the field|
+            |`read`|Visible to other API consumers|
+            |`write`|Open for reading and writing by other API consumers|
+            |`read_and_sf_access`|Visible to other API consumers, including on storefront|
+            |`write_and_sf_access`|Open for reading and writing by other API consumers, including on storefront|
+          enum:
+            - app_only
+            - read
+            - write
+            - read_and_sf_access
+            - write_and_sf_access
+        namespace:
+          type: string
+          description: |
+            Namespace for the metafield, for organizational purposes.
+          example: Sale Department
+          minLength: 1
+          maxLength: 64
+        key:
+          type: string
+          description: |
+            The name of the field, for example: `location_id`, `color`.
+          minLength: 1
+          maxLength: 64
+          example: Staff Name
+        value:
+          type: string
+          description: |
+            The value of the field, for example: `1`, `blue`.
+          minLength: 1
+          maxLength: 65535
+          example: Ronaldo
+        description:
+          type: string
+          description: |
+            Description for the metafields.
+          minLength: 0
+          maxLength: 255
+          example: Name of Staff Member
+      required:
+        - permission_set
+        - namespace
+        - key
+        - value
+    Metafield:
       description: |
         Allows app partners to write custom data to various resources in the API.
       allOf:
@@ -2935,72 +2934,33 @@ components:
               type: integer
               description: |
                 The unique identifier for the metafields.
-            created_at:
+            date_created:
               type: string
               format: date-time
               description: |
                 Date and time of the metafield's creation.
-            updated_at:
+              example: '2022-06-16T18:39:00+00:00'
+            date_modified:
               type: string
               format: date-time
               description: |
                 Date and time when the metafield was last updated.
+              example: '2022-06-16T18:39:00+00:00'
       x-internal: false
-      x-examples:
-        example-1:
-          permission_set: app_only
-          namespace: 'minLength: 1'
-          key: 'minLength: 1'
-          value: 'minLength: 1'
-          description: 'minLength: 0'
-          resource_type: order
-          resource_id: 'minimum: 0'
-          id: 0
-          created_at: '2019-08-24T14:15:22Z'
-          updated_at: '2019-08-24T14:15:22Z'
+      x-examples: {}
     MetafieldPost:
-      type: object
       description: |
         The model for a POST to create metafield.
       allOf:
-        - $ref: '#/components/schemas/MetafieldBase'
+        - $ref: '#/components/schemas/MetafieldBase_Post'
       x-internal: false
-      x-examples:
-        example-1:
-          permission_set: app_only
-          namespace: 'minLength: 1'
-          key: 'minLength: 1'
-          value: 'minLength: 1'
-          description: 'minLength: 0'
-          resource_type: order
-          resource_id: 'minimum: 0'
+      x-examples: {}
     MetafieldPut:
-      type: object
       description: |
         The model for a PUT to update metafield.
       allOf:
-        - $ref: '#/components/schemas/MetafieldBase'
-        - type: object
-          properties:
-            id:
-              type: integer
-              description: |
-                The unique identifier for the metafields.
-              minimum: 0
-              maximum: 10000000000
-              required:
-                - put
+        - $ref: '#/components/schemas/MetafieldBase_Post'
       x-internal: false
-      x-examples:
-        example-1:
-          permission_set: app_only
-          namespace: 'minLength: 1'
-          key: 'minLength: 1'
-          value: 'minLength: 1'
-          description: 'minLength: 0'
-          resource_type: order
-          resource_id: 'minimum: 0'
-          id: 0
     GlobalOrderSettings:
       type: object
       properties:
