@@ -27,7 +27,7 @@ info:
     - [Shipping Methods](/api-reference/store-management/shipping-api/shipping-method)
     - [Shipping Carriers](/api-reference/store-management/shipping-api/shipping-carrier)
   termsOfService: ''
-host: example.com
+host: ''
 schemes:
   - https
 consumes:
