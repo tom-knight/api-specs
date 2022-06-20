@@ -2268,6 +2268,14 @@ components:
         - order_id
         - items
       x-internal: false
+      x-examples:
+        example-1:
+          order_id: 1
+          items:
+            - item_type: SHIPPING
+              item_id: 1
+              amount: 1.99
+              reason: string
     RefundQuote_Full:
       type: object
       title: RefundQuote_Full
