@@ -121,7 +121,7 @@ As a best practice, you should inject the password using GraphQL query variables
 
 ## Error messages
 
-For a list of GraphQL error messages, see [API Status Codes](/api-docs/getting-started/api-status-codes).
+For a list of GraphQL error messages, see [API Status Codes](/api-docs/getting-started/api-status-codes#graphql-api-http-status-codes).
 
 ## Resources
 
