@@ -1327,10 +1327,13 @@ components:
       content:
         application/json:
           schema:
+            description: 'Metafield for products, categories, variants, and brands. The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.'
+            x-internal: false
+            type: object
             properties:
               id:
                 type: integer
-                description: Unique ID of the *Metafield*. Read-Only.
+                description: Unique ID of the *Metafield*.
                 example: 6
               permission_set:
                 type: string
@@ -1354,8 +1357,7 @@ components:
                 maxLength: 64
                 minLength: 1
                 type: string
-                description: |
-                  Namespace for the metafield, for organizational purposes. This is set by the developer. Required for POST.
+                description: 'Namespace for the metafield, for organizational purposes.'
                 example: Warehouse Locations
                 x-required:
                   - post
@@ -1364,7 +1366,7 @@ components:
                 minLength: 1
                 type: string
                 description: |
-                  The name of the field, for example: `location_id`, `color`. Required for POST.
+                  The name of the field, for example: `location_id`, `color`. 
                 example: Location
                 x-required:
                   - post
@@ -1373,7 +1375,7 @@ components:
                 minLength: 1
                 type: string
                 description: |
-                  The value of the field, for example: `1`, `blue`. Required for POST.
+                  The value of the field.
                 example: 4HG
                 x-required:
                   - post
@@ -1417,8 +1419,54 @@ components:
                   Date and time when the metafield was last updated. Read-Only.
                 format: date-time
                 example: '2018-05-07T20:14:17.000Z'
-            description: 'Metafield for products, categories, variants, and brands. The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.'
-            x-internal: false
+    metafields_200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            x-examples:
+              example-1:
+                data:
+                  - id: 19
+                    key: Location
+                    value: 4HG
+                    namespace: Warehouse Locations
+                    permission_set: app_only
+                    resource_type: channel
+                    resource_id: 1
+                    description: Location in the warehouse
+                    date_created: '2022-06-28T18:00:15+00:00'
+                    date_modified: '2022-06-28T18:00:15+00:00'
+                  - id: 21
+                    key: sssPlease provide a key.
+                    value: sssPlease provide a value.
+                    namespace: ssssssPlease provide a namespace.
+                    permission_set: app_only
+                    resource_type: channel
+                    resource_id: 1
+                    description: thiss
+                    date_created: '2022-06-28T18:15:04+00:00'
+                    date_modified: '2022-06-28T18:16:02+00:00'
+                meta:
+                  pagination:
+                    total: 2
+                    count: 2
+                    per_page: 50
+                    current_page: 1
+                    total_pages: 1
+                    links:
+                      current: '?page=1&limit=50'
+            allOf:
+              - properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metafield_Base'
+              - properties:
+                  meta:
+                    $ref: '#/components/schemas/MetaWithFullPagination'
+            type: object
+          examples: {}
   examples:
     create_channel_req_example:
       value:
@@ -2023,16 +2071,11 @@ components:
       x-internal: false
     metafield_Base:
       title: metafield_Base
-      required:
-        - key
-        - namespace
-        - permission_set
-        - value
       type: object
       properties:
         id:
           type: integer
-          description: Unique ID of the *Metafield*. Read-Only.
+          description: Unique ID of the *Metafield*.
           example: 6
         permission_set:
           type: string
@@ -2056,8 +2099,7 @@ components:
           maxLength: 64
           minLength: 1
           type: string
-          description: |
-            Namespace for the metafield, for organizational purposes. This is set by the developer. Required for POST.
+          description: 'Namespace for the metafield, for organizational purposes.'
           example: Warehouse Locations
           x-required:
             - post
@@ -2066,7 +2108,7 @@ components:
           minLength: 1
           type: string
           description: |
-            The name of the field, for example: `location_id`, `color`. Required for POST.
+            The name of the field, for example: `location_id`, `color`. 
           example: Location
           x-required:
             - post
@@ -2075,7 +2117,7 @@ components:
           minLength: 1
           type: string
           description: |
-            The value of the field, for example: `1`, `blue`. Required for POST.
+            The value of the field.
           example: 4HG
           x-required:
             - post
@@ -2119,8 +2161,6 @@ components:
             Date and time when the metafield was last updated. Read-Only.
           format: date-time
           example: '2018-05-07T20:14:17.000Z'
-      description: 'Metafield for products, categories, variants, and brands. The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.'
-      x-internal: false
     PutCheckoutUrl:
       type: object
       properties:
