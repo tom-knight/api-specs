@@ -784,10 +784,50 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get Channel Metafields
       tags: []
       responses: {}
-      operationId: get-stores-store_hash-v3-channels-channel_id-metafields
+      operationId: get-channels-channel_id-metafields
+    post:
+      summary: Create a Channel Metafield
+      operationId: post-channels-channel_id-metafields
+      responses:
+        '200':
+          description: OK
+  '/stores/{store_hash}/v3/channels/{channel_id}/metafields/{metafield_id}':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: channel_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: metafield_id
+        in: path
+        required: true
+    get:
+      summary: Get a Channel Metafield
+      tags: []
+      responses: {}
+      operationId: get-channels-channel_id-metafields-metafield_id
+    put:
+      summary: Update a Channel Metafield
+      operationId: put-channels-channel_id-metafields-metafield_id
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete a Channel Metafield
+      operationId: delete-channels-channel_id-metafields-metafield_id
+      responses:
+        '200':
+          description: OK
 security:
   - X-Auth-Token: []
 x-stoplight:
