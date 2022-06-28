@@ -1332,7 +1332,7 @@ components:
             Invalid Filter Value:
               $ref: '#/components/examples/error_422_invalid_filter_value_resp_example'
     metafield_200:
-      description: Example response
+      description: OK
       content:
         application/json:
           schema:
