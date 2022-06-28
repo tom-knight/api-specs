@@ -98,6 +98,7 @@ tags:
   - name: Channel Site
   - name: Channel Site Checkout Url
   - name: Channel Menus
+  - name: Channel Metafields
 paths:
   '/stores/{store_hash}/v3/channels':
     get:
@@ -785,7 +786,8 @@ paths:
         required: true
     get:
       summary: Get Channel Metafields
-      tags: []
+      tags:
+        - Channel Metafields
       responses:
         '200':
           $ref: '#/components/responses/metafield_200'
@@ -802,6 +804,8 @@ paths:
             schema:
               $ref: '#/components/schemas/metafield_Post'
             examples: {}
+      tags:
+        - Channel Metafields
   '/stores/{store_hash}/v3/channels/{channel_id}/metafields/{metafield_id}':
     parameters:
       - schema:
@@ -821,7 +825,8 @@ paths:
         required: true
     get:
       summary: Get a Channel Metafield
-      tags: []
+      tags:
+        - Channel Metafields
       responses:
         '200':
           $ref: '#/components/responses/metafield_200'
@@ -837,12 +842,16 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/metafield_Put'
+      tags:
+        - Channel Metafields
     delete:
       summary: Delete a Channel Metafield
       operationId: delete-channels-channel_id-metafields-metafield_id
       responses:
         '204':
           description: No Content
+      tags:
+        - Channel Metafields
 security:
   - X-Auth-Token: []
 x-stoplight:
