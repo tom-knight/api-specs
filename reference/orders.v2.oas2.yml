@@ -4620,12 +4620,17 @@ components:
       title: orderCustomProduct_Post
       type: object
       description: |-
-        At least one of these fields `name`, `name_customer`, or `name_merchant` must be provided with non-empty value.
-        Note: `name` and `name_customer` always hold the same value, updating either `name` or `name_customer` will change value for both of those fields.
-        If both fields `name` and `name_customer` are present, they must have the same value.
-        Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
-        If both fields `name` and `name_customer` are omitted, they will be populated by the `name_merchant` value.
-        If field `name_merchant` is omitted it will be populated by the value of `name` (or `name_customer`).
+        **Usage notes**
+
+        One of these fields must be provided with a nonempty value:
+          - `name`
+          - `name_customer`
+          - `name_merchant`
+
+        Note:
+          - `name` and `name_customer` always share the same value; updating either of them will update the other to reflect the same value
+          - When both `name` and `name_customer` are omitted, the `name_merchant` value will populate in its place; however, if `name_merchant` is omitted, the `name` or `name_customer` value will populate in its place
+          - Null and `''` empty strings are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`
       properties:
         name:
           type: string
