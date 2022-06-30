@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   version: Storefront
   title: Storefront Carts
-  description: Manage cart operations and data via front-end JavaScript on BigCommerce stencil powered storefronts.
+  description: Manage cart operations and data via front-end JavaScript on BigCommerce stencil powered storefronts
 servers:
   - url: 'https://{store_domain}/api/storefront'
 tags:
