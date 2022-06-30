@@ -4046,6 +4046,7 @@ components:
       title: order_Shared
       description: Order properties used in `PUT` and `POST` requests and responses.
       type: object
+      x-internal: false
       properties:
         base_handling_cost:
           description: 'The value of the base handling cost. (Float, Float-As-String, Integer)'
@@ -4056,11 +4057,9 @@ components:
           example: '0.0000'
           type: string
         base_wrapping_cost:
-          description: 'The value of the base wrapping cost. (Float, Float-As-String, Integer)'
+          description: The value of the base wrapping cost. A floating point number to four decimal places in string format.
           example: '0.0000'
-          oneOf:
-            - type: string
-            - type: number
+          type: string
         billing_address:
           $ref: '#/components/schemas/billingAddress_Full'
         channel_id:
@@ -4231,7 +4230,6 @@ components:
           description: 'The value of the wrapping cost, including tax. (Float, Float-As-String, Integer)'
           example: '0.0000'
           type: string
-      x-internal: false
     billingAddress_Base:
       type: object
       title: billingAddress_Base
