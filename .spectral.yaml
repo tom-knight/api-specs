@@ -61,7 +61,7 @@ except:
   'reference/orders.sf.yml':
     - operation-tag-defined
     - oas3-valid-schema-example
-  'reference/orders.v2.oas2.yml':
+  'reference/orders.v2.yml':
     - oas3-valid-schema-example
     - oas3-valid-media-example
     - oas3-schema
@@ -192,7 +192,7 @@ except:
   'orders.sf.yml':
     - operation-tag-defined
     - oas3-valid-schema-example
-  'orders.v2.oas2.yml':
+  'orders.v2.yml':
     - oas3-valid-schema-example
     - oas3-valid-media-example
     - oas3-schema
