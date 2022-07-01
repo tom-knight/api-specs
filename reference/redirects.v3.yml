@@ -135,6 +135,15 @@ paths:
             example-1:
               data: []
               meta: {}
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties: {}
+          examples:
+            example-1:
+              data: []
+              meta: {}
       operationId: UpsertRedirects
       parameters:
         - in: body
