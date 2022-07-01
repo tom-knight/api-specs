@@ -687,7 +687,7 @@ paths:
         *   order_address_id
         *   items
 
-        **Usage Notes**
+        **Usage notes**
 
         Presuming that a valid carrier code is used, a tracking link is generated if either `shipping_provider` or `tracking_carrier` is supplied alongside a tracking number. Providing only the tracking number will result in an unclickable text in the customer facing email.
 
@@ -4452,8 +4452,11 @@ components:
       type: object
       title: orderCustomProduct_Put
       description: |
-        To `add` a custom product to an existing order, don't include `id` in the payload. At least one of these fields `name`, `name_customer`, or `name_merchant` must be provided with non-empty value.
+            **Usage notes:**
+
+             To `add` a custom product to an existing order, don't include `id` in the payload. At least one of these fields `name`, `name_customer`, or `name_merchant` must be provided with non-empty value.
              To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
+
              Note:
              - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
              - `name` and `name_customer` always hold the same value, updating either `name` or `name_customer` will change the value for both of those fields.
@@ -4498,8 +4501,11 @@ components:
     orderCatalogProduct_Put:
       title: orderCatalogProduct_Put
       description: |
+       **Usage notes**
+
         To `add` product to an existing order, don't include `id` in the payload. And note that the `product_options` are required if adding a product with variants.
         To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
+       
         Note:
         - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields.
         - If both fields `xxx` and `xxx_customer` are present, they must have same value.
