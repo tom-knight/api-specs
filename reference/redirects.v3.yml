@@ -127,9 +127,11 @@ paths:
             properties:
               data:
                 type: array
+                description: Empty array
                 items: {}
               meta:
-                x-nullable: true
+                type: object
+                description: Empty object
           examples:
             example-1:
               data: []
