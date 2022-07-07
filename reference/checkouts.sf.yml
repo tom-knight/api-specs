@@ -65,7 +65,7 @@ paths:
           - promotions
           - consignments.availableShippingOptions
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -179,7 +179,7 @@ paths:
                 createdTime: 2019-01-10T17:18:00+00:00
                 updatedTime: 2019-01-10T17:19:47+00:00
                 customerMessage: ""
-        400:
+        '400':
           description: When a problem arises, returns (for now) a generic response.
           content:
             application/json:
@@ -236,7 +236,7 @@ paths:
               $ref: '#/components/schemas/checkout_Put'
         required: true
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -390,7 +390,7 @@ paths:
               $ref: '#/components/schemas/cart_Put'
         required: true
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -535,7 +535,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        '200':
           description: 'NOTE: Discounted line items are re-evaluated on cart actions
             and may be automatically added back to your cart with a new line item
             ID to satisfy promotional requirements.'
@@ -785,7 +785,7 @@ paths:
               $ref: '#/components/schemas/address_Base'
         required: true
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -899,11 +899,11 @@ paths:
                 createdTime: 2019-01-10T17:18:00+00:00
                 updatedTime: 2019-01-10T17:19:47+00:00
                 customerMessage: ""
-        403:
+        '403':
           description: The email trying to be set for the guest is associated with
             an account. The customer must sign-in.
           content: {}
-        429:
+        '429':
           description: Unable to determine if provided email is associated with an
             account. The customer must sign-in.
           content: {}
@@ -942,7 +942,7 @@ paths:
               $ref: '#/components/schemas/address_Base'
         required: true
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -1159,11 +1159,11 @@ paths:
                 createdTime: 2018-09-18T15:48:26+00:00
                 updatedTime: 2018-09-18T16:59:45+00:00
                 customerMessage: Thank you, BigCommerce
-        403:
+        '403':
           description: The email trying to be set for the guest is associated with
             an account. The customer must sign-in.
           content: {}
-        429:
+        '429':
           description: Unable to determine if provided email is associated with an
             account. The customer must sign-in.
           content: {}
@@ -1208,7 +1208,7 @@ paths:
                 $ref: '#/components/schemas/CreateConsignmentRequest'
         required: true
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -1366,7 +1366,7 @@ paths:
               $ref: '#/components/schemas/NewUpdateConsignment'
         required: true
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -1505,7 +1505,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -1648,7 +1648,7 @@ paths:
               $ref: '#/components/schemas/GiftCertificateRequest'
         required: true
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -1762,7 +1762,7 @@ paths:
                 createdTime: 2019-01-10T17:18:00+00:00
                 updatedTime: 2019-01-10T17:19:47+00:00
                 customerMessage: ""
-        404:
+        '404':
           description: Gift certificate code not found
           content:
             application/json:
@@ -1795,7 +1795,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -1834,7 +1834,7 @@ paths:
                   description: ""
         required: true
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -1973,7 +1973,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -2207,7 +2207,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -2231,7 +2231,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        '200':
           description: ""
           content:
             application/json:
@@ -2262,7 +2262,7 @@ paths:
               $ref: '#/components/schemas/SpamProtectionRequest'
         required: true
       responses:
-        200:
+        '200':
           description: Returns Checkout Object.
           content:
             application/json:
