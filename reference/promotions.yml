@@ -1,4 +1,6 @@
 openapi: 3.0.1
+x-stoplight:
+  id: 6b3011ce6d312
 info:
   title: Promotions API - Beta
   description: |-
@@ -6,7 +8,7 @@ info:
 
     * To learn more about promotions, consult the [Promotions Overview](/docs/api-beta-promotions/ZG9jOjE5Nzk3Mjg1-promotions-api-beta).
   version: ''
-  contact: 
+  contact:
     name: Bigcommerce.com
     url: 'https://www.bigcommerce.com'
     email: support@bigcommerce.com
@@ -748,7 +750,7 @@ components:
           type: string
           description: The ISO-4217 transactional currency code to which the promotion applies OR * for all currencies
           example: USD
-          default: "false"
+          default: 'false'
         notifications:
           type: array
           description: Notifications to display on the storefront based on promotion evaluation result.
