@@ -4505,7 +4505,7 @@ components:
        **Usage notes**
 
         To `add` product to an existing order, don't include `id` in the payload. And note that the `product_options` are required if adding a product with variants.
-        To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
+        To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. Those fields that you omit will not be changed.
        
         Note:
         - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields.
