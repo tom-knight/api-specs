@@ -4627,7 +4627,7 @@ components:
       description: |-
         **Usage notes**
 
-        One of these fields must be provided with a nonempty value:
+        Provide one of these fields with a nonempty value:
           - `name`
           - `name_customer`
           - `name_merchant`
