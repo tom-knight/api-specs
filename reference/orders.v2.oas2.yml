@@ -4455,7 +4455,7 @@ components:
       description: |
        **Usage notes:**
 
-       To `add` a custom product to an existing order, don't include `id` in the payload. At least one of these fields `name`, `name_customer`, or `name_merchant` must be provided with non-empty value.
+       To `add` a custom product to an existing order, don't include `id` in the payload. You must provide at least one of these fields `name`, `name_customer`, or `name_merchant` with a nonempty value.
        To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
 
        Note:
