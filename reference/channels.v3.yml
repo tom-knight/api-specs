@@ -798,6 +798,7 @@ paths:
         - $ref: ./catalog.v3.yml#/components/parameters/MetafieldKeyParam
         - $ref: '#/components/parameters/MetafieldNamespaceParam'
         - $ref: ./catalog.v3.yml#/components/parameters/DirectionParam
+      description: Returns a list of metafields on a channel. Optional filter parameters can be passed in.
     post:
       summary: Create a Channel Metafield
       operationId: post-channels-channel_id-metafields
@@ -812,6 +813,10 @@ paths:
             examples: {}
       tags:
         - Channel Metafields
+      description: |-
+        Creates a channel metafield.
+
+        **Note:** The maxiumum number of metafields allowed on each order, product, category, variant, channel, or brand is 250 per client ID. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
   '/stores/{store_hash}/v3/channels/{channel_id}/metafields/{metafield_id}':
     parameters:
       - schema:
@@ -837,6 +842,7 @@ paths:
         '200':
           $ref: '#/components/responses/metafield_200'
       operationId: get-channels-channel_id-metafields-metafield_id
+      description: Returns a single channel metafield.
     put:
       summary: Update a Channel Metafield
       operationId: put-channels-channel_id-metafields-metafield_id
@@ -850,6 +856,11 @@ paths:
               $ref: '#/components/schemas/metafield_Put'
       tags:
         - Channel Metafields
+      description: |-
+        Updates a single channel metafield.
+
+        **Usage Notes**
+        * Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a `403` error message. 
     delete:
       summary: Delete a Channel Metafield
       operationId: delete-channels-channel_id-metafields-metafield_id
@@ -858,6 +869,7 @@ paths:
           description: No Content
       tags:
         - Channel Metafields
+      description: Deletes a single channel metafield.
 security:
   - X-Auth-Token: []
 x-stoplight:
