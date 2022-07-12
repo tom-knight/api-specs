@@ -4460,7 +4460,7 @@ components:
 
        Note:
         - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
-        - `name` and `name_customer` always hold the same value, updating either `name` or `name_customer` will change the value for both of those fields.
+        - `name` and `name_customer` always hold the same value; updating either `name` or `name_customer` will change the value for both of those fields.
         - If both fields `name` and `name_customer` are present, they must have same value.
         - When updating an existing order product, if both fields `name` and `name_customer` are omitted from the request, they will not be updated.
         - When updating an existing order product, if `name_merchant` is omitted from the request, it will not be updated.
