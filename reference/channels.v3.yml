@@ -792,6 +792,12 @@ paths:
         '200':
           $ref: '#/components/responses/metafield_200'
       operationId: get-channels-channel_id-metafields
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: ./catalog.v3.yml#/components/parameters/LimitParam
+        - $ref: ./catalog.v3.yml#/components/parameters/MetafieldKeyParam
+        - $ref: '#/components/parameters/MetafieldNamespaceParam'
+        - $ref: ./catalog.v3.yml#/components/parameters/DirectionParam
     post:
       summary: Create a Channel Metafield
       operationId: post-channels-channel_id-metafields
@@ -865,6 +871,55 @@ servers:
         default: store_hash
 components:
   parameters:
+    PageParam:
+      name: page
+      description: |
+        Specifies the page number in a limited (paginated) list of products.
+      required: false
+      in: query
+      schema:
+        type: integer
+    MetafieldIdParam:
+      name: metafield_id
+      in: path
+      description: |
+        The ID of the `Metafield`.
+      required: true
+      schema:
+        type: integer
+    MetafieldKeyParam:
+      name: key
+      in: query
+      description: |
+        Filter based on a metafield's key.
+      required: false
+      schema:
+        type: string
+    MetafieldNamespaceParam:
+      name: namespace
+      in: query
+      description: Filter based on a metafield's namespace.
+      required: false
+      schema:
+        type: string
+    LimitParam:
+      name: limit
+      description: |
+        Controls the number of items per page in a limited (paginated) list of products.
+      required: false
+      in: query
+      schema:
+        type: integer
+    DirectionParam:
+      name: direction
+      description: Sort direction.
+      required: false
+      in: query
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
     include:
       name: include
       description: Channels subresources that can be included in the response.
