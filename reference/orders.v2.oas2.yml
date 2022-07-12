@@ -4635,7 +4635,7 @@ components:
         Note:
           - `name` and `name_customer` always share the same value; updating either of them will update the other to reflect the same value.
           - When you omit both `name` and `name_customer`, the `name_merchant` value will populate in its place; however, if you omit `name_merchant`, the `name` or `name_customer` value will populate in its place.
-          - Null and `''` empty strings are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`
+          - Null and `''` empty strings are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
       properties:
         name:
           type: string
