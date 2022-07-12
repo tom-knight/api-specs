@@ -4465,7 +4465,7 @@ components:
         - When updating an existing order product, if you omit both fields `name` and `name_customer` from the request, they will not be updated.
         - When updating an existing order product, if you omit `name_merchant` from the request, it will not be updated.
         - When adding a product, if you omit `name_merchant`, it will be set to the value of `name` (or `name_customer`).
-        - When adding a new product to an existing order, if both fields `name` and `name_customer` are omitted, they will be set to the value of `name_merchant`.
+        - When adding a new product to an existing order, if you omit both fields `name` and `name_customer`, they will be set to the value of `name_merchant`.
       properties:
         name:
           type: string
