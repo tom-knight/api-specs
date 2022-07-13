@@ -1,284 +1,603 @@
 {
   "items": [
     {
-      "type": "divider",
-      "title": "Storefront APIs"
+      "type": "item",
+      "title": "External Pull Request",
+      "uri": "/external_pr_template.md"
     },
     {
       "type": "item",
-      "title": "Carts",
-      "uri": "reference/carts.sf.yml"
+      "title": "DevDocs ticket: [DEVDOCS-{number}](https://bigcommercecloud.atlassian.net/browse/DEVDOCS-{number})",
+      "uri": "/internal_pr_template.md"
     },
     {
       "type": "item",
-      "title": "Checkouts",
-      "uri": "reference/checkouts.sf.yml"
-    },
-    {
-      "type": "item",
-      "title": "Cookie Consent",
-      "uri": "reference/consent.sf.yml"
-    },
-    {
-      "type": "item",
-      "title": "Current Customers",
-      "uri": "reference/current_customer.yml"
-    },
-    {
-      "type": "item",
-      "title": "Customers",
-      "uri": "reference/customers.sf.yml"
+      "title": "Available APIs",
+      "uri": "/docs/available-apis.md"
     },
     {
       "type": "item",
       "title": "Customer Login SSO",
-      "uri": "docs/customer-login-sso.md"
-    },
-    {
-      "type": "item",
-      "title": "Customer Login",
-      "uri": "reference/customer_login.yml"
-    },
-    {
-      "type": "item",
-      "title": "Form Fields",
-      "uri": "reference/form_fields.sf.yml"
-    },
-    {
-      "type": "item",
-      "title": "Email Subscriptions",
-      "uri": "reference/subscriptions.sf.yml"
-    },
-    {
-      "type": "item",
-      "title": "Orders",
-      "uri": "reference/orders.sf.yml"
-    },
-    {
-      "type": "divider",
-      "title": "GraphQL"
+      "uri": "/docs/customer-login-sso.md"
     },
     {
       "type": "item",
       "title": "GraphQL Storefront API",
-      "uri": "docs/storefront-graphql.md"
-    },
-    {
-      "type": "item",
-      "title": "GraphQL Storefront API Reference",
-      "uri": "https://developer.bigcommerce.com/graphql-api-reference"
+      "uri": "/docs/storefront-graphql.md"
     },
     {
       "type": "divider",
-      "title": "Management APIs"
+      "title": "models"
+    },
+    {
+      "type": "group",
+      "title": "email_templates",
+      "items": [
+        {
+          "type": "item",
+          "title": "Email Template Objects",
+          "uri": "/models/email_templates/README.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "webhooks",
+      "items": [
+        {
+          "type": "item",
+          "title": "Webhooks",
+          "uri": "/models/webhooks/README.md"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "Abandoned Cart Emails",
+      "uri": "/reference/abandoned_cart_emails.v3.yaml"
     },
     {
       "type": "item",
       "title": "Abandoned Carts",
-      "uri": "reference/abandoned_carts.v3.yml"
-    },
-    {
-      "type": "item",
-      "title": "Abandoned Cart Emails (Beta)",
-      "uri": "reference/abandoned_cart_emails.v3.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Carts",
-      "uri": "reference/carts.v3.yml"
+      "uri": "/reference/abandoned_carts.v3.yml"
     },
     {
       "type": "item",
       "title": "Catalog",
-      "uri": "reference/catalog.v3.yml"
+      "uri": "/reference/catalog.v3.yml"
     },
     {
       "type": "item",
-      "title": "Channels",
-      "uri": "reference/channels.v3.yml"
+      "title": "Channels [beta]",
+      "uri": "/reference/channels.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Storefront Checkouts",
+      "uri": "/reference/checkouts.sf.yml"
     },
     {
       "type": "item",
       "title": "Checkouts",
-      "uri": "reference/checkouts.v3.yml"
+      "uri": "/reference/checkouts.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Storefront Cookie Consent",
+      "uri": "/reference/consent.sf.yml"
     },
     {
       "type": "item",
       "title": "Currencies",
-      "uri": "reference/currencies.v2.yml"
+      "uri": "/reference/currencies.v2.yml"
     },
     {
       "type": "item",
-      "title": "Customers v2",
-      "uri": "reference/customers.v2.yml"
-    },
-    {
-      "type": "item",
-      "title": "Customers v3",
-      "uri": "reference/customers.v3.yml"
+      "title": "Current Customer",
+      "uri": "/reference/current_customer.yml"
     },
     {
       "type": "item",
       "title": "Custom Template Associations",
-      "uri": "reference/custom-template-associations.v3.yml"
+      "uri": "/reference/custom-template-associations.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Customer Login (SSO)",
+      "uri": "/reference/customer_login.yml"
+    },
+    {
+      "type": "item",
+      "title": "Customers V2",
+      "uri": "/reference/customers.v2.yml"
+    },
+    {
+      "type": "item",
+      "title": "Customers V3",
+      "uri": "/reference/customers.v3.yml"
     },
     {
       "type": "item",
       "title": "Email Templates",
-      "uri": "reference/email_templates.v3.yml"
+      "uri": "/reference/email_templates.v3.yml"
     },
     {
       "type": "item",
-      "title": "Geography",
-      "uri": "reference/geography.v2.yml"
+      "title": "Storefront Form Fields (Beta)",
+      "uri": "/reference/form_fields.sf.yml"
     },
     {
       "type": "item",
-      "title": "GraphQL Tokens",
-      "uri": "reference/storefront_tokens.v3.yml"
+      "title": "global_refs.yml",
+      "uri": "/reference/global_refs.yaml"
     },
     {
       "type": "item",
-      "title": "Marketing",
-      "uri": "reference/marketing.v2.yml"
+      "title": "Orders V2",
+      "uri": "/reference/orders.v2.oas2.yml"
     },
     {
       "type": "item",
-      "title": "Orders v2",
-      "uri": "reference/orders.v2.oas2.yml"
-    },
-    {
-      "type": "item",
-      "title": "Orders v3",
-      "uri": "reference/orders.v3.yml"
-    },
-    {
-      "type": "item",
-      "title": "Pages v3",
-      "uri": "reference/pages.v3.yml"
-    },
-    {
-      "type": "item",
-      "title": "Payment Methods",
-      "uri": "reference/payment_methods.v2.yml"
+      "title": "Pages V3",
+      "uri": "/reference/pages.v3.yml"
     },
     {
       "type": "item",
       "title": "Payment Processing",
-      "uri": "reference/payment_processing.yml"
-    },
-    {
-      "type": "item",
-      "title": "Pricing",
-      "uri": "reference/pricing.sf.yml"
+      "uri": "/reference/payment_processing.yml"
     },
     {
       "type": "item",
       "title": "Price Lists",
-      "uri": "reference/price_lists.v3.yml"
+      "uri": "/reference/price_lists.v3.yml"
     },
     {
       "type": "item",
-      "title": "Redirects v3",
-      "uri": "reference/redirects.v3.yml"
+      "title": "Pricing",
+      "uri": "/reference/pricing.sf.yml"
     },
     {
       "type": "item",
-      "title": "Scripts",
-      "uri": "reference/scripts.v3.yml"
+      "title": "Settings V3",
+      "uri": "/reference/settings.v3.yml"
     },
     {
       "type": "item",
-      "title": "Settings",
-      "uri": "reference/settings.v3.yml"
+      "title": "Shipping V2",
+      "uri": "/reference/shipping.v2.yml"
     },
     {
       "type": "item",
-      "title": "Shipping v2",
-      "uri": "reference/shipping.v2.yml"
+      "title": "Shipping V3",
+      "uri": "/reference/shipping.v3.yml"
     },
     {
       "type": "item",
-      "title": "Shipping v3",
-      "uri": "reference/shipping.v3.yml"
+      "title": "Shipping Providers",
+      "uri": "/reference/shipping_provider.yml"
     },
     {
       "type": "item",
-      "title": "Sites",
-      "uri": "reference/sites.v3.yml"
-    },
-    {
-      "type": "item",
-      "title": "Store Content",
-      "uri": "reference/store_content.v2.yml"
+      "title": "Content",
+      "uri": "/reference/store_content.v2.yml"
     },
     {
       "type": "item",
       "title": "Store Information",
-      "uri": "reference/store_information.v2.yml"
+      "uri": "/reference/store_information.v2.yml"
     },
     {
       "type": "item",
-      "title": "Subscribers",
-      "uri": "reference/subscribers.v3.yml"
+      "title": "Storefront Token",
+      "uri": "/reference/storefront_tokens.v3.yml"
     },
     {
       "type": "item",
-      "title": "Tax Classes",
-      "uri": "reference/tax_classes.v2.yml"
+      "title": "Storefront Subscriptions",
+      "uri": "/reference/subscriptions.sf.yml"
     },
     {
       "type": "item",
       "title": "Tax Provider Connection",
-      "uri": "reference/tax.v3.yml"
-    },
-    {
-      "type": "item",
-      "title": "Themes",
-      "uri": "reference/themes.v3.yml"
-    },
-    {
-      "type": "item",
-      "title": "Webhooks",
-      "uri": "reference/webhooks.v3.yml"
-    },
-    {
-      "type": "item",
-      "title": "Widgets",
-      "uri": "reference/widgets.v3.yml"
-    },
-    {
-      "type": "item",
-      "title": "Wishlists",
-      "uri": "reference/wishlists.v3.yml"
-    },
-    {
-      "type": "divider",
-      "title": "Provider APIs"
-    },
-    {
-      "type": "item",
-      "title": "Shipping Provider API",
-      "uri": "reference/shipping_provider.yml"
+      "uri": "/reference/tax.v3.yml"
     },
     {
       "type": "item",
       "title": "Tax Provider API",
-      "uri": "reference/tax_provider.yml"
+      "uri": "/reference/tax_provider.yml"
+    },
+    {
+      "type": "item",
+      "title": "Webhooks v3",
+      "uri": "/reference/webhooks.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Widgets",
+      "uri": "/reference/widgets.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Storefront Carts",
+      "uri": "/reference/carts.sf.yml"
+    },
+    {
+      "type": "item",
+      "title": "Carts",
+      "uri": "/reference/carts.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Marketing",
+      "uri": "/reference/marketing.v2.yml"
+    },
+    {
+      "type": "item",
+      "title": "Storefront Orders",
+      "uri": "/reference/orders.sf.yml"
+    },
+    {
+      "type": "item",
+      "title": "Orders V3",
+      "uri": "/reference/orders.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Payment Methods",
+      "uri": "/reference/payment_methods.v2.yml"
+    },
+    {
+      "type": "item",
+      "title": "Redirects",
+      "uri": "/reference/redirects.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Scripts",
+      "uri": "/reference/scripts.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Sites",
+      "uri": "/reference/sites.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Tax Classes",
+      "uri": "/reference/tax_classes.v2.yml"
+    },
+    {
+      "type": "item",
+      "title": "Wishlist",
+      "uri": "/reference/wishlists.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Storefront Customers",
+      "uri": "/reference/customers.sf.yml"
+    },
+    {
+      "type": "item",
+      "title": "Geography",
+      "uri": "/reference/geography.v2.yml"
+    },
+    {
+      "type": "item",
+      "title": "Subscribers",
+      "uri": "/reference/subscribers.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Themes",
+      "uri": "/reference/themes.v3.yml"
+    },
+    {
+      "type": "item",
+      "title": "Webhook Callbacks",
+      "uri": "/models/webhooks/webhooks_events.yml"
     },
     {
       "type": "divider",
-      "title": "Template Objects"
+      "title": "Schemas"
     },
     {
       "type": "item",
       "title": "Handlebars Email Template Objects",
-      "uri": "models/email_templates/_all.yml"
+      "uri": "/models/email_templates/_all.yml"
     },
     {
       "type": "item",
-      "title": "Template Object Reference",
-      "uri": "https://developer.bigcommerce.com/theme-objects"
+      "title": "combined_order_status_email",
+      "uri": "/models/email_templates/combined_order_status_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "order_message_notification",
+      "uri": "/models/email_templates/order_message_notification.yml"
+    },
+    {
+      "type": "item",
+      "title": "abandoned_cart_email",
+      "uri": "/models/email_templates/abandoned_cart_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "account_details_changed_email",
+      "uri": "/models/email_templates/account_details_changed_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "product_review_email",
+      "uri": "/models/email_templates/product_review_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "return_confirmation_email",
+      "uri": "/models/email_templates/return_confirmation_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "return_status_change_email.yml",
+      "uri": "/models/email_templates/return_status_change_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "create_account_email",
+      "uri": "/models/email_templates/create_account_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "create_guest_account_email",
+      "uri": "/models/email_templates/create_guest_account_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "gift_certificate_email",
+      "uri": "/models/email_templates/gift_certificate_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "invoice_email",
+      "uri": "/models/email_templates/invoice_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "passwordless_login_email",
+      "uri": "/models/email_templates/passwordless_login_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "account_reset_password_email",
+      "uri": "/models/email_templates/account_reset_password_email.yml"
+    },
+    {
+      "type": "item",
+      "title": "global",
+      "uri": "/models/email_templates/global.yml"
+    },
+    {
+      "type": "item",
+      "title": "Webhook Events",
+      "uri": "/models/webhooks/_all.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_converted",
+      "uri": "/models/webhooks/store_cart_converted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_created",
+      "uri": "/models/webhooks/store_cart_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_deleted",
+      "uri": "/models/webhooks/store_cart_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_updated",
+      "uri": "/models/webhooks/store_cart_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_information_updated",
+      "uri": "/models/webhooks/store_information_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_app_uninstalled",
+      "uri": "/models/webhooks/store_app_uninstalled.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_abandoned",
+      "uri": "/models/webhooks/store_cart_abandoned.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_lineItem_created",
+      "uri": "/models/webhooks/store_cart_lineItem_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_lineItem_deleted",
+      "uri": "/models/webhooks/store_cart_lineItem_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_lineItem_updated",
+      "uri": "/models/webhooks/store_cart_lineItem_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_category_created",
+      "uri": "/models/webhooks/store_category_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_category_deleted",
+      "uri": "/models/webhooks/store_category_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_category_updated",
+      "uri": "/models/webhooks/store_category_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_customer_created",
+      "uri": "/models/webhooks/store_customer_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_customer_deleted",
+      "uri": "/models/webhooks/store_customer_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_customer_payment_instrument_default_updated",
+      "uri": "/models/webhooks/store_customer_payment_instrument_default_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_customer_updated",
+      "uri": "/models/webhooks/store_customer_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_order_archived",
+      "uri": "/models/webhooks/store_order_archived.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_order_created",
+      "uri": "/models/webhooks/store_order_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_order_updated",
+      "uri": "/models/webhooks/store_order_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_product_created",
+      "uri": "/models/webhooks/store_product_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_product_deleted",
+      "uri": "/models/webhooks/store_product_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_product_updated",
+      "uri": "/models/webhooks/store_product_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_shipment_created",
+      "uri": "/models/webhooks/store_shipment_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_shipment_deleted",
+      "uri": "/models/webhooks/store_shipment_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_shipment_updated",
+      "uri": "/models/webhooks/store_shipment_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_sku_created",
+      "uri": "/models/webhooks/store_sku_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_sku_deleted",
+      "uri": "/models/webhooks/store_sku_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_sku_updated",
+      "uri": "/models/webhooks/store_sku_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_subscriber_created",
+      "uri": "/models/webhooks/store_subscriber_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_subscriber_deleted",
+      "uri": "/models/webhooks/store_subscriber_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_subscriber_updated",
+      "uri": "/models/webhooks/store_subscriber_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_customer_address_created",
+      "uri": "/models/webhooks/store_customer_address_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_customer_address_deleted",
+      "uri": "/models/webhooks/store_customer_address_deleted.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_customer_address_updated",
+      "uri": "/models/webhooks/store_customer_address_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_order_refund_created",
+      "uri": "/models/webhooks/store_order_refund_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_sku_inventory_order_updated",
+      "uri": "/models/webhooks/store_sku_inventory_order_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_sku_inventory_updated",
+      "uri": "/models/webhooks/store_sku_inventory_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_cart_couponApplied",
+      "uri": "/models/webhooks/store_cart_couponApplied.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_order_message_created",
+      "uri": "/models/webhooks/store_order_message_created.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_order_statusUpdated",
+      "uri": "/models/webhooks/store_order_statusUpdated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_product_inventory_order_updated",
+      "uri": "/models/webhooks/store_product_inventory_order_updated.yml"
+    },
+    {
+      "type": "item",
+      "title": "store_product_inventory_updated",
+      "uri": "/models/webhooks/store_product_inventory_updated.yml"
     }
   ]
 }
