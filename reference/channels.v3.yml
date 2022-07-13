@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: ''
+  version: 'beta'
   title: Channels
   description: |-
     Create and manage sales [channels](/api-docs/channels/overview), their [sites](/api-reference/store-management/channels/channel-site), and their [product listings](/api-reference/store-management/channels#channel-listings).
