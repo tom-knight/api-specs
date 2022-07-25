@@ -231,7 +231,7 @@ tags:
   - name: Tax Properties
   - name: Product Tax Properties
 servers:
-  - url: https://api.bigcommerce.com/
+  - url: https://api.bigcommerce.com
 components:
   parameters:
     product_idin:
