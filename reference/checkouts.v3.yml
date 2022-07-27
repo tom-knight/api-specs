@@ -93,6 +93,8 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      security:
+        - X-Auth-Token: []
     put:
       description: |-
         Change customer message to an existing *Checkout*.
