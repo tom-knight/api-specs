@@ -277,6 +277,33 @@ paths:
 
         *   products
         *   billing_address
+
+         **Usage notes**
+
+         Don't include' id' in the payload to `add` a product to an existing order. And note that the `product_options` are required if adding a product with variants.
+         To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. Those fields that you omit will not be changed.
+
+         Note:
+         - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields.
+         - If both fields `xxx` and `xxx_customer` are present, they must have same value.
+         - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
+         - When updating and existing order product without changing the variant, product or product options, if `xxx_merchant` is not part of the request it will not be updated.
+         - When updating an existing order product, if both fields `xxx` and `xxx_customer` not part of the request they will not be updated.
+         - When adding a product to and existing order or changing the variant, product, or product options.
+         - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer, and `xxx_merchant` if `xxx_merchant` is omitted, it will default to have the catalog value.
+         - If both fields `xxx` and `xxx_customer` are omitted from the request, they will default to the catalog value.
+
+        **Custom product usage notes**
+
+        Provide one of these fields with a nonempty value:
+          - `name`
+          - `name_customer`
+          - `name_merchant`
+
+        Note:
+          - `name` and `name_customer` always share the same value; updating either of them will update the other to reflect the same value.
+          - When you omit both `name` and `name_customer`, the `name_merchant` value will populate in its place; however, if you omit `name_merchant`, the `name` or `name_customer` value will populate in its place.
+          - Null and `''` empty strings are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
       summary: Create an Order
       tags:
         - Orders
@@ -289,23 +316,6 @@ paths:
             schema:
               $ref: '#/components/schemas/order_Post'
             examples:
-              Custom Product:
-                value:
-                  billing_address:
-                    first_name: Jane
-                    last_name: Doe
-                    street_1: 123 Main Street
-                    city: Austin
-                    state: Texas
-                    zip: '78751'
-                    country: United States
-                    country_iso2: US
-                    email: janedoe@email.com
-                  products:
-                    - name: BigCommerce Coffee Mug
-                      quantity: 1
-                      price_inc_tax: 50
-                      price_ex_tax: 45
               Product with Options:
                 value:
                   status_id: 0
@@ -339,6 +349,23 @@ paths:
                           value: '180'
                         - id: 230
                           value: '192'
+              Custom Product:
+                value:
+                  billing_address:
+                    first_name: Jane
+                    last_name: Doe
+                    street_1: 123 Main Street
+                    city: Austin
+                    state: Texas
+                    zip: '78751'
+                    country: United States
+                    country_iso2: US
+                    email: janedoe@email.com
+                  products:
+                    - name: BigCommerce Coffee Mug
+                      quantity: 1
+                      price_inc_tax: 50
+                      price_ex_tax: 45
               Product with a Drop Down and a Text Field Modifier:
                 value:
                   status_id: 0
@@ -4050,17 +4077,23 @@ components:
       x-internal: false
       properties:
         base_handling_cost:
-          description: 'The value of the base handling cost. (Float, Float-As-String, Integer)'
+          description: The value of the base handling cost. A floating point number to four decimal places in string format.
           example: '0.0000'
-          type: string
+          type:
+            - string
+            - number
         base_shipping_cost:
-          description: 'The value of the base shipping cost. (Float, Float-As-String, Integer)'
+          description: The value of the base shipping cost. A floating point number to four decimal places in string format.
           example: '0.0000'
-          type: string
+          type:
+            - string
+            - number
         base_wrapping_cost:
-          description: 'The value of the base wrapping cost. A floating point number to four decimal places in string format.'
+          description: The value of the base wrapping cost. A floating point number to four decimal places in string format.
           example: '0.0000'
-          type: string
+          type:
+            - string
+            - number
         billing_address:
           $ref: '#/components/schemas/billingAddress_Full'
         channel_id:
@@ -4453,19 +4486,19 @@ components:
       type: object
       title: orderCustomProduct_Put
       description: |
-       **Usage notes:**
+        **Usage notes:**
 
-       To `add` a custom product to an existing order, don't include `id` in the payload. You must provide at least one of these fields `name`, `name_customer`, or `name_merchant` with a nonempty value.
-       To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. You can not change omitted fields.
+        To `add` a custom product to an existing order, don't include `id` in the payload. You must provide at least one of these fields `name`, `name_customer`, or `name_merchant` with a nonempty value.
+        To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. You can not change omitted fields.
 
-       Note:
-        - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
-        - `name` and `name_customer` always hold the same value; updating either `name` or `name_customer` will change the value for both of those fields.
-        - If both fields `name` and `name_customer` are present, they must have the same value.
-        - When updating an existing order product, if you omit both fields `name` and `name_customer` from the request, they will not be updated.
-        - When updating an existing order product, if you omit `name_merchant` from the request, it will not be updated.
-        - When adding a product, if you omit `name_merchant`, it will be set to the value of `name` (or `name_customer`).
-        - When adding a new product to an existing order, if you omit both fields `name` and `name_customer`, they will be set to the value of `name_merchant`.
+        Note:
+         - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
+         - `name` and `name_customer` always hold the same value; updating either `name` or `name_customer` will change the value for both of those fields.
+         - If both fields `name` and `name_customer` are present, they must have the same value.
+         - When updating an existing order product, if you omit both fields `name` and `name_customer` from the request, they will not be updated.
+         - When updating an existing order product, if you omit `name_merchant` from the request, it will not be updated.
+         - When adding a product, if you omit `name_merchant`, it will be set to the value of `name` (or `name_customer`).
+         - When adding a new product to an existing order, if you omit both fields `name` and `name_customer`, they will be set to the value of `name_merchant`.
       properties:
         name:
           type: string
@@ -4501,21 +4534,6 @@ components:
       x-internal: false
     orderCatalogProduct_Put:
       title: orderCatalogProduct_Put
-      description: |
-       **Usage notes**
-
-        Don't include' id' in the payload to `add` a product to an existing order. And note that the `product_options` are required if adding a product with variants.
-        To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. Those fields that you omit will not be changed.
-       
-        Note:
-        - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields.
-        - If both fields `xxx` and `xxx_customer` are present, they must have same value.
-        - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
-        - When updating and existing order product without changing the variant, product or product options, if `xxx_merchant` is not part of the request it will not be updated.
-        - When updating an existing order product, if both fields `xxx` and `xxx_customer` not part of the request they will not be updated.
-        - When adding a product to and existing order or changing the variant, product, or product options.
-        - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer, and `xxx_merchant` if `xxx_merchant` is omitted, it will default to have the catalog value.
-        - If both fields `xxx` and `xxx_customer` are omitted from the request, they will default to the catalog value.
       allOf:
         - type: object
           properties:
@@ -4624,18 +4642,6 @@ components:
     orderCustomProduct_Post:
       title: orderCustomProduct_Post
       type: object
-      description: |-
-        **Usage notes**
-
-        Provide one of these fields with a nonempty value:
-          - `name`
-          - `name_customer`
-          - `name_merchant`
-
-        Note:
-          - `name` and `name_customer` always share the same value; updating either of them will update the other to reflect the same value.
-          - When you omit both `name` and `name_customer`, the `name_merchant` value will populate in its place; however, if you omit `name_merchant`, the `name` or `name_customer` value will populate in its place.
-          - Null and `''` empty strings are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
       properties:
         name:
           type: string
