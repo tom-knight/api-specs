@@ -416,6 +416,30 @@ paths:
         required: true
         schema:
           type: string
+  '/stores/{store_hash}/v3/orders/payment_actions/refunds/{refund_id}':
+    get:
+      summary: Get a Refund
+      description: Returns a refund by refund ID.
+      operationId: RefundID_Get
+      responses:
+        '200':
+          $ref: '#/components/responses/RefundID_Response'
+      tags:
+        - Payment Actions
+    parameters:
+      - name: refund_id
+        in: path
+        description: Refund ID.
+        required: true
+        schema:
+          type: integer
+      - name: store_hash
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Accept'
+      - $ref: '#/components/parameters/Content-Type'
   '/stores/{store_hash}/v3/orders/payment_actions/refund_quotes':
     post:
       summary: Create Refund Quotes - BATCH
@@ -496,7 +520,7 @@ paths:
                         }
                     }
         '503':
-          description: Status to roll up to the most severe individual failure to the whole request. Example shows that severe error status is rolled up to the overall response status code.
+          description: Every request in the batch failed. The error object describes the failure for each component request.
           content:
             application/json:
               schema:
@@ -712,7 +736,7 @@ paths:
                         }
                     }
         '503':
-          description: All failure response.
+          description: "Every request in the batch failed. The error object describes the failure for each component request."
           content:
             application/json:
               schema:
@@ -728,7 +752,7 @@ paths:
                       $ref: '#/components/schemas/FailedQuoteError'
                   meta:
                     type: object
-            "All failure response. \nHTTP status code for the entire batch request to roll up to the most severe individual failure to the whole request.":
+            Example 1:
               examples:
                 response:
                   value: |-
@@ -799,6 +823,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetaFieldCollectionResponse'
+              examples: {}
         '404':
           description: |
             The resource was not found.
@@ -806,6 +831,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFound'
+              examples:
+                example-1:
+                  value:
+                    status: 404
+                    title: There was no order found with ID 1010
+                    type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
     post:
       summary: Create Metafields
       tags:
@@ -820,6 +851,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MetafieldPost'
+            examples: {}
         description: |
           A `Metafield` object.
         required: true
@@ -833,14 +865,14 @@ paths:
                 $ref: '#/components/schemas/MetafieldResponse'
         '409':
           description: |
-            The `Metafield` was in conflict with another `Metafield`. This can be the result of duplicate unique key combinations of the app's client id, namespace, key, resource_type, and resource_id.
+            The `Metafield` conflicts with another `Metafield`. This can be the result of duplicate unique key combinations of the app's client id, namespace, key, resource_type, and resource_id.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '422':
           description: |
-            The `Metafield` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
+            The `Metafield` is not valid. This is the result of missing required fields or of invalid data. See the response for more details.
           content:
             application/json:
               schema:
@@ -2202,6 +2234,18 @@ components:
         pagination:
           $ref: '#/components/schemas/pagination_Full'
       x-internal: false
+      x-examples:
+        example-1:
+          pagination:
+            total: 0
+            count: 0
+            per_page: 0
+            current_page: 0
+            total_pages: 0
+            links:
+              previous: string
+              current: '?page=1&limit=50'
+              next: string
     links_Full:
       type: object
       properties:
@@ -2257,17 +2301,20 @@ components:
       type: object
       title: RefundQuote_Post
       description: Request body for refund quotes.
+      x-internal: false
+      x-examples: {}
       properties:
         order_id:
           type: integer
           description: Order ID against which this refund will be created. This is optional for creating a single refund request. The order ID is included in the request path.
           example: 1
         items:
-          $ref: '#/components/schemas/ItemsRefund'
+          type: array
+          items:  
+            $ref: '#/components/schemas/ItemsRefund'
       required:
-        - order_id
-        - items
-      x-internal: false
+         - order_id
+         - items
     RefundQuote_Full:
       type: object
       title: RefundQuote_Full
@@ -2374,6 +2421,136 @@ components:
         - items
         - payments
       x-examples: {}
+    RefundID_Get:
+      type: object
+      x-examples:
+        Example:
+          data:
+            id: 12
+            order_id: 180
+            user_id: 0
+            created: '2022-06-16T16:44:15+00:00'
+            reason: ''
+            total_amount: 50
+            total_tax: 5
+            uses_merchant_override_values: false
+            payments:
+              - id: 13
+                provider_id: storecredit
+                amount: 50
+                offline: true
+                is_declined: false
+                declined_message: ''
+            items:
+              - item_type: PRODUCT
+                item_id: 87
+                quantity: 1
+                requested_amount: null
+                reason: incididunt exercitation enim
+          meta: {}
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: |
+                Refund ID for the returned refund
+            order_id:
+              type: integer
+              description: Order ID associated with the refund
+            user_id:
+              type: integer
+              description: |
+                Reference to the user ID who created the refund. This is automatically populated by BigCommerce.
+            created:
+              type: string
+              description: |
+                Timestamp of when the refund was created
+              format: date-time
+            reason:
+              type: string
+              description: |
+                Reason for refund
+            total_amount:
+              type: number
+              description: |
+                A non-negative 2 decimal place rounded value that represents the amount that can be refunded with the correct payment provider(s).
+              example: 109.11
+            total_tax:
+              type: number
+              description: |
+                Total tax amount refunded back to the shopper. This can be a negative amount indicating we have collected tax by refunding less to the customer.
+            uses_merchant_override_values:
+              type: boolean
+              description: |
+                Whether refund amount and tax are provided explicitly by merchant override.
+            payments:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: |
+                      Reference to refund payment ID
+                  provider_id:
+                    type: string
+                    description: |
+                      Reference to payment provider
+                      example: storecredit
+                  amount:
+                    type: number
+                    description: |
+                      A non-negative two decimal place rounded value represents the amount that can be charged/refunded via payment providers.
+                    example: 109.11
+                  offline:
+                    type: boolean
+                    description: |
+                      Indicates whether the payment was offline
+                  is_declined:
+                    type: boolean
+                    description: |
+                      Indicates if this payment has been declined by the payment provider
+                  declined_message:
+                    type: string
+                    description: |
+                      Message indicates why the payment was declined
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  item_type:
+                    type: string
+                    description: |
+                      Type of item that was refunded
+                    enum:
+                      - PRODUCT
+                      - GIFT_WRAPPING
+                      - SHIPPING
+                      - HANDLING
+                      - ORDER
+                  item_id:
+                    type: integer
+                    description: |
+                      `order_product.id` corresponding to the item_types of PRODUCT, GIFT_WRAPPING. `order_address.id` corresponding to the item_types of SHIPPING, HANDLING. `order.id` corresponding to the item_type of ORDER.
+                  quantity:
+                    type: integer
+                    description: |
+                      Quantity of item refunded. Note: this will only be populated for item_type PRODUCT
+                  requested_amount:
+                    type: string
+                    description: |
+                      A non-negative two decimal place rounded value that represents the amount that can be refunded with the payment provider(s).
+                    example: '109.11'
+                    nullable: true
+                  reason:
+                    type: string
+                    description: |
+                      Reason for refunding an item
+        meta:
+          type: object
     PostRefundsRequest:
       type: array
       description: Request body for batch refunds
@@ -2681,6 +2858,11 @@ components:
           type: integer
       description: 'Describes refund failures, success and totals.'
       x-internal: false
+      x-examples:
+        example-1:
+          failure: 0
+          success: 0
+          total: 0
     MetaFieldCollectionResponse:
       type: object
       description: |
@@ -2696,17 +2878,19 @@ components:
     MetafieldResponse:
       description: |
         Response payload for the BigCommerce API.
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Metafield'
-        meta:
-          $ref: '#/components/schemas/Meta'
       x-internal: false
+      x-examples: {}
+      allOf:
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Metafield'
+        - $ref: '#/components/schemas/Meta'
     MetafieldBase:
       type: object
       description: |
         Common Metafield properties.
+      x-internal: false
       properties:
         permission_set:
           type: string
@@ -2726,36 +2910,32 @@ components:
             - write
             - read_and_sf_access
             - write_and_sf_access
-          required:
-            - post
         namespace:
           type: string
           description: |
             Namespace for the metafield, for organizational purposes.
+          example: Sales Department
           minLength: 1
           maxLength: 64
-          required:
-            - post
         key:
           type: string
           description: |
             The name of the field, for example: `location_id`, `color`.
           minLength: 1
           maxLength: 64
-          required:
-            - post
+          example: Staff Name
         value:
           type: string
           description: |
             The value of the field, for example: `1`, `blue`.
           minLength: 1
           maxLength: 65535
-          required:
-            - post
+          example: Ronaldo
         description:
           type: string
           description: |
             Description for the metafields.
+          example: order
           minLength: 0
           maxLength: 255
         resource_type:
@@ -2763,25 +2943,78 @@ components:
           description: |
             The type of resource with which the metafield is associated.
           enum:
-            - category
+            - order
             - brand
             - product
             - variant
-          required:
-            - post
+            - category
+          example: order
         resource_id:
           type: integer
           description: |
             The unique identifier for the resource with which the metafield is associated.
-          minimum: 0
-          maximum: 10000000000
-          required:
-            - post
+          example: 0
+          readOnly: true
       required:
         - permission_set
-      x-internal: false
-    Metafield:
+    MetafieldBase_Post:
       type: object
+      description: |
+        Common Metafield properties.
+      x-internal: false
+      properties:
+        permission_set:
+          type: string
+          description: |
+            Determines the visibility and writeability of the field by other API consumers.
+
+            |Value|Description
+            |-|-|
+            |`app_only`|Private to the app that owns the field|
+            |`read`|Visible to other API consumers|
+            |`write`|Open for reading and writing by other API consumers|
+            |`read_and_sf_access`|Visible to other API consumers, including on storefront|
+            |`write_and_sf_access`|Open for reading and writing by other API consumers, including on storefront|
+          enum:
+            - app_only
+            - read
+            - write
+            - read_and_sf_access
+            - write_and_sf_access
+        namespace:
+          type: string
+          description: |
+            Namespace for the metafield, for organizational purposes.
+          example: Sales Department
+          minLength: 1
+          maxLength: 64
+        key:
+          type: string
+          description: |
+            The name of the field, for example: `location_id`, `color`.
+          minLength: 1
+          maxLength: 64
+          example: Staff Name
+        value:
+          type: string
+          description: |
+            The value of the field, for example: `1`, `blue`.
+          minLength: 1
+          maxLength: 65535
+          example: Ronaldo
+        description:
+          type: string
+          description: |
+            Description for the metafields.
+          minLength: 0
+          maxLength: 255
+          example: Name of Staff Member
+      required:
+        - permission_set
+        - namespace
+        - key
+        - value
+    Metafield:
       description: |
         Allows app partners to write custom data to various resources in the API.
       allOf:
@@ -2792,40 +3025,32 @@ components:
               type: integer
               description: |
                 The unique identifier for the metafields.
-            created_at:
+            date_created:
               type: string
               format: date-time
               description: |
                 Date and time of the metafield's creation.
-            updated_at:
+              example: '2022-06-16T18:39:00+00:00'
+            date_modified:
               type: string
               format: date-time
               description: |
                 Date and time when the metafield was last updated.
+              example: '2022-06-16T18:39:00+00:00'
       x-internal: false
+      x-examples: {}
     MetafieldPost:
-      type: object
       description: |
         The model for a POST to create metafield.
       allOf:
-        - $ref: '#/components/schemas/MetafieldBase'
+        - $ref: '#/components/schemas/MetafieldBase_Post'
       x-internal: false
+      x-examples: {}
     MetafieldPut:
-      type: object
       description: |
         The model for a PUT to update metafield.
       allOf:
-        - $ref: '#/components/schemas/MetafieldBase'
-        - type: object
-          properties:
-            id:
-              type: integer
-              description: |
-                The unique identifier for the metafields.
-              minimum: 0
-              maximum: 10000000000
-              required:
-                - put
+        - $ref: '#/components/schemas/MetafieldBase_Post'
       x-internal: false
     GlobalOrderSettings:
       type: object
@@ -3267,6 +3492,38 @@ components:
                   $ref: '#/components/schemas/FailedQuoteError'
               meta:
                 $ref: '#/components/schemas/Meta'
+    RefundID_Response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RefundID_Get'
+          examples:
+            Example:
+              value:
+                data:
+                  id: 12
+                  order_id: 180
+                  user_id: 0
+                  created: '2022-06-16T16:44:15+00:00'
+                  reason: ''
+                  total_amount: 50
+                  total_tax: 5
+                  uses_merchant_override_values: false
+                  payments:
+                    - id: 13
+                      provider_id: storecredit
+                      amount: 50
+                      offline: true
+                      is_declined: false
+                      declined_message: ''
+                  items:
+                    - item_type: PRODUCT
+                      item_id: 87
+                      quantity: 1
+                      requested_amount: null
+                      reason: incididunt exercitation enim
+                meta: {}
   parameters:
     OrderIdParam:
       name: order_id
