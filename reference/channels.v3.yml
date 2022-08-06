@@ -39,8 +39,8 @@ info:
     | `vend`            | `pos`                     |
     | `clover`          | `pos`                     |
     | `talech`          | `pos`                     |
-    | `facebook`        | `marketplace`,`marketing` |
-    | `instagram`       | `marketplace`,`marketing` |
+    | `facebook by meta`| `marketplace`,`marketing` |
+    | `instagram by meta`| `marketplace`,`marketing`|
     | `amazon`          | `marketplace`             |
     | `ebay`            | `marketplace`             |
     | `pinterest`       | `marketplace`             |
@@ -49,6 +49,7 @@ info:
     | `etsy`            | `marketplace`             |
     | `wish`            | `marketplace`             |
     | `walmart`         | `marketplace`             |
+    | `bigcommerce`     | `storefront`              |
     | `gatsby`          | `storefront`              |
     | `wordpress`       | `storefront`              |
     | `drupal`          | `storefront`              |
@@ -74,7 +75,6 @@ info:
     > #### Note
     > * A Channel with `deleted` status can be restored within 90 days after deleting by contacting BigCommerce support team. Once the 90 days grace period is over, the Channel `status` will become `terminated`.
     > * The `terminated` status is read-only. `terminated` channels cannot be restored.
-    > * As of April 2020, `status`  should be used in place of `is_enabled` -- `is_enabled` is deprecated.
 
     ## Channel listings
 
@@ -96,6 +96,9 @@ tags:
   - name: Channel Currency Assignments
   - name: Channel Listings
   - name: Channel Site
+  - name: Channel Site Checkout Url
+  - name: Channel Menus
+  - name: Channel Metafields
 paths:
   '/stores/{store_hash}/v3/channels':
     get:
@@ -138,7 +141,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateChannelReq'
             examples:
-              Create a Facebook Channel:
+              Create Facebook by Meta Channel:
                 $ref: '#/components/examples/create_channel_req_example'
         required: true
       responses:
@@ -195,7 +198,6 @@ paths:
         * `status`
         * `is_listable_from_ui`
         * `is_visible`
-        * `is_enabled`
         * `config_meta`
 
 
@@ -209,7 +211,7 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateChannelReq'
             examples:
-              Update a Facebook Channel:
+              Update a Facebook by Meta Channel:
                 $ref: '#/components/examples/update_channel_req_example'
         required: true
       responses:
@@ -502,13 +504,120 @@ paths:
           $ref: '#/components/responses/single_listing_resp'
         '404':
           $ref: '#/components/responses/listing_not_found_resp'
+  '/stores/{store_hash}/v3/channels/{channel_id}/site/checkout-url':
+    parameters:
+      - name: channel_id
+        description: The ID of a channel
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+    put:
+      summary: Upsert a Site's Checkout URL
+      tags:
+        - Channel Site Checkout Url
+      description: Creates or updates (upserts) a site's checkout URL
+      operationId: putCheckoutUrl
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutCheckoutUrl'
+        description: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+            Example 1:
+              examples:
+                response:
+                  value: |-
+                    {
+                        "id": 1,
+                        "url": "https://kittens.mybigcommerce.com/",
+                        "channel_id": 1,
+                        "created_at": "2018-01-04T04:15:50.000Z",
+                        "updated_at": "2018-01-04T04:15:50.000Z",
+                        "urls": [
+                            {
+                                "url": "https://kittens.mybigcommerce.com",
+                                "type": "primary",
+                                "created_at": "2022-03-22T13:08:59Z",
+                                "updated_at": "2022-03-22T13:08:59Z"
+                            },
+                            {
+                                "url": "https://store-abc.store.bcdev",
+                                "type": "canonical",
+                                "created_at": "2022-03-22T13:08:59Z",
+                                "updated_at": "2022-03-22T13:08:59Z"
+                            },
+                            {
+                                "url": "https://checkout.kittens.mybigcommerce.com",
+                                "type": "checkout",
+                                "created_at": "2022-03-23T10:21:11Z",
+                                "updated_at": "2022-03-29T13:44:22Z"
+                            }
+                        ],
+                        "is_checkout_url_customized": true
+                    }
+        '422':
+          description: Unprocessable Entity. Your checkout and storefront must be within the same main domain like `example.com` and `subdomain.example.com`
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    status: 422
+                    title: 'Incorrect checkout url https://bc.kittykat.me. Your checkout and storefront must be within the same main domain like “main.com” and “subdomain.main.com”'
+                    type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+                    errors: {}
+                properties:
+                  status:
+                    type: integer
+                    default: 422
+                  title:
+                    type: string
+                    example: 'Incorrect checkout url https://checkout.example.com. Your checkout and storefront must be within the same main domain like “main.com” and “subdomain.main.com'
+                  type:
+                    type: string
+                    default: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
+                  errors:
+                    type: object
+    delete:
+      summary: Delete a Site's Checkout URL
+      operationId: delete-checkout-url
+      description: 'Deletes a site''s checkout URL. After deletion, a shared checkout URL is used.'
+      tags:
+        - Channel Site Checkout Url
+      responses:
+        '200':
+          description: OK. `data` and `meta` are empty objects.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  meta:
+                    type: object
   '/stores/{store_hash}/v3/channels/{channel_id}/site':
     get:
       summary: Get a Channel Site
       description: |
-        Alias of GET /sites?channel_id=channel_id
+        Alias of `GET /sites?channel_id=channel_id`
 
-        Returns site data for given channel.
+        Returns site data for the specified channel.
       operationId: get-channel-site
       parameters:
         - name: channel_id
@@ -580,6 +689,186 @@ paths:
       tags:
         - Channel Site
       summary: Delete a Channel Site
+  '/stores/{store_hash}/v3/channels/{channel_id}/channel-menus':
+    get:
+      summary: Get Channel Menus
+      description: |
+        Returns list of Control Panel side navigation menus for a channel.
+      operationId: get-channel-menus
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - schema:
+            type: string
+          name: store_hash
+          in: path
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/channel_menus_Resp'
+      tags:
+        - Channel Menus
+    post:
+      responses:
+        '200':
+          $ref: '#/components/responses/channel_menus_Resp'
+      summary: Create Channel Menus
+      operationId: postChannelMenus
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - schema:
+            type: string
+          name: store_hash
+          in: path
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/channel_menus_Post'
+            examples: {}
+      tags:
+        - Channel Menus
+      description: Creates or replaces list of control panel side navigation menus for a channel.
+    delete:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: integer
+                  meta:
+                    type: object
+                    properties: {}
+                x-examples:
+                  example-1:
+                    data: 1
+                    meta: {}
+      description: Deletes control panel side navigation menus for a channel.
+      tags:
+        - Channel Menus
+      summary: Delete Channel Menus
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - schema:
+            type: string
+          name: store_hash
+          in: path
+          required: true
+    parameters: []
+  '/stores/{store_hash}/v3/channels/{channel_id}/metafields':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: channel_id
+        in: path
+        required: true
+    get:
+      summary: Get Channel Metafields
+      tags:
+        - Channel Metafields
+      responses:
+        '200':
+          $ref: '#/components/responses/metafield_200'
+      operationId: get-channels-channel_id-metafields
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: ./catalog.v3.yml#/components/parameters/LimitParam
+        - $ref: ./catalog.v3.yml#/components/parameters/MetafieldKeyParam
+        - $ref: '#/components/parameters/MetafieldNamespaceParam'
+        - $ref: ./catalog.v3.yml#/components/parameters/DirectionParam
+      description: Returns a list of metafields on a channel. Optional filter parameters can be passed in.
+    post:
+      summary: Create a Channel Metafield
+      operationId: post-channels-channel_id-metafields
+      responses:
+        '200':
+          $ref: '#/components/responses/metafield_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/metafield_Post'
+            examples: {}
+      tags:
+        - Channel Metafields
+      description: |-
+        Creates a channel metafield.
+
+        **Note:** The maxiumum number of metafields allowed on each order, product, category, variant, channel, or brand is 250 per client ID. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
+  '/stores/{store_hash}/v3/channels/{channel_id}/metafields/{metafield_id}':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: channel_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: metafield_id
+        in: path
+        required: true
+    get:
+      summary: Get a Channel Metafield
+      tags:
+        - Channel Metafields
+      responses:
+        '200':
+          $ref: '#/components/responses/metafield_200'
+      operationId: get-channels-channel_id-metafields-metafield_id
+      description: Returns a single channel metafield.
+    put:
+      summary: Update a Channel Metafield
+      operationId: put-channels-channel_id-metafields-metafield_id
+      responses:
+        '200':
+          $ref: '#/components/responses/metafield_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/metafield_Put'
+      tags:
+        - Channel Metafields
+      description: |-
+        Updates a single channel metafield.
+
+        **Usage Notes**
+        * Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a `403` error message. 
+    delete:
+      summary: Delete a Channel Metafield
+      operationId: delete-channels-channel_id-metafields-metafield_id
+      responses:
+        '204':
+          description: No Content
+      tags:
+        - Channel Metafields
+      description: Deletes a single channel metafield.
 security:
   - X-Auth-Token: []
 x-stoplight:
@@ -589,10 +878,59 @@ x-stoplight:
 servers:
   - url: 'https://api.bigcommerce.com'
     variables:
-      $$.env.store_hash:
+      store_hash:
         default: store_hash
 components:
   parameters:
+    PageParam:
+      name: page
+      description: |
+        Specifies the page number in a limited (paginated) list of products.
+      required: false
+      in: query
+      schema:
+        type: integer
+    MetafieldIdParam:
+      name: metafield_id
+      in: path
+      description: |
+        The ID of the `Metafield`.
+      required: true
+      schema:
+        type: integer
+    MetafieldKeyParam:
+      name: key
+      in: query
+      description: |
+        Filter based on a metafield's key.
+      required: false
+      schema:
+        type: string
+    MetafieldNamespaceParam:
+      name: namespace
+      in: query
+      description: Filter based on a metafield's namespace.
+      required: false
+      schema:
+        type: string
+    LimitParam:
+      name: limit
+      description: |
+        Controls the number of items per page in a limited (paginated) list of products.
+      required: false
+      in: query
+      schema:
+        type: integer
+    DirectionParam:
+      name: direction
+      description: Sort direction.
+      required: false
+      in: query
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
     include:
       name: include
       description: Channels subresources that can be included in the response.
@@ -651,7 +989,7 @@ components:
         items:
           type: string
         example:
-          - 'facebook, amazon'
+          - 'facebook by meta, amazon'
     date_created:
       name: date_created
       description: 'Filter items by date_created. For example, `date_created=2019-09-04T00:00:00`, `date_created=2019-09-04`, or `date_created=1567573200`'
@@ -884,19 +1222,29 @@ components:
             type: object
             properties:
               data:
-                $ref: '#/components/schemas/site_Full'
+                $ref: '#/components/schemas/Site'
+              meta:
+                $ref: '#/components/schemas/EmptyMeta'
+          examples: {}
+    channel_menus_Resp:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  bigcommerce_protected_app_sections:
+                    $ref: '#/components/schemas/BigcommerceProtectedAppSections'
+                  custom_app_sections:
+                    $ref: '#/components/schemas/CustomAppSections'
               meta:
                 $ref: '#/components/schemas/EmptyMeta'
           examples:
             response:
-              value:
-                data:
-                  id: 1
-                  url: 'https://www.my-awesome-site.com'
-                  channel_id: 18735
-                  created_at: '2019-08-05T18:26:21Z'
-                  updated_at: '2019-08-05T18:26:21Z'
-                meta: {}
+              $ref: '#/components/examples/channel_menus_resp_example'
     invalid_channel_id_resp:
       description: Invalid channel ID is provided.
       content:
@@ -1049,11 +1397,156 @@ components:
               $ref: '#/components/examples/error_422_invalid_filters_resp_example'
             Invalid Filter Value:
               $ref: '#/components/examples/error_422_invalid_filter_value_resp_example'
+    metafield_200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            description: 'Metafield for products, categories, variants, and brands. The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.'
+            x-internal: false
+            type: object
+            properties:
+              id:
+                type: integer
+                description: Unique ID of the *Metafield*.
+                example: 6
+              permission_set:
+                type: string
+                description: |-
+                  Determines the visibility and writeability of the field by other API consumers.
+
+                  |Value|Description
+                  |-|-|
+                  |`app_only`|Private to the app that owns the field|
+                  |`read`|Visible to other API consumers|
+                  |`write`|Open for reading and writing by other API consumers|
+                  |`read_and_sf_access`|Visible to other API consumers, including on storefront|
+                  |`write_and_sf_access`|Open for reading and writing by other API consumers, including on storefront|
+                enum:
+                  - app_only
+                  - read
+                  - write
+                  - read_and_sf_access
+                  - write_and_sf_access
+              namespace:
+                maxLength: 64
+                minLength: 1
+                type: string
+                description: 'Namespace for the metafield, for organizational purposes.'
+                example: Warehouse Locations
+                x-required:
+                  - post
+              key:
+                maxLength: 64
+                minLength: 1
+                type: string
+                description: |
+                  The name of the field, for example: `location_id`, `color`. 
+                example: Location
+                x-required:
+                  - post
+              value:
+                maxLength: 65535
+                minLength: 1
+                type: string
+                description: |
+                  The value of the field.
+                example: 4HG
+                x-required:
+                  - post
+              description:
+                maxLength: 255
+                minLength: 0
+                type: string
+                description: |
+                  Description for the metafields.
+                example: Location in the warehouse
+              resource_type:
+                type: string
+                description: |
+                  The type of resource with which the metafield is associated.
+                example: product
+                enum:
+                  - category
+                  - brand
+                  - product
+                  - variant
+                x-required:
+                  - post
+              resource_id:
+                maximum: 10000000000
+                minimum: 0
+                type: integer
+                description: |
+                  The ID for the resource with which the metafield is associated.
+                example: 111
+                x-required:
+                  - post
+              date_created:
+                type: string
+                description: |
+                  Date and time of the metafield's creation. Read-Only.
+                format: date-time
+                example: '2018-05-07T20:14:17.000Z'
+              date_modified:
+                type: string
+                description: |
+                  Date and time when the metafield was last updated. Read-Only.
+                format: date-time
+                example: '2018-05-07T20:14:17.000Z'
+    metafields_200:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            x-examples:
+              example-1:
+                data:
+                  - id: 19
+                    key: Location
+                    value: 4HG
+                    namespace: Warehouse Locations
+                    permission_set: app_only
+                    resource_type: channel
+                    resource_id: 1
+                    description: Location in the warehouse
+                    date_created: '2022-06-28T18:00:15+00:00'
+                    date_modified: '2022-06-28T18:00:15+00:00'
+                  - id: 21
+                    key: sssPlease provide a key.
+                    value: sssPlease provide a value.
+                    namespace: ssssssPlease provide a namespace.
+                    permission_set: app_only
+                    resource_type: channel
+                    resource_id: 1
+                    description: thiss
+                    date_created: '2022-06-28T18:15:04+00:00'
+                    date_modified: '2022-06-28T18:16:02+00:00'
+                meta:
+                  pagination:
+                    total: 2
+                    count: 2
+                    per_page: 50
+                    current_page: 1
+                    total_pages: 1
+                    links:
+                      current: '?page=1&limit=50'
+            allOf:
+              - properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/metafield_Base'
+              - properties:
+                  meta:
+                    $ref: '#/components/schemas/MetaWithFullPagination'
+            type: object
+          examples: {}
   examples:
     create_channel_req_example:
       value:
-        name: Facebook
-        platform: facebook
+        name: Facebook by Meta
+        platform: facebook by meta
         type: marketplace
         status: connected
         config_meta:
@@ -1066,7 +1559,7 @@ components:
                 query_path: settings
     update_channel_req_example:
       value:
-        name: Facebook
+        name: Facebook by Meta
         status: connected
         is_listable_from_ui: false
         config_meta:
@@ -1189,7 +1682,6 @@ components:
             external_id: ''
             type: storefront
             platform: bigcommerce
-            is_enabled: true
             date_modified: '2021-05-07T14:54:51Z'
             name: Test Store
             status: prelaunch
@@ -1201,7 +1693,6 @@ components:
             external_id: ''
             type: marketplace
             platform: amazon
-            is_enabled: false
             date_modified: '2021-05-13T14:25:54Z'
             name: Amazon
             status: connected
@@ -1220,10 +1711,9 @@ components:
                   - title: Settings
                     query_path: settings
             type: marketplace
-            platform: facebook
-            is_enabled: true
+            platform: facebook by meta
             date_modified: '2021-05-13T15:41:39Z'
-            name: Facebook
+            name: Facebook by Meta
             status: connected
         meta:
           pagination:
@@ -1254,10 +1744,9 @@ components:
                 - title: Settings
                   query_path: settings
           type: marketplace
-          platform: facebook
-          is_enabled: true
+          platform: facebook by meta
           date_modified: '2021-05-13T15:41:39Z'
-          name: Facebook
+          name: Facebook by Meta
           status: connected
         meta: {}
     single_channel_with_currencies_resp_example:
@@ -1278,10 +1767,9 @@ components:
                 - title: Settings
                   query_path: settings
           type: marketplace
-          platform: facebook
-          is_enabled: true
+          platform: facebook by meta
           date_modified: '2021-05-13T15:41:39Z'
-          name: Facebook
+          name: Facebook by Meta
           status: connected
           currencies:
             channel_id: 667159
@@ -1449,6 +1937,26 @@ components:
               date_created: '2021-05-24T17:46:33Z'
               date_modified: '2021-05-24T17:46:33Z'
         meta: {}
+    channel_menus_resp_example:
+      value:
+        data:
+          bigcommerce_protected_app_sections:
+            - social
+            - carousel
+            - domains
+            - currencies
+            - notifications
+            - storefront_settings
+          custom_app_sections:
+            - title: Overview
+              query_path: overview
+            - title: Products
+              query_path: products
+            - title: Campaigns
+              query_path: campaigns
+            - title: Settings
+              query_path: settings
+        meta: {}
     error_400_resp_example:
       value:
         status: 400
@@ -1482,7 +1990,7 @@ components:
     error_409_resp_example:
       value:
         status: 409
-        title: 'Channel already exists with name: "Facebook", platform: "facebook", and type: "marketplace"'
+        title: 'Channel already exists with name: "Facebook by Meta", platform: "facebook by meta", and type: "marketplace"'
         type: /api-docs/getting-started/api-status-codes
         errors: {}
     error_422_invalid_filter_value_resp_example:
@@ -1631,6 +2139,107 @@ components:
       format: int64
       description: The ID of the channel.
       x-internal: false
+    metafield_Base:
+      title: metafield_Base
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique ID of the *Metafield*.
+          example: 6
+        permission_set:
+          type: string
+          description: |-
+            Determines the visibility and writeability of the field by other API consumers.
+
+            |Value|Description
+            |-|-|
+            |`app_only`|Private to the app that owns the field|
+            |`read`|Visible to other API consumers|
+            |`write`|Open for reading and writing by other API consumers|
+            |`read_and_sf_access`|Visible to other API consumers, including on storefront|
+            |`write_and_sf_access`|Open for reading and writing by other API consumers, including on storefront|
+          enum:
+            - app_only
+            - read
+            - write
+            - read_and_sf_access
+            - write_and_sf_access
+        namespace:
+          maxLength: 64
+          minLength: 1
+          type: string
+          description: 'Namespace for the metafield, for organizational purposes.'
+          example: Warehouse Locations
+          x-required:
+            - post
+        key:
+          maxLength: 64
+          minLength: 1
+          type: string
+          description: |
+            The name of the field, for example: `location_id`, `color`. 
+          example: Location
+          x-required:
+            - post
+        value:
+          maxLength: 65535
+          minLength: 1
+          type: string
+          description: |
+            The value of the field.
+          example: 4HG
+          x-required:
+            - post
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: |
+            Description for the metafields.
+          example: Location in the warehouse
+        resource_type:
+          type: string
+          description: |
+            The type of resource with which the metafield is associated.
+          example: product
+          enum:
+            - category
+            - brand
+            - product
+            - variant
+          x-required:
+            - post
+        resource_id:
+          maximum: 10000000000
+          minimum: 0
+          type: integer
+          description: |
+            The ID for the resource with which the metafield is associated.
+          example: 111
+          x-required:
+            - post
+        date_created:
+          type: string
+          description: |
+            Date and time of the metafield's creation. Read-Only.
+          format: date-time
+          example: '2018-05-07T20:14:17.000Z'
+        date_modified:
+          type: string
+          description: |
+            Date and time when the metafield was last updated. Read-Only.
+          format: date-time
+          example: '2018-05-07T20:14:17.000Z'
+    PutCheckoutUrl:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Unique site checkout URL. Must be valid and a sub-domain of primary channel URL.
+          format: uri
+          example: 'https://checkout.kittens.mybigcommerce.com'
+      title: ''
     ChannelIdForListing:
       type: integer
       format: int64
@@ -1663,11 +2272,6 @@ components:
     IsVisible:
       type: boolean
       description: 'Indicates if a channel is visible within the BigCommerce merchant admin UI (control panel). If `false`, the channel will not show in Channel Manager nor in any channels dropdown throughout the UI. Default value for this field is `true` if not specified on create.'
-      x-internal: false
-    IsEnabled:
-      deprecated: true
-      type: boolean
-      description: 'This field was originally used to turn on/off a channel but is deprecated. `status` should be used in place of `is_enabled`. Channel with `status` of `prelaunch`, `active`, or `connected` will have `is_enabled` set to `true`. Channel with `status` of `inactive`, `disconnected`, `archived`, `deleted`, or `terminated` will have `is_enabled` set to `false`.'
       x-internal: false
     ChannelStatus:
       type: string
@@ -1717,7 +2321,7 @@ components:
       x-internal: false
     EnabledCurrencies:
       type: array
-      description: 'Currencies that are enabled for the given channel in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) three character alphabetic format.'
+      description: 'Currencies that are enabled for the specified channel in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) three character alphabetic format.'
       items:
         type: string
       x-internal: false
@@ -1795,6 +2399,7 @@ components:
     ChannelConfigMeta:
       type: object
       description: Optional channel configuration object.
+      x-internal: false
       properties:
         app:
           type: object
@@ -1805,18 +2410,21 @@ components:
               description: 'The unique `id` given to an app registered in [DevTools](https://devtools.bigcommerce.com/); used to create links to the app in channel manager. `app.id` is optional; however, if you''re building an app that creates or manages a channel, we recommend including it to ensure the user interface in the control panel works properly. Select partners who are promoted in the Channel Manager must build an app, and include the app ID in the create channel request. [Learn how to find an App''s ID](/api-docs/apps/tutorials/id).'
             sections:
               type: array
-              description: 'If set, when the app is loaded within the control panel, the navigation `sections` will be directly embedded in the control panel navigation.'
+              description: 'Sections are now deprecated under config_meta. The new /channel-menus endpoints should be used instead. If set, when the app is loaded within the control panel, the navigation `sections` will be directly embedded in the control panel navigation.'
+              deprecated: true
               items:
                 type: object
+                deprecated: true
                 properties:
                   title:
                     type: string
                     description: The title of the navigation section.
                     example: '"Settings"'
+                    deprecated: true
                   query_path:
                     type: string
                     description: The value that will be passed to the app's iFrame in the URL and will allow the app to display the appropriate section within the app iFrame in the control panel.
-      x-internal: false
+                    deprecated: true
     CurrencyNotRequiredWithChannelId:
       type: object
       description: Details about currency assignments for a specific channel.
@@ -1866,8 +2474,6 @@ components:
           $ref: '#/components/schemas/IsListableFromUI'
         is_visible:
           $ref: '#/components/schemas/IsVisible'
-        is_enabled:
-          $ref: '#/components/schemas/IsEnabled'
         status:
           $ref: '#/components/schemas/ChannelStatus'
         name:
@@ -1892,8 +2498,6 @@ components:
           $ref: '#/components/schemas/IsListableFromUI'
         is_visible:
           $ref: '#/components/schemas/IsVisible'
-        is_enabled:
-          $ref: '#/components/schemas/IsEnabled'
         name:
           $ref: '#/components/schemas/ChannelName'
         status:
@@ -2021,8 +2625,6 @@ components:
           $ref: '#/components/schemas/IsListableFromUI'
         is_visible:
           $ref: '#/components/schemas/IsVisible'
-        is_enabled:
-          $ref: '#/components/schemas/IsEnabled'
         status:
           $ref: '#/components/schemas/ChannelStatus'
         name:
@@ -2051,8 +2653,6 @@ components:
           $ref: '#/components/schemas/IsListableFromUI'
         is_visible:
           $ref: '#/components/schemas/IsVisible'
-        is_enabled:
-          $ref: '#/components/schemas/IsEnabled'
         status:
           $ref: '#/components/schemas/ChannelStatus'
         name:
@@ -2113,6 +2713,37 @@ components:
           items:
             $ref: '#/components/schemas/ChannelProductVariantFull'
       x-internal: false
+    BigcommerceProtectedAppSections:
+      type: array
+      description: 'List of pre-built UI pages an app developer can choose to enable for a channel.  More information can be found [here](https://developer.bigcommerce.com/docs/ZG9jOjM4MzMyMzA-building-storefront-channels#protected-ui-sections)'
+      items:
+        type: string
+        enum:
+          - storefront_settings
+          - social
+          - carousel
+          - domains
+          - currencies
+          - notifications
+    channel_menus_Post:
+      type: object
+      properties:
+        bigcommerce_protected_app_sections:
+          $ref: '#/components/schemas/BigcommerceProtectedAppSections'
+        custom_app_sections:
+          $ref: '#/components/schemas/CustomAppSections'
+    CustomAppSections:
+      type: array
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            description: Text displayed to the merchant
+          query_path:
+            type: string
+            description: Value used in the `section` query param
+        x-internal: false
     Error:
       type: object
       properties:
@@ -2225,6 +2856,65 @@ components:
           description: |
             The total number of pages in the collection.
       x-internal: false
+    Site:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+          description: The fully qualified URL (including host and scheme) where this site is hosted. All URLs generated for this site will be appended to this.
+          example: 'http://kittens.mybigcommerce.com/'
+        channel_id:
+          type: integer
+          description: 'The channel to which this site is attached. Each site belongs to a single channel, and each channel can have either zero or more sites.'
+        created_at:
+          type: string
+          description: 'The date-time that this site was created, formatted as an [RFC-3339](https://www.ietf.org/rfc/rfc3339.txt) string.'
+          example: '2018-01-04T04:15:50.000Z'
+          format: date-time
+        updated_at:
+          type: string
+          description: 'The date-time that this site was last updated, formatted as an [RFC-3339](https://www.ietf.org/rfc/rfc3339.txt) string.'
+          example: '2018-01-04T04:15:50.000Z'
+          format: date-time
+        ssl_status:
+          type: string
+          enum:
+            - dedicated
+            - shared
+          description: 'Indicates if a private/dedicated SSL is installed on this site, or if it''s using shared SSL.'
+        urls:
+          type: array
+          description: 'All URLs that belong to the site, including `primary`, `canonical`, and `checkout` URLs.'
+          items:
+            $ref: '#/components/schemas/Url'
+        is_checkout_url_customized:
+          type: boolean
+          description: 'Indicates whether the channel uses a custom checkout domain. When `false`, the checkout domain falls back to the default channel’s primary URL.'
+    Url:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of site
+        type:
+          type: string
+          description: URL type
+          enum:
+            - primary
+            - canonical
+            - checkout
+        created_at:
+          type: string
+          example: '2018-01-04T04:15:50.000Z'
+          format: date-time
+          description: 'The date-time that this URL was created, formatted as an [RFC-3339](https://www.ietf.org/rfc/rfc3339.txt) string.'
+        updated_at:
+          type: string
+          description: 'The date-time that this URL was last updated, formatted as an [RFC-3339](https://www.ietf.org/rfc/rfc3339.txt) string.'
+          example: '2018-01-04T04:15:50.000Z'
+          format: date-time
     site_Put:
       type: object
       properties:
@@ -2294,7 +2984,7 @@ components:
               matching:
                 type: string
                 description: |-
-                  (entity_id?) For a given type, which resources should match this route? e.g For a route with the type: "product" and matching: "5" this route would be used for the product with the ID of 5.
+                  (entity_id?) For the specified type, which resources should match this route? e.g For a route with the type: "product" and matching: "5" this route would be used for the product with the ID of 5.
 
                   Depending on the type of resource, this may be an ID (matching a specific item), or a "*" wildcard matching all items of that type.
                 example: '5'
@@ -2311,3 +3001,126 @@ components:
                 example: /my-amazing-product
       title: site_Full
       x-internal: false
+    metafield_Post:
+      title: metafield_Post
+      x-stoplight:
+        id: gvfymy3yuc101
+      type: object
+      description: 'Metafield for products, categories, variants, and brands. The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.'
+      x-internal: false
+      properties:
+        namespace:
+          maxLength: 64
+          minLength: 1
+          type: string
+          description: 'Namespace for the metafield, for organizational purposes. This is set by the developer.'
+          example: Warehouse Locations
+          x-required:
+            - post
+        key:
+          maxLength: 64
+          minLength: 1
+          type: string
+          description: |
+            The name of the field.
+          example: Location
+          x-required:
+            - post
+        value:
+          maxLength: 65535
+          minLength: 1
+          type: string
+          description: |
+            The value of the field.
+          example: 4HG
+          x-required:
+            - post
+        permission_set:
+          type: string
+          description: |-
+            Determines the visibility and writeability of the field by other API consumers.
+
+            |Value|Description
+            |-|-|
+            |`app_only`|Private to the app that owns the field|
+            |`read`|Visible to other API consumers|
+            |`write`|Open for reading and writing by other API consumers|
+            |`read_and_sf_access`|Visible to other API consumers, including on storefront|
+            |`write_and_sf_access`|Open for reading and writing by other API consumers, including on storefront|
+          enum:
+            - app_only
+            - read
+            - write
+            - read_and_sf_access
+            - write_and_sf_access
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: |
+            Description for the metafield.
+          example: Location in the warehouse
+      required:
+        - namespace
+        - key
+        - value
+        - permission_set
+    metafield_Put:
+      title: metafield_Put
+      x-stoplight:
+        id: 5gl48f06wgr1v
+      type: object
+      description: 'Metafield for products, categories, variants, and brands. The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.'
+      x-internal: false
+      properties:
+        namespace:
+          maxLength: 64
+          minLength: 1
+          type: string
+          description: 'Namespace for the metafield, for organizational purposes.'
+          example: Warehouse Locations
+          x-required:
+            - post
+        key:
+          maxLength: 64
+          minLength: 1
+          type: string
+          description: |
+            The name of the field.
+          example: Location
+          x-required:
+            - post
+        value:
+          maxLength: 65535
+          minLength: 1
+          type: string
+          description: |
+            The value of the field.
+          example: 4HG
+          x-required:
+            - post
+        permission_set:
+          type: string
+          description: |-
+            Determines the visibility and writeability of the field by other API consumers.
+
+            |Value|Description
+            |-|-|
+            |`app_only`|Private to the app that owns the field|
+            |`read`|Visible to other API consumers|
+            |`write`|Open for reading and writing by other API consumers|
+            |`read_and_sf_access`|Visible to other API consumers, including on storefront|
+            |`write_and_sf_access`|Open for reading and writing by other API consumers, including on storefront|
+          enum:
+            - app_only
+            - read
+            - write
+            - read_and_sf_access
+            - write_and_sf_access
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: |
+            Description for the metafield.
+          example: Location in the warehouse

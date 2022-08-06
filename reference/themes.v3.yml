@@ -10,7 +10,7 @@ info:
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header.
 
     ```http
-    GET /stores/{$$.env.store_hash}/v3/themes
+    GET /stores/{store_hash}/v3/themes
     host: api.bigcommerce.com
     Accept: application/json
     X-Auth-Token: {access_token}
@@ -792,7 +792,6 @@ paths:
       operationId: get-themes-theme_uuid-custom-templates
       description: Enumerate available custom templates for in the theme files in a specific theme version for each supported entity type.
 security:
-  - X-Auth-Client: []
   - X-Auth-Token: []
 x-stoplight:
   docs:
@@ -801,7 +800,7 @@ x-stoplight:
 servers:
   - url: 'https://api.bigcommerce.com'
     variables:
-      $$.env.store_hash:
+      store_hash:
         default: unknown
 components:
   parameters:
@@ -906,7 +905,7 @@ components:
         ### Example
 
         ```http
-        GET /stores/{$$.env.store_hash}/v3/catalog/summary
+        GET /stores/{store_hash}/v3/catalog/summary
         host: api.bigcommerce.com
         Content-Type: application/json
         X-Auth-Token: {access_token}
@@ -1491,9 +1490,6 @@ components:
       description: 'These are the minium request headers needed for BigCommerce. '
       title: Request Headers
       properties:
-        X-Auth-Client:
-          type: string
-          example: '{X-Auth-Client}'
         Accepts:
           type: string
           default: application/json
