@@ -66,7 +66,7 @@
     {
       "type": "item",
       "title": "GraphQL Storefront API Reference",
-      "uri": "assets/html/graphql-playground.html"
+      "uri": "https://developer.bigcommerce.com/graphql-api-reference"
     },
     {
       "type": "divider",
@@ -229,6 +229,12 @@
     },
     {
       "type": "item",
+      "title": "Tax Properties",
+      "href": "/api-reference/store-management/tax-properties",
+      "uri": "reference/tax_properties.v3.yml"
+    },
+    {
+      "type": "item",
       "title": "Tax Provider Connection",
       "uri": "reference/tax.v3.yml"
     },
@@ -279,6 +285,11 @@
       "type": "item",
       "title": "Handlebars Email Template Objects",
       "uri": "models/email_templates/_all.yml"
+    },
+    {
+      "type": "item",
+      "title": "Template Object Reference",
+      "uri": "https://developer.bigcommerce.com/theme-objects"
     }
   ]
 }

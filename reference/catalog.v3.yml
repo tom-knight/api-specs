@@ -11,7 +11,7 @@ info:
     Requests can be authenticated by sending an `access_token` via `X-Auth-Token` HTTP header:
 
     ```http
-    GET /stores/{$$.env.store_hash}/v3/catalog/summary
+    GET /stores/{store_hash}/v3/catalog/summary
     host: api.bigcommerce.com
     Accept: application/json
     X-Auth-Token: {access_token}
@@ -304,8 +304,7 @@ paths:
             type: integer
         - name: keyword
           in: query
-          description: |
-            Filter items by keywords found in the `name`, `description`, or `sku` fields, or in the brand name.
+          description: 'Filter items by keywords found in the `name` or `sku` fields'
           schema:
             type: string
         - name: keyword_context
@@ -469,6 +468,109 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/product_Put_Collection'
+            examples:
+              example-1:
+                value:
+                  - id: 0
+                    name: Smith Journal 13
+                    type: physical
+                    sku: SM-13
+                    description: '<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>'
+                    weight: 0
+                    width: 0
+                    depth: 0
+                    height: 0
+                    price: 0
+                    cost_price: 0
+                    retail_price: 0
+                    sale_price: 0
+                    map_price: 0
+                    tax_class_id: 0
+                    product_tax_code: string
+                    categories:
+                      - 0
+                    brand_id: 0
+                    inventory_level: 0
+                    inventory_warning_level: 0
+                    inventory_tracking: none
+                    fixed_cost_shipping_price: 0
+                    is_free_shipping: true
+                    is_visible: true
+                    is_featured: true
+                    related_products:
+                      - 0
+                    warranty: string
+                    bin_picking_number: string
+                    layout_file: string
+                    upc: string
+                    search_keywords: string
+                    availability: available
+                    availability_description: string
+                    gift_wrapping_options_type: any
+                    gift_wrapping_options_list:
+                      - 0
+                    sort_order: -2147483648
+                    condition: New
+                    is_condition_shown: true
+                    order_quantity_minimum: 0
+                    order_quantity_maximum: 0
+                    page_title: string
+                    meta_keywords:
+                      - string
+                    meta_description: string
+                    view_count: 0
+                    preorder_release_date: '2019-08-24T14:15:22Z'
+                    preorder_message: string
+                    is_preorder_only: true
+                    is_price_hidden: true
+                    price_hidden_label: string
+                    custom_url:
+                      url: string
+                      is_customized: true
+                    open_graph_type: product
+                    open_graph_title: string
+                    open_graph_description: string
+                    open_graph_use_meta_description: true
+                    open_graph_use_product_name: true
+                    open_graph_use_image: true
+                    brand_name or brand_id: Common Good
+                    gtin: string
+                    mpn: string
+                    reviews_rating_sum: 3.2
+                    reviews_count: 4
+                    total_sold: 80
+                    custom_fields:
+                      - id: 6
+                        name: ISBN
+                        value: '1234567890123'
+                    bulk_pricing_rules:
+                      - id: 0
+                        quantity_min: 10
+                        quantity_max: 50
+                        type: price
+                        amount: 10
+                    images:
+                      - image_file: string
+                        is_thumbnail: true
+                        sort_order: -2147483648
+                        description: string
+                        image_url: string
+                        id: 0
+                        product_id: 0
+                        url_zoom: string
+                        url_standard: string
+                        url_thumbnail: string
+                        url_tiny: string
+                        date_modified: '2019-08-24T14:15:22Z'
+                    videos:
+                      - title: Writing Great Documentation
+                        description: A video about documenation
+                        sort_order: 1
+                        type: youtube
+                        video_id: z3fRu9pkuXE
+                        id: 0
+                        product_id: 0
+                        length: string
         required: false
       responses:
         '200':
@@ -484,6 +586,249 @@ paths:
                       $ref: '#/components/schemas/product_Full'
                   meta:
                     $ref: '#/components/schemas/metaCollection_Full'
+              examples:
+                example-1:
+                  value:
+                    data:
+                      - name: Smith Journal 13
+                        type: physical
+                        sku: SM-13
+                        description: '<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>'
+                        weight: 0
+                        width: 0
+                        depth: 0
+                        height: 0
+                        price: 0
+                        cost_price: 0
+                        retail_price: 0
+                        sale_price: 0
+                        map_price: 0
+                        tax_class_id: 0
+                        product_tax_code: string
+                        categories:
+                          - 0
+                        brand_id: 0
+                        inventory_level: 0
+                        inventory_warning_level: 0
+                        inventory_tracking: none
+                        fixed_cost_shipping_price: 0
+                        is_free_shipping: true
+                        is_visible: true
+                        is_featured: true
+                        related_products:
+                          - 0
+                        warranty: string
+                        bin_picking_number: string
+                        layout_file: string
+                        upc: string
+                        search_keywords: string
+                        availability: available
+                        availability_description: string
+                        gift_wrapping_options_type: any
+                        gift_wrapping_options_list:
+                          - 0
+                        sort_order: -2147483648
+                        condition: New
+                        is_condition_shown: true
+                        order_quantity_minimum: 0
+                        order_quantity_maximum: 0
+                        page_title: string
+                        meta_keywords:
+                          - string
+                        meta_description: string
+                        view_count: 0
+                        preorder_release_date: '2019-08-24T14:15:22Z'
+                        preorder_message: string
+                        is_preorder_only: true
+                        is_price_hidden: true
+                        price_hidden_label: string
+                        custom_url:
+                          url: string
+                          is_customized: true
+                        open_graph_type: product
+                        open_graph_title: string
+                        open_graph_description: string
+                        open_graph_use_meta_description: true
+                        open_graph_use_product_name: true
+                        open_graph_use_image: true
+                        brand_name or brand_id: Common Good
+                        gtin: string
+                        mpn: string
+                        reviews_rating_sum: 3.2
+                        reviews_count: 4
+                        total_sold: 80
+                        custom_fields:
+                          - id: 6
+                            name: ISBN
+                            value: '1234567890123'
+                        bulk_pricing_rules:
+                          - id: 0
+                            quantity_min: 10
+                            quantity_max: 50
+                            type: price
+                            amount: 10
+                        images:
+                          - image_file: string
+                            is_thumbnail: true
+                            sort_order: -2147483648
+                            description: string
+                            image_url: string
+                            id: 0
+                            product_id: 0
+                            url_zoom: string
+                            url_standard: string
+                            url_thumbnail: string
+                            url_tiny: string
+                            date_modified: '2019-08-24T14:15:22Z'
+                        videos:
+                          - title: Writing Great Documentation
+                            description: A video about documenation
+                            sort_order: 1
+                            type: youtube
+                            video_id: z3fRu9pkuXE
+                            id: 0
+                            product_id: 0
+                            length: string
+                        date_created: '2018-08-15T14:49:05.000Z'
+                        date_modified: '2018-08-24T14:41:00.000Z'
+                        id: 1
+                        base_variant_id: 0
+                        calculated_price: 0
+                        options:
+                          - id: 55
+                            product_id: 4
+                            display_name: Add-a-$5-Donation1535042499-187
+                            type: radio_buttons
+                            config:
+                              default_value: string
+                              checked_by_default: true
+                              checkbox_label: string
+                              date_limited: true
+                              date_limit_mode: range
+                              date_earliest_value: '2019-08-24'
+                              date_latest_value: '2019-08-24'
+                              file_types_mode: specific
+                              file_types_supported:
+                                - 'images, documents, other'
+                              file_types_other:
+                                - pdf
+                              file_max_size: 5
+                              text_characters_limited: true
+                              text_min_length: 1
+                              text_max_length: 55
+                              text_lines_limited: true
+                              text_max_lines: 4
+                              number_limited: true
+                              number_limit_mode: lowest
+                              number_lowest_value: 100
+                              number_highest_value: 0
+                              number_integers_only: false
+                              product_list_adjusts_inventory: true
+                              product_list_adjusts_pricing: true
+                              product_list_shipping_calc: weight
+                            sort_order: 1
+                            option_values:
+                              is_default: false
+                              label: Green
+                              sort_order: 0
+                              value_data: {}
+                              id: 0
+                        modifiers:
+                          - type: date
+                            required: true
+                            sort_order: 0
+                            config:
+                              default_value: string
+                              checked_by_default: true
+                              checkbox_label: string
+                              date_limited: true
+                              date_limit_mode: range
+                              date_earliest_value: '2019-08-24'
+                              date_latest_value: '2019-08-24'
+                              file_types_mode: specific
+                              file_types_supported:
+                                - 'images, documents, other'
+                              file_types_other:
+                                - pdf
+                              file_max_size: 5
+                              text_characters_limited: true
+                              text_min_length: 1
+                              text_max_length: 55
+                              text_lines_limited: true
+                              text_max_lines: 4
+                              number_limited: true
+                              number_limit_mode: lowest
+                              number_lowest_value: 100
+                              number_highest_value: 0
+                              number_integers_only: false
+                              product_list_adjusts_inventory: true
+                              product_list_adjusts_pricing: true
+                              product_list_shipping_calc: weight
+                            display_name: string
+                            id: 12
+                            product_id: 77
+                            name: Add-a-$5-Donation1535039590-191
+                            option_values:
+                              - is_default: false
+                                label: Green
+                                sort_order: 0
+                                value_data: {}
+                                adjusters:
+                                  price:
+                                    adjuster: relative
+                                    adjuster_value: 5
+                                  weight:
+                                    adjuster: relative
+                                    adjuster_value: 5
+                                  image_url: 'https://cdn8.bigcommerce.com/s-{{store_hash}}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.1280.1280.jpg?c=2'
+                                  purchasing_disabled:
+                                    status: true
+                                    message: string
+                                id: 0
+                                option_id: 0
+                        option_set_id: 0
+                        option_set_display: string
+                        variants:
+                          - cost_price: 0
+                            price: 0
+                            sale_price: 0
+                            retail_price: 0
+                            weight: 0
+                            width: 0
+                            height: 0
+                            depth: 0
+                            is_free_shipping: true
+                            fixed_cost_shipping_price: 0
+                            purchasing_disabled: true
+                            purchasing_disabled_message: string
+                            upc: string
+                            inventory_level: 0
+                            inventory_warning_level: 0
+                            bin_picking_number: string
+                            mpn: string
+                            gtin: '012345678905'
+                            id: 0
+                            product_id: 0
+                            sku: string
+                            sku_id: 0
+                            option_values:
+                              - option_display_name: Color
+                                label: Beige
+                                id: 146
+                                option_id: 151
+                            calculated_price: 0
+                            calculated_weight: 0
+                    meta:
+                      pagination:
+                        total: 36
+                        count: 36
+                        per_page: 50
+                        current_page: 1
+                        total_pages: 1
+                        links:
+                          previous: string
+                          current: '?page=1&limit=50'
+                          next: string
         '207':
           description: 'Multiple operations have taken place and the status for each operation can be viewed in the body of the response. Typically indicates that a partial failure has occured, such as when a `POST` or `PUT` request is successful, but saving the URL has failed.'
           content:
@@ -2607,7 +2952,7 @@ paths:
         Creates a *Product Video*.
 
         **Required Fields**
-        * video_id - Example: https://www.youtube.com/watch?v=`R12345677`
+        * video_id
 
         **Read-Only Fields**
         * id
@@ -2649,21 +2994,24 @@ paths:
                 The model for a POST to create a video on a product.
               allOf:
                 - title: Product Video Base
-                  type: object
+                  description: Common Product Video properties.
                   properties:
                     title:
                       maxLength: 255
                       minLength: 0
                       type: string
+                      example: Writing Great Documentation
                       description: |
                         The title for the video. If left blank, this will be filled in according to data on a host site.
                     description:
                       type: string
+                      example: A video about documenation
                       description: |
                         The description for the video. If left blank, this will be filled in according to data on a host site.
                     sort_order:
                       maximum: 2147483647
                       minimum: -2147483648
+                      example: 1
                       type: integer
                       description: |
                         The order in which the video will be displayed on the product page. Higher integers give the video a lower priority. When updating, if the video is given a lower priority, all videos with a `sort_order` the same as or greater than the video's new `sort_order` value will have their `sort_order`s reordered.
@@ -2673,17 +3021,17 @@ paths:
                         The video type (a short name of a host site).
                       enum:
                         - youtube
-                  description: Common ProductVideo properties.
-                - type: object
-                  properties:
+                - properties:
                     video_id:
+                      type: string
                       maxLength: 25
                       minLength: 0
-                      type: string
                       description: |
                         The ID of the video on a host site.
                       x-required:
                         - post
+                      example: z3fRu9pkuXE
+              type: object
         required: true
       responses:
         '200':
@@ -2725,7 +3073,7 @@ paths:
                               The video type (a short name of a host site).
                             enum:
                               - youtube
-                        description: Common ProductVideo properties.
+                        description: Common Product Video properties.
                       - type: object
                         properties:
                           id:
@@ -2952,7 +3300,7 @@ paths:
                         The video type (a short name of a host site).
                       enum:
                         - youtube
-                  description: Common ProductVideo properties.
+                  description: Common Product Video properties.
                 - type: object
                   properties:
                     id:
@@ -3002,7 +3350,7 @@ paths:
                               The video type (a short name of a host site).
                             enum:
                               - youtube
-                        description: Common ProductVideo properties.
+                        description: Common Product Video properties.
                       - type: object
                         properties:
                           id:
@@ -3816,7 +4164,7 @@ paths:
         **Read-Only Fields**
         * id
 
-        **Note:** The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
+        **Note:** The maxiumum number of metafields allowed on each order, product, category, variant, or brand is 250 per client ID. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
       operationId: createVariantMetafield
       parameters:
         - name: product_id
@@ -6893,6 +7241,9 @@ paths:
 
         **Read-Only Fields**
         * `id`
+
+        **Notes**
+        It takes two separate requests to create a new checkbox modifier with option values. Perform a request to create a modifier, then perform a second request to update option values.
       operationId: createModifier
       parameters:
         - name: product_id
@@ -11986,7 +12337,7 @@ paths:
         **Read-Only Fields**
         * id
 
-        **Note:** The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
+        **Note:** The maxiumum number of metafields allowed on each order, product, category, variant, or brand is 250 per client ID. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
       operationId: createProductMetafield
       parameters:
         - name: product_id
@@ -13515,7 +13866,7 @@ paths:
                   data:
                     type: array
                     items:
-                      type: object
+                      $ref: '#/components/schemas/Category'
                   meta:
                     $ref: '#/components/schemas/metaCollection_Full'
               example:
@@ -13637,6 +13988,7 @@ paths:
                     total_pages: 1
                     links:
                       current: '?page=1&limit=50'
+              examples: {}
     post:
       tags:
         - Category
@@ -13746,7 +14098,7 @@ paths:
                 is_visible:
                   type: boolean
                   description: |
-                    Flag to determine whether the product should be displayed to customers browsing the store. If `true`, the category will be displayed. If `false`, the category will be hidden from view.
+                    Flag to determine whether the category should be displayed to customers browsing the store. If `true`, the category will be displayed. If `false`, the category will be hidden from view.
                 default_product_sort:
                   type: string
                   description: |
@@ -14735,7 +15087,7 @@ paths:
         **Read-Only Fields**
         - id
 
-        **Note:** The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
+        **Note:** The maxiumum number of metafields allowed on each order, product, category, variant, or brand is 250 per client ID. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
       operationId: createCategoryMetafield
       parameters:
         - name: category_id
@@ -16804,7 +17156,7 @@ paths:
         **Read-Only Fields**
         - id
 
-        **Note:** The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
+        **Note:** The maxiumum number of metafields allowed on each order, product, category, variant, or brand is 250 per client ID. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center.
       operationId: createBrandMetafield
       parameters:
         - name: brand_id
@@ -17225,7 +17577,7 @@ paths:
       tags:
         - Brand Metafields
       summary: Update a Brand Metafield
-      description: "Updates a *Brand Metafield*.\n\n**Required Fields**  \n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified by the app (API credentials) that created the metafield:\n\t* namespace\n\t* key\n\t* permission_set\n\n**Usage Notes**\n* Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a 403 error message.\n* The max number of metafields allowed on each product, category, variant, or brand is fifty. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center."
+      description: "Updates a *Brand Metafield*.\n\n**Required Fields**  \n* none\n\n**Read-Only Fields**\n* id\n* These fields can only be modified by the app (API credentials) that created the metafield:\n\t* namespace\n\t* key\n\t* permission_set\n\n**Usage Notes**\n* Attempting to modify `namespace`, `key`, and `permission_set` fields using a client ID different from the one used to create those metafields will result in a 403 error message.\n* The maxiumum number of metafields allowed on each order, product, category, variant, or brand is 250 per client ID. For more information, see [Platform Limits](https://support.bigcommerce.com/s/article/Platform-Limits) in the Help Center."
       operationId: updateBrandMetafield
       parameters:
         - name: metafield_id
@@ -18585,6 +18937,39 @@ paths:
                       $ref: '#/components/schemas/Category'
                   meta:
                     $ref: '#/components/schemas/MetaPagination'
+              examples:
+                example-1:
+                  value:
+                    data:
+                      - id: 0
+                        parent_id: 2
+                        name: Bath
+                        description: <p>We offer a wide variety of products perfect for relaxing</p>
+                        views: 1050
+                        sort_order: 3
+                        page_title: Bath
+                        meta_keywords:
+                          - string
+                        meta_description: string
+                        layout_file: category.html
+                        image_url: 'https://cdn8.bigcommerce.com/s-123456/product_images/d/fakeimage.png'
+                        is_visible: true
+                        search_keywords: string
+                        default_product_sort: use_store_settings
+                        url:
+                          path: string
+                          is_customized: true
+                    meta:
+                      pagination:
+                        total: 246
+                        count: 5
+                        per_page: 5
+                        current_page: 1
+                        total_pages: 50
+                        links:
+                          previous: '?limit=5&page=1'
+                          current: '?limit=5&page=2'
+                          next: '?limit=5&page=3'
         '400':
           description: Bad Request
           content:
@@ -18659,6 +19044,8 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateCategories'
       responses:
+        '200':
+          description: OK
         '204':
           description: No Content
           content:
@@ -21642,23 +22029,29 @@ components:
     productVideo_Base:
       title: productVideo_Base
       type: object
+      description: |
+        The model for a POST to create a video on a product.
+      x-internal: false
       properties:
         title:
+          type: string
           maxLength: 255
           minLength: 0
-          type: string
           description: |
             The title for the video. If left blank, this will be filled in according to data on a host site.
+          example: Writing Great Documentation
         description:
           type: string
           description: |
             The description for the video. If left blank, this will be filled in according to data on a host site.
+          example: A video about documenation
         sort_order:
+          type: integer
           maximum: 2147483647
           minimum: -2147483648
-          type: integer
           description: |
             The order in which the video will be displayed on the product page. Higher integers give the video a lower priority. When updating, if the video is given a lower priority, all videos with a `sort_order` the same as or greater than the video's new `sort_order` value will have their `sort_order`s reordered.
+          example: 1
         type:
           type: string
           description: |
@@ -21668,9 +22061,7 @@ components:
         video_id:
           type: string
           description: The ID of the video on a host site.
-      description: |
-        The model for a POST to create a video on a product.
-      x-internal: false
+          example: z3fRu9pkuXE
     productVideo_Full:
       title: productVideo_Full
       description: |
@@ -22817,13 +23208,110 @@ components:
       description: The model for batch updating products.
       x-internal: false
       allOf:
-        - type: object
-          properties:
-            id:
-              type: integer
-          required:
-            - id
-        - $ref: '#/components/schemas/product_Base'
+        - items:
+            $ref: '#/components/schemas/product_Base'
+      x-examples:
+        example-1:
+          - name: Smith Journal 13
+            type: physical
+            sku: SM-13
+            description: '<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>'
+            weight: 0
+            width: 0
+            depth: 0
+            height: 0
+            price: 0
+            cost_price: 0
+            retail_price: 0
+            sale_price: 0
+            map_price: 0
+            tax_class_id: 0
+            product_tax_code: string
+            categories:
+              - 0
+            brand_id: 0
+            inventory_level: 0
+            inventory_warning_level: 0
+            inventory_tracking: none
+            fixed_cost_shipping_price: 0
+            is_free_shipping: true
+            is_visible: true
+            is_featured: true
+            related_products:
+              - 0
+            warranty: string
+            bin_picking_number: string
+            layout_file: string
+            upc: string
+            search_keywords: string
+            availability: available
+            availability_description: string
+            gift_wrapping_options_type: list
+            gift_wrapping_options_list:
+              - 0
+            sort_order: -2147483648
+            condition: New
+            is_condition_shown: true
+            order_quantity_minimum: 0
+            order_quantity_maximum: 0
+            page_title: string
+            meta_keywords:
+              - string
+            meta_description: string
+            view_count: 0
+            preorder_release_date: '2019-08-24T14:15:22Z'
+            preorder_message: string
+            is_preorder_only: true
+            is_price_hidden: true
+            price_hidden_label: string
+            custom_url:
+              url: string
+              is_customized: true
+            open_graph_type: product
+            open_graph_title: string
+            open_graph_description: string
+            open_graph_use_meta_description: true
+            open_graph_use_product_name: true
+            open_graph_use_image: true
+            brand_name or brand_id: Common Good
+            gtin: string
+            mpn: string
+            reviews_rating_sum: 3.2
+            reviews_count: 4
+            total_sold: 80
+            custom_fields:
+              - id: 6
+                name: ISBN
+                value: '1234567890123'
+            bulk_pricing_rules:
+              - id: 0
+                quantity_min: 10
+                quantity_max: 50
+                type: price
+                amount: 10
+            images:
+              - image_file: string
+                is_thumbnail: true
+                sort_order: -2147483648
+                description: string
+                image_url: string
+                id: 0
+                product_id: 0
+                url_zoom: string
+                url_standard: string
+                url_thumbnail: string
+                url_tiny: string
+                date_modified: '2019-08-24T14:15:22Z'
+            videos:
+              - title: Writing Great Documentation
+                description: A video about documenation
+                sort_order: 1
+                type: youtube
+                video_id: z3fRu9pkuXE
+                id: 0
+                product_id: 0
+                length: string
+      type: array
     config_Full:
       title: config_Full
       type: object
@@ -23087,13 +23575,118 @@ components:
       x-internal: false
     product_Base:
       title: product_Base
-      required:
-        - name
-        - price
-        - type
-        - weight
       type: object
+      description: |-
+        Shared `Product` properties used in:
+        * `POST`
+        * `PUT`
+        * `GET`
+      x-internal: false
+      x-examples:
+        example-1:
+          id: 0
+          name: Smith Journal 13
+          type: physical
+          sku: SM-13
+          description: '<p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ac est egestas porta sed quis erat. Integer id nulla massa. Proin vitae enim nisi. Praesent non dignissim nulla. Nulla mattis id massa ac pharetra. Mauris et nisi in dolor aliquam sodales. Aliquam dui nisl, dictum quis leo sit amet, rutrum volutpat metus. Curabitur libero nunc, interdum ac libero non, tristique porttitor metus. Ut non dignissim lorem, in vestibulum leo. Vivamus sodales quis turpis eget.</span></p>'
+          weight: 0
+          width: 0
+          depth: 0
+          height: 0
+          price: 0
+          cost_price: 0
+          retail_price: 0
+          sale_price: 0
+          map_price: 0
+          tax_class_id: 0
+          product_tax_code: string
+          categories:
+            - 0
+          brand_id: 0
+          inventory_level: 0
+          inventory_warning_level: 0
+          inventory_tracking: none
+          fixed_cost_shipping_price: 0
+          is_free_shipping: true
+          is_visible: true
+          is_featured: true
+          related_products:
+            - 0
+          warranty: string
+          bin_picking_number: string
+          layout_file: string
+          upc: string
+          search_keywords: string
+          availability_description: string
+          availability: available
+          gift_wrapping_options_type: any
+          gift_wrapping_options_list:
+            - 0
+          sort_order: -2147483648
+          condition: New
+          is_condition_shown: true
+          order_quantity_minimum: 0
+          order_quantity_maximum: 0
+          page_title: string
+          meta_keywords:
+            - string
+          meta_description: string
+          view_count: 0
+          preorder_release_date: '2019-08-24T14:15:22Z'
+          preorder_message: string
+          is_preorder_only: true
+          is_price_hidden: true
+          price_hidden_label: string
+          custom_url:
+            url: string
+            is_customized: true
+          open_graph_type: product
+          open_graph_title: string
+          open_graph_description: string
+          open_graph_use_meta_description: true
+          open_graph_use_product_name: true
+          open_graph_use_image: true
+          brand_name or brand_id: Common Good
+          gtin: string
+          mpn: string
+          reviews_rating_sum: 3.2
+          reviews_count: 4
+          total_sold: 80
+          custom_fields:
+            - id: 6
+              name: ISBN
+              value: '1234567890123'
+          bulk_pricing_rules:
+            - id: 0
+              quantity_min: 10
+              quantity_max: 50
+              type: price
+              amount: 10
+          images:
+            - image_file: string
+              is_thumbnail: true
+              sort_order: -2147483648
+              description: string
+              image_url: string
+              id: 0
+              product_id: 0
+              url_zoom: string
+              url_standard: string
+              url_thumbnail: string
+              url_tiny: string
+              date_modified: '2019-08-24T14:15:22Z'
+          videos:
+            - title: Writing Great Documentation
+              description: A video about documenation
+              sort_order: 1
+              type: youtube
+              video_id: z3fRu9pkuXE
+              id: 0
+              product_id: 0
+              length: string
       properties:
+        id:
+          type: integer
         name:
           maxLength: 250
           minLength: 1
@@ -23196,10 +23789,10 @@ components:
           type: array
           description: |
             An array of IDs for the categories to which this product belongs. When updating a product, if an array of categories is supplied, all product categories will be overwritten. Does not accept more than 1,000 ID values.
-          items:
-            type: integer
           x-required:
             - post
+          items:
+            type: integer
         brand_id:
           maximum: 1000000000
           minimum: 0
@@ -23280,6 +23873,12 @@ components:
           type: string
           description: |
             A comma-separated list of keywords that can be used to locate the product when searching the store.
+        availability_description:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: |
+            Availability text displayed on the checkout page, under the product title. Tells the customer how long it will normally take to ship this product, such as: 'Usually ships in 24 hours.'
         availability:
           type: string
           description: |
@@ -23288,12 +23887,6 @@ components:
             - available
             - disabled
             - preorder
-        availability_description:
-          maxLength: 255
-          minLength: 0
-          type: string
-          description: |
-            Availability text displayed on the checkout page, under the product title. Tells the customer how long it will normally take to ship this product, such as: 'Usually ships in 24 hours.'
         gift_wrapping_options_type:
           type: string
           description: |
@@ -23467,13 +24060,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/productVideo_Full'
-      description: |-
-        Shared `Product` properties used in:
-        * `POST`
-        * `PUT`
-        * `GET`
-      x-internal: false
-      x-examples: {}
+      required:
+        - name
+        - type
+        - weight
+        - price
     metafield_Put:
       title: metafield_Put
       description: Properties for updating metafields.
@@ -24057,81 +24648,57 @@ components:
     CreateCategories:
       type: array
       items:
-        oneOf:
-          - allOf:
-              - $ref: '#/components/schemas/CategoryUuidData'
-              - $ref: '#/components/schemas/ParentIdCreateData'
-              - $ref: '#/components/schemas/CategoryData'
-          - allOf:
-              - $ref: '#/components/schemas/TreeIdCreateData'
-              - $ref: '#/components/schemas/CategoryData'
+        allOf:
+          - $ref: '#/components/schemas/TreeIdCreateData'
+          - $ref: '#/components/schemas/ParentIdCreateData'
+          - $ref: '#/components/schemas/CategoryData'
       x-tags:
         - Models
+      title: Create Categories
     UpdateCategories:
+      x-tags:
+        - Models
       type: array
       items:
-        oneOf:
-          - allOf:
-              - $ref: '#/components/schemas/CategoryIdUpdateData'
-              - $ref: '#/components/schemas/CategoryUuidData'
-              - $ref: '#/components/schemas/ParentIdUpdateData'
-              - $ref: '#/components/schemas/CategoryData'
-          - allOf:
-              - $ref: '#/components/schemas/CategoryIdUpdateData'
-              - $ref: '#/components/schemas/TreeIdUpdateData'
-              - $ref: '#/components/schemas/CategoryData'
-      x-tags:
-        - Models
+        allOf:
+          - $ref: '#/components/schemas/TreeIdUpdateData'
+          - $ref: '#/components/schemas/CategoryIdUpdateData'
+          - $ref: '#/components/schemas/CategoryUuidData'
+          - $ref: '#/components/schemas/ParentIdUpdateData'
+          - $ref: '#/components/schemas/CategoryData'
     Category:
-      type: object
-      properties:
-        category_uuid:
-          type: string
-          format: uuid
-        category_id:
-          type: integer
-        parent_id:
-          type: integer
-        tree_id:
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        views:
-          type: integer
-        sort_order:
-          type: integer
-        page_title:
-          type: string
-        search_keywords:
-          type: string
-        meta_keywords:
-          type: array
-          items:
-            type: string
-        meta_description:
-          type: string
-        layout_file:
-          type: string
-        is_visible:
-          type: boolean
-        default_product_sort:
-          type: string
-        image_url:
-          type: string
-        url:
-          $ref: '#/components/schemas/Url'
       x-tags:
         - Models
+      title: Category
+      allOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/parent_id'
+        - $ref: '#/components/schemas/name'
+        - $ref: '#/components/schemas/description'
+        - $ref: '#/components/schemas/views'
+        - $ref: '#/components/schemas/sort_order'
+        - $ref: '#/components/schemas/page_title'
+        - $ref: '#/components/schemas/meta_keywords'
+        - $ref: '#/components/schemas/meta_description'
+        - $ref: '#/components/schemas/layout_file'
+        - $ref: '#/components/schemas/image_url'
+        - $ref: '#/components/schemas/is_visible'
+        - $ref: '#/components/schemas/search_keywords'
+        - $ref: '#/components/schemas/default_product_sort'
+        - type: object
+          properties:
+            url:
+              $ref: '#/components/schemas/Url'
+      x-examples: {}
     CategoryUuidData:
       type: object
+      x-tags:
+        - Models
       properties:
         category_uuid:
           type: string
           format: uuid
-      x-tags:
-        - Models
+      title: category_uuid
     CategoryIdUpdateData:
       type: object
       properties:
@@ -24168,44 +24735,46 @@ components:
         - Models
     TreeIdUpdateData:
       type: object
+      x-tags:
+        - Models
       properties:
         tree_id:
           type: integer
-      x-tags:
-        - Models
+      required:
+        - tree_id
     CategoryData:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        views:
-          type: integer
-        sort_order:
-          type: integer
-        page_title:
-          type: string
-        search_keywords:
-          type: string
-        meta_keywords:
-          type: array
-          items:
-            type: string
-        meta_description:
-          type: string
-        layout_file:
-          type: string
-        is_visible:
-          type: boolean
-        default_product_sort:
-          type: string
-        image_url:
-          type: string
-        url:
-          $ref: '#/components/schemas/Url'
       x-tags:
         - Models
+      allOf:
+        - type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            views:
+              type: integer
+            sort_order:
+              type: integer
+            page_title:
+              type: string
+            search_keywords:
+              type: string
+            meta_keywords:
+              type: array
+              items:
+                type: string
+            meta_description:
+              type: string
+            layout_file:
+              type: string
+            is_visible:
+              type: boolean
+            image_url:
+              type: string
+            url:
+              $ref: '#/components/schemas/Url'
+        - $ref: '#/components/schemas/default_product_sort'
     Urls:
       type: array
       items:
@@ -24630,6 +25199,176 @@ components:
               $ref: '#/components/schemas/beta5DetailedErrors'
       x-tags:
         - Models
+    default_product_sort:
+      title: default_product_sort
+      x-stoplight:
+        id: d4p6v45ywcfi3
+      type: object
+      properties:
+        default_product_sort:
+          type: string
+          description: |
+            Determines how the products are sorted on category page load.
+          enum:
+            - use_store_settings
+            - featured
+            - newest
+            - best_selling
+            - alpha_asc
+            - alpha_desc
+            - avg_customer_review
+            - price_asc
+            - price_desc
+    name:
+      title: name
+      x-stoplight:
+        id: pvlld3ivlue8r
+      type: object
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+          description: |-
+            The name displayed for the category. Name is unique with respect to the category's siblings.
+            Required in a POST.
+          example: Bath
+    description:
+      title: description
+      x-stoplight:
+        id: nqse2ss1vdn0t
+      type: object
+      properties:
+        description:
+          type: string
+          description: |
+            The product description, which can include HTML formatting.
+          example: <p>We offer a wide variety of products perfect for relaxing</p>
+    views:
+      title: views
+      x-stoplight:
+        id: 3k376vbqyg3n9
+      type: object
+      properties:
+        views:
+          type: integer
+          description: |
+            Number of views the category has on the storefront.
+          example: 1050
+    sort_order:
+      title: sort_order
+      x-stoplight:
+        id: j0qwto4du42sa
+      type: object
+      properties:
+        sort_order:
+          type: integer
+          description: |
+            Priority this category will be given when included in the menu and category pages. The lower the number, the closer to the top of the results the category will be.
+          example: 3
+    page_title:
+      title: page_title
+      x-stoplight:
+        id: 1uez56zt56fjc
+      type: object
+      properties:
+        page_title:
+          type: string
+          description: |
+            Custom title for the category page. If not defined, the category name will be used as the meta title.
+          example: Bath
+    search_keywords:
+      title: search_keywords
+      x-stoplight:
+        id: fw43b5e97xvkk
+      type: object
+      properties:
+        search_keywords:
+          type: string
+          description: |
+            A comma-separated list of keywords that can be used to locate the category when searching the store.
+    meta_keywords:
+      title: meta_keywords
+      x-stoplight:
+        id: 9ivxctwjh0f7c
+      type: object
+      properties:
+        meta_keywords:
+          type: array
+          description: |
+            Custom meta keywords for the category page. If not defined, the store's default keywords will be used. Must post as an array like: ["awesome","sauce"].
+          items:
+            type: string
+    layout_file:
+      title: layout_file
+      x-stoplight:
+        id: 8ro4opxprrm98
+      type: object
+      properties:
+        layout_file:
+          maxLength: 500
+          minLength: 0
+          type: string
+          description: |
+            A valid layout file. (Please refer to [this article](https://support.bigcommerce.com/articles/Public/Creating-Custom-Template-Files/) on creating category files.) This field is writable only for stores with a Blueprint theme applied.
+          example: category.html
+    is_visible:
+      title: is_visible
+      x-stoplight:
+        id: li0w0wuuw8r0l
+      type: object
+      properties:
+        is_visible:
+          type: boolean
+          description: |
+            Flag to determine whether the product should be displayed to customers browsing the store. If `true`, the category will be displayed. If `false`, the category will be hidden from view.
+    image_url:
+      title: image_url
+      x-stoplight:
+        id: 9e3k4ybx92jno
+      type: object
+      properties:
+        image_url:
+          type: string
+          description: |
+            Image URL used for this category on the storefront. Images can be uploaded via form file post to `/categories/{categoryId}/image`, or by providing a publicly accessible URL in this field.
+          example: 'https://cdn8.bigcommerce.com/s-123456/product_images/d/fakeimage.png'
+          x-url: true
+    meta_description:
+      title: meta_description
+      x-stoplight:
+        id: ku7ekwocukygf
+      type: object
+      properties:
+        meta_description:
+          maxLength: 65535
+          minLength: 0
+          type: string
+          description: |
+            Custom meta description for the category page. If not defined, the store's default meta description will be used.
+    id:
+      title: id
+      x-stoplight:
+        id: 9tc6lltxbddww
+      type: object
+      properties:
+        id:
+          type: integer
+          description: |-
+            Unique ID of the *Category*. Increments sequentially.
+            Read-Only.
+    parent_id:
+      title: parent_id
+      x-stoplight:
+        id: nl8sldnssgu68
+      type: object
+      properties:
+        parent_id:
+          type: integer
+          description: |-
+            The unique numeric ID of the category's parent. This field controls where the category sits in the tree of categories that organize the catalog.
+            Required in a POST if creating a child category.
+          example: 2
   responses:
     BrandCollectionResponse:
       description: ''
@@ -28439,7 +29178,7 @@ components:
                             The video type (a short name of a host site).
                           enum:
                             - youtube
-                      description: Common ProductVideo properties.
+                      description: Common Product Video properties.
                     - type: object
                       properties:
                         id:
@@ -28551,7 +29290,7 @@ components:
                           The video type (a short name of a host site).
                         enum:
                           - youtube
-                    description: Common ProductVideo properties.
+                    description: Common Product Video properties.
                   - type: object
                     properties:
                       id:
