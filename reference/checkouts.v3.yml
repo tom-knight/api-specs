@@ -792,6 +792,7 @@ definitions:
   Checkout:
     title: Checkout
     type: object
+    x-internal: false
     properties:
       id:
         description: ''
@@ -1403,8 +1404,8 @@ definitions:
               type: number
               format: double
             line_item_ids:
-              description: ''
               type: array
+              description: 'It only lists one line item. To display multiple `line_item_ids`, perform a `POST` request to add consignments to the checkout using the same address.'
               items:
                 type: string
       taxes:
@@ -1492,7 +1493,7 @@ definitions:
               text:
                 description: Text of the banner
                 type: string
-    x-internal: false
+    description: ''
   Checkout_Put:
     title: Checkout_Put
     type: object
