@@ -1342,7 +1342,7 @@ components:
                 type: number
                 description: The discounted amount.
         line_item:
-          type: object
+          $ref: '#/components/schemas/LineItem'
         created_time:
           type: string
           format: ISO-8601
@@ -1392,13 +1392,13 @@ components:
     LineItem:
       type: object
       title: Line Item
+      x-internal: false
       properties:
         physical_items:
           type: array
           items:
             allOf:
-              - type: object
-                title: Base Item
+              - title: Base Item
                 properties:
                   id:
                     type: string
@@ -1534,6 +1534,7 @@ components:
                     type: array
                     items:
                       type: object
+                      title: Product Option
                       properties:
                         name:
                           type: string
@@ -1547,16 +1548,16 @@ components:
                         valueId:
                           type: number
                           description: The product option value identifier.
-                      title: Product Option
                 required:
                   - variant_id
                   - product_id
                   - quantity
-              - type: object
-                properties:
+              - properties:
                   is_require_shipping:
                     type: boolean
                   gift_wrapping:
+                    title: Gift Wrapping
+                    type: object
                     properties:
                       name:
                         type: string
@@ -1565,14 +1566,13 @@ components:
                       amount:
                         type: number
                         format: float
-                    title: Gift Wrapping
             title: Item Physical
+            type: object
         digital_items:
           type: array
           items:
             allOf:
-              - type: object
-                title: Base Item
+              - title: Base Item
                 properties:
                   id:
                     type: string
@@ -1708,6 +1708,7 @@ components:
                     type: array
                     items:
                       type: object
+                      title: Product Option
                       properties:
                         name:
                           type: string
@@ -1721,13 +1722,11 @@ components:
                         valueId:
                           type: number
                           description: The product option value identifier.
-                      title: Product Option
                 required:
                   - variant_id
                   - product_id
                   - quantity
-              - type: object
-                properties:
+              - properties:
                   download_file_urls:
                     description: URLs to download all product files.
                     type: array
@@ -1742,15 +1741,12 @@ components:
                     description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
                     type: string
             title: Item Digital
+            type: object
         gift_certificates:
           type: array
           items:
             type: object
-            required:
-              - sender
-              - recipient
-              - amount
-              - theme
+            title: Item Gift Certificate
             properties:
               id:
                 type: string
@@ -1784,7 +1780,11 @@ components:
               message:
                 type: string
                 description: Limited to 200 characters.
-            title: Item Gift Certificate
+            required:
+              - theme
+              - amount
+              - sender
+              - recipient
         virtual_items:
           type: array
           items:
@@ -1810,10 +1810,28 @@ components:
               list_price:
                 type: string
                 description: 'Price of the item. With or without tax, depending on your store’s setup. Optional price override.'
+        custom_items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID of the custom item
+              sku:
+                type: string
+                description: Custom item sku
+              name:
+                type: string
+                description: Item name
+              quantity:
+                type: string
+              list_price:
+                type: string
+                description: 'Price of the item. With or without tax, depending on your store’s setup.'
       required:
         - physical_items
         - digital_items
-      x-internal: false
     ItemGiftCertificate:
       type: object
       required:
