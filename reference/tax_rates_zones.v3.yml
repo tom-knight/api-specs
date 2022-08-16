@@ -39,8 +39,6 @@ paths:
                       $ref: "#/components/schemas/Tax_Zone"
                   meta:
                     type: object
-      security:
-        - BigCommerce_API_Key: []
     put:
       tags:
         - Update Tax Zones
@@ -71,8 +69,6 @@ paths:
                       $ref: "#/components/schemas/Tax_Zone"
                   meta:
                     type: object
-      security:
-        - BigCommerce_API_Key: []
     post:
       tags:
         - Create Tax Zones
@@ -101,8 +97,6 @@ paths:
                       $ref: "#/components/schemas/Tax_Zone"
                   meta:
                     type: object
-      security:
-        - BigCommerce_API_Key: []
     delete:
       tags:
         - Delete Tax Zones
@@ -124,8 +118,6 @@ paths:
       responses:
         "204":
           description: No Content
-      security:
-        - BigCommerce_API_Key: []
   /stores/{store_hash}/v3/tax/rates:
     get:
       tags:
@@ -158,8 +150,6 @@ paths:
                       $ref: "#/components/schemas/Tax_Rate"
                   meta:
                     type: string
-      security:
-        - BigCommerce_API_Key: []
     put:
       tags:
         - Update Tax Rates
@@ -190,8 +180,6 @@ paths:
                       $ref: "#/components/schemas/Tax_Rate"
                   meta:
                     type: object
-      security:
-        - BigCommerce_API_Key: []
     post:
       tags:
         - Create Tax Rates
@@ -221,8 +209,6 @@ paths:
                       $ref: "#/components/schemas/Tax_Rate"
                   meta:
                     type: object
-      security:
-        - BigCommerce_API_Key: []
     delete:
       tags:
         - Delete Tax Rates  
@@ -243,8 +229,6 @@ paths:
       responses:
         "204":
           description: No Content
-      security:
-        - BigCommerce_API_Key: []
 components:
   requestBodies:
     Tax_RateArray:
@@ -264,10 +248,33 @@ components:
               $ref: "#/components/schemas/Tax_Zone"
       required: true
   securitySchemes:
-    BigCommerce_API_Key:
+    API_Key:
       type: apiKey
       name: X-Auth-Token
       in: header
+      description: >-
+        ### OAuth Scopes
+
+        |  **UI Name** | **Permission** | **Parameter** |
+
+        | --- | --- | --- |
+
+        |  Information & Settings | modify | `store_v2_information` |
+
+        |  Information & Settings | read-only | `store_v2_information_read_only` |
+
+
+        ### Headers
+
+
+        |Header|Parameter|Description|
+
+        |-|-|-|
+
+        |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+
+
+        For more information on Authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
   schemas:
     Tax_Zone:
       type: object
@@ -374,6 +381,8 @@ components:
         - tax_zone_id
         - name
         - class_rates
+security:
+  - API_Key: []
 tags:
   - name: Get Tax Zones
   - name: Update Tax Zones
