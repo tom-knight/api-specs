@@ -6,7 +6,7 @@ info:
 servers:
   - url: api.bigcommerce.com
 paths:
-  /tax/zones:
+  /stores/{store_hash}/v3/tax/zones:
     get:
       tags: 
         - Get Tax Zones
@@ -15,6 +15,11 @@ paths:
         provided, or all tax zones defined on the store.
       operationId: get-tax-zones
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
         - name: id:in
           in: query
           example: 12,34,56
@@ -39,6 +44,12 @@ paths:
     put:
       tags:
         - Update Tax Zones
+      parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
       summary: Update Tax Zones
       description: Update one or more tax zones. Only the Tax Zone ID field is required,
         all other fields are optional - fields unspecified by the request will
@@ -65,6 +76,12 @@ paths:
     post:
       tags:
         - Create Tax Zones
+      parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
       summary: Create Tax Zones
       description: Create one or more tax zones.
       operationId: create-tax-zones
@@ -94,6 +111,11 @@ paths:
         associated tax rates.
       operationId: delete-tax-zones
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
         - name: id:in
           in: query
           example: 12,34,56
@@ -104,7 +126,7 @@ paths:
           description: No Content
       security:
         - BigCommerce_API_Key: []
-  /tax/rates:
+  /stores/{store_hash}/v3/tax/rates:
     get:
       tags:
         - Get Tax Rates
@@ -112,6 +134,11 @@ paths:
       description: Retrieve a list of tax rates.
       operationId: get-tax-rates
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
         - name: tax_zone_id:in
           in: query
           example: 12,34,56
@@ -136,6 +163,12 @@ paths:
     put:
       tags:
         - Update Tax Rates
+      parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
       summary: Update Tax Rates
       description: Update one or more tax rates. Only the Tax Rate ID field is required,
         all other fields are optional - fields unspecified by the request will
@@ -162,6 +195,12 @@ paths:
     post:
       tags:
         - Create Tax Rates
+      parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
       summary: Create Tax Rates
       description: Create one or more tax rates. Tax Rates must have a Tax Zone ID
         association.
@@ -187,6 +226,12 @@ paths:
     delete:
       tags:
         - Delete Tax Rates
+      parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
       summary: Delete Tax Rates
       description: Delete one or more tax rates.
       operationId: delete-tax-rates
