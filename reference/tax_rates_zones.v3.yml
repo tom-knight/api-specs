@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Tax Rates & Zones
-  version: master
+  version: ""
   description: Tax Rates and Zones V3 API 
 servers:
   - url: api.bigcommerce.com
