@@ -2,9 +2,14 @@ openapi: 3.0.0
 info:
   title: Tax Rates & Zones
   version: master
+  description: Tax Rates and Zones V3 API 
+servers:
+  - url: api.bigcommerce.com
 paths:
   /tax/zones:
     get:
+      tags: 
+        - Get Tax Zones
       summary: Get Tax Zones
       description: Retrieves a selection of tax zones, when a list of Tax Zone IDs are
         provided, or all tax zones defined on the store.
@@ -32,6 +37,8 @@ paths:
       security:
         - BigCommerce_API_Key: []
     put:
+      tags:
+        - Update Tax Zones
       summary: Update Tax Zones
       description: Update one or more tax zones. Only the Tax Zone ID field is required,
         all other fields are optional - fields unspecified by the request will
@@ -56,6 +63,8 @@ paths:
       security:
         - BigCommerce_API_Key: []
     post:
+      tags:
+        - Create Tax Zones
       summary: Create Tax Zones
       description: Create one or more tax zones.
       operationId: create-tax-zones
@@ -78,6 +87,8 @@ paths:
       security:
         - BigCommerce_API_Key: []
     delete:
+      tags:
+        - Delete Tax Zones
       summary: Delete Tax Zones
       description: Delete one or more tax zones. Deleting a tax zone will also remove all
         associated tax rates.
@@ -95,6 +106,8 @@ paths:
         - BigCommerce_API_Key: []
   /tax/rates:
     get:
+      tags:
+        - Get Tax Rates
       summary: Get Tax Rates
       description: Retrieve a list of tax rates.
       operationId: get-tax-rates
@@ -121,6 +134,8 @@ paths:
       security:
         - BigCommerce_API_Key: []
     put:
+      tags:
+        - Update Tax Rates
       summary: Update Tax Rates
       description: Update one or more tax rates. Only the Tax Rate ID field is required,
         all other fields are optional - fields unspecified by the request will
@@ -145,6 +160,8 @@ paths:
       security:
         - BigCommerce_API_Key: []
     post:
+      tags:
+        - Create Tax Rates
       summary: Create Tax Rates
       description: Create one or more tax rates. Tax Rates must have a Tax Zone ID
         association.
@@ -168,6 +185,8 @@ paths:
       security:
         - BigCommerce_API_Key: []
     delete:
+      tags:
+        - Delete Tax Rates
       summary: Delete Tax Rates
       description: Delete one or more tax rates.
       operationId: delete-tax-rates
@@ -265,12 +284,12 @@ components:
                     type: array
                     items:
                       type: string
-                    example: "'NSW','QLD'"
+                    example: ["NSW","QLD"]
                   postal_codes:
                     type: array
                     items:
                       type: string
-                    example: 2234,2170
+                    example: ["2234","2170"]
     Tax_Rate:
       type: object
       properties:
@@ -311,3 +330,12 @@ components:
         - tax_zone_id
         - name
         - class_rates
+tags:
+  - name: Get Tax Zones
+  - name: Update Tax Zones
+  - name: Create Tax Zones
+  - name: Delete Tax Zones
+  - name: Get Tax Rates
+  - name: Create Tax Rates
+  - name: Update Tax Rates
+  - name: Delete Tax Rates
