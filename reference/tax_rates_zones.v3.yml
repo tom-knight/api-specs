@@ -225,17 +225,16 @@ paths:
         - BigCommerce_API_Key: []
     delete:
       tags:
-        - Delete Tax Rates
+        - Delete Tax Rates  
+      summary: Delete Tax Rates
+      description: Delete one or more tax rates.
+      operationId: delete-tax-rates
       parameters:
         - name: store_hash
           in: path
           required: true
           schema:
             type: string
-      summary: Delete Tax Rates
-      description: Delete one or more tax rates.
-      operationId: delete-tax-rates
-      parameters:
         - name: id:in
           in: query
           example: 12,34,56
