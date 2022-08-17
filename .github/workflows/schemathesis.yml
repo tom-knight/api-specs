@@ -9,12 +9,11 @@ jobs:
     env:
       # A publicly available API schema location
       API_SCHEMA: '../../reference/subscribers.v3.yml'
+      X-AUTH-TOKEN: ${{ secrets.X_AUTH_TOKEN }}
 
     steps:
       
       # Runs positive Schemathesis tests with all checks enabled
-      - env:
-          X-AUTH-TOKEN: ${{ secrets.X_AUTH_TOKEN }}
-        run: st run -H X-Auth-Token:"$X-Auth-Token" $API_SCHEMA --checks=all
+      - run: st run -H X-Auth-Token:$X-AUTH-TOKEN }} $API_SCHEMA --checks=all
 
       # comment to trigger test
