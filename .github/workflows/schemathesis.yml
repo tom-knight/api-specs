@@ -14,6 +14,6 @@ jobs:
     steps:
       
       # Runs positive Schemathesis tests with all checks enabled
-      - run: st run -H "X-Auth-Token:$X_AUTH" --base-url https://api.bigcommerce.com $API_SCHEMA --checks=all
+      - run: st run -H "X-Auth-Token: $X_AUTH" --base-url https://api.bigcommerce.com $API_SCHEMA --checks=all
 
       # comment to trigger test
