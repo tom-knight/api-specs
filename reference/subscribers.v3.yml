@@ -20,7 +20,7 @@ info:
     ### Example
 
     ```http
-    GET /stores/{store_hash}/v3/catalog/summary
+    GET /stores/29iql3rwa6/v3/catalog/summary
     host: api.bigcommerce.com
     Content-Type: application/json
     X-Auth-Token: {access_token}
@@ -42,7 +42,7 @@ produces:
 consumes:
   - application/json
 paths:
-  '/stores/{store_hash}/v3/customers/subscribers':
+  '/stores/29iql3rwa6/v3/customers/subscribers':
     get:
       description: Returns a list of *Subscribers*. Optional filter parameters can be passed in.
       operationId: getSubscribers
@@ -282,7 +282,7 @@ paths:
         name: store_hash
         in: path
         required: true
-  '/stores/{store_hash}/v3/customers/subscribers/{subscriber_id}':
+  '/stores/29iql3rwa6/v3/customers/subscribers/{subscriber_id}':
     parameters:
       - name: subscriber_id
         in: path
@@ -898,7 +898,7 @@ securityDefinitions:
       ### Example
 
       ```http
-      GET /stores/{store_hash}/v3/catalog/summary
+      GET /stores/29iql3rwa6/v3/catalog/summary
       host: api.bigcommerce.com
       Content-Type: application/json
       X-Auth-Token: {access_token}
