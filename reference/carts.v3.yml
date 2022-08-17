@@ -1520,7 +1520,7 @@ components:
                     description: The total value of all coupons applied to this item.
                   original_price:
                     type: number
-                    description: 'An item’s original price is the same as the product default price in the admin panel.'
+                    description: An item’s original price is the same as the product default price in the admin panel.
                   list_price:
                     type: number
                     description: 'The net item price before discounts and coupons. BigCommerce derives an item’s list price from the product default price or, if applicable, the sale price configured in the admin panel.'
@@ -1551,7 +1551,8 @@ components:
                           description: 'The product option value. For example, Red or Medium'
                         valueId:
                           type: number
-                          description: The product option value identifier.
+                          description: The product option value identifier in number format.
+                          example: 128
                 required:
                   - variant_id
                   - product_id
@@ -1697,7 +1698,7 @@ components:
                     description: The total value of all coupons applied to this item.
                   original_price:
                     type: number
-                    description: 'An item’s original price is the same as the product default price in the admin panel.'
+                    description: An item’s original price is the same as the product default price in the admin panel.
                   list_price:
                     type: number
                     description: 'The net item price before discounts and coupons. BigCommerce derives an item’s list price from the product default price or, if applicable, the sale price configured in the admin panel.'
@@ -1728,7 +1729,8 @@ components:
                           description: 'The product option value. For example, Red or Medium'
                         valueId:
                           type: number
-                          description: The product option value identifier.
+                          description: The product option value identifier in number format.
+                          example: 128
                 required:
                   - variant_id
                   - product_id
@@ -1745,7 +1747,7 @@ components:
                     type: string
                     format: url
                   download_size:
-                    description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
+                    description: 'Specifies the combined download size of all files, in human-readable style, for example: 30MB.'
                     type: string
             title: Item Digital
             type: object
@@ -1786,7 +1788,7 @@ components:
                     type: string
               message:
                 type: string
-                description: Limited to 200 characters.
+                description: The message included in the gift certificate is limited to 200 characters.
             required:
               - theme
               - amount
@@ -1816,7 +1818,7 @@ components:
                 type: string
               list_price:
                 type: string
-                description: 'Price of the item. With or without tax, depending on your store’s setup. Optional price override.'
+                description: 'Specifies the price of the item. This value can include or exclude tax, depending on the setup of your store.'
         custom_items:
           type: array
           items:
@@ -1827,7 +1829,7 @@ components:
                 description: ID of the custom item
               sku:
                 type: string
-                description: Custom item sku
+                description: SKU of the custom item.
               name:
                 type: string
                 description: Item name
@@ -1835,7 +1837,7 @@ components:
                 type: string
               list_price:
                 type: string
-                description: 'Price of the item. With or without tax, depending on your store’s setup.'
+                description: 'Specifies the price of the item. This value can include or exclude tax, depending on the setup of your store.'
       required:
         - physical_items
         - digital_items
@@ -2014,7 +2016,7 @@ components:
               description: The total value of all coupons applied to this item.
             original_price:
               type: number
-              description: 'An item’s original price is the same as the product default price in the admin panel.'
+              description: An item’s original price is the same as the product default price in the admin panel.
             list_price:
               type: number
               description: 'The net item price before discounts and coupons. BigCommerce derives an item’s list price from the product default price or, if applicable, the sale price configured in the admin panel.'
@@ -2044,7 +2046,8 @@ components:
                     description: 'The product option value. For example, Red or Medium'
                   valueId:
                     type: number
-                    description: The product option value identifier.
+                    description: The product option value identifier in number format.
+                    example: 128
                 title: Product Option
           required:
             - variant_id
@@ -2191,7 +2194,7 @@ components:
               description: The total value of all coupons applied to this item.
             original_price:
               type: number
-              description: 'An item’s original price is the same as the product default price in the admin panel.'
+              description: An item’s original price is the same as the product default price in the admin panel.
             list_price:
               type: number
               description: 'The net item price before discounts and coupons. BigCommerce derives an item’s list price from the product default price or, if applicable, the sale price configured in the admin panel.'
@@ -2221,7 +2224,8 @@ components:
                     description: 'The product option value. For example, Red or Medium'
                   valueId:
                     type: number
-                    description: The product option value identifier.
+                    description: The product option value identifier in number format.
+                    example: 128
                 title: Product Option
           required:
             - variant_id
@@ -2366,7 +2370,7 @@ components:
           description: The total value of all coupons applied to this item.
         original_price:
           type: number
-          description: 'An item’s original price is the same as the product default price in the admin panel.'
+          description: An item’s original price is the same as the product default price in the admin panel.
         list_price:
           type: number
           description: 'The net item price before discounts and coupons. BigCommerce derives an item’s list price from the product default price or, if applicable, the sale price configured in the admin panel.'
@@ -2396,7 +2400,8 @@ components:
                 description: 'The product option value. For example, Red or Medium'
               valueId:
                 type: number
-                description: The product option value identifier.
+                description: The product option value identifier in number format.
+                example: 128
             title: Product Option
       required:
         - variant_id
@@ -2405,6 +2410,8 @@ components:
       x-internal: false
     ProductOption:
       type: object
+      title: Product Option
+      x-internal: false
       properties:
         name:
           type: string
@@ -2417,9 +2424,8 @@ components:
           description: 'The product option value. For example, Red or Medium'
         valueId:
           type: number
-          description: The product option value identifier.
-      title: Product Option
-      x-internal: false
+          description: The product option value identifier in number format.
+          example: 128
     AppliedCoupon:
       title: Applied Coupon
       type: object
