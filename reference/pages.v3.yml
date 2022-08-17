@@ -9,7 +9,7 @@ tags:
 security:
   - X-Auth-Token: []
 paths:
-  '/stores/{store_hash}/v3/content/pages':
+  '/stores/29iql3rwa6/v3/content/pages':
     get:
       operationId: content-pages-get
       tags:
@@ -332,14 +332,7 @@ paths:
           description: 'Request deletion of multiple pages by passing a comma-separated string of corresponding page IDs. Supports bulk operations. '
           required: true
       summary: Delete Pages
-    parameters:
-      - schema:
-          type: string
-        name: store_hash
-        in: path
-        required: true
-        description: The merchant's store hash. Also called a store id.
-  '/stores/{store_hash}/v3/content/pages/{pageId}':
+  '/stores/29iql3rwa6/v3/content/pages/{pageId}':
     get:
       operationId: content-page-get
       tags:
@@ -599,12 +592,6 @@ paths:
       parameters: []
       summary: Delete a Page
     parameters:
-      - schema:
-          type: string
-        name: store_hash
-        in: path
-        required: true
-        description: The merchant's store hash. Also called a store id.
       - schema:
           type: string
         name: pageId
