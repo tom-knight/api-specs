@@ -96,6 +96,12 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '422':
           description: Invalid input. Reasons for failure include passing supported parameters with values that have the incorrect datatype.
           content:
