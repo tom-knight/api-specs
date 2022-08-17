@@ -12,7 +12,7 @@ jobs:
 
     steps:
       # Runs positive Schemathesis tests with all checks enabled
-      - env:
+      - with:
          X_AUTH: ${{ secrets.X_AUTH_TOKEN }}      
         run: st run --header X-Auth-Token:$X_AUTH --base-url https://api.bigcommerce.com $API_SCHEMA --checks=all
 
