@@ -13,3 +13,5 @@ jobs:
     steps:
       # Runs positive Schemathesis tests with all checks enabled
       - run: st run $API_SCHEMA --checks=all
+
+      # comment to trigger test
