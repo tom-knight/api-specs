@@ -1,0 +1,15 @@
+name: Run Schemathesis on Pull Requests
+on: [pull_request]
+jobs:
+
+  api-tests:
+    runs-on: ubuntu-20.04
+    container: schemathesis/schemathesis:stable
+
+    env:
+      # A publicly available API schema location
+      API_SCHEMA: 'https://example.schemathesis.io/openapi.json'
+
+    steps:
+      # Runs positive Schemathesis tests with all checks enabled
+      - run: st run $API_SCHEMA --checks=all
