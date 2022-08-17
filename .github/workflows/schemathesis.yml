@@ -9,11 +9,10 @@ jobs:
     env:
       # A publicly available API schema location      
       API_SCHEMA: 'https://raw.githubusercontent.com/bigcommerce/api-specs/github-action_schemathesis-test-01/reference/pages.v3.yml'      
-      X_AUTH: ${{ secrets.X_AUTH_TOKEN }}      
-      AUTH: Mona
+      X_AUTH: ${{ secrets.X_AUTH_TOKEN }}
 
     steps:
       # Runs positive Schemathesis tests with all checks enabled
-      - run: st run --header X-Auth-Token:$AUTH --base-url https://api.bigcommerce.com $API_SCHEMA --checks=all
+      - run: st run --header $X-AUTH --base-url https://api.bigcommerce.com $API_SCHEMA --checks=all
 
       # comment to trigger test
