@@ -1,18 +1,17 @@
 openapi: 3.0.0
 info:
   title: Tax Rates & Zones
-  version: ""
-  description: Manage tax Rates and zones 
+  version: ''
+  description: Manage tax Rates and zones
 servers:
   - url: api.bigcommerce.com
 paths:
-  /stores/{store_hash}/v3/tax/zones:
+  '/stores/{store_hash}/v3/tax/zones':
     get:
-      tags: 
+      tags:
         - Tax Zones
       summary: Get Tax Zones
-      description: Retrieves a selection of tax zones, when a list of Tax Zone IDs are
-        provided, or all tax zones defined on the store.
+      description: 'Retrieves a selection of tax zones, when a list of Tax Zone IDs are provided, or all tax zones defined on the store.'
       operationId: get-tax-zones
       parameters:
         - name: store_hash
@@ -20,23 +19,23 @@ paths:
           required: true
           schema:
             type: string
-        - name: id:in
+        - name: 'id:in'
           in: query
-          example: 12,34,56
+          example: '12,34,56'
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: OK
           content:
-            "*/*":
+            '*/*':
               schema:
                 type: object
                 properties:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Tax_Zone"
+                      $ref: '#/components/schemas/Tax_Zone'
                   meta:
                     type: object
     put:
@@ -49,24 +48,22 @@ paths:
           schema:
             type: string
       summary: Update Tax Zones
-      description: Update one or more tax zones. Only the Tax Zone ID field is required,
-        all other fields are optional - fields unspecified by the request will
-        retain their current state.
+      description: 'Update one or more tax zones. Only the Tax Zone ID field is required, all other fields are optional - fields unspecified by the request will retain their current state.'
       operationId: update-tax-zones
       requestBody:
-        $ref: "#/components/requestBodies/Tax_ZoneArray"
+        $ref: '#/components/requestBodies/Tax_ZoneArray'
       responses:
-        "200":
+        '200':
           description: OK
           content:
-            "*/*":
+            '*/*':
               schema:
                 type: object
                 properties:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Tax_Zone"
+                      $ref: '#/components/schemas/Tax_Zone'
                   meta:
                     type: object
     post:
@@ -82,27 +79,26 @@ paths:
       description: Create one or more tax zones.
       operationId: create-tax-zones
       requestBody:
-        $ref: "#/components/requestBodies/Tax_ZoneArray"
+        $ref: '#/components/requestBodies/Tax_ZoneArray'
       responses:
-        "200":
+        '200':
           description: OK
           content:
-            "*/*":
+            '*/*':
               schema:
                 type: object
                 properties:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Tax_Zone"
+                      $ref: '#/components/schemas/Tax_Zone'
                   meta:
                     type: object
     delete:
       tags:
         - Tax Zones
       summary: Delete Tax Zones
-      description: Delete one or more tax zones. Deleting a tax zone will also remove all
-        associated tax rates.
+      description: Delete one or more tax zones. Deleting a tax zone will also remove all associated tax rates.
       operationId: delete-tax-zones
       parameters:
         - name: store_hash
@@ -110,15 +106,15 @@ paths:
           required: true
           schema:
             type: string
-        - name: id:in
+        - name: 'id:in'
           in: query
-          example: 12,34,56
+          example: '12,34,56'
           schema:
             type: string
       responses:
-        "204":
+        '204':
           description: No Content
-  /stores/{store_hash}/v3/tax/rates:
+  '/stores/{store_hash}/v3/tax/rates':
     get:
       tags:
         - Tax Rates
@@ -131,23 +127,23 @@ paths:
           required: true
           schema:
             type: string
-        - name: tax_zone_id:in
+        - name: 'tax_zone_id:in'
           in: query
-          example: 12,34,56
+          example: '12,34,56'
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: OK
           content:
-            "*/*":
+            '*/*':
               schema:
                 type: object
                 properties:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Tax_Rate"
+                      $ref: '#/components/schemas/Tax_Rate'
                   meta:
                     type: string
     put:
@@ -160,24 +156,22 @@ paths:
           schema:
             type: string
       summary: Update Tax Rates
-      description: Update one or more tax rates. Only the Tax Rate ID field is required,
-        all other fields are optional - fields unspecified by the request will
-        retain their current state.
+      description: 'Update one or more tax rates. Only the Tax Rate ID field is required, all other fields are optional - fields unspecified by the request will retain their current state.'
       operationId: update-tax-rates
       requestBody:
-        $ref: "#/components/requestBodies/Tax_RateArray"
+        $ref: '#/components/requestBodies/Tax_RateArray'
       responses:
-        "200":
+        '200':
           description: OK
           content:
-            "*/*":
+            '*/*':
               schema:
                 type: object
                 properties:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Tax_Rate"
+                      $ref: '#/components/schemas/Tax_Rate'
                   meta:
                     type: object
     post:
@@ -190,28 +184,27 @@ paths:
           schema:
             type: string
       summary: Create Tax Rates
-      description: Create one or more tax rates. Tax Rates must have a Tax Zone ID
-        association.
+      description: Create one or more tax rates. Tax Rates must have a Tax Zone ID association.
       operationId: create-tax-rates
       requestBody:
-        $ref: "#/components/requestBodies/Tax_RateArray"
+        $ref: '#/components/requestBodies/Tax_RateArray'
       responses:
-        "200":
+        '200':
           description: OK
           content:
-            "*/*":
+            '*/*':
               schema:
                 type: object
                 properties:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Tax_Rate"
+                      $ref: '#/components/schemas/Tax_Rate'
                   meta:
                     type: object
     delete:
       tags:
-        - Tax Rates  
+        - Tax Rates
       summary: Delete Tax Rates
       description: Delete one or more tax rates.
       operationId: delete-tax-rates
@@ -221,13 +214,13 @@ paths:
           required: true
           schema:
             type: string
-        - name: id:in
+        - name: 'id:in'
           in: query
-          example: 12,34,56
+          example: '12,34,56'
           schema:
             type: string
       responses:
-        "204":
+        '204':
           description: No Content
 components:
   requestBodies:
@@ -237,7 +230,7 @@ components:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/Tax_Rate"
+              $ref: '#/components/schemas/Tax_Rate'
       required: true
     Tax_ZoneArray:
       content:
@@ -245,34 +238,25 @@ components:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/Tax_Zone"
+              $ref: '#/components/schemas/Tax_Zone'
       required: true
   securitySchemes:
     API_Key:
       type: apiKey
       name: X-Auth-Token
       in: header
-      description: >-
+      description: |-
         ### OAuth Scopes
-
         |  **UI Name** | **Permission** | **Parameter** |
-
         | --- | --- | --- |
-
         |  Information & Settings | modify | `store_v2_information` |
-
         |  Information & Settings | read-only | `store_v2_information_read_only` |
-
 
         ### Headers
 
-
         |Header|Parameter|Description|
-
         |-|-|-|
-
         |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
-
 
         For more information on Authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
   schemas:
@@ -281,41 +265,30 @@ components:
       properties:
         id:
           type: integer
-          description: Internal identifier used for update and delete operations.
+          description: 'Tax Zone ID. Internal identifier used to get, update, or delete a specific tax zone.'
         name:
           type: string
-          description: The human-readable name for this tax zone. Displayed in the
-            merchant's control panel.
+          description: The human-readable name for this tax zone. Displayed in the merchant's control panel.
         enabled:
           type: boolean
-          description: Only enabled zones will be considered for tax operations.
+          description: Indicates whether a tax zone is enabled. Only enabled zones will be considered for tax operations.
           default: true
         price_display_settings:
           type: object
-          description: Settings that describe how prices are displayed to shoppers that
-            have been matched with this tax zone.
+          description: Settings that describe how a store displays prices to shoppers that have been matched with this tax zone.
           properties:
             show_inclusive:
               type: boolean
-              description: Whether to show prices as tax inclusive or tax exclusive to
-                shoppers matched with this tax zone.
+              description: Indicates whether to show prices as tax inclusive or tax exclusive to shoppers matched with this tax zone.
             show_both_on_detail_view:
               type: boolean
-              description: Whether to show both tax inclusive and tax exclusive prices to
-                shoppers matched with this tax zone, when viewing product
-                detail.
+              description: Indicates whether to show both tax inclusive and tax exclusive prices when viewing product detail. This applies to shoppers matched with this tax zone.
             show_both_on_list_view:
               type: boolean
-              description: Whether to show both tax inclusive and tax exclusive prices to
-                shoppers matched with this tax zone, when viewing a list of
-                products.
+              description: Indicates whether to show both tax inclusive and tax exclusive prices when viewing a list of products. This applies to shoppers matched with this tax zone.
         shopper_target_settings:
           type: object
-          description: Settings that describe which shoppers will be targetted by this tax
-            zone. A shopper will be matched with the most appropriate target.
-            The default tax zone does not have any shopper target settings as
-            this zone applies to all shoppers that are unable to be matched with
-            another tax zone.
+          description: Settings that describe which shoppers match with this tax zone. A shopper will be matched with the most appropriate target. The default tax zone does not have any shopper target settings as this zone applies to all shoppers that are unable to be matched with another tax zone.
           properties:
             customer_groups:
               type: array
@@ -331,16 +304,22 @@ components:
                   country_code:
                     type: string
                     example: AU
+                    description: 'Two-letter ISO 3166-1 country code  '
                   subdivision_codes:
                     type: array
+                    example:
+                      - NSW
+                      - QLD
+                    description: 'Three-letter ISO 3166-2 subdivision code  '
                     items:
                       type: string
-                    example: ["NSW","QLD"]
                   postal_codes:
                     type: array
+                    example:
+                      - '2234'
+                      - '2170'
                     items:
                       type: string
-                    example: ["2234","2170"]
     Tax_Rate:
       type: object
       properties:
@@ -352,21 +331,18 @@ components:
           description: Tax rates must be associated to a tax zone.
         name:
           type: string
-          description: The human-readable name for this tax zone. Displayed in the
-            merchant's control panel and will be displayed to shoppers,
-            depending on store tax settings.
+          description: 'The human-readable name for this tax zone. Displayed in the merchant''s control panel and will be displayed to shoppers, depending on store tax settings.'
         enabled:
           type: boolean
           description: Only enabled rates will be considered for tax operations.
           default: true
         priority:
           type: integer
-          description: Allows for compounding tax rates, common in certain jurisdictions.
+          description: 'Allows for compounding tax rates, common in certain jurisdictions.'
           default: 1
         class_rates:
           type: array
-          description: Each tax class defined on a store must be assigned a tax rate. There
-            will always be at least one tax class defined on a store.
+          description: Each tax class defined on a store must be assigned a tax rate. There will always be at least one tax class defined on a store.
           items:
             type: object
             properties:
@@ -375,8 +351,7 @@ components:
                 description: The tax rate that will be applied to the item.
               tax_class_id:
                 type: integer
-                description: Each rate must be associated to a tax class. The rate will
-                  apply to all items associated with this tax class.
+                description: Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
       required:
         - tax_zone_id
         - name
