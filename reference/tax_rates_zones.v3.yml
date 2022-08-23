@@ -79,7 +79,7 @@ paths:
       description: Create one or more tax zones.
       operationId: create-tax-zones
       requestBody:
-        $ref: '#/components/requestBodies/Tax_ZoneArray'
+        $ref: '#/components/requestBodies/Tax_ZoneArrayPOST'
       responses:
         '200':
           description: OK
@@ -187,7 +187,7 @@ paths:
       description: Create one or more tax rates. Tax Rates must have a Tax Zone ID association.
       operationId: create-tax-rates
       requestBody:
-        $ref: '#/components/requestBodies/Tax_RateArray'
+        $ref: '#/components/requestBodies/Tax_RateArrayPOST'
       responses:
         '200':
           description: OK
@@ -232,6 +232,14 @@ components:
             items:
               $ref: '#/components/schemas/Tax_Rate'
       required: true
+    Tax_RateArrayPOST:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Tax_RatePOST'
+      required: true
     Tax_ZoneArray:
       content:
         application/json:
@@ -239,6 +247,14 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Tax_Zone'
+      required: true
+    Tax_ZoneArrayPOST:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Tax_ZonePOST'
       required: true
   securitySchemes:
     API_Key:
@@ -320,12 +336,102 @@ components:
                       - '2170'
                     items:
                       type: string
+    Tax_ZonePOST:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The human-readable name for this tax zone. Displayed in the merchant's control panel.
+        enabled:
+          type: boolean
+          description: Indicates whether a tax zone is enabled. Only enabled zones will be considered for tax operations.
+          default: true
+        price_display_settings:
+          type: object
+          description: Settings that describe how a store displays prices to shoppers that have been matched with this tax zone.
+          properties:
+            show_inclusive:
+              type: boolean
+              description: Indicates whether to show prices as tax inclusive or tax exclusive to shoppers matched with this tax zone.
+            show_both_on_detail_view:
+              type: boolean
+              description: Indicates whether to show both tax inclusive and tax exclusive prices when viewing product detail (e.g. product pages). This applies to shoppers matched with this tax zone.
+            show_both_on_list_view:
+              type: boolean
+              description: Indicates whether to show both tax inclusive and tax exclusive prices when viewing a list of products (e.g. category and brand pages). This applies to shoppers matched with this tax zone.
+        shopper_target_settings:
+          type: object
+          description: Settings that describe which shoppers match with this tax zone. A shopper will be matched with the most appropriate target. The default tax zone does not have any shopper target settings as this zone applies to all shoppers that are unable to be matched with another tax zone.
+          properties:
+            customer_groups:
+              type: array
+              description: A tax zone may target shoppers in one or more customer groups.
+              items:
+                type: integer
+            locations:
+              type: array
+              description: A tax zone may target shoppers in one or more locations.
+              items:
+                type: object
+                properties:
+                  country_code:
+                    type: string
+                    example: AU
+                    description: 'Two-letter ISO 3166-1 country code  '
+                  subdivision_codes:
+                    type: array
+                    example:
+                      - NSW
+                      - QLD
+                    description: 'Three-letter ISO 3166-2 subdivision code  '
+                    items:
+                      type: string
+                  postal_codes:
+                    type: array
+                    example:
+                      - '2234'
+                      - '2170'
+                    items:
+                      type: string
     Tax_Rate:
       type: object
       properties:
         id:
           type: integer
           description: Tax Rate ID. Internal identifier to update and delete a specific tax rate.
+        tax_zone_id:
+          type: integer
+          description: ID of an associated tax zone. Tax rates must be associated to a tax zone.
+        name:
+          type: string
+          description: 'The human-readable name for this tax zone. Displayed to merchant in the control panel and to shoppers, depending on store tax settings.'
+        enabled:
+          type: boolean
+          description: Indicates whether a tax rate is enabled. Only enabled rates will be considered for tax operations.
+          default: true
+        priority:
+          type: integer
+          description: 'Allows for compounding tax rates, common in certain jurisdictions.'
+          default: 1
+        class_rates:
+          type: array
+          description: Tax rates for tax classes. Each tax class defined on a store must be assigned a tax rate. There will always be at least one tax class defined on a store.
+          items:
+            type: object
+            properties:
+              rate:
+                type: number
+                description: The tax rate that will be applied to the items in a tax class.
+              tax_class_id:
+                type: integer
+                description: ID of a tax class. Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
+      required:
+        - tax_zone_id
+        - name
+        - class_rates
+    Tax_RatePOST:
+      type: object
+      properties:
         tax_zone_id:
           type: integer
           description: ID of an associated tax zone. Tax rates must be associated to a tax zone.
