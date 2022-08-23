@@ -325,16 +325,16 @@ components:
       properties:
         id:
           type: integer
-          description: Internal identifier used for update and delete operations.
+          description: Tax Rate ID. Internal identifier to update and delete a specific tax rate.
         tax_zone_id:
           type: integer
-          description: Tax rates must be associated to a tax zone.
+          description: ID of an associated tax zone. Tax rates must be associated to a tax zone.
         name:
           type: string
-          description: 'The human-readable name for this tax zone. Displayed in the merchant''s control panel and will be displayed to shoppers, depending on store tax settings.'
+          description: 'The human-readable name for this tax zone. Displayed to merchant in the control panel and to shoppers, depending on store tax settings.'
         enabled:
           type: boolean
-          description: Only enabled rates will be considered for tax operations.
+          description: Indicates whether a tax rate is enabled. Only enabled rates will be considered for tax operations.
           default: true
         priority:
           type: integer
@@ -342,16 +342,16 @@ components:
           default: 1
         class_rates:
           type: array
-          description: Each tax class defined on a store must be assigned a tax rate. There will always be at least one tax class defined on a store.
+          description: Tax rates for tax classes. Each tax class defined on a store must be assigned a tax rate. There will always be at least one tax class defined on a store.
           items:
             type: object
             properties:
               rate:
                 type: number
-                description: The tax rate that will be applied to the item.
+                description: The tax rate that will be applied to the items in a tax class.
               tax_class_id:
                 type: integer
-                description: Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
+                description: ID of a tax class. Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
       required:
         - tax_zone_id
         - name
