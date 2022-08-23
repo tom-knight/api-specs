@@ -885,12 +885,12 @@ paths:
       operationId: getChannelCartSettings
     put:
       summary: Update Channel Cart Settings
-      description: Update the per-channel overrides for the cart settings of a store.
+      description: Update the per-channel overrides for the cart settings of a store
       tags:
         - Carts Settings
       parameters:
         - name: channel_id
-          description: The channel ID of the settings overrides.
+          description: The channel ID of the settings overrides
           in: path
           required: true
           schema:
@@ -972,7 +972,7 @@ components:
               type: number
             variant_id:
               type: number
-              description: Required if the product has variants.
+              description: Required if the product has variants
             list_price:
               type: number
             option_selections:
@@ -1128,7 +1128,7 @@ components:
                 type: number
               variant_id:
                 type: number
-                description: Required if the product has variants.
+                description: Required if the product has variants
               list_price:
                 type: number
               option_selections:
@@ -1212,7 +1212,7 @@ components:
           type: number
         variant_id:
           type: number
-          description: Required if the product has variants.
+          description: Required if the product has variants
         list_price:
           type: number
         option_selections:
@@ -1301,7 +1301,7 @@ components:
           description: ID of the customer to which the cart belongs.
           type: integer
         email:
-          description: The cart's email. This is the same email that is used in the billing address.
+          description: The cart's email. This is the same email that is used in the billing address
           type: string
         currency:
           type: object
@@ -1353,7 +1353,7 @@ components:
           description: Time when the cart was last updated.
         channel_id:
           type: integer
-          description: 'If no channel is specified, defaults to 1.'
+          description: 'If no channel is specified, defaults to 1. '
         locale:
           type: string
           description: Locale of the cart.
@@ -1366,18 +1366,18 @@ components:
               type: object
               properties:
                 id:
-                  description: ID of the promotion.
+                  description: Id of the promotion.
                   type: string
                 type:
-                  description: Type of the banner.
+                  description: Type of the banner
                   type: string
                 page:
-                  description: An array of the locations where the banner will display.
+                  description: An array of the locations where the banner will display
                   type: array
                   items:
                     type: string
                 text:
-                  description: Text of the banner.
+                  description: Text of the banner
                   type: string
     Currency:
       type: object
@@ -1446,7 +1446,7 @@ components:
                       description: "Example as part of a Cart response:\n\n```\n\"discounts\": [\n\t\t{\n\t\t\t\t\"id\": 2,\n\t\t\t\t\"discounted_amount\": 2\n\t\t},\n\t\t{\n\t\t\t\t\"id\": \"coupon\",\n\t\t\t\t\"discounted_amount\": 0.42\n\t\t}\n]\n```"
                       properties:
                         id:
-                          description: ID of the applied discount. 
+                          description: ID of the applied discount. Will return
                           example: coupon
                           oneOf:
                             - type: string
@@ -1466,12 +1466,12 @@ components:
                           properties:
                             coupon_code:
                               type: object
-                              description: The coupon code.
+                              description: The coupon code
                               properties:
                                 id:
                                   type: integer
                                   example: 6
-                                  description: Coupon ID.
+                                  description: Coupon Id
                                 code:
                                   type: string
                                   example: KV56053388J
@@ -1479,7 +1479,7 @@ components:
                                 name:
                                   type: string
                                   example: Percentage off
-                                  description: Name given to the coupon in the control panel.
+                                  description: Name given to the coupon in the Control Panel
                                 discountType:
                                   type: integer
                                   description: |-
@@ -1503,16 +1503,16 @@ components:
                                 expiresDate:
                                   type: integer
                                   example: 0
-                                  description: Returns 0 if a expiration date is not set.
+                                  description: Returns 0 if a expiration date is not set
                                 totalDiscount:
                                   type: number
                                   example: 4.19
-                                  description: Total discount amount off cart.
+                                  description: Total discount amount off cart
                           required:
                             - coupon_code
                   discount_amount:
                     type: number
-                    description: The total value of all discounts applied to this item. This includes coupons and cart level discounts.
+                    description: The total value of all discounts applied to this item. This includes coupons and cart level discounts
                     example: 4
                   coupon_amount:
                     type: number
@@ -1537,13 +1537,13 @@ components:
                       properties:
                         name:
                           type: string
-                          description: 'The product option name, for example, Color or Size.'
+                          description: 'The product option name. For example, Color or Size'
                         nameId:
                           type: number
                           description: The product option identifier.
                         value:
                           type: string
-                          description: 'The product option value, for example, Red or Medium.'
+                          description: 'The product option value. For example, Red or Medium'
                         valueId:
                           type: number
                           description: The product option value identifier.
@@ -1620,7 +1620,7 @@ components:
                       description: "Example as part of a Cart response:\n\n```\n\"discounts\": [\n\t\t{\n\t\t\t\t\"id\": 2,\n\t\t\t\t\"discounted_amount\": 2\n\t\t},\n\t\t{\n\t\t\t\t\"id\": \"coupon\",\n\t\t\t\t\"discounted_amount\": 0.42\n\t\t}\n]\n```"
                       properties:
                         id:
-                          description: ID of the applied discount. 
+                          description: ID of the applied discount. Will return
                           example: coupon
                           oneOf:
                             - type: string
@@ -1640,12 +1640,12 @@ components:
                           properties:
                             coupon_code:
                               type: object
-                              description: The coupon code.
+                              description: The coupon code
                               properties:
                                 id:
                                   type: integer
                                   example: 6
-                                  description: Coupon ID.
+                                  description: Coupon Id
                                 code:
                                   type: string
                                   example: KV56053388J
@@ -1653,7 +1653,7 @@ components:
                                 name:
                                   type: string
                                   example: Percentage off
-                                  description: Name given to the coupon in the control panel.
+                                  description: Name given to the coupon in the Control Panel
                                 discountType:
                                   type: integer
                                   description: |-
@@ -1677,16 +1677,16 @@ components:
                                 expiresDate:
                                   type: integer
                                   example: 0
-                                  description: Returns 0 if a expiration date is not set.
+                                  description: Returns 0 if a expiration date is not set
                                 totalDiscount:
                                   type: number
                                   example: 4.19
-                                  description: Total discount amount off cart.
+                                  description: Total discount amount off cart
                           required:
                             - coupon_code
                   discount_amount:
                     type: number
-                    description: The total value of all discounts applied to this item. This includes coupons and cart level discounts.
+                    description: The total value of all discounts applied to this item. This includes coupons and cart level discounts
                     example: 4
                   coupon_amount:
                     type: number
@@ -1711,13 +1711,13 @@ components:
                       properties:
                         name:
                           type: string
-                          description: 'The product option name, for example, Color or Size.'
+                          description: 'The product option name. For example, Color or Size'
                         nameId:
                           type: number
                           description: The product option identifier.
                         value:
                           type: string
-                          description: 'The product option value, for example, Red or Medium.'
+                          description: 'The product option value. For example, Red or Medium'
                         valueId:
                           type: number
                           description: The product option value identifier.
@@ -1798,13 +1798,13 @@ components:
             properties:
               id:
                 type: string
-                description: ID of the custom item.
+                description: Id of the custom item
               sku:
                 type: string
-                description: Custom item sku.
+                description: Custom item sku
               name:
                 type: string
-                description: Item name.
+                description: Item name
               quantity:
                 type: string
               list_price:
@@ -1876,11 +1876,11 @@ components:
               example: 6e193ce6-f327-4dcc-b75e-72cf6738525e
             variant_id:
               type: number
-              description: The ID of the variant. Required in the /PUT or /POST if the product has variants.
+              description: The id of the variant. Required in the /PUT or /POST if the product has variants.
               example: 358
             product_id:
               type: number
-              description: The ID of the product. Required in a /POST request.
+              description: The id of the product. Required in a /POST request.
               example: 12
             sku:
               type: string
@@ -1916,7 +1916,7 @@ components:
                 description: "Example as part of a Cart response:\n\n```\n\"discounts\": [\n\t\t{\n\t\t\t\t\"id\": 2,\n\t\t\t\t\"discounted_amount\": 2\n\t\t},\n\t\t{\n\t\t\t\t\"id\": \"coupon\",\n\t\t\t\t\"discounted_amount\": 0.42\n\t\t}\n]\n```"
                 properties:
                   id:
-                    description: ID of the applied discount.
+                    description: ID of the applied discount. Will return
                     example: coupon
                     oneOf:
                       - type: string
@@ -1936,12 +1936,12 @@ components:
                     properties:
                       coupon_code:
                         type: object
-                        description: The coupon code.
+                        description: The coupon code
                         properties:
                           id:
                             type: integer
                             example: 6
-                            description: Coupon ID
+                            description: Coupon Id
                           code:
                             type: string
                             example: KV56053388J
@@ -1949,7 +1949,7 @@ components:
                           name:
                             type: string
                             example: Percentage off
-                            description: Name given to the coupon in the control panel.
+                            description: Name given to the coupon in the Control Panel
                           discountType:
                             type: integer
                             description: |-
@@ -1973,16 +1973,16 @@ components:
                           expiresDate:
                             type: integer
                             example: 0
-                            description: Returns 0 if a expiration date is not set.
+                            description: Returns 0 if a expiration date is not set
                           totalDiscount:
                             type: number
                             example: 4.19
-                            description: Total discount amount off cart.
+                            description: Total discount amount off cart
                     required:
                       - coupon_code
             discount_amount:
               type: number
-              description: The total value of all discounts applied to this item. This includes coupons and cart level discounts.
+              description: The total value of all discounts applied to this item. This includes coupons and cart level discounts
               example: 4
             coupon_amount:
               type: number
@@ -2007,13 +2007,13 @@ components:
                 properties:
                   name:
                     type: string
-                    description: 'The product option name, for example, Color or Size.'
+                    description: 'The product option name. For example, Color or Size'
                   nameId:
                     type: number
                     description: The product option identifier.
                   value:
                     type: string
-                    description: 'The product option value, for example, Red or Medium.'
+                    description: 'The product option value. For example, Red or Medium'
                   valueId:
                     type: number
                     description: The product option value identifier.
@@ -2090,7 +2090,7 @@ components:
                 description: "Example as part of a Cart response:\n\n```\n\"discounts\": [\n\t\t{\n\t\t\t\t\"id\": 2,\n\t\t\t\t\"discounted_amount\": 2\n\t\t},\n\t\t{\n\t\t\t\t\"id\": \"coupon\",\n\t\t\t\t\"discounted_amount\": 0.42\n\t\t}\n]\n```"
                 properties:
                   id:
-                    description: ID of the applied discount. 
+                    description: ID of the applied discount. Will return
                     example: coupon
                     oneOf:
                       - type: string
@@ -2110,7 +2110,7 @@ components:
                     properties:
                       coupon_code:
                         type: object
-                        description: The coupon code.
+                        description: The coupon code
                         properties:
                           id:
                             type: integer
@@ -2123,7 +2123,7 @@ components:
                           name:
                             type: string
                             example: Percentage off
-                            description: Name given to the coupon in the control panel.
+                            description: Name given to the coupon in the Control Panel
                           discountType:
                             type: integer
                             description: |-
@@ -2147,16 +2147,16 @@ components:
                           expiresDate:
                             type: integer
                             example: 0
-                            description: Returns 0 if a expiration date is not set.
+                            description: Returns 0 if a expiration date is not set
                           totalDiscount:
                             type: number
                             example: 4.19
-                            description: Total discount amount off cart.
+                            description: Total discount amount off cart
                     required:
                       - coupon_code
             discount_amount:
               type: number
-              description: The total value of all discounts applied to this item. This includes coupons and cart level discounts.
+              description: The total value of all discounts applied to this item. This includes coupons and cart level discounts
               example: 4
             coupon_amount:
               type: number
@@ -2181,13 +2181,13 @@ components:
                 properties:
                   name:
                     type: string
-                    description: 'The product option name, for example, Color or Size.'
+                    description: 'The product option name. For example, Color or Size'
                   nameId:
                     type: number
                     description: The product option identifier.
                   value:
                     type: string
-                    description: 'The product option value, for example, Red or Medium.'
+                    description: 'The product option value. For example, Red or Medium'
                   valueId:
                     type: number
                     description: The product option value identifier.
@@ -2222,11 +2222,11 @@ components:
           example: 6e193ce6-f327-4dcc-b75e-72cf6738525e
         variant_id:
           type: number
-          description: The ID of the variant. Required in the /PUT or /POST if the product has variants.
+          description: The id of the variant. Required in the /PUT or /POST if the product has variants.
           example: 358
         product_id:
           type: number
-          description: The ID of the product. Required in a /POST request.
+          description: The id of the product. Required in a /POST request.
           example: 12
         sku:
           type: string
@@ -2262,7 +2262,7 @@ components:
             description: "Example as part of a Cart response:\n\n```\n\"discounts\": [\n\t\t{\n\t\t\t\t\"id\": 2,\n\t\t\t\t\"discounted_amount\": 2\n\t\t},\n\t\t{\n\t\t\t\t\"id\": \"coupon\",\n\t\t\t\t\"discounted_amount\": 0.42\n\t\t}\n]\n```"
             properties:
               id:
-                description: ID of the applied discount.
+                description: ID of the applied discount. Will return
                 example: coupon
                 oneOf:
                   - type: string
@@ -2282,7 +2282,7 @@ components:
                 properties:
                   coupon_code:
                     type: object
-                    description: The coupon code.
+                    description: The coupon code
                     properties:
                       id:
                         type: integer
@@ -2295,7 +2295,7 @@ components:
                       name:
                         type: string
                         example: Percentage off
-                        description: Name given to the coupon in the control panel.
+                        description: Name given to the coupon in the Control Panel
                       discountType:
                         type: integer
                         description: |-
@@ -2319,16 +2319,16 @@ components:
                       expiresDate:
                         type: integer
                         example: 0
-                        description: Returns 0 if a expiration date is not set.
+                        description: Returns 0 if a expiration date is not set
                       totalDiscount:
                         type: number
                         example: 4.19
-                        description: Total discount amount off cart.
+                        description: Total discount amount off cart
                 required:
                   - coupon_code
         discount_amount:
           type: number
-          description: The total value of all discounts applied to this item. This includes coupons and cart level discounts.
+          description: The total value of all discounts applied to this item. This includes coupons and cart level discounts
           example: 4
         coupon_amount:
           type: number
@@ -2353,13 +2353,13 @@ components:
             properties:
               name:
                 type: string
-                description: 'The product option name, for example, Color or Size.'
+                description: 'The product option name. For example, Color or Size'
               nameId:
                 type: number
                 description: The product option identifier.
               value:
                 type: string
-                description: 'The product option value, for example, Red or Medium.'
+                description: 'The product option value. For example, Red or Medium'
               valueId:
                 type: number
                 description: The product option value identifier.
@@ -2374,13 +2374,13 @@ components:
       properties:
         name:
           type: string
-          description: 'The product option name, for example, Color or Size.'
+          description: 'The product option name. For example, Color or Size'
         nameId:
           type: number
           description: The product option identifier.
         value:
           type: string
-          description: 'The product option value, for example, Red or Medium.'
+          description: 'The product option value. For example, Red or Medium'
         valueId:
           type: number
           description: The product option value identifier.
@@ -2431,7 +2431,7 @@ components:
       title: Applied Discount
       properties:
         id:
-          description: ID of the applied discount. 
+          description: ID of the applied discount. Will return
           example: coupon
           oneOf:
             - type: string
@@ -2462,13 +2462,13 @@ components:
       properties:
         id:
           type: string
-          description: Id of the custom item.
+          description: Id of the custom item
         sku:
           type: string
-          description: Custom item sku.
+          description: Custom item sku
         name:
           type: string
-          description: Item name.
+          description: Item name
         quantity:
           type: string
         list_price:
@@ -2486,19 +2486,19 @@ components:
           type: number
         list_price:
           type: number
-          description: Optional price override.
+          description: Optional price override
         variant_id:
           type: number
-          description: Exists only in Catalog V3.
+          description: Exists only in Catalog V3
         name:
           type: string
-          description: 'Optionally, provide a value to override the product name.'
+          description: 'Optionally, provide a value to override the product name'
         gift_wrapping:
           type: object
           properties:
             wrap_together:
               type: boolean
-              description: Indicates whether we want to wrap items together or separately.
+              description: Indicates whether we want to wrap items together or separately
               example: true
             wrap_details:
               type: array
@@ -2508,16 +2508,16 @@ components:
                 properties:
                   id:
                     type: number
-                    description: Identifier of the Gift Wrapping Option selected.
+                    description: Identifier of the Gift Wrapping Option selected
                     example: 0
                   message:
                     type: string
-                    description: Custom gift message.
+                    description: Custom gift message
                     example: Happy Birthday
           required:
             - quantity
             - product_id
-      description: Product with a variant.
+      description: Product with a variant
       x-examples:
         example-1:
           quantity: 0
@@ -2542,13 +2542,13 @@ components:
             type: number
           list_price:
             type: number
-            description: Optional price override.
+            description: Optional price override
           name:
             type: string
-            description: 'Optionally, provide a value to override the product name.'
+            description: 'Optionally, provide a value to override the product name'
           option_selections:
             type: array
-            description: Needed for Catalog V2.
+            description: Needed for Catalog V2
             items:
               type: object
               properties:
@@ -2558,10 +2558,10 @@ components:
                   type: integer
                 name:
                   type: string
-                  description: Override selected Option or Modifier Name.
+                  description: Override selected Option or Modifier Name
                 value:
                   type: string
-                  description: Override selected Option Value.
+                  description: Override selected Option Value
                 nameId:
                   type: integer
                 valueId:
@@ -2569,7 +2569,7 @@ components:
         required:
           - quantity
           - product_id
-      description: Product with a modifier.
+      description: Product with a modifier
       x-internal: false
       x-examples:
         example-1:
@@ -2717,7 +2717,7 @@ components:
             type: number
       x-internal: false
     CartSettings:
-      description: Represents all settings related to the shopping cart functionality of a store.
+      description: Represents all settings related to the shopping cart functionality of a store
       type: object
       properties:
         allow_purchasing:
@@ -2725,7 +2725,7 @@ components:
       x-tags:
         - Models
     ChannelCartSettings:
-      description: Represents all settings overrides related to the shopping cart functionality of a store for a channel.
+      description: Represents all settings overrides related to the shopping cart functionality of a store for a channel
       type: object
       properties:
         allow_purchasing:
@@ -2736,11 +2736,11 @@ components:
     ChannelCartSettingsRequest:
       allOf:
         - $ref: '#/components/schemas/ChannelCartSettings'
-        - description: The request object for updating the cart settings overrides of a store for a channel.
+        - description: The request object for updating the cart settings overrides of a store for a channel
       x-tags:
         - Models
     ChannelCartSettingsResponse:
-      description: The response object of cart settings overrides for a channel.
+      description: The response object of cart settings overrides for a channel
       type: object
       properties:
         data:
@@ -2752,13 +2752,13 @@ components:
     GlobalCartSettingsRequest:
       allOf:
         - $ref: '#/components/schemas/CartSettings'
-        - description: The request object for updating the cart settings of a store at the global level.
+        - description: The request object for updating the cart settings of a store at the global level
           required:
             - allow_purchasing
       x-tags:
         - Models
     GlobalCartSettingsResponse:
-      description: The response object of cart settings at the global level.
+      description: The response object of cart settings at the global level
       type: object
       properties:
         data:
