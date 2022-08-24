@@ -28,7 +28,7 @@ paths:
       description: |-
         Returns a list of *promotions*.
 
-        The response includes the display name and other details about each promotion, and lists the promotions ordered by *id* by default.
+        The response includes the display name and other details about each promotion, and lists the promotions ordered by ID by default.
       operationId: getPromotions
       parameters:
         - name: store_hash
@@ -72,20 +72,20 @@ paths:
             type: string
         - name: page
           in: query
-          description: Specifies the page number in a limited (paginated) list of resources.
+          description: Query parameter that specifies the page number in a paginated list of resources.
           schema:
             minimum: 1
             type: integer
         - name: limit
           in: query
-          description: Controls the number of items per page in a limited (paginated) list of resources.
+          description: Query parameter that limits the number of items displayed per page is within a paginated list of resources.
           schema:
             maximum: 250
             minimum: 1
             type: integer
         - name: sort
           in: query
-          description: Field name to sort by. Default value is *id*
+          description: Query parameter that specifies the field name to sort by. The default value is *id*.
           allowEmptyValue: true
           schema:
             type: string
@@ -96,7 +96,7 @@ paths:
               - start_date
         - name: direction
           in: query
-          description: Sorting direction. Default value is *asc*
+          description: Query parameter that specifies the sorting direction. The default value is *asc*.
           allowEmptyValue: true
           schema:
             type: string
@@ -128,7 +128,7 @@ paths:
       summary: Create Promotion
       description: |-
         Creates a *promotion*.
-        To learn more about how to create a *promotion*, consult the [Promotions Overview](/docs/api-beta-promotions/ZG9jOjE5Nzk3Mjg1-promotions-api-beta).
+        To learn more about how to create a *promotion*, read the [Promotions Overview](/docs/api-beta-promotions/ZG9jOjE5Nzk3Mjg1-promotions-api-beta).
         For a list of code samples, see [Code Samples](/docs/api-beta-promotions/ZG9jOjE5Nzk3Mjg3-code-samples-brand-promotions-api-beta).
       operationId: createPromotion
       parameters:
@@ -316,7 +316,7 @@ paths:
       tags:
         - Promotions
       summary: Delete Multiple Promotions
-      description: "Deletes multiple promotions. At the time of writing, batches are limited to 50 promotions.\n\n**Required Query Param**\n\nid:in – ID of the promotions to be deleted\n\ne.g.: id:in=11,12,13,14\n\n**Notes**\n\n- \"id:in\" query param is required to delete promotions. If not provided, or provided with wrong data format, a 422 is returned.\n\n- Deleting promotions that still have coupon codes attached is not allowed.\_"
+      description: "Deletes multiple promotions. Currently, batches are limited to 50 promotions.\n\n**Required Query Param**\n\nid:in – ID of the promotions to be deleted\n\ne.g.: id:in=11,12,13,14\n\n**Notes**\n\n- \"id:in\" query param is required to delete promotions. If this parameter is not provided, or provided with the wrong data format, a 422 error code is returned.\n\n- You cannot delete promotions that still have coupon codes attached.\_"
       operationId: deletePromotions
       parameters:
         - name: store_hash
@@ -350,7 +350,7 @@ paths:
               type: integer
       responses:
         '204':
-          description: The 204 response
+          description: A 204 response.
           content: {}
         '422':
           $ref: '#/components/responses/BulkDeleteResponse'
@@ -396,7 +396,7 @@ paths:
       tags:
         - Promotions
       summary: Update Promotion
-      description: Updates a *promotion*.
+      description: Update a promotion.
       operationId: updatePromotion
       parameters:
         - name: store_hash
@@ -406,7 +406,7 @@ paths:
           required: true
         - name: id
           in: path
-          description: The `id` of the promotion to be updated.
+          description: The ID of the promotion to be updated.
           required: true
           schema:
             type: string
@@ -491,7 +491,7 @@ paths:
       tags:
         - Promotions
       summary: Delete Promotion
-      description: Deletes a *Promotion*.
+      description: Deletes a promotion.
       operationId: deletePromotion
       parameters:
         - name: store_hash
@@ -517,14 +517,14 @@ paths:
             default: application/json
       responses:
         '204':
-          description: The deletion was successful or the resource does not exist.
+          description: The deletion was successful or the specified resource does not exist.
           content: {}
   '/stores/{store_hash}/v3/promotions/{promotion_id}/codes':
     get:
       tags:
         - Promotions
       summary: Get Coupon Codes
-      description: Get codes for a particular promotion
+      description: Get codes for a particular promotion.
       operationId: getPromotionCodes
       parameters:
         - name: store_hash
@@ -534,7 +534,7 @@ paths:
           required: true
         - name: promotion_id
           in: path
-          description: The `id` of the promotion to be updated.
+          description: The ID of the promotion to be updated.
           required: true
           schema:
             type: string
@@ -545,7 +545,7 @@ paths:
       tags:
         - Promotions
       summary: Create A Coupon Code
-      description: Create a new code for the promotion
+      description: Create a new code for the promotion.
       operationId: createPromotionCode
       parameters:
         - name: store_hash
@@ -555,7 +555,7 @@ paths:
           required: true
         - name: promotion_id
           in: path
-          description: The `id` of the promotion to be updated.
+          description: The ID of the promotion to be updated.
           required: true
           schema:
             type: string
@@ -589,17 +589,17 @@ paths:
         - Promotions
       summary: Delete Multiple Coupon Codes
       description: |-
-        Deletes multiple coupon codes relating to the given promotion. At the time of writing, batches are limited to 50 coupon codes.
+        Deletes multiple coupon codes relating to the given promotion. Currently, batches are limited to 50 coupon codes.
 
         **Required Query Param**
 
-        id:in – ID of the coupon codes to be deleted
+        id:in – ID of the coupon codes to be deleted.
 
         e.g.: id:in=11,12,13,14
 
         **Notes**
 
-        - "id:in" query param is required to delete coupon codes. If not provided, or provided with wrong data format, then a 422 is returned.
+        - "id:in" query param is required to delete coupon codes. If not provided, or provided with the wrong data format, a 422 error code is returned.
       operationId: deleteCouponCodes
       parameters:
         - name: store_hash
@@ -633,13 +633,13 @@ paths:
             default: application/json
         - name: promotion_id
           in: path
-          description: The `id` of the promotion to be updated.
+          description: The ID of the promotion to be updated.
           required: true
           schema:
             type: string
       responses:
         '204':
-          description: The 204 response
+          description: A 204 response.
           content: {}
         '422':
           $ref: '#/components/responses/BulkDeleteResponse'
@@ -648,7 +648,7 @@ paths:
       tags:
         - Promotions
       summary: Delete A Coupon Code
-      description: Deletes a *Coupon code*.
+      description: Deletes a coupon code.
       operationId: deleteCouponCode
       parameters:
         - name: store_hash
@@ -658,7 +658,7 @@ paths:
           required: true
         - name: promotion_id
           in: path
-          description: The ID of the promotion code belongs to.
+          description: The ID of the promotion the code belongs to.
           required: true
           schema:
             type: string
@@ -693,7 +693,7 @@ components:
       properties:
         id:
           type: integer
-          description: An auto generated unique identifier for the discount rule.
+          description: An auto-generated unique identifier for the discount rule.
           example: 1
         redemption_type:
           type: string
@@ -729,39 +729,39 @@ components:
             - INVALID
         start_date:
           type: string
-          description: The date & time this rule will become active.
+          description: The date and time when this rule will become active.
           format: date-time
           example: '2019-01-20T22:00:00.000Z'
         end_date:
           type: string
-          description: 'The date & time that this rule will expire. If left null, then the promotion never expires.'
+          description: 'The date and time when this rule will expire. If this property is left null, the promotion never expires.'
           format: date-time
           example: '2019-01-20T22:00:00.000Z'
         stop:
           type: boolean
-          description: 'When the promotion is applied successfully, whether to stop evaluating promotions down the priority list'
+          description: Boolean value that specifies whether to stop evaluating promotions down the priority list when the promotion is applied successfully,'
           example: false
         can_be_used_with_other_promotions:
           type: boolean
-          description: 'Determine whether this promotion can be used with other promotions. When set to false, only apply this promotion if there is no discounts applied already, and stop executing other promotions if this promotion applies successfully'
+          description: 'Boolean value that specifies whether this promotion can be used with other promotions. When set to false, only apply this promotion if there are no discounts applied already, and stop executing other promotions if this promotion applies successfully.'
           example: false
           default: true
         currency_code:
           type: string
-          description: The ISO-4217 transactional currency code to which the promotion applies OR * for all currencies
+          description: The ISO-4217-based transactional currency code to which the promotion applies OR * for all currencies.
           example: USD
           default: 'false'
         notifications:
           type: array
-          description: Notifications to display on the storefront based on promotion evaluation result.
+          description: Notifications to display on the storefront based on the result of the evaluation for promotion eligibility.
           items:
             $ref: '#/components/schemas/Notification'
         shipping_address:
-          description: Shipping address targeting rules that the promotion supports.
+          description: Rules that target the shipping address that the promotion supports.
           oneOf:
             - $ref: '#/components/schemas/AddressMatcher'
         schedule:
-          description: 'Schedule details. Example of business use case: Available on Tuesday and Thursday from 10am to 10pm every 2 weeks'
+          description: 'Specifies schedule details, for example: Available on Tuesday and Thursday from 10am to 10pm every 2 weeks.'
           oneOf:
             - $ref: '#/components/schemas/AvailabilityByWeekDay'
       required:
@@ -781,10 +781,10 @@ components:
               default: false
               description: |-
                 This field only has effect when the `redemption_type` is `COUPON` and `can_be_used_with_other_promotions` is `false`:
-                - When the field value is "true", the coupon will override the applied automatic promotions if it gives greater discount.
-                - When the field value is "false", the coupon will not be applied if there's already applied automatic promotions.
+                - When the property is set to "true", the coupon will override the applied automatic promotions if it provides a greater discount.
+                - When the property is set to "false", the coupon will not be applied if automatic promotions are already applied.
 
-                Trying to set the value of this field to "true" when the `redemption_type` is not `COUPON`, or when `can_be_used_with_other_promotions` is `true` will yield the 422 error response.
+                Trying to set the value of this field to "true" when the `redemption_type` is not `COUPON`, or when `can_be_used_with_other_promotions` is `true` will yield a 422 error response.
       x-examples:
         example-1:
           id: 1
@@ -909,12 +909,12 @@ components:
         Specifies the requirements which make the customer eligible for the promotion.
 
         Note:
-        - Only "group_ids" or "excluded_group_ids" should be specified (have non empty array data), but not both.
-        - group_id zero (0) means guest customers or registered customers who not assigned to any groups.
+        - Only "group_ids" or "excluded_group_ids" should be specified (have non-empty array data), but not both.
+        - group_id zero (0) signifies guest customers or registered customers who are not assigned to any groups.
       properties:
         group_ids:
           type: array
-          description: 'A list of customer group ids that the promotion targets. Only customers in those groups are eligible for this promotion. When unspecified, or set to an empty array, this requirement is not effective, and all customers who satisfy the other requirements (minimum_order_count, excluded_group_ids) are eligible for the promotion'
+          description: 'A list of customer group IDs that the promotion targets. Only customers in those groups are eligible for this promotion. When unspecified, or set to an empty array, this requirement is not effective, and all customers who satisfy the other requirements (minimum_order_count, excluded_group_ids) are eligible for the promotion.'
           example:
             - 1
             - 2
@@ -926,7 +926,7 @@ components:
           description: The minimum number of completed orders required of the customer.
         excluded_group_ids:
           type: array
-          description: 'A list of customer group ids that the promotion will exclude. Only customers NOT in those groups are eligible for this promotion. When unspecified, or set to an empty array, this requirement will not have any effects, and all customers who satisfy the other requirements (group_ids, minimum_order_count) are eligible for the promotion.'
+          description: 'A list of customer group IDs that the promotion will exclude. Only customers who are NOT in those groups are eligible for this promotion. When unspecified, or set to an empty array, this requirement will not have any effects, and all customers who satisfy the other requirements (group_ids, minimum_order_count) are eligible for the promotion.'
           example:
             - 1
             - 2
@@ -952,11 +952,11 @@ components:
           $ref: '#/components/schemas/Action'
         apply_once:
           type: boolean
-          description: Set this to false if you want the rule to run repeatedly (eg. 1 free product X for every product Y you purchase)
+          description: Setting this property to false enables the rule to run repeatedly (for example: 1 free product X for every product Y you purchase)
           default: true
         stop:
           type: boolean
-          description: 'When the current rule is applied successfully, whether to stop executing all the remaining rules down the priority list'
+          description: 'Boolean value that specfies whether to stop executing all the remaining rules down the priority list when the current rule is applied successfully., 
       description: |-
         **Rule**
         Rule is the executable unit of the promotion, it applies the discount defined in the specified action when the condition is met.
@@ -972,7 +972,7 @@ components:
       type: object
       description: |-
         **AndCondition**
-        Evaluates to true when all children are evaluated to true
+        Evaluates to true when all children are evaluated to true.
       properties:
         and:
           type: array
@@ -984,7 +984,7 @@ components:
       type: object
       description: |-
         **OrCondition**
-        Evaluates to true when at least one of the children are evaluated to true in the order they are specified
+        Evaluates to true when at least one of the children are evaluated to true in the order they are specified.
       properties:
         or:
           type: array
@@ -1017,12 +1017,12 @@ components:
               $ref: '#/components/schemas/Money'
       description: |-
         **Cart Condition**
-        Condition based on current cart content.
+        Condition based on the content of the current cart.
     ItemMatcher:
       title: Item Matcher
       description: |-
         **ItemMatcher**
-        What items to consider in the condition or action. If this is specified, you will need to also specify at least one of minimum_quantity or minimum_spend.
+  Lists which items to consider in the condition or action. If this is specified, you will need to also specify at least one of minimum_quantity or minimum_spend.
       oneOf:
         - $ref: '#/components/schemas/SimpleItemMatcher'
         - $ref: '#/components/schemas/AndItemMatcher'
@@ -1033,7 +1033,7 @@ components:
       type: object
       description: |-
         **AndItemMatcher**
-        Evaluates to true when all children are evaluated to true
+        Evaluates to true when all children are evaluated to true.
       properties:
         and:
           type: array
@@ -1076,7 +1076,7 @@ components:
       properties:
         brands:
           type: array
-          description: List of brand ids
+          description: List of brand IDs.
           example:
             - 1
             - 2
@@ -1092,7 +1092,7 @@ components:
       properties:
         categories:
           type: array
-          description: List of category ids
+          description: List of category IDs.
           example:
             - 1
             - 2
@@ -1108,7 +1108,7 @@ components:
       properties:
         products:
           type: array
-          description: List of product ids
+          description: List of product IDs.
           example:
             - 1
             - 2
@@ -1124,7 +1124,7 @@ components:
       properties:
         variants:
           type: array
-          description: List of variant ids
+          description: List of variant IDs.
           example:
             - 1
             - 2
@@ -1158,13 +1158,13 @@ components:
           properties:
             quantity:
               type: integer
-              description: Quantity of gift item to give
+              description: Quantity of gift item to give.
             product_id:
               type: integer
-              description: product id of the gift item
+              description: Product ID of the gift item.
             variant_id:
               type: integer
-              description: variant id of the gift item
+              description: Variant ID of the gift item.
       description: |-
         **Gift Item Action**
         Give a gift item for free.
@@ -1180,7 +1180,7 @@ components:
           properties:
             quantity:
               type: integer
-              description: Quantity of items in the set that would receive the discount
+              description: Quantity of items in the set that would receive the discount.
             fixed_price:
               $ref: '#/components/schemas/Money'
             items:
@@ -1198,7 +1198,7 @@ components:
               description: Enable this option to prevent items already on sale from being further discounted.
       description: |-
         **Fixed Price Set Action**
-        Give a fixed price for a set of items.
+        Sets a fixed price for a list of items.
     CartItemsAction:
       title: Cart Items Action
       type: object
@@ -1213,20 +1213,20 @@ components:
             as_total:
               type: boolean
               description: |
-                Enable this option to distribute the discount as a total among matching items. By default, discount applies to each item.
+                Set this value to true to distribute the discount as a total among matching items. By default, the discount applies to each item.
                 Example: If set to false, the discount is $10 and you have 2 eligible items for this discount in the cart, both items will be discounted by $10, with a total of $20 off the order.
-                If set to true, $10 will be distributed among the 2 items, weighted by their respective price. in the simple case of same item, each item will receive $5 discount.
+                If set to true, $10 will be distributed among the 2 items, weighted by their respective price. In a case where there are 2 of the same items, each item will be discounted by $5.
             items:
               $ref: '#/components/schemas/ItemMatcher'
             include_items_considered_by_condition:
               type: boolean
-              description: 'Enable this option to discount items that are used to satisify the condition. By default items that are used to satisfy the condition are excluded from receving discount, eg Buy 1 Get 1 20% off, when the cart only contains 1 item, it''s not discountable.'
+              description: 'Setting this value to true enables you to discount items that are used to satisify the condition. By default items that are used to satisfy the condition are excluded from receving discount, for example "Buy 1 Get 1 20% off." When the cart only contains 1 item, the discount won't apply.'
             exclude_items_on_sale:
               type: boolean
-              description: Enable this option to prevent items already on sale from being further discounted.
+              description: Setting this value to true enables the option to prevent items already on sale from being further discounted.
             strategy:
               type: string
-              description: 'If the shopper has multiple items in their cart that could be discounted by this action, strategy will determine which items are discounted, for example LEAST_EXPENSIVE will sort items in price ascending order and discount the cheapest item first.'
+              description: 'If the shopper has multiple items in their cart that could be discounted by this action, strategy will determine which items are discounted, for example LEAST_EXPENSIVE will sort items by their price in ascending order and discount the cheapest item first.'
               enum:
                 - LEAST_EXPENSIVE
                 - LEAST_EXPENSIVE_ONLY
@@ -1234,7 +1234,7 @@ components:
                 - MOST_EXPENSIVE_ONLY
             quantity:
               type: integer
-              description: 'Quantity of matching item to discount, if left omitted, infinite quantity can be discounted'
+              description: 'Specifies a quantity of matching items to discount. If no quantity is specified, an infinite number of items can be discounted.'
               example: 2
       description: |-
         **Cart Items Action**
@@ -1251,7 +1251,7 @@ components:
           properties:
             free_shipping:
               type: boolean
-              description: Provide a separate free shipping method. This is the only type of discount we support at this stage. Read-Only.
+              description: Set this property to true to provide a separate free shipping method. Read-Only.
             zone_ids:
               description: ''
               oneOf:
@@ -1283,7 +1283,7 @@ components:
           minimum: 0
           exclusiveMinimum: true
           type: number
-          description: The percentage off discount to apply.
+          description: The amount of discount (percentage off) to apply.
       description: '**Percentage Discount**'
     FixedDiscount:
       title: Fixed Discount
@@ -1319,7 +1319,7 @@ components:
           description: Total number of items in the collection response.
         per_page:
           type: integer
-          description: 'The amount of items returned in the collection per page, controlled by the limit parameter.'
+          description: 'The amount of items returned in the collection per page, controlled by the limit of items per page parameter.'
         current_page:
           type: integer
           description: The page you are currently on within the collection.
@@ -1368,7 +1368,7 @@ components:
           type: string
           description: |-
             The notification content to be displayed to the user.
-            Data from the Condition and Action are available allowing the message to be customised.
+            Data from the condition and action are available allowing the message to be customized.
           example: Congratulations! You've received a free %ACTION.FREE_PRODUCT%!
         type:
           type: string
@@ -1378,7 +1378,7 @@ components:
             - APPLIED
         locations:
           type: array
-          description: Indicates where the notification message will be displayed.
+          description: Specifies where the notification message will be displayed.
           items:
             type: string
             enum:
@@ -1388,7 +1388,7 @@ components:
               - CHECKOUT_PAGE
       description: |-
         **Notification**
-        A notification displayed to the user based on the result of executing a promotion (e.g. a "Congratulations! You've received free shipping!" message when the shopper receives free shipping).
+        A notification displayed to the user based on the result of executing a promotion, for example, a "Congratulations! You've received free shipping!" message when the shopper receives free shipping.
     Action:
       title: Action
       description: '**Action**'
@@ -1423,14 +1423,14 @@ components:
       description: |-
         Match a product by product options.
 
-        Currently the only type which is supported is `string_match` which does a string comparison on the name and values.
+        Currently the only supported type is `string_match` which performs a string comparison on the name and values.
     CouponCode:
       type: object
-      description: A `CouponCode` encapsulates attributes of a coupon code
+      description: A `CouponCode` object encapsulates attributes of a coupon code.
       properties:
         id:
           type: integer
-          description: An auto generated unique identifier for coupon code.
+          description: An auto-generated unique identifier for the coupon code.
           example: 1
         code:
           pattern: '[a-zA-Z0-9_\ -]'
@@ -1451,7 +1451,7 @@ components:
           example: 5
         created:
           type: string
-          description: The date & time when this coupon code was created.
+          description: The date and time when this coupon code was created.
           format: date-time
           example: '2019-01-20T22:00:00.000Z'
       required:
@@ -1469,7 +1469,7 @@ components:
         failed:
           type: integer
           description: Number of items that failed to process.
-      description: 'Contains data about the bulk action response including total, failed and success numbers.'
+      description: 'Contains data about the bulk action response including the number of total, failed and success.'
     BulkActionResponseError:
       title: Bulk Action Response Error
       type: object
@@ -1484,17 +1484,17 @@ components:
           example: Some promotions failed to delete.
         type:
           type: string
-          description: Explanation of the error type
+          description: Explanation of the error type.
           example: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
         errors:
           type: object
           properties: {}
-          description: 'Contain all per item errors. Use an index of an item on a request to reference an error. Here is the first and second item on a request has an error: { "0.id": "Invalid id",  "1.error":"Promotion cannot be deleted" }'
+          description: 'List all per-item errors. Use an index of an item on a request to reference an error. This example shows the first and second item on a request that has caused an error: { "0.id": "Invalid ID",  "1.error":"Promotion cannot be deleted" }'
       description: Contains data about the error of the bulk action.
     CountryAddressMatcher:
       title: CountryAddressMatcher
       type: object
-      description: Countries which the promotion targets.
+      description: Specifies the countries which the promotion targets.
       properties:
         countries:
           type: array
@@ -1510,14 +1510,14 @@ components:
         - $ref: '#/components/schemas/CountryAddressMatcher'
     AddressMatcher:
       title: AddressMatcher
-      description: what addresses to consider
+      description: Specifies which addresses to consider.
       oneOf:
         - $ref: '#/components/schemas/SimpleAddressMatcher'
         - $ref: '#/components/schemas/NotAddressMatcher'
     NotAddressMatcher:
       title: NotAddressMatcher
       type: object
-      description: Evaluates to true when the child is evaluated to false
+      description: Evaluates to `true` when the child is evaluated to `false`.
       properties:
         not:
           $ref: '#/components/schemas/AddressMatcher'
@@ -1530,14 +1530,14 @@ components:
       properties:
         iso2_country_code:
           type: string
-          description: ISO 3166-1 alpha-2 country code
+          description: Specifies the country code, in ISO 3166-1 alpha-2 format.
           example: US
       required:
         - iso2_country_code
     AvailabilityByWeekDay:
       title: AvailabilityByWeekDay
       type: object
-      description: Availability by week days
+      description: Specifies the availability by weekdays.
       x-examples:
         Available on Tuesday and Thursday from 10am to 10pm every 2 weeks:
           week_frequency: 2
@@ -1557,11 +1557,11 @@ components:
         week_frequency:
           minimum: 1
           type: integer
-          description: Available every 'x' weeks
+          description: Specifies the recurrence, in number of weeks, during which the promotion is available (every "x" weeks).
           example: 2
         week_days:
           type: array
-          description: Week days that the promotion is available on
+          description: Specifies the weekdays during which the promotion is available.
           items:
             example: Monday
             enum:
@@ -1578,7 +1578,7 @@ components:
           minLength: 8
           pattern: '^([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])$'
           type: string
-          description: Time of day from that the promotion is available
+          description: Specifies the time of day from which the promotion is available.
           format: time
           example: '01:20:00'
         daily_end_time:
@@ -1586,7 +1586,7 @@ components:
           minLength: 8
           pattern: '^([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])$'
           type: string
-          description: Time of day until then the promotion is available
+          description: Specifies the time of day until which the promotion is available.
           format: time
           example: '23:59:00'
       required:
@@ -1611,7 +1611,7 @@ components:
         id:
           minItems: 1
           type: array
-          description: An array of segment IDs
+          description: An array of segment IDs.
           items:
             maxLength: 36
             type: string
@@ -1776,7 +1776,7 @@ components:
               meta:
                 type: object
                 properties: {}
-                description: Empty meta object; may be used later.
+                description: Empty meta object, which may be used at a later time.
           examples:
             example-1:
               value:
@@ -1958,7 +1958,7 @@ components:
                   - $ref: '#/components/schemas/PromotionAutomatic'
               meta:
                 type: object
-                description: Empty meta object; may be used later.
+                description: Empty meta object, which may be used at a later time.
           examples:
             coupon-example:
               value:
@@ -2088,7 +2088,7 @@ components:
     limit:
       name: limit
       in: query
-      description: Controls the number of items per page in a limited (paginated) list of resources.
+      description: Query parameter that limits the number of items displayed per page in a paginated list of resources.
       schema:
         maximum: 250
         minimum: 1
