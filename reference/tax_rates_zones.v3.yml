@@ -444,10 +444,6 @@ components:
                 type: integer
                 description: ID of a tax class. Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
                 example: 1
-      required:
-        - tax_zone_id
-        - name
-        - class_rates
     Tax_RatePOST:
       type: object
       properties:
@@ -481,6 +477,9 @@ components:
                 type: integer
                 description: ID of a tax class. Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
                 example: 1
+            required:
+              - rate
+              - tax_class_id
       required:
         - tax_zone_id
         - name
