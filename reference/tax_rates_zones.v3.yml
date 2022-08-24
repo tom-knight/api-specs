@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Tax Rates & Zones
   version: ''
-  description: This API can be used to manage tax rates and zones.
+  description: This API can be used to manage manual tax rates and zones. 
 servers:
   - url: api.bigcommerce.com
 paths:
@@ -11,7 +11,7 @@ paths:
       tags:
         - Tax Zones
       summary: Get Tax Zones
-      description: 'Retrieves a selection of tax zones, when a list of Tax Zone IDs are provided, or all tax zones defined on the store.'
+      description: 'Retrieve a selection of tax zones when you provide a list of Tax Zone IDs. Otherwise, retrieve all tax zones defined on the store.'
       operationId: get-tax-zones
       parameters:
         - name: store_hash
@@ -51,7 +51,7 @@ paths:
             type: string
           description: Unique identifier for a store.
       summary: Update Tax Zones
-      description: 'Update one or more tax zones. Only the Tax Zone ID field is required, all other fields are optional - fields unspecified by the request will retain their current state.'
+      description: 'Update one or more tax zones. Only the tax zone `id` field is required. Fields unspecified by the request will retain their current state.'
       operationId: update-tax-zones
       requestBody:
         $ref: '#/components/requestBodies/Tax_ZoneArray'
@@ -102,7 +102,7 @@ paths:
       tags:
         - Tax Zones
       summary: Delete Tax Zones
-      description: Delete one or more tax zones. Deleting a tax zone will also remove all associated tax rates.
+      description: Delete one or more tax zones. Deleting a tax zone removes all associated tax rates.
       operationId: delete-tax-zones
       parameters:
         - name: store_hash
@@ -165,7 +165,7 @@ paths:
             type: string
           description: Unique identifier for a store.
       summary: Update Tax Rates
-      description: 'Update one or more tax rates. Only the Tax Rate ID field is required, all other fields are optional - fields unspecified by the request will retain their current state.'
+      description: 'Update one or more tax rates. Only the tax rate `id` field is required. Fields unspecified by the request will retain their current state.'
       operationId: update-tax-rates
       requestBody:
         $ref: '#/components/requestBodies/Tax_RateArray'
@@ -194,7 +194,7 @@ paths:
             type: string
           description: Unique identifier for a store.
       summary: Create Tax Rates
-      description: Create one or more tax rates. Tax Rates must have a Tax Zone ID association.
+      description: Create one or more tax rates. Tax rates must be associated with a `tax_zone_id`.
       operationId: create-tax-rates
       requestBody:
         $ref: '#/components/requestBodies/Tax_RateArrayPOST'
@@ -284,7 +284,7 @@ components:
 
         |Header|Parameter|Description|
         |-|-|-|
-        |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+        |`X-Auth-Token`|`access_token`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
 
         For more information on Authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
   schemas:
@@ -297,6 +297,7 @@ components:
         name:
           type: string
           description: The human-readable name for this tax zone. Displayed in the merchant's control panel.
+          example: Australia
         enabled:
           type: boolean
           description: Indicates whether a tax zone is enabled. Only enabled zones will be considered for tax operations.
@@ -354,6 +355,7 @@ components:
         name:
           type: string
           description: The human-readable name for this tax zone. Displayed in the merchant's control panel.
+          example: Australia
         enabled:
           type: boolean
           description: Indicates whether a tax zone is enabled. Only enabled zones will be considered for tax operations.
@@ -411,12 +413,15 @@ components:
         id:
           type: integer
           description: Tax Rate ID. Internal identifier to update and delete a specific tax rate.
+          example: 3
         tax_zone_id:
           type: integer
           description: ID of an associated tax zone. Tax rates must be associated to a tax zone.
+          example: 2
         name:
           type: string
           description: 'The human-readable name for this tax zone. Displayed to merchant in the control panel and to shoppers, depending on store tax settings.'
+          example: Sales Tax
         enabled:
           type: boolean
           description: Indicates whether a tax rate is enabled. Only enabled rates will be considered for tax operations.
@@ -434,9 +439,11 @@ components:
               rate:
                 type: number
                 description: The tax rate that will be applied to the items in a tax class.
+                example: 5
               tax_class_id:
                 type: integer
                 description: ID of a tax class. Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
+                example: 1
       required:
         - tax_zone_id
         - name
@@ -447,9 +454,11 @@ components:
         tax_zone_id:
           type: integer
           description: ID of an associated tax zone. Tax rates must be associated to a tax zone.
+          example: 2
         name:
           type: string
           description: 'The human-readable name for this tax zone. Displayed to merchant in the control panel and to shoppers, depending on store tax settings.'
+          example: Sales Tax
         enabled:
           type: boolean
           description: Indicates whether a tax rate is enabled. Only enabled rates will be considered for tax operations.
@@ -467,9 +476,11 @@ components:
               rate:
                 type: number
                 description: The tax rate that will be applied to the items in a tax class.
+                example: 5
               tax_class_id:
                 type: integer
                 description: ID of a tax class. Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
+                example: 1
       required:
         - tax_zone_id
         - name
