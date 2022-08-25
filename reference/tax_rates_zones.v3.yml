@@ -85,7 +85,6 @@ paths:
 
         <!-- theme:info -->
         > You cannot create a [default tax zone](/api-docs/store-management/tax/tax-rates-and-zones#default-tax-zone).
-
       operationId: create-tax-zones
       requestBody:
         $ref: '#/components/requestBodies/Tax_ZoneArrayPOST'
@@ -328,7 +327,7 @@ components:
           properties:
             customer_groups:
               type: array
-              description: A tax zone may target shoppers in one or more customer groups.
+              description: One or more customer groups that a tax zone targets. Empty array if zone applies to all customers.
               items:
                 type: integer
             locations:
@@ -358,6 +357,7 @@ components:
                       type: string
     Tax_ZonePOST:
       type: object
+      description: ''
       properties:
         name:
           type: string
@@ -388,7 +388,7 @@ components:
           properties:
             customer_groups:
               type: array
-              description: A tax zone may target shoppers in one or more customer groups. Returns empty array if zone applies to all customers.
+              description: One or more customer groups that a tax zone targets. Empty array if zone applies to all customers.
               items:
                 type: integer
             locations:
@@ -420,7 +420,6 @@ components:
             - locations
       required:
         - name
-      description: ''
     Tax_Rate:
       type: object
       properties:
