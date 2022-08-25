@@ -80,7 +80,12 @@ paths:
             type: string
           description: Unique identifier for a store.
       summary: Create Tax Zones
-      description: Create one or more tax zones.
+      description: |-
+        Create one or more tax zones.
+
+        <!-- theme:info -->
+        > You cannot create a [default tax zone](/api-docs/store-management/tax/tax-rates-and-zones#default-tax-zone).
+
       operationId: create-tax-zones
       requestBody:
         $ref: '#/components/requestBodies/Tax_ZoneArrayPOST'
@@ -379,7 +384,7 @@ components:
             - show_inclusive
         shopper_target_settings:
           type: object
-          description: Settings that describe which shoppers match with this tax zone. A shopper will be matched with the most appropriate target. The default tax zone does not have any shopper target settings as this zone applies to all shoppers that are unable to be matched with another tax zone.
+          description: Settings that describe which shoppers match with this tax zone. A shopper will be matched with the most appropriate target.
           properties:
             customer_groups:
               type: array
@@ -415,6 +420,7 @@ components:
             - locations
       required:
         - name
+      description: ''
     Tax_Rate:
       type: object
       properties:
