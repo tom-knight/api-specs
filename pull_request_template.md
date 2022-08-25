@@ -1,7 +1,4 @@
-# [DEVDOCS-]
+# [DEVDOCS-](https://bigcommercecloud.atlassian.net/browse/DEVDOCS-)
 
 ## What changed?
 * thing_that_changed
-
-## Anything else?
-Related PRs, salient notes, etc

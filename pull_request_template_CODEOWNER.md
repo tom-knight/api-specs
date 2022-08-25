@@ -1,16 +1,13 @@
-# Publication rebase merge with link check
+# Controlled Merge with link check
 
-## Included tickets / PRs
-* [DEVDOCS-] - #
-* [DEVDOCS-] - #
-* [DEVDOCS-] - #
+## Included Tickets / PRs
+* [DEVDOCS-xx](https://bigcommercecloud.atlassian.net/browse/DEVDOCS-xx) - #PRnumber - @
+* [DEVDOCS-yy](https://bigcommercecloud.atlassian.net/browse/DEVDOCS-yy) - #PRnumber - @
 
-## Links
-Indicate work. Options include the following:
+## To Do
+Indicate when done.
 
-* Add redirects if needed
-  * See [Dev Center link PR xx](https://github.com/bigcommerce-labs/next-dev-center-prototype/pull/xx)
-
-Link check techniques; please indicate which you used, if any.
-* Check links with tool
-* Check ToC
+* Check links with tool -- @
+* Check ToC -- @
+* Add redirects if needed -- @
+  * Slug changes not detected or [Dev Center link PR zz](https://github.com/bigcommerce-labs/next-dev-center-prototype/pull/zz)
