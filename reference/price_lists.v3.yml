@@ -1000,7 +1000,7 @@ paths:
                         product_id:
                           type: integer
                           description: |
-                            The id of the `Product` this `Price Record`'s variant_id is associated with.  Read only.
+                            The ID of the `Product` this `Price Record`'s variant_id is associated with.  Read only.
                           example: 158
                     - description: Price Record object used in batch create or update.
                       allOf:
@@ -1053,7 +1053,7 @@ paths:
                           type: number
                           format: double
                           description: |
-                            The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                            The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
                         bulk_pricing_tiers:
                           type: array
                           items:
@@ -1936,7 +1936,7 @@ paths:
                         type: string
                         format: date-time
                         description: |
-                          The date on which the Price entry was created.
+                          The date on which the price entry was created.
                         example: '2018-08-23T19:59:23Z'
                       date_modified:
                         type: string
@@ -2000,7 +2000,7 @@ paths:
                         type: number
                         format: double
                         description: |
-                          The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                          The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP will be treated as not being set on this variant.
                       bulk_pricing_tiers:
                         type: array
                         items:
@@ -2537,7 +2537,7 @@ parameters:
     in: query
     required: false
     description: |
-      A comma-separated list of ids of `Product`s whose prices were requested.
+      A comma-separated list of IDs of `Product`s whose prices were requested.
   FilterNameParam:
     name: name
     description: |
