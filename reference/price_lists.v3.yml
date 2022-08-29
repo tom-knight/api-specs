@@ -1124,7 +1124,7 @@ paths:
                             map_price:
                               type: number
                               description: |
-                                The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                                The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
                               format: double
                             bulk_pricing_tiers:
                               type: array
@@ -1848,7 +1848,7 @@ paths:
                             map_price:
                               type: number
                               description: |
-                                The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                                The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
                               format: double
                               minimum: 0
                               example: 5.99
@@ -2086,7 +2086,7 @@ paths:
                           map_price:
                             type: number
                             description: |
-                              The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                              The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
                             format: double
                           bulk_pricing_tiers:
                             type: array
@@ -2225,7 +2225,7 @@ paths:
                     map_price:
                       type: number
                       description: |
-                        The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                        The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
                       format: double
                     bulk_pricing_tiers:
                       type: array
@@ -2350,7 +2350,7 @@ paths:
                         type: number
                         format: double
                         description: |
-                          The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                          The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
                       bulk_pricing_tiers:
                         type: array
                         items:
@@ -3263,7 +3263,7 @@ definitions:
                   type: number
                   format: double
                   description: |
-                    The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                    The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
                 bulk_pricing_tiers:
                   type: array
                   items:
@@ -3439,7 +3439,7 @@ definitions:
                 type: number
                 format: double
                 description: |
-                  The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                  The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
               bulk_pricing_tiers:
                 type: array
                 items:
@@ -3511,7 +3511,7 @@ definitions:
         type: number
         format: double
         description: |
-          The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+          The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
       bulk_pricing_tiers:
         type: array
         items:
@@ -3627,7 +3627,7 @@ definitions:
             type: number
             format: double
             description: |
-              The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+              The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
           bulk_pricing_tiers:
             type: array
             items:
@@ -3726,7 +3726,7 @@ definitions:
             type: number
             format: double
             description: |
-              The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+              The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
           bulk_pricing_tiers:
             type: array
             items:
@@ -3813,7 +3813,7 @@ definitions:
               type: number
               format: double
               description: |
-                The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+                The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
             bulk_pricing_tiers:
               type: array
               items:
@@ -3900,7 +3900,7 @@ definitions:
             type: number
             format: double
             description: |
-              The MAP (Manufacturer's Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
+              The MAP (Minimum Advertised Price) for the variant mapped in a Price List. Overrides any existing or Catalog MAP price for the variant/product. If empty, the MAP price will be treated as not being set on this variant.
           bulk_pricing_tiers:
             type: array
             items:
