@@ -111,15 +111,20 @@ paths:
                             example: '0'
                             type: string
                           display_separately:
-                            description: ''
+                            description: Indicates whether store displays handling fee separately at checkout
                             example: true
                             type: boolean
+                        title: fixed surcharge
                       - properties:
                           percentage_surcharge:
-                            type: string
                             description: Percentage handling fee applied to shipping cost
+                            example: '5'
+                            type: string
                           display_separately:
+                            description: Indicates whether store displays handling fee separately at checkout
+                            example: true
                             type: boolean
+                        title: percentage surcharge
                     enabled:
                       description: Whether this shipping zone is enabled.
                       example: true
@@ -266,20 +271,25 @@ paths:
                   type: object
                   oneOf:
                     - properties:
-                        fixed_surcharge:
-                          description: Flat-rate handling fee applied to shipping cost
-                          example: '0'
-                          type: string
-                        display_separately:
-                          description: ''
-                          example: true
-                          type: boolean
+                          fixed_surcharge:
+                            description: Flat-rate handling fee applied to shipping cost
+                            example: '0'
+                            type: string
+                          display_separately:
+                            description: Indicates whether store displays handling fee separately at checkout
+                            example: true
+                            type: boolean
+                      title: fixed surcharge
                     - properties:
                         percentage_surcharge:
-                          type: string
                           description: Percentage handling fee applied to shipping cost
+                          example: '5'
+                          type: string
                         display_separately:
+                          description: Indicates whether store displays handling fee separately at checkout
+                          example: true
                           type: boolean
+                      title: percentage surcharge
                 enabled:
                   description: Whether this shipping zone is enabled.
                   example: true
@@ -380,15 +390,20 @@ paths:
                             example: '0'
                             type: string
                           display_separately:
-                            description: ''
+                            description: Indicates whether store displays handling fee separately at checkout
                             example: true
                             type: boolean
+                        title: fixed surcharge
                       - properties:
                           percentage_surcharge:
-                            type: string
                             description: Percentage handling fee applied to shipping cost
+                            example: '5'
+                            type: string
                           display_separately:
+                            description: Indicates whether store displays handling fee separately at checkout
+                            example: true
                             type: boolean
+                        title: percentage surcharge
                   enabled:
                     description: Whether this shipping zone is enabled.
                     example: true
@@ -498,15 +513,20 @@ paths:
                             example: '0'
                             type: string
                           display_separately:
-                            description: ''
+                            description: Indicates whether store displays handling fee separately at checkout
                             example: true
                             type: boolean
+                        title: fixed surcharge
                       - properties:
                           percentage_surcharge:
-                            type: string
                             description: Percentage handling fee applied to shipping cost
+                            example: '5'
+                            type: string
                           display_separately:
+                            description: Indicates whether store displays handling fee separately at checkout
+                            example: true
                             type: boolean
+                        title: percentage surcharge
                   enabled:
                     description: Whether this shipping zone is enabled.
                     example: true
@@ -608,20 +628,25 @@ paths:
                   type: object
                   oneOf:
                     - properties:
-                        fixed_surcharge:
-                          description: Flat-rate handling fee applied to shipping cost
-                          example: '0'
-                          type: string
-                        display_separately:
-                          description: ''
-                          example: true
-                          type: boolean
+                          fixed_surcharge:
+                            description: Flat-rate handling fee applied to shipping cost
+                            example: '0'
+                            type: string
+                          display_separately:
+                            description: Indicates whether store displays handling fee separately at checkout
+                            example: true
+                            type: boolean
+                      title: fixed surcharge
                     - properties:
                         percentage_surcharge:
-                          type: string
                           description: Percentage handling fee applied to shipping cost
+                          example: '5'
+                          type: string
                         display_separately:
+                          description: Indicates whether store displays handling fee separately at checkout
+                          example: true
                           type: boolean
+                      title: percentage surcharge
                 enabled:
                   description: Whether this shipping zone is enabled.
                   example: true
