@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Tax Rates & Zones
   version: ''
-  description: This API can be used to manage manual tax rates and zones.
+  description: You can use this API to manage manual tax rates and zones.
 servers:
   - url: api.bigcommerce.com
 paths:
