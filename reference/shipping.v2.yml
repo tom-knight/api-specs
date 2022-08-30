@@ -2064,4 +2064,4 @@ components:
                   type: string
                   description: Query string appended to the resource to show the current page.
                   example: '?limit=1&page=2'
-      x-internal: falsee
+      x-internal: false
