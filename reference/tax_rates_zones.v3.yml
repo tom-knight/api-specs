@@ -400,7 +400,7 @@ components:
                   country_code:
                     type: string
                     example: AU
-                    description: 'Two-letter ISO 3166-1 country code  '
+                    description: 'Two-letter ISO 3166-1 country code'
                   subdivision_codes:
                     type: array
                     example:
