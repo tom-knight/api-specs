@@ -323,7 +323,7 @@ components:
               description: Indicates whether to show both tax inclusive and tax exclusive prices when viewing a list of products (e.g., category and brand pages). This view applies to shoppers matched with this tax zone.
         shopper_target_settings:
           type: object
-          description: Settings that describe which shoppers match this tax zone. A shopper will be matched with the most appropriate target. The default tax zone does not have any shopper target settings, as this zone applies to all shoppers that are unable to be matched with another tax zone.
+          description: Settings that describe which shoppers match this tax zone and help determine the most appropriate target for a shopper. The default tax zone does not have any shopper target settings, as this zone applies to all shoppers that are unable to be matched with another tax zone.
           properties:
             customer_groups:
               type: array
@@ -384,7 +384,7 @@ components:
             - show_inclusive
         shopper_target_settings:
           type: object
-          description: Settings that describe which shoppers match with this tax zone and illustrate the most appropriate target for each shopper.
+          description: Settings that describe which shoppers match this tax zone and help determine the most appropriate target for a shopper.
           properties:
             customer_groups:
               type: array
@@ -488,7 +488,7 @@ components:
                 example: 5
               tax_class_id:
                 type: integer
-                description: ID of a tax class. You must associate a tax rate with a tax class. The rate will apply to all items associated with this tax class.
+                description: ID of a tax class. You must associate a tax rate with a tax class. The rate will apply to all items in this tax class.
                 example: 1
             required:
               - rate
