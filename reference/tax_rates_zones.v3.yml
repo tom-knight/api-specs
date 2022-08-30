@@ -433,7 +433,7 @@ components:
           example: 2
         name:
           type: string
-          description: 'The human-readable name for this tax zone. The name displays on the merchant's control panel and to shoppers, depending on store tax settings.'
+          description: 'The human-readable name for this tax zone. The name displays on the merchant control panel and to shoppers, depending on store tax settings.'
           example: Sales Tax
         enabled:
           type: boolean
@@ -466,7 +466,7 @@ components:
           example: 2
         name:
           type: string
-          description: 'The human-readable name for this tax zone. The name displays on the merchant's control panel and to shoppers, depending on store tax settings.'
+          description: 'The human-readable name for this tax zone. The name displays on the merchant control panel and to shoppers, depending on store tax settings.'
           example: Sales Tax
         enabled:
           type: boolean
