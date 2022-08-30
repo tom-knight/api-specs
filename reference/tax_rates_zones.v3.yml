@@ -384,7 +384,7 @@ components:
             - show_inclusive
         shopper_target_settings:
           type: object
-          description: Settings that describe which shoppers match with this tax zone. A shopper will be matched with the most appropriate target.
+          description: Settings that describe which shoppers match with this tax zone and illustrate the most appropriate target for each shopper.
           properties:
             customer_groups:
               type: array
