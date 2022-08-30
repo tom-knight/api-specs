@@ -292,7 +292,7 @@ components:
         |-|-|-|
         |`X-Auth-Token`|`access_token`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
 
-        For more information on Authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
+        For more information on authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
   schemas:
     Tax_Zone:
       type: object
