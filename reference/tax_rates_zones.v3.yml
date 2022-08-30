@@ -369,7 +369,7 @@ components:
           default: true
         price_display_settings:
           type: object
-          description: Settings that describe how a store displays prices to shoppers that have been matched with this tax zone.
+          description: Settings that describe how a store displays prices to shoppers matched with this tax zone.
           properties:
             show_inclusive:
               type: boolean
