@@ -437,7 +437,7 @@ components:
           example: Sales Tax
         enabled:
           type: boolean
-          description: Indicates whether a tax rate is enabled. Only enabled rates will be considered for tax operations.
+          description: Indicates whether a tax rate is enabled. Tax operations are only for enabled zones.
           default: true
         priority:
           type: integer
