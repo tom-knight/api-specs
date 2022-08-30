@@ -478,7 +478,7 @@ components:
           default: 1
         class_rates:
           type: array
-          description: Tax rates for tax classes. Each tax class defined on a store must be assigned a tax rate. There will always be at least one tax class defined on a store.
+          description: Tax rates for tax classes. You must assign at least one tax rate for each tax class defined on a store.
           items:
             type: object
             properties:
