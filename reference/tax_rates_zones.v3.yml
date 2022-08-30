@@ -488,7 +488,7 @@ components:
                 example: 5
               tax_class_id:
                 type: integer
-                description: ID of a tax class. Each rate must be associated to a tax class. The rate will apply to all items associated with this tax class.
+                description: ID of a tax class. You must associate a tax rate with a tax class. The rate will apply to all items associated with this tax class.
                 example: 1
             required:
               - rate
