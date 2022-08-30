@@ -11,7 +11,7 @@ paths:
       tags:
         - Tax Zones
       summary: Get Tax Zones
-      description: 'Retrieve a selection of tax zones when you provide a list of Tax Zone IDs. Otherwise, retrieve all tax zones defined on the store.'
+      description: 'Retrieve a selection of tax zones when you provide a list of tax zone IDs. Otherwise, retrieve all tax zones defined on the store.'
       operationId: get-tax-zones
       parameters:
         - name: store_hash
