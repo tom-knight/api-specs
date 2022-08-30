@@ -50,6 +50,7 @@ paths:
                     type: object
       tags:
         - Analytics
+        - Inventory
     parameters:
       - $ref: '#/components/parameters/store_hash'
   '/stores/{store_hash}/v3/settings/analytics/{id}':
@@ -1359,6 +1360,63 @@ paths:
                     type: object
       tags:
         - Storefront Status
+  '/stores/{store_hash}/v3/settings/inventory':
+    get:
+      summary: Get Inventory Settings
+      tags:
+        - Inventory
+      responses:
+        '200':
+          description: 'OK, null indicates that a particular field has not been overridden on a channel level when channel level settings are requested'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/InventorySettings'
+                  meta:
+                    type: object
+        '422':
+          description: Provided settings could not be applied for some reason - detailed errors in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      parameters:
+        - $ref: '#/components/parameters/ChannelIdParam'
+      description: Get Inventory Settings
+    put:
+      summary: Update Inventory Settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventorySettings'
+        description: null set for a particular field removes override on a channel level and means inheritance from a global level
+      responses:
+        '200':
+          description: 'OK, null indicates that a particular field has not been overridden on a channel level when channel level settings are requested'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/InventorySettings'
+                  meta:
+                    type: object
+      parameters:
+        - $ref: '#/components/parameters/ChannelIdParam'
+      tags:
+        - Inventory
+      description: Update Inventory Settings
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
 components:
   parameters:
     ChannelIdParam:
@@ -1840,6 +1898,25 @@ components:
             - test.user@example.com
           out_of_stock_notification_address:
             - test.user@example.com
+    InventorySettings:
+      type: object
+      properties:
+        product_out_of_stock_behavior:
+          type: string
+        option_out_of_stock_behavior:
+          type: string
+        update_stock_behavior:
+          type: string
+        edit_order_stock_adjustment:
+          type: boolean
+        refund_order_stock_adjustment:
+          type: boolean
+        stock_level_display:
+          type: string
+        default_out_of_stock_message:
+          type: string
+        hide_in_product_filtering:
+          type: boolean
     Locale:
       description: 'The basic locale settings for a store, used to give shopper information about languages, countries, etc.'
       type: object
