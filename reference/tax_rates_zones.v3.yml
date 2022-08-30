@@ -484,7 +484,7 @@ components:
             properties:
               rate:
                 type: number
-                description: The tax rate that will be applied to the items in a tax class.
+                description: The tax rate that you apply to the items in a tax class.
                 example: 5
               tax_class_id:
                 type: integer
