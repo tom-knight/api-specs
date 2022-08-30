@@ -429,7 +429,7 @@ components:
           example: 3
         tax_zone_id:
           type: integer
-          description: ID of an associated tax zone. Tax rates must be associated to a tax zone.
+          description: ID of an associated tax zone. You must associate a tax rate with a tax zone.
           example: 2
         name:
           type: string
