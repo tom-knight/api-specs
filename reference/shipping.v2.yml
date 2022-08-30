@@ -142,9 +142,6 @@ paths:
                         enabled: false
                         minimum_sub_total: '0.0000'
                         exclude_fixed_shipping_products: false
-                      handling_fees:
-                        display_separately: true
-                        fixed_surcharge: '0.0000'
                       enabled: true
                     - id: 2
                       name: Australia
@@ -156,9 +153,6 @@ paths:
                         enabled: false
                         minimum_sub_total: '0.0000'
                         exclude_fixed_shipping_products: false
-                      handling_fees:
-                        display_separately: true
-                        fixed_surcharge: '0.0000'
                       enabled: true
             Response Schema:
               examples:
