@@ -379,7 +379,7 @@ components:
               description: Indicates whether to show both tax inclusive and tax exclusive prices when viewing product detail (e.g. product pages). This view applies to shoppers matched with this tax zone.
             show_both_on_list_view:
               type: boolean
-              description: Indicates whether to show both tax inclusive and tax exclusive prices when viewing a list of products (e.g. category and brand pages). This applies to shoppers matched with this tax zone.
+              description: Indicates whether to show both tax inclusive and tax exclusive prices when viewing a list of products (e.g. category and brand pages). This view applies to shoppers matched with this tax zone.
           required:
             - show_inclusive
         shopper_target_settings:
