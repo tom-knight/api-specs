@@ -1556,6 +1556,7 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
+      operationId: createCarrierConnection
       tags:
         - Shipping Carrier
     delete:
