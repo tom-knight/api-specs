@@ -365,7 +365,7 @@ components:
           example: Australia
         enabled:
           type: boolean
-          description: Indicates whether a tax zone is enabled. Only enabled zones will be considered for tax operations.
+          description: Indicates whether a tax zone is enabled. Tax operations are only for enabled zones.
           default: true
         price_display_settings:
           type: object
