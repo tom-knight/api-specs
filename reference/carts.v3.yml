@@ -431,8 +431,6 @@ paths:
 
         If a variant needs to be changed or updated, the product will need to be removed and re-added to the cart with the correct variants using the Add Cart Line Items endpoint.
 
-        `custom_items` cannot be updated via the API at this time. To update your cart, add a new updated custom item and delete the outdated one. If your cart contains only one line item, perform the add operation before the delete operation.
-
         Deleting all line items from the cart will invalidate the cart. 
       parameters:
         - name: cartId
@@ -2679,7 +2677,7 @@ components:
               - quantity
               - sender
               - recipient
-        custom_items:
+        custom_item:
           $ref: '#/components/schemas/cart_PostCustomItem'
     Cart_Line_Item_Update_Post:
       type: object
