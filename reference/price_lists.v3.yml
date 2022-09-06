@@ -2822,33 +2822,33 @@ parameters:
     required: false
     in: query
     type: integer
-definitions:
-  AssignmentsForRequest:
-    type: object
-    description: '`Price List Assignments` object used in batch create.'
-    properties:
-      customer_group_id:
-        type: integer
-        format: int32
-        description: Customer group id for assignment.
-      price_list_id:
-        type: integer
-        format: int32
-        description: Pricelist id for assignment.
-      channel_id:
-        type: integer
-        format: int32
-        description: Channel ID for assignment
-    required:
-      - price_list_id
-    x-internal: false
-  PriceListAssignmentsBatchErrorResponse:
-    description: Errors during batch usage for the BigCommerce API.
-    type: object
-    properties:
-      batch_errors:
-        type: array
-        items:
+  schemas:
+    AssignmentsForRequest:
+      type: object
+      description: '`Price List Assignments` object used in batch create.'
+      properties:
+        customer_group_id:
+          type: integer
+          format: int32
+          description: Customer group id for assignment.
+        price_list_id:
+          type: integer
+          format: int32
+          description: Pricelist id for assignment.
+        channel_id:
+          type: integer
+          format: int32
+          description: Channel ID for assignment
+      required:
+        - price_list_id
+      x-internal: false
+    PriceListAssignmentsBatchErrorResponse:
+      description: Errors during batch usage for the BigCommerce API.
+      type: object
+      properties:
+        batch_errors:
+          type: array
+          items:
           $ref: '#/definitions/PriceListAssignmentsBatchErrorSet'
     x-internal: false
   PriceListAssignmentsBatchErrorSet:
