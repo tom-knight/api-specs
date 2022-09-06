@@ -2652,177 +2652,208 @@ paths:
         schema:
           type: string
 components:
-parameters:
-  FilterIdParam:
-    name: id
-    description: |
-      Filter items by id.
-    required: false
-    in: query
-    type: integer
-  FilterSkuParam:
-    name: sku
-    description: |
-      Filter items by sku.
-    required: false
-    in: query
-    type: string
-  FilterProductIdParam:
-    type: string
-    name: 'product_id:in'
-    in: query
-    required: false
-    description: |
-      A comma-separated list of IDs of `Product`s whose prices were requested.
-  FilterNameParam:
-    name: name
-    description: |
-      Filter items by name.
-    required: false
-    in: query
-    type: string
-  FilterPriceParam:
-    name: price
-    description: |
-      Filter items by price.
-    required: false
-    in: query
-    type: number
-  FilterSalePriceParam:
-    name: sale_price
-    description: |
-      Filter items by sale_price.
-    required: false
-    in: query
-    type: number
-  FilterRetailPriceParam:
-    name: retail_price
-    description: |
-      Filter items by retail_price.
-    required: false
-    in: query
-    type: number
-  FilterMapPriceParam:
-    name: map_price
-    description: |
-      Filter items by map_price.
-    required: false
-    in: query
-    type: number
-  FilterCalculatedPriceParam:
-    name: calculated_price
-    description: |
-      Filter items by calculated_price.
-    required: false
-    in: query
-    type: number
-  VariantIdParam:
-    name: variant_id
-    in: path
-    description: |
-      ID of the variant on a product, or on an associated Price List Record.
-    required: true
-    type: integer
-  FilterDateModifiedParam:
-    name: date_modified
-    description: 'Filter items by date_modified. For example `v3/catalog/products?date_last_imported:min=2018-06-15`'
-    required: false
-    in: query
-    type: string
-    format: date-time
-  FilterDateCreatedParam:
-    name: date_created
-    description: |
-      Filter items by date_created.
-    required: false
-    in: query
-    type: string
-    format: date-time
-  FilterIncludePriceRecordParam:
-    name: include
-    description: |
-      Sub-resources to include on a price record, in a comma-separated list. Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other valies will be ignored.
-    required: false
-    in: query
-    type: string
-    enum:
-      - bulk_pricing_tiers
-      - sku
-  FilterCurrencyParam:
-    name: currency
-    description: |
-      Filter items by currency.
-    required: false
-    in: query
-    type: string
-    format: ISO-4217
-  PageParam:
-    name: page
-    description: Specifies the page number in a limited (paginated) list of products.
-    required: false
-    in: query
-    type: integer
-  LimitParam:
-    name: limit
-    description: Controls the number of items per page in a limited (paginated) list of products.
-    required: false
-    in: query
-    type: integer
-  PriceListIdParam:
-    type: integer
-    name: price_list_id
-    in: path
-    description: |
-      The ID of the `Price List` requested.
-    required: true
-  PriceRecordCurrencyParam:
-    name: currency_code
-    type: string
-    in: path
-    description: |
-      The currency code associated with the price record being acted upon.
-    required: true
-    format: ISO-4217
-  FilterVariantIdParam:
-    type: integer
-    name: 'variant_id:in'
-    in: query
-    required: false
-    description: The ID of the `Variant` whose prices were requested.
-  Accept:
-    in: header
-    type: string
-    name: Accept
-    default: application/json
-  Content-Type:
-    name: Content-Type
-    in: header
-    type: string
-    default: application/json
-  FilterAssignmentIdParam:
-    description: The ID of the `Price List Assignment`.
-    required: false
-    in: query
-    type: integer
-    name: id
-  FilterPriceListIdParam:
-    name: price_list_id
-    description: The ID of the `Price List`.
-    required: false
-    in: query
-    type: integer
-  FilterCustomerGroupIdParam:
-    name: customer_group_id
-    description: The ID of the `Customer Group`.
-    required: false
-    in: query
-    type: integer
-  FilterChannelIdParam:
-    name: channel_id
-    description: The ID of the `Channel`.
-    required: false
-    in: query
-    type: integer
+  parameters:
+    ChannelIdInParam:
+      in: query
+      name: 'channel_id:in'
+      description: Filter results by a comma-separated list of `channel_id`s.
+      schema:
+        type: string
+    FilterIdParam:
+      name: id
+      description: |
+        Filter items by id.
+      required: false
+      in: query
+      schema:
+        type: integer
+    FilterSkuParam:
+      name: sku
+      description: |
+        Filter items by sku.
+      required: false
+      in: query
+      schema:
+        type: string
+    FilterProductIdParam:
+      schema:
+        type: string
+      name: 'product_id:in'
+      in: query
+      required: false
+      description: |
+        A comma-separated list of IDs of `Product`s whose prices were requested.
+    FilterNameParam:
+      name: name
+      description: |
+        Filter items by name.
+      required: false
+      in: query
+      schema:
+        type: string
+    FilterPriceParam:
+      name: price
+      description: |
+        Filter items by price.
+      required: false
+      in: query
+      schema:
+        type: number
+    FilterSalePriceParam:
+      name: sale_price
+      description: |
+        Filter items by sale_price.
+      required: false
+      in: query
+      schema:
+        type: number
+    FilterRetailPriceParam:
+      name: retail_price
+      description: |
+        Filter items by retail_price.
+      required: false
+      in: query
+      schema:
+        type: number
+    FilterMapPriceParam:
+      name: map_price
+      description: |
+        Filter items by map_price.
+      required: false
+      in: query
+      schema:
+        type: number
+    FilterCalculatedPriceParam:
+      name: calculated_price
+      description: |
+        Filter items by calculated_price.
+      required: false
+      in: query
+      schema:
+        type: number
+    VariantIdParam:
+      name: variant_id
+      in: path
+      description: |
+        ID of the variant on a product, or on an associated Price List Record.
+      required: true
+      schema:
+        type: integer
+    FilterDateModifiedParam:
+      name: date_modified
+      description: 'Filter items by date_modified. For example `v3/catalog/products?date_last_imported:min=2018-06-15`'
+      required: false
+      in: query
+      schema:
+        type: string
+        format: date-time
+    FilterDateCreatedParam:
+      name: date_created
+      description: |
+        Filter items by date_created.
+      required: false
+      in: query
+      schema:
+        type: string
+        format: date-time
+    FilterIncludePriceRecordParam:
+      name: include
+      description: |
+        Sub-resources to include on a price record, in a comma-separated list. Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other valies will be ignored.
+      required: false
+      in: query
+      schema:
+        type: string
+        enum:
+          - bulk_pricing_tiers
+          - sku
+    FilterCurrencyParam:
+      name: currency
+      description: |
+        Filter items by currency.
+      required: false
+      in: query
+      schema:
+        type: string
+        format: ISO-4217
+    PageParam:
+      name: page
+      description: Specifies the page number in a limited (paginated) list of products.
+      required: false
+      in: query
+      schema:
+        type: integer
+    LimitParam:
+      name: limit
+      description: Controls the number of items per page in a limited (paginated) list of products.
+      required: false
+      in: query
+      schema:
+        type: integer
+    PriceListIdParam:
+      schema:
+        type: integer
+      name: price_list_id
+      in: path
+      description: |
+        The ID of the `Price List` requested.
+      required: true
+    PriceRecordCurrencyParam:
+      name: currency_code
+      in: path
+      description: |
+        The currency code associated with the price record being acted upon.
+      required: true
+      schema:
+        type: string
+        format: ISO-4217
+    FilterVariantIdParam:
+      schema:
+        type: integer
+      name: 'variant_id:in'
+      in: query
+      required: false
+      description: The ID of the `Variant` whose prices were requested.
+    Accept:
+      schema:
+        type: string
+        default: application/json
+      in: header
+      name: Accept
+    Content-Type:
+      name: Content-Type
+      in: header
+      schema:
+        type: string
+        default: application/json
+    FilterAssignmentIdParam:
+      description: The ID of the `Price List Assignment`.
+      required: false
+      in: query
+      schema:
+        type: integer
+      name: id
+    FilterPriceListIdParam:
+      name: price_list_id
+      description: The ID of the `Price List`.
+      required: false
+      in: query
+      schema:
+        type: integer
+    FilterCustomerGroupIdParam:
+      name: customer_group_id
+      description: The ID of the `Customer Group`.
+      required: false
+      in: query
+      schema:
+        type: integer
+    FilterChannelIdParam:
+      name: channel_id
+      description: The ID of the `Channel`.
+      required: false
+      in: query
+      schema:
+        type: integer
   schemas:
     AssignmentsForRequest:
       type: object
