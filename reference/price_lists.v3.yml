@@ -2651,6 +2651,7 @@ paths:
         required: true
         schema:
           type: string
+components:
 parameters:
   FilterIdParam:
     name: id
