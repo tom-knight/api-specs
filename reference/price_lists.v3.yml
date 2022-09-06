@@ -2629,30 +2629,28 @@ paths:
     post:
       tags:
         - Price Lists Assignments
+      summary: Delete Price List Assignments
       description: Deletes one or more `Price List Assignments` objects from BigCommerce using a filter.
       operationId: deletePriceListAssignmentsByFilter
       parameters:
-        - $ref: '#/parameters/FilterAssignmentIdParam'
-        - $ref: '#/parameters/FilterPriceListIdParam'
-        - $ref: '#/parameters/FilterCustomerGroupIdParam'
-        - $ref: '#/parameters/FilterChannelIdParam'
-        - type: array
-          items:
-            type: integer
-          in: query
-          name: 'channel_id:in'
-          description: Filter results by a comma-separated list of `channel_id`s.
+        - $ref: '#/components/parameters/FilterAssignmentIdParam'
+        - $ref: '#/components/parameters/FilterPriceListIdParam'
+        - $ref: '#/components/parameters/FilterCustomerGroupIdParam'
+        - $ref: '#/components/parameters/FilterChannelIdParam'
+        - $ref: '#/components/parameters/ChannelIdInParam'
       responses:
         '204':
           description: An empty response.
-          schema:
-            $ref: '#/definitions/NoContent'
-      summary: Delete Price List Assignments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoContent'
     parameters:
-      - type: string
-        name: store_hash
+      - name: store_hash
         in: path
         required: true
+        schema:
+          type: string
 parameters:
   FilterIdParam:
     name: id
