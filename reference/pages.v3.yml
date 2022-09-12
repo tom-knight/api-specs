@@ -133,6 +133,12 @@ paths:
           in: query
           name: page
           description: The ordered grouping of results to return. See `meta.pagination.current_page` in the response body.
+        - schema:
+            type: string
+            example: body
+          in: query
+          name: include
+          description: Indicates whether to include page sub-resources.
       summary: Get Pages
     post:
       operationId: content-pages-post
@@ -522,7 +528,13 @@ paths:
                     type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
                     errors:
                       - bar
-      parameters: []
+      parameters:
+        - schema:
+            type: string
+            example: body
+          in: query
+          name: include
+          description: Indicates whether to include page sub-resources
       summary: Get a Page
     put:
       operationId: content-page-put
@@ -837,9 +849,6 @@ components:
             |`rma`|Customer’s submitted RMA (Return Merchandise Authorization) number|
           example: 'fullname,companyname,phone,orderno,rma'
           enum:
-            - fullname
-            - phone
-            - companyname
             - phone
             - orderno
         meta_keywords:
@@ -960,8 +969,6 @@ components:
           enum:
             - fullname
             - phone
-            - companyname
-            - phone
             - orderno
         meta_keywords:
           type: string
@@ -1030,8 +1037,6 @@ components:
               example: 'fullname,companyname,phone,orderno,rma'
               default: ''
               enum:
-                - fullname
-                - phone
                 - companyname
                 - phone
                 - orderno
