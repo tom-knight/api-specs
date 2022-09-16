@@ -29,7 +29,11 @@ paths:
             type: integer
       responses:
         '200':
-          description: Successful operation.
+          description: |- 
+            Successful operation. 
+
+            <!-- theme: info -->
+            > The `200` response body returns an array of all analytics objects. View each individual analytics type by clicking the dropdown next to **data**
           content:
             "application/json":
               schema:
@@ -331,7 +335,7 @@ components:
           description: Web Analytic title.
         pixel_id:
           type: string
-          description: Facebook pixel ID.
+          description: Facebook Pixel ID.
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
