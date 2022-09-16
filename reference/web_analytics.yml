@@ -9,7 +9,7 @@ servers:
 tags:
   - name: Analytics
 paths:
-  /settings/data-solutions/web-analytics:
+  /stores/{store_hash}/v3/settings/data-solutions/web-analytics:
     get:
       operationId: get-web-analytics
       tags:
@@ -18,6 +18,11 @@ paths:
       description: Returns a list of all available Web Analytics data for
         a specified Channel. If Channel ID is not set, returns for the default Channel.
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
         - name: channel_id
           in: query
           description: Channel ID. If empty, the default Channel ID will be used.
@@ -36,7 +41,7 @@ paths:
             "application/json":
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
-  /settings/data-solutions/web-analytics/{id}:
+  /stores/{store_hash}/v3/settings/data-solutions/web-analytics/{id}:
     get:
       operationId: get-a-web-analytic
       tags:
@@ -45,6 +50,11 @@ paths:
       description: Returns a single Web Analytics data for a specified Channel.
         If Channel ID is not set, returns for the default Channel.
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
         - name: channel_id
           in: query
           description: Channel ID. If empty, the default Channel ID will be used.
@@ -83,6 +93,11 @@ paths:
       description: Updates a single Web Analytics data for a specified Channel.
         If Channel ID is not set, updates for a default Channel.
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          schema:
+            type: string
         - name: channel_id
           in: query
           description: Channel ID. If empty, the default Channel ID will be used.
