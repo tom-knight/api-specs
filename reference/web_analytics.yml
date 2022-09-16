@@ -14,8 +14,7 @@ paths:
       operationId: get-web-analytics
       tags:
         - Analytics
-      summary: Returns a list of all available Web Analytics data for a
-        specified Channel. If Channel ID is not set, returns for the default Channel.
+      summary: Get All Web Analytics
       description: Returns a list of all available Web Analytics data for
         a specified Channel. If Channel ID is not set, returns for the default Channel.
       parameters:
@@ -42,8 +41,7 @@ paths:
       operationId: get-a-web-analytic
       tags:
         - Analytics
-      summary: Returns a single Web Analytics data for a specified Channel.
-        If Channel ID is not set, returns for the default Channel.
+      summary: Get a Web Analytic
       description: Returns a single Web Analytics data for a specified Channel.
         If Channel ID is not set, returns for the default Channel.
       parameters:
@@ -81,8 +79,7 @@ paths:
       operationId: update-a-web-analytic
       tags:
         - Analytics
-      summary: Updates a single Web Analytics data for a specified Channel.
-        If Channel ID is not set, updates for a default Channel.
+      summary: Update a Web Analytic
       description: Updates a single Web Analytics data for a specified Channel.
         If Channel ID is not set, updates for a default Channel.
       parameters:
@@ -435,3 +432,24 @@ components:
       properties:
         schema:
           $ref: '#/components/schemas/Error'
+  securitySchemes:
+    API_Key:
+      type: apiKey
+      name: X-Auth-Token
+      in: header
+      description: |-
+        ### OAuth Scopes
+        |  **UI Name** | **Permission** | **Parameter** |
+        | --- | --- | --- |
+        |  Information & Settings | modify | `store_v2_information` |
+        |  Information & Settings | read-only | `store_v2_information_read_only` |
+
+        ### Headers
+
+        |Header|Parameter|Description|
+        |-|-|-|
+        |`X-Auth-Token`|`access_token`| Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+
+        For more information on Authenticating BigCommerce APIs, see [Authentication](/api-docs/getting-started/authentication).
+security:
+  - API_Key: []
