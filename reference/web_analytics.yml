@@ -7,13 +7,13 @@ info:
 servers:
   - url: https://api.bigcommerce.com
 tags:
-  - name: Analytics
+  - name: Web Analytics
 paths:
   /stores/{store_hash}/v3/settings/data-solutions/web-analytics:
     get:
       operationId: get-web-analytics
       tags:
-        - Analytics
+        - Web Analytics
       summary: Get All Web Analytics
       description: Returns a list of all available Web Analytics data for a specified channel. If the `channel_id` is empty, the endpoint returns the analytics for the default channel.
       parameters:
@@ -48,7 +48,7 @@ paths:
     get:
       operationId: get-a-web-analytic
       tags:
-        - Analytics
+        - Web Analytics
       summary: Get a Web Analytic
       description: Returns a single Web Analytic for a specified channel. If the `channel_id` is empty, the endpoint returns the analytic for the default channel.
       parameters:
@@ -90,7 +90,7 @@ paths:
     put:
       operationId: update-a-web-analytic
       tags:
-        - Analytics
+        - Web Analytics
       summary: Update a Web Analytic
       description: Updates a single Web Analytic for a specified channel. If `channel_id` is not set, the endpoint updates the analytic for the default channel.
       parameters:
