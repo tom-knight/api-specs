@@ -1,0 +1,437 @@
+openapi: 3.0.1
+info:
+  title: Web Analytics API
+  description: API endpoints for Web Analytics.
+  termsOfService: https://www.bigcommerce.com/terms
+  version: 1.0.1
+servers:
+  - url: https://api.bigcommerce.com/v3
+tags:
+  - name: Analytics
+paths:
+  /settings/data-solutions/web-analytics:
+    get:
+      operationId: get-web-analytics
+      tags:
+        - Analytics
+      summary: Returns a list of all available Web Analytics data for a
+        specified Channel. If Channel ID is not set, returns for the default Channel.
+      description: Returns a list of all available Web Analytics data for
+        a specified Channel. If Channel ID is not set, returns for the default Channel.
+      parameters:
+        - name: channel_id
+          in: query
+          description: Channel ID. If empty, the default Channel ID will be used.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/Analytics'
+        '400':
+          description: Bad request. Authentication Required.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/ErrorResponse400'
+  /settings/data-solutions/web-analytics/{id}:
+    get:
+      operationId: get-a-web-analytic
+      tags:
+        - Analytics
+      summary: Returns a single Web Analytics data for a specified Channel.
+        If Channel ID is not set, returns for the default Channel.
+      description: Returns a single Web Analytics data for a specified Channel.
+        If Channel ID is not set, returns for the default Channel.
+      parameters:
+        - name: channel_id
+          in: query
+          description: Channel ID. If empty, the default Channel ID will be used.
+          schema:
+            type: integer
+        - name: id
+          in: path
+          description: Web Analytic ID.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/Analytic'
+        '400':
+          description: Bad request. Authentication Required.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/ErrorResponse400'
+        '404':
+          description: The requested resource was not found. Please specify valid Web Analytic ID.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/ErrorResponse404'
+    put:
+      operationId: update-a-web-analytic
+      tags:
+        - Analytics
+      summary: Updates a single Web Analytics data for a specified Channel.
+        If Channel ID is not set, updates for a default Channel.
+      description: Updates a single Web Analytics data for a specified Channel.
+        If Channel ID is not set, updates for a default Channel.
+      parameters:
+        - name: channel_id
+          in: query
+          description: Channel ID. If empty, the default Channel ID will be used.
+          schema:
+            type: integer
+        - name: id
+          in: path
+          description: Web Analytic ID.
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: A JSON Web Analytic object
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/AnalyticGoogle'
+                - $ref: '#/components/schemas/AnalyticGoogle4'
+                - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+                - $ref: '#/components/schemas/AnalyticFacebookPixel'
+                - $ref: '#/components/schemas/AnalyticSegment'
+                - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+                - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/Analytic'
+        '400':
+          description: Bad request. Authentication Required.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/ErrorResponse400'
+        '404':
+          description: The requested resource was not found. Please specify valid Web Analytic ID.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/ErrorResponse404'
+        '409':
+          description: Web Analytic was in conflict with another Web Analytic.
+            This can be caused by duplicated unique values (such as ID).
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/ErrorResponse409'
+        '422':
+          description: Web Analytic data was not valid. This is the result of missing required fields,
+            or of invalid data. See the response for more details.
+          content:
+            "application/json":
+              schema:
+                $ref: '#/components/schemas/ErrorResponse422'
+
+components:
+  schemas:
+    Analytics:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/AnalyticGoogle'
+              - $ref: '#/components/schemas/AnalyticGoogle4'
+              - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+              - $ref: '#/components/schemas/AnalyticFacebookPixel'
+              - $ref: '#/components/schemas/AnalyticSegment'
+              - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+              - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+        meta:
+          type: object
+          properties: {}
+      example:
+            data:
+              - channel_id: 1
+                id: 1
+                name: Google Analytics
+                property_id: GA-1234567890
+                enabled: true
+                data_tag_enabled: true
+                version: 2
+              - channel_id: 1
+                id: 8
+                name: Google Analytics 4
+                measurement_id: G-3MJBBGT9M2
+                enabled: true
+                data_tag_enabled: true
+              - channel_id: 1
+                id: 2
+                name: Visual Website Optimizer
+                vwo_smartcode: VWO-1234567890
+                enabled: true
+              - channel_id: 2
+                id: 3
+                name: Facebook Pixel
+                pixel_id: FP-1234567890
+                enabled: false
+              - channel_id: 2
+                id: 4
+                name: Segment.com
+                api_key: SEG-1234567890
+                enabled: true
+                data_tag_enabled: true
+              - channel_id: 2
+                id: 6
+                name: Site Verification Tags
+                enabled: false
+                verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
+              - channel_id: 2
+                id: 7
+                name: Affiliate Conversion Tracking
+                enabled: false
+                connection: <script>js code here...</script>
+            meta: {}
+    Analytic:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - $ref: '#/components/schemas/AnalyticGoogle'
+            - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+            - $ref: '#/components/schemas/AnalyticFacebookPixel'
+            - $ref: '#/components/schemas/AnalyticSegment'
+            - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+            - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+        meta:
+          type: object
+          properties: {}
+    AnalyticGoogle:
+      type: object
+      properties:
+        channel_id:
+          type: integer
+          description: Channel ID. If empty, the default Channel ID will be used.
+        id:
+          type: integer
+          description: Web Analytic ID.
+        name:
+          type: string
+          description: Web Analytic title.
+        tracking_code:
+          type: string
+          description: Google Analytic tracking code. Required when version is 1
+          nullable: true
+        property_id:
+          type: string
+          description: Google Analytic property ID. Required when version is 2
+          nullable: true
+        enabled:
+          type: boolean
+          description: Flag indicates if Web Analytic is enabled or not.
+        data_tag_enabled:
+          type: boolean
+          description: Flag indicates if data tags are enabled by Google Analytic.
+        version:
+          type: integer
+          description: Google Analytic version.
+      example:
+          channel_id: 1
+          id: 1
+          name: Google Analytics
+          tracking_code: GA-1234567890
+          enabled: true
+          data_tag_enabled: true
+          version: 1
+    AnalyticGoogle4:
+      type: object
+      properties:
+        channel_id:
+          type: integer
+          description: Channel ID. If empty, the default Channel ID will be used.
+        id:
+          type: integer
+          description: Web Analytic ID.
+        name:
+          type: string
+          description: Web Analytic title.
+        measurement_id:
+          type: string
+          description: Google Analytic 4 measurement ID.
+        enabled:
+          type: boolean
+          description: Flag indicates if Web Analytic is enabled or not.
+        data_tag_enabled:
+          type: boolean
+          description: Flag indicates if data tags are enabled by Google Analytic.
+      example:
+          channel_id: 1
+          id: 1
+          name: Google Analytics 4
+          measurement_id: G-3MJBBGT9M2
+          enabled: true
+          data_tag_enabled: true
+    AnalyticVisualWebsiteOptimizer:
+      type: object
+      properties:
+        channel_id:
+          type: integer
+          description: Channel ID. If empty, the default Channel ID will be used.
+        id:
+          type: integer
+          description: Web Analytic ID.
+        name:
+          type: string
+          description: Web Analytic title.
+        vwo_smartcode:
+          type: string
+          description: Visual Website Optimizer Smartcode.
+        enabled:
+          type: boolean
+          description: Flag indicates if Web Analytic is enabled or not.
+      example:
+          channel_id: 1
+          id: 2
+          name: Visual Website Optimizer
+          enabled: true
+          vwo_smartcode: VWO-1234567890
+    AnalyticFacebookPixel:
+      type: object
+      properties:
+        channel_id:
+          type: integer
+          description: Channel ID. If empty, the default Channel ID will be used.
+        id:
+          type: integer
+          description: Web Analytic ID.
+        name:
+          type: string
+          description: Web Analytic title.
+        pixel_id:
+          type: string
+          description: Facebook pixel ID.
+        enabled:
+          type: boolean
+          description: Flag indicates if Web Analytic is enabled or not.
+      example:
+          channel_id: 1
+          id: 3
+          name: Facebook Pixel
+          pixel_id: FP-1234567890
+          enabled: true
+    AnalyticSegment:
+      type: object
+      properties:
+        channel_id:
+          type: integer
+          description: Channel ID. If empty, the default Channel ID will be used.
+        id:
+          type: integer
+          description: Web Analytic ID.
+        name:
+          type: string
+          description: Web Analytic title.
+        api_key:
+          type: string
+          description: Segment API key.
+        enabled:
+          type: boolean
+          description: Flag indicates if Web Analytic is enabled or not.
+        data_tag_enabled:
+          type: boolean
+          description: Flag indicates if data tags are enabled by Segment Analytic.
+      example:
+          channel_id: 1
+          id: 4
+          name: Segment.com
+          api_key: SEG-1234567890
+          enabled: true
+          data_tag_enabled: true
+    AnalyticSiteVerificationTags:
+      type: object
+      properties:
+        channel_id:
+          type: integer
+          description: Channel ID. If empty, the default Channel ID will be used.
+        id:
+          type: integer
+          description: Web Analytic ID.
+        name:
+          type: string
+          description: Web Analytic title.
+        verification_tag:
+          type: string
+          description: Site Verification Tag. May contain HTML meta tags.
+        enabled:
+          type: boolean
+          description: Flag indicates if Web Analytic is enabled or not.
+      example:
+          channel_id: 1
+          id: 6
+          name: Site Verification Tags
+          verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
+          enabled: true
+    AnalyticAffiliateConversionTracking:
+      type: object
+      properties:
+        channel_id:
+          type: integer
+          description: Channel ID. If empty, the default Channel ID will be used.
+        id:
+          type: integer
+          description: Web Analytic ID.
+        name:
+          type: string
+          description: Web Analytic title.
+        connection:
+          type: string
+          description: Connection code. May contain scripts.
+        enabled:
+          type: boolean
+          description: Flag indicates if Web Analytic is enabled or not.
+      example:
+          channel_id: 1
+          id: 7
+          name: Affiliate Conversion Tracking
+          connection: <script>js code here...</script>
+          enabled: true
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+    ErrorResponse400:
+      type: object
+      properties:
+        schema:
+          $ref: '#/components/schemas/Error'
+    ErrorResponse404:
+      type: object
+      properties:
+        schema:
+          $ref: '#/components/schemas/Error'
+    ErrorResponse409:
+      type: object
+      properties:
+        schema:
+          $ref: '#/components/schemas/Error'
+    ErrorResponse422:
+      type: object
+      properties:
+        schema:
+          $ref: '#/components/schemas/Error'
