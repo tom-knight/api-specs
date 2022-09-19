@@ -87,11 +87,12 @@ paths:
             type: integer
       responses:
         '200':
-          description: |- 
+          description: |-
             Successful operation.
             <!-- theme:info -->
-            > For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
-
+            > #### Note:
+            > - The `200` response body returns a single analytic object. View an individual analytic by clicking the dropdown next to **data**.
+            > - For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
           content:
             application/json:
               schema:
@@ -160,10 +161,11 @@ paths:
                 - $ref: '#/components/schemas/AnalyticGoogle4'
       responses:
         '200':
-          description: |- 
+          description: |-
             Successful operation.
-            <!-- theme:info -->
-            > For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
+            > #### Note:
+            > - The `200` response body returns a single analytic object. View an individual analytic by clicking the dropdown next to **data**.
+            > - For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
           content:
             application/json:
               schema:
@@ -282,28 +284,36 @@ components:
       properties:
         id:
           type: integer
-          description: Web Analytic ID.
+          description: ID of the web analytic. `1` for Google Analytics.
+          readOnly: true
         channel_id:
           type: integer
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
         name:
           type: string
-          description: Web Analytic title.
+          description: Title of the web analytic.
+          enum:
+            - Google Analytics
+          readOnly: true
         enabled:
           type: boolean
-          description: Flag indicates if Web Analytic is enabled or not.
+          description: 'Flag that indicates if Google Analytics is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         version:
           type: integer
-          description: Google Analytic version.
+          description: Google Analytic version. Corresponds to the connection field that store uses to connect to Google Analytics. Value is 1 when tracking code is used. Value is 2 when property id is used.
+          enum:
+            - 1
+            - 2
         data_tag_enabled:
           type: boolean
-          description: Flag indicates if data tags are enabled by Google Analytic.
+          description: Flag that indicates if data tags are enabled by Google Analytics.
         tracking_code:
           type: string
-          description: Google Analytic tracking code. Required when the version is 1.
+          description: Google Analytic tracking code that is used to connect to Google Analytics. Required when the version is 1.
         property_id:
           type: string
-          description: Google Analytic property ID. Required when the version is 2.
+          description: Google Analytic property ID that is used to connect to Google Analytics. Required when the version is 2.
     AnalyticGoogle4:
       type: object
       title: Google Analytic 4
@@ -317,22 +327,27 @@ components:
       properties:
         id:
           type: integer
-          description: Web Analytic ID.
+          description: ID of the web analytic. `8` for Google Analytics 4.
+          readOnly: true
         channel_id:
           type: integer
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
         name:
           type: string
-          description: Web Analytic title.
+          description: Title of the web analytic.
+          enum:
+            - Google Analytics 4
+          readOnly: true
         enabled:
           type: boolean
-          description: Flag indicates if Web Analytic is enabled or not.
+          description: 'Flag that indicates if Google Analytics 4 is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         measurement_id:
           type: string
-          description: Google Analytic 4 measurement ID.
+          description: Google Analytic 4 measurement ID that is used to connect to Google Analytics 4.
         data_tag_enabled:
           type: boolean
-          description: Flag indicates if data tags are enabled by Google Analytic.
+          description: Flag indicates if data tags are enabled by Google Analytics 4.
     AnalyticVisualWebsiteOptimizer:
       type: object
       title: Visual Website Optimizer Analytic
@@ -345,19 +360,24 @@ components:
       properties:
         id:
           type: integer
-          description: Web Analytic ID.
+          description: ID of the web analytic. `2` for Visual Website Optimizer.
+          readOnly: true
         channel_id:
           type: integer
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
         name:
           type: string
-          description: Web Analytic title.
+          description: Title of the web analytic.
+          enum:
+            - Visual Website Optimizer
+          readOnly: true
         enabled:
           type: boolean
-          description: Flag indicates if Web Analytic is enabled or not.
+          description: 'Flag that indicates if Visual Website Optimizer is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         vwo_smartcode:
           type: string
-          description: Visual Website Optimizer Smartcode.
+          description: Visual Website Optimizer Smartcode that is used to connect store to VWO.
     AnalyticFacebookPixel:
       type: object
       title: Facebook Pixel Analytic
@@ -370,19 +390,24 @@ components:
       properties:
         id:
           type: integer
-          description: Web Analytic ID.
+          description: ID of the web analytic. `3` for Facebook Pixel.
+          readOnly: true
         channel_id:
           type: integer
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
         name:
           type: string
-          description: Web Analytic title.
+          description: Title of the web analytic.
+          enum:
+            - Facebook Pixel
+          readOnly: true
         enabled:
           type: boolean
-          description: Flag indicates if Web Analytic is enabled or not.
+          description: 'Flag that indicates if Facebook Pixel is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         pixel_id:
           type: string
-          description: Facebook Pixel ID.
+          description: Facebook Pixel ID that is used to connect store to Facebook Pixel.
     AnalyticSegment:
       type: object
       title: Segment Analytic
@@ -396,47 +421,27 @@ components:
       properties:
         id:
           type: integer
-          description: Web Analytic ID.
+          description: ID of the web analytic. `4` for Segment.
+          readOnly: true
         channel_id:
           type: integer
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          default: 0
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
         name:
           type: string
-          description: Web Analytic title.
+          description: Title of the web analytic.
+          enum:
+            - Segment.com
+          readOnly: true
         enabled:
           type: boolean
-          description: Flag indicates if Web Analytic is enabled or not.
+          description: 'Flag that indicates if Segment is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         api_key:
           type: string
-          description: Segment API key.
+          description: Segment API key that is used to connect store to Segment.
         data_tag_enabled:
           type: boolean
-          description: Flag indicates if data tags are enabled by Segment Analytic.
-    AnalyticSiteVerificationTags:
-      type: object
-      title: Site Verification Tags Analytic
-      example:
-        id: 6
-        channel_id: 1
-        name: Site Verification Tags
-        enabled: true
-        verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
-      properties:
-        id:
-          type: integer
-          description: Web Analytic ID.
-        channel_id:
-          type: integer
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
-        name:
-          type: string
-          description: Web Analytic title.
-        enabled:
-          type: boolean
-          description: Flag indicates if Web Analytic is enabled or not.
-        verification_tag:
-          type: string
-          description: Site Verification Tag. May contain HTML meta tags.
+          description: Flag indicates if data tags are enabled by Segment.
     AnalyticAffiliateConversionTracking:
       type: object
       title: Affiliate Conversion Tracking Analytic
@@ -449,19 +454,54 @@ components:
       properties:
         id:
           type: integer
-          description: Web Analytic ID.
+          description: ID of the web analytic. `7` for Affiliate Conversion Tracking.
+          readOnly: true
         channel_id:
           type: integer
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
         name:
           type: string
-          description: Web Analytic title.
+          description: Title of the web analytic.
+          enum:
+            - Affiliate Conversion Tracking
+          readOnly: true
         enabled:
           type: boolean
-          description: Flag indicates if Web Analytic is enabled or not.
+          description: 'Flag that indicates if Affiliate Conversion Tracking is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         connection:
           type: string
           description: Connection code. May contain scripts.
+    AnalyticSiteVerificationTags:
+      type: object
+      title: Site Verification Tags Analytic
+      example:
+        id: 6
+        channel_id: 1
+        name: Site Verification Tags
+        enabled: true
+        verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
+      properties:
+        id:
+          type: integer
+          description: ID of the web analytic. `6` for Site Verification Tags.
+          readOnly: true
+        channel_id:
+          type: integer
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
+        name:
+          type: string
+          description: Title of the web analytic.
+          enum:
+            - Site Verification Tags
+          readOnly: true
+        enabled:
+          type: boolean
+          description: 'Flag that indicates if Site Verification Tags is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+        verification_tag:
+          type: string
+          description: Site Verification Tag. May contain HTML meta tags.
     Error:
       type: object
       properties:
