@@ -264,6 +264,7 @@ components:
           properties: {}
     AnalyticGoogle:
       type: object
+      title: Google Analytic
       properties:
         channel_id:
           type: integer
@@ -301,6 +302,7 @@ components:
           version: 1
     AnalyticGoogle4:
       type: object
+      title: Google Analytic 4
       properties:
         channel_id:
           type: integer
@@ -329,6 +331,7 @@ components:
           data_tag_enabled: true
     AnalyticVisualWebsiteOptimizer:
       type: object
+      title: Visual Website Optimizer Analytic
       properties:
         channel_id:
           type: integer
@@ -353,6 +356,7 @@ components:
           vwo_smartcode: VWO-1234567890
     AnalyticFacebookPixel:
       type: object
+      title: Facebook Pixel Analytic
       properties:
         channel_id:
           type: integer
@@ -377,6 +381,7 @@ components:
           enabled: true
     AnalyticSegment:
       type: object
+      title: Segment Analytic
       properties:
         channel_id:
           type: integer
@@ -405,6 +410,7 @@ components:
           data_tag_enabled: true
     AnalyticSiteVerificationTags:
       type: object
+      title: Site Verification Tags Analytic
       properties:
         channel_id:
           type: integer
@@ -429,6 +435,7 @@ components:
           enabled: true
     AnalyticAffiliateConversionTracking:
       type: object
+      title: Affiliate Conversion Tracking Analytic
       properties:
         channel_id:
           type: integer
