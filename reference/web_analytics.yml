@@ -63,6 +63,7 @@ paths:
           | Segment | 4 |
           | Site Verification Tags | 6 |
           | Affiliate Conversion Tracking | 7 |
+          | Google Analytics 4 | 8 |
 
           **Note**: Web analytic ID 5 is no longer in use.      
       
@@ -119,6 +120,7 @@ paths:
           | Segment | 4 |
           | Site Verification Tags | 6 |
           | Affiliate Conversion Tracking | 7 |
+          | Google Analytics 4 | 8 |
 
           **Note**: Web analytic ID 5 is no longer in use.   
       parameters:
