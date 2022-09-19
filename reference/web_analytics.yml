@@ -204,45 +204,45 @@ components:
           properties: {}
       example:
         data:
-          - channel_id: 1
-            id: 1
+          - id: 1
+            channel_id: 1
             name: Google Analytics
-            property_id: GA-1234567890
             enabled: true
-            data_tag_enabled: true
             version: 2
-          - channel_id: 1
-            id: 8
-            name: Google Analytics 4
-            measurement_id: G-3MJBBGT9M2
-            enabled: true
             data_tag_enabled: true
-          - channel_id: 1
-            id: 2
+            property_id: GA-1234567890
+          - id: 2
+            channel_id: 1
             name: Visual Website Optimizer
+            enabled: true
             vwo_smartcode: VWO-1234567890
-            enabled: true
-          - channel_id: 2
-            id: 3
+          - id: 3
+            channel_id: 2
             name: Facebook Pixel
-            pixel_id: FP-1234567890
             enabled: false
-          - channel_id: 2
-            id: 4
+            pixel_id: FP-1234567890
+          - id: 4
+            channel_id: 2
             name: Segment.com
-            api_key: SEG-1234567890
             enabled: true
+            api_key: SEG-1234567890
             data_tag_enabled: true
-          - channel_id: 2
-            id: 6
+          - id: 6
+            channel_id: 2
             name: Site Verification Tags
             enabled: false
             verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
-          - channel_id: 2
-            id: 7
+          - id: 7
+            channel_id: 2
             name: Affiliate Conversion Tracking
             enabled: false
             connection: <script>js code here...</script>
+          - id: 8
+            channel_id: 1
+            name: Google Analytics 4
+            enabled: true
+            measurement_id: G-3MJBBGT9M2
+            data_tag_enabled: true
         meta: {}
     Analytic:
       type: object
@@ -332,8 +332,8 @@ components:
         id: 2
         channel_id: 1
         name: Visual Website Optimizer
-        vwo_smartcode: VWO-1234567890
         enabled: true
+        vwo_smartcode: VWO-1234567890
       properties:
         id:
           type: integer
@@ -344,12 +344,12 @@ components:
         name:
           type: string
           description: Web Analytic title.
-        vwo_smartcode:
-          type: string
-          description: Visual Website Optimizer Smartcode.
         enabled:
           type: boolean
           description: Flag indicates if Web Analytic is enabled or not.
+        vwo_smartcode:
+          type: string
+          description: Visual Website Optimizer Smartcode.
     AnalyticFacebookPixel:
       type: object
       title: Facebook Pixel Analytic
