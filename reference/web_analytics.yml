@@ -262,13 +262,13 @@ components:
       type: object
       title: Google Analytic
       example:
-        channel_id: 1
         id: 1
+        channel_id: 1
         name: Google Analytics
-        tracking_code: GA-1234567890
         enabled: true
-        data_tag_enabled: true
         version: 1
+        data_tag_enabled: true
+        tracking_code: GA-1234567890
       properties:
         id:
           type: integer
@@ -300,11 +300,11 @@ components:
       type: object
       title: Google Analytic 4
       example:
-        channel_id: 1
         id: 1
+        channel_id: 1
         name: Google Analytics 4
-        measurement_id: G-3MJBBGT9M2
         enabled: true
+        measurement_id: G-3MJBBGT9M2
         data_tag_enabled: true
       properties:
         id:
@@ -329,11 +329,11 @@ components:
       type: object
       title: Visual Website Optimizer Analytic
       example:
-        channel_id: 1
         id: 2
+        channel_id: 1
         name: Visual Website Optimizer
-        enabled: true
         vwo_smartcode: VWO-1234567890
+        enabled: true
       properties:
         id:
           type: integer
@@ -354,11 +354,11 @@ components:
       type: object
       title: Facebook Pixel Analytic
       example:
-        channel_id: 1
         id: 3
+        channel_id: 1
         name: Facebook Pixel
-        pixel_id: FP-1234567890
         enabled: true
+        pixel_id: FP-1234567890
       properties:
         id:
           type: integer
@@ -379,11 +379,11 @@ components:
       type: object
       title: Segment Analytic
       example:
-        channel_id: 1
         id: 4
+        channel_id: 1
         name: Segment.com
-        api_key: SEG-1234567890
         enabled: true
+        api_key: SEG-1234567890
         data_tag_enabled: true
       properties:
         id:
@@ -408,11 +408,11 @@ components:
       type: object
       title: Site Verification Tags Analytic
       example:
-        channel_id: 1
         id: 6
+        channel_id: 1
         name: Site Verification Tags
-        verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
         enabled: true
+        verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
       properties:
         id:
           type: integer
@@ -433,11 +433,11 @@ components:
       type: object
       title: Affiliate Conversion Tracking Analytic
       example:
-        channel_id: 1
         id: 7
+        channel_id: 1
         name: Affiliate Conversion Tracking
-        connection: <script>js code here...</script>
         enabled: true
+        connection: <script>js code here...</script>
       properties:
         id:
           type: integer
