@@ -50,7 +50,22 @@ paths:
       tags:
         - Web Analytics
       summary: Get a Web Analytic
-      description: Returns a single Web Analytic for a specified channel. If the `channel_id` is empty, the endpoint returns the analytic for the default channel.
+      description: |-
+        Returns a single Web Analytic for a specified channel. 
+        
+        - If the `channel_id` is not set, the endpoint returns the analytic for the default channel.
+
+        - | Web analytic | ID |
+          | ------------- | -------- |
+          | Google Analytics | 1 |
+          | Visual Website Optimizer | 2 |
+          | Facebook Pixel | 3 |
+          | Segment | 4 |
+          | Site Verification Tags | 6 |
+          | Affiliate Conversion Tracking | 7 |
+
+          **Note**: Web analytic ID 5 is no longer in use.      
+      
       parameters:
         - name: store_hash
           in: path
@@ -92,7 +107,20 @@ paths:
       tags:
         - Web Analytics
       summary: Update a Web Analytic
-      description: Updates a single Web Analytic for a specified channel. If `channel_id` is not set, the endpoint updates the analytic for the default channel.
+      description: |- 
+        Updates a single Web Analytic for a specified channel. 
+      
+        - If `channel_id` is not set, the endpoint updates the analytic for the default channel.
+        - | Web analytic | ID |
+          | ------------- | -------- |
+          | Google Analytics | 1 |
+          | Visual Website Optimizer | 2 |
+          | Facebook Pixel | 3 |
+          | Segment | 4 |
+          | Site Verification Tags | 6 |
+          | Affiliate Conversion Tracking | 7 |
+
+          **Note**: Web analytic ID 5 is no longer in use.   
       parameters:
         - name: store_hash
           in: path
