@@ -33,7 +33,9 @@ paths:
             Successful operation. 
 
             <!-- theme: info -->
-            > The `200` response body returns an array of all analytics objects. View each individual analytic by clicking the dropdown next to **data**.
+            > #### Note:
+            > - The `200` response body returns an array of all analytics objects. View each individual analytic by clicking the dropdown next to **data**.
+            > - For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
           content:
             application/json:
               schema:
@@ -85,7 +87,11 @@ paths:
             type: integer
       responses:
         '200':
-          description: Successful operation.
+          description: |- 
+            Successful operation.
+            <!-- theme:info -->
+            > For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
+
           content:
             application/json:
               schema:
@@ -154,7 +160,10 @@ paths:
                 - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
       responses:
         '200':
-          description: Successful operation.
+          description: |- 
+            Successful operation.
+            <!-- theme:info -->
+            > For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
           content:
             application/json:
               schema:
@@ -291,11 +300,9 @@ components:
         tracking_code:
           type: string
           description: Google Analytic tracking code. Required when the version is 1.
-          nullable: true
         property_id:
           type: string
           description: Google Analytic property ID. Required when the version is 2.
-          nullable: true
     AnalyticGoogle4:
       type: object
       title: Google Analytic 4
