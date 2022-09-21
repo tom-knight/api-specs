@@ -30,47 +30,96 @@ servers:
   - description: Production API Gateway
     url: 'https://api.bigcommerce.com'
 paths:
-  '/stores/{store_hash}/v3/settings/analytics':
+  '/stores/{store_hash}/v3/settings/data-solutions/web-analytics':
     get:
-      summary: Get All Web Analytics Providers
-      description: Returns a list of web analytics providers.
+      operationId: get-web-analytics
+      tags:
+        - Web Analytics
+      summary: Get All Web Analytics
+      description: 'Returns a list of all available Web Analytics data for a specified channel. If `channel_id` is not set, the endpoint returns the analytics for the default channel.'
       parameters:
-        - $ref: '#/components/parameters/ChannelIdParam'
+        - name: store_hash
+          in: path
+          required: true
+          description: Unique identifier for a store.
+          schema:
+            type: string
+        - name: channel_id
+          in: query
+          description: 'ID of the storefront channel. Defaults to the ID of the default (global) channel.'
+          schema:
+            type: integer
       responses:
         '200':
-          description: OK
+          description: |-
+            Successful operation. 
+
+            <!-- theme: info -->
+            > #### Note:
+            > - The `200` response body returns an array of all analytics objects. View each individual analytic by clicking the dropdown next to **data**.
+            > - For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/AnalyticsProviders'
-                  meta:
-                    type: object
-      tags:
-        - Analytics
-    parameters:
-      - $ref: '#/components/parameters/store_hash'
-  '/stores/{store_hash}/v3/settings/analytics/{id}':
+                $ref: '#/components/schemas/Analytics'
+        '400':
+          description: Bad request. Authentication Required.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse400'
+  '/stores/{store_hash}/v3/settings/data-solutions/web-analytics/{id}':
     get:
-      summary: Get a Web Analytics Provider
-      description: Returns a single web analytics provider data for a default channel.
+      operationId: get-a-web-analytic
+      tags:
+        - Web Analytics
+      summary: Get a Web Analytic
+      description: |-
+        Returns a single Web Analytic for a specified channel. 
+
+        - If the `channel_id` is not set, the endpoint returns the analytic for the default channel.
+
+        - | Web analytic | ID |
+          | ------------- | -------- |
+          | Google Analytics | 1 |
+          | Visual Website Optimizer | 2 |
+          | Facebook Pixel | 3 |
+          | Segment | 4 |
+          | Site Verification Tags | 6 |
+          | Affiliate Conversion Tracking | 7 |
+          | Google Analytics 4 | 8 |
+
+          **Note**: Web analytic ID 5 is no longer in use.      
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          description: Unique identifier for a store.
+          schema:
+            type: string
+        - name: channel_id
+          in: query
+          description: 'ID of the storefront channel. Defaults to the ID of the default (global) channel.'
+          schema:
+            type: integer
         - name: id
           in: path
-          description: Web Analytics Provider ID.
+          description: Web Analytic ID.
           required: true
           schema:
             type: integer
-        - $ref: '#/components/parameters/ChannelIdParam'
       responses:
         '200':
-          description: Successful operation.
+          description: |-
+            Successful operation.
+            <!-- theme:info -->
+            > #### Note:
+            > - The `200` response body returns a single analytic object. View an individual analytic by clicking the dropdown next to **data**.
+            > - For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnalyticsProvider'
+                $ref: '#/components/schemas/Analytic'
         '400':
           description: Bad request. Authentication Required.
           content:
@@ -78,72 +127,73 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
         '404':
-          description: The requested resource was not found. Please specify valid Web Analytics Provider ID.
+          description: The requested resource was not found. Please specify valid Web Analytic ID.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse404'
-      tags:
-        - Analytics
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-      - $ref: '#/components/parameters/store_hash'
     put:
-      summary: Update a Web Analytics Provider
-      description: Updates a single web analytics provider data for a default channel.
+      operationId: update-a-web-analytic
+      tags:
+        - Web Analytics
+      summary: Update a Web Analytic
+      description: |-
+        Updates a single Web Analytic for a specified channel. 
+
+        - If `channel_id` is not set, the endpoint updates the analytic for the default channel.
+        - | Web analytic | ID |
+          | ------------- | -------- |
+          | Google Analytics | 1 |
+          | Visual Website Optimizer | 2 |
+          | Facebook Pixel | 3 |
+          | Segment | 4 |
+          | Site Verification Tags | 6 |
+          | Affiliate Conversion Tracking | 7 |
+          | Google Analytics 4 | 8 |
+
+          **Note**: Web analytic ID 5 is no longer in use.   
       parameters:
+        - name: store_hash
+          in: path
+          required: true
+          description: Unique identifier for a store.
+          schema:
+            type: string
+        - name: channel_id
+          in: query
+          description: 'ID of the storefront channel. Defaults to the ID of the default (global) channel.'
+          schema:
+            type: integer
         - name: id
           in: path
-          description: Web Analytics Provider ID.
+          description: Web Analytic ID.
           required: true
           schema:
             type: integer
-        - $ref: '#/components/parameters/ChannelIdParam'
       requestBody:
+        description: A JSON Web Analytic object
         content:
           application/json:
             schema:
-              description: ''
-              type: object
-              properties:
-                channel_id:
-                  type: number
-                code:
-                  type: string
-                  minLength: 1
-                data_tag_enabled:
-                  type: boolean
-                enabled:
-                  type: boolean
-                id:
-                  type: number
-                is_oauth_connected: {}
-                name:
-                  type: string
-                  minLength: 1
-                version:
-                  type: number
-              x-examples:
-                example-1:
-                  channel_id: 1
-                  code: GA-1234567890
-                  data_tag_enabled: false
-                  enabled: false
-                  id: 2
-                  is_oauth_connected: null
-                  name: Visual Website Optimizer
-                  version: 1
+              oneOf:
+                - $ref: '#/components/schemas/AnalyticGoogle'
+                - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+                - $ref: '#/components/schemas/AnalyticFacebookPixel'
+                - $ref: '#/components/schemas/AnalyticSegment'
+                - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+                - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+                - $ref: '#/components/schemas/AnalyticGoogle4'
       responses:
         '200':
-          description: Successful operation.
+          description: |-
+            Successful operation.
+            > #### Note:
+            > - The `200` response body returns a single analytic object. View an individual analytic by clicking the dropdown next to **data**.
+            > - For Google Analytic, the response includes `tracking_code` or `property_id` depending on the `version`.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnalyticsProvider'
+                $ref: '#/components/schemas/Analytic'
         '400':
           description: Bad request. Authentication Required.
           content:
@@ -151,25 +201,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
         '404':
-          description: The requested resource was not found. Please specify valid Web Analytics Provider ID.
+          description: The requested resource was not found. Please specify valid Web Analytic ID.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse404'
         '409':
-          description: Web Analytics Provider was in conflict with another Web Analytics Provider. This can be caused by duplicated unique values (such as ID).
+          description: Web Analytic was in conflict with another Web Analytic. This can be caused by duplicated unique values (such as ID).
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse409'
         '422':
-          description: 'Web Analytics Provider data was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.'
+          description: 'Web Analytic data was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse422'
-      tags:
-        - Analytics
   '/stores/{store_hash}/v3/settings/catalog':
     get:
       summary: Get Catalog Settings
@@ -1392,6 +1440,312 @@ components:
         type: string
         example: 29iql3rwa6
   schemas:
+    Analytics:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/AnalyticGoogle'
+              - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+              - $ref: '#/components/schemas/AnalyticFacebookPixel'
+              - $ref: '#/components/schemas/AnalyticSegment'
+              - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+              - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+              - $ref: '#/components/schemas/AnalyticGoogle4'
+        meta:
+          type: object
+          properties: {}
+      example:
+        data:
+          - id: 1
+            channel_id: 1
+            name: Google Analytics
+            enabled: true
+            version: 2
+            data_tag_enabled: true
+            property_id: GA-1234567890
+          - id: 2
+            channel_id: 1
+            name: Visual Website Optimizer
+            enabled: true
+            vwo_smartcode: VWO-1234567890
+          - id: 3
+            channel_id: 2
+            name: Facebook Pixel
+            enabled: false
+            pixel_id: FP-1234567890
+          - id: 4
+            channel_id: 2
+            name: Segment.com
+            enabled: true
+            api_key: SEG-1234567890
+            data_tag_enabled: true
+          - id: 6
+            channel_id: 2
+            name: Site Verification Tags
+            enabled: false
+            verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
+          - id: 7
+            channel_id: 2
+            name: Affiliate Conversion Tracking
+            enabled: false
+            connection: <script>js code here...</script>
+          - id: 8
+            channel_id: 1
+            name: Google Analytics 4
+            enabled: true
+            measurement_id: G-3MJBBGT9M2
+            data_tag_enabled: true
+        meta: {}
+    Analytic:
+      type: object
+      properties:
+        data:
+          oneOf:
+            - $ref: '#/components/schemas/AnalyticGoogle'
+            - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
+            - $ref: '#/components/schemas/AnalyticFacebookPixel'
+            - $ref: '#/components/schemas/AnalyticSegment'
+            - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
+            - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
+            - $ref: '#/components/schemas/AnalyticGoogle4'
+        meta:
+          type: object
+          properties: {}
+    AnalyticGoogle:
+      type: object
+      title: Google Analytic
+      example:
+        id: 1
+        channel_id: 1
+        name: Google Analytics
+        enabled: true
+        version: 1
+        data_tag_enabled: true
+        tracking_code: GA-1234567890
+      properties:
+        id:
+          type: integer
+          description: ID of the web analytic. `1` for Google Analytics.
+          readOnly: true
+        channel_id:
+          type: integer
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
+        name:
+          type: string
+          description: Title of the web analytic.
+          enum:
+            - Google Analytics
+          readOnly: true
+        enabled:
+          type: boolean
+          description: 'Flag that indicates if Google Analytics is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+        version:
+          type: integer
+          description: Google Analytic version. Corresponds to the connection field that store uses to connect to Google Analytics. Value is 1 when tracking code is used. Value is 2 when property id is used.
+          enum:
+            - 1
+            - 2
+        data_tag_enabled:
+          type: boolean
+          description: Flag that indicates if data tags are enabled by Google Analytics.
+        tracking_code:
+          type: string
+          description: Google Analytic tracking code that is used to connect to Google Analytics. Required when the version is 1.
+        property_id:
+          type: string
+          description: Google Analytic property ID that is used to connect to Google Analytics. Required when the version is 2.
+    AnalyticGoogle4:
+      type: object
+      title: Google Analytic 4
+      example:
+        id: 1
+        channel_id: 1
+        name: Google Analytics 4
+        enabled: true
+        measurement_id: G-3MJBBGT9M2
+        data_tag_enabled: true
+      properties:
+        id:
+          type: integer
+          description: ID of the web analytic. `8` for Google Analytics 4.
+          readOnly: true
+        channel_id:
+          type: integer
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
+        name:
+          type: string
+          description: Title of the web analytic.
+          enum:
+            - Google Analytics 4
+          readOnly: true
+        enabled:
+          type: boolean
+          description: 'Flag that indicates if Google Analytics 4 is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+        measurement_id:
+          type: string
+          description: Google Analytic 4 measurement ID that is used to connect to Google Analytics 4.
+        data_tag_enabled:
+          type: boolean
+          description: Flag indicates if data tags are enabled by Google Analytics 4.
+    AnalyticVisualWebsiteOptimizer:
+      type: object
+      title: Visual Website Optimizer Analytic
+      example:
+        id: 2
+        channel_id: 1
+        name: Visual Website Optimizer
+        enabled: true
+        vwo_smartcode: VWO-1234567890
+      properties:
+        id:
+          type: integer
+          description: ID of the web analytic. `2` for Visual Website Optimizer.
+          readOnly: true
+        channel_id:
+          type: integer
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
+        name:
+          type: string
+          description: Title of the web analytic.
+          enum:
+            - Visual Website Optimizer
+          readOnly: true
+        enabled:
+          type: boolean
+          description: 'Flag that indicates if Visual Website Optimizer is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+        vwo_smartcode:
+          type: string
+          description: Visual Website Optimizer Smartcode that is used to connect store to VWO.
+    AnalyticFacebookPixel:
+      type: object
+      title: Facebook Pixel Analytic
+      example:
+        id: 3
+        channel_id: 1
+        name: Facebook Pixel
+        enabled: true
+        pixel_id: FP-1234567890
+      properties:
+        id:
+          type: integer
+          description: ID of the web analytic. `3` for Facebook Pixel.
+          readOnly: true
+        channel_id:
+          type: integer
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
+        name:
+          type: string
+          description: Title of the web analytic.
+          enum:
+            - Facebook Pixel
+          readOnly: true
+        enabled:
+          type: boolean
+          description: 'Flag that indicates if Facebook Pixel is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+        pixel_id:
+          type: string
+          description: Facebook Pixel ID that is used to connect store to Facebook Pixel.
+    AnalyticSegment:
+      type: object
+      title: Segment Analytic
+      example:
+        id: 4
+        channel_id: 1
+        name: Segment.com
+        enabled: true
+        api_key: SEG-1234567890
+        data_tag_enabled: true
+      properties:
+        id:
+          type: integer
+          description: ID of the web analytic. `4` for Segment.
+          readOnly: true
+        channel_id:
+          type: integer
+          default: 0
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+        name:
+          type: string
+          description: Title of the web analytic.
+          enum:
+            - Segment.com
+          readOnly: true
+        enabled:
+          type: boolean
+          description: 'Flag that indicates if Segment is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+        api_key:
+          type: string
+          description: Segment API key that is used to connect store to Segment.
+        data_tag_enabled:
+          type: boolean
+          description: Flag indicates if data tags are enabled by Segment.
+    AnalyticAffiliateConversionTracking:
+      type: object
+      title: Affiliate Conversion Tracking Analytic
+      example:
+        id: 7
+        channel_id: 1
+        name: Affiliate Conversion Tracking
+        enabled: true
+        connection: <script>js code here...</script>
+      properties:
+        id:
+          type: integer
+          description: ID of the web analytic. `7` for Affiliate Conversion Tracking.
+          readOnly: true
+        channel_id:
+          type: integer
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
+        name:
+          type: string
+          description: Title of the web analytic.
+          enum:
+            - Affiliate Conversion Tracking
+          readOnly: true
+        enabled:
+          type: boolean
+          description: 'Flag that indicates if Affiliate Conversion Tracking is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+        connection:
+          type: string
+          description: Connection code. May contain scripts.
+    AnalyticSiteVerificationTags:
+      type: object
+      title: Site Verification Tags Analytic
+      example:
+        id: 6
+        channel_id: 1
+        name: Site Verification Tags
+        enabled: true
+        verification_tag: <meta name="google-site-verification" content="twLOPnFqwX5JK2-RksTZp_QEkfUPPgfGJ0_UHrEKLcY" />
+      properties:
+        id:
+          type: integer
+          description: ID of the web analytic. `6` for Site Verification Tags.
+          readOnly: true
+        channel_id:
+          type: integer
+          description: ID of the storefront channel. Defaults to the ID of the default (global) channel.
+          default: 0
+        name:
+          type: string
+          description: Title of the web analytic.
+          enum:
+            - Site Verification Tags
+          readOnly: true
+        enabled:
+          type: boolean
+          description: 'Flag that indicates if Site Verification Tags is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+        verification_tag:
+          type: string
+          description: Site Verification Tag. May contain HTML meta tags.
     AddressTypeEnumValues:
       description: Only supports manipulation on a global level.
       type: string
@@ -1404,27 +1758,6 @@ components:
       title: AddressTypeEnumValues
       x-tags:
         - Models
-    AnalyticsProvider:
-      type: object
-      properties:
-        code:
-          description: Web Analytics Provider code.
-          type: string
-        enabled:
-          description: Flag indicates if Web Analytics Provider is enabled or not.
-          type: boolean
-        id:
-          description: Web Analytics Provider ID.
-          type: integer
-        name:
-          description: Web Analytics Provider title.
-          type: string
-      x-internal: false
-    AnalyticsProviders:
-      type: array
-      items:
-        $ref: '#/components/schemas/AnalyticsProvider'
-      x-internal: false
     AvailableFilter:
       type: object
       oneOf:
@@ -2186,7 +2519,7 @@ tags:
   - name: Storefront Security
   - name: Storefront SEO
   - name: Storefront Status
-  - name: Analytics
+  - name: Web Analytics
   - name: Catalog
   - name: Inventory
   - name: Logo
