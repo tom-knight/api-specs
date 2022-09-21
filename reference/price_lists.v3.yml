@@ -2762,7 +2762,7 @@ components:
     FilterIncludePriceRecordParam:
       name: include
       description: |
-        Sub-resources to include on a price record, in a comma-separated list. Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other valies will be ignored.
+        Sub-resources to include on a price record, in a comma-separated list. Valid expansions currently include `bulk_pricing_tiers` and `sku`.  Other values will be ignored.
       required: false
       in: query
       schema:
