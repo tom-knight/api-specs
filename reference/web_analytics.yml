@@ -15,16 +15,17 @@ paths:
       tags:
         - Web Analytics
       summary: Get All Web Analytics
-      description: 'Returns a list of all available Web Analytics data for a specified channel. If the `channel_id` is empty, the endpoint returns the analytics for the default channel.'
+      description: 'Returns a list of all available Web Analytics data for a specified channel. If `channel_id` is not set, the endpoint returns the analytics for the default channel.'
       parameters:
         - name: store_hash
           in: path
           required: true
+          description: Unique identifier for a store.
           schema:
             type: string
         - name: channel_id
           in: query
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          description: 'ID of the storefront channel. Defaults to the ID of the default (global) channel.'
           schema:
             type: integer
       responses:
@@ -72,11 +73,12 @@ paths:
         - name: store_hash
           in: path
           required: true
+          description: Unique identifier for a store.
           schema:
             type: string
         - name: channel_id
           in: query
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          description: 'ID of the storefront channel. Defaults to the ID of the default (global) channel.'
           schema:
             type: integer
         - name: id
@@ -133,11 +135,12 @@ paths:
         - name: store_hash
           in: path
           required: true
+          description: Unique identifier for a store.
           schema:
             type: string
         - name: channel_id
           in: query
-          description: 'Channel ID. If empty, the default Channel ID will be used.'
+          description: 'ID of the storefront channel. Defaults to the ID of the default (global) channel.'
           schema:
             type: integer
         - name: id
