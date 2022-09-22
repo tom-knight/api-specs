@@ -16,6 +16,7 @@ tags:
   - name: Checkout Discounts
   - name: Checkout Orders
   - name: Checkout Settings
+  - name: Checkout Token
 paths:
   '/stores/{store_hash}/v3/checkouts/{checkoutId}':
     get:
@@ -7933,6 +7934,60 @@ paths:
                 meta: {}
       security:
         - X-Auth-Token: []
+  '/stores/{store_hash}/v3/checkouts/{checkout-id}/token':
+    parameters:
+      - schema:
+          type: string
+        name: store_hash
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: checkout-id
+        in: path
+        required: true
+    post:
+      tags:
+        - Checkout Token
+      summary: Create Checkout Token
+      operationId: checkout-token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checkoutToken:
+                    type: string
+                    example: beb3590088be88f59ba980d54a68df655cd8a1052a3e9caf535f3f820146c226
+                  meta:
+                    type: object
+              examples:
+                example-1:
+                  value:
+                    data:
+                      checkoutToken: beb3590088be88f59ba980d54a68df655cd8a1052a3e9caf535f3f820146c226
+                      meta: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maxUses:
+                  type: number
+                  example: 1
+                ttl:
+                  type: number
+                  example: 9999999999999
+            examples:
+              example-1:
+                value:
+                  maxUses: 1
+                  ttl: 9999999999999
+      description: Use the checkout token to display a confirmation page for a guest shopper.
 components:
   schemas:
     Checkout:
