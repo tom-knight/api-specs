@@ -409,6 +409,16 @@ paths:
             type: array
             items:
               type: string
+        - schema:
+            type: string
+          in: query
+          name: channel_id
+          description: Filter items by the main channel ID.
+        - schema:
+            type: string
+          in: query
+          name: 'channel_id:in'
+          description: Filter items by channel ID.
       responses:
         '200':
           description: ''
@@ -463,6 +473,16 @@ paths:
           description: 'Fields to include, in a comma-separated list. The ID and the specified fields will be returned.'
           schema:
             type: string
+        - schema:
+            type: string
+          in: query
+          name: channel_id
+          description: Filter items by the main channel ID.
+        - schema:
+            type: string
+          in: query
+          name: 'channel_id:in'
+          description: Filter items by channel ID.
       requestBody:
         content:
           application/json:
@@ -928,12 +948,23 @@ paths:
           description: 'Fields to include, in a comma-separated list. The ID and the specified fields will be returned.'
           schema:
             type: string
+        - schema:
+            type: string
+          in: query
+          name: channel_id
+          description: Filter items by the main channel ID.
+        - schema:
+            type: string
+          in: query
+          name: 'channel_id:in'
+          description: Filter items by channel ID.
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/product_Base'
         required: true
+        description: ''
       responses:
         '200':
           description: ''
@@ -1430,6 +1461,16 @@ paths:
           schema:
             type: string
             default: application/json
+        - schema:
+            type: string
+          in: query
+          description: Filter items by the main channel ID.
+          name: channel_id
+        - schema:
+            type: string
+          in: query
+          description: Filter items by channel ID.
+          name: 'channel_id:in'
       responses:
         '200':
           description: ''
@@ -1586,6 +1627,16 @@ paths:
           description: 'Fields to include, in a comma-separated list. The ID and the specified fields will be returned.'
           schema:
             type: string
+        - schema:
+            type: string
+          in: query
+          name: channel_id
+          description: Filter items by the main channel ID.
+        - schema:
+            type: string
+          in: query
+          name: 'channel_id:in'
+          description: Filter items by channel ID.
       requestBody:
         content:
           application/json:
