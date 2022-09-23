@@ -1651,7 +1651,7 @@ components:
           description: 'Flag that indicates if Facebook Pixel is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         pixel_id:
           type: string
-          description: Facebook Pixel ID that is used to connect store to Facebook Pixel.
+          description: Facebook Pixel ID that is used to connect a store to Facebook Pixel.
     AnalyticSegment:
       type: object
       title: Segment Analytic
