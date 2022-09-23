@@ -127,7 +127,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse400'
         '404':
-          description: The requested resource was not found. Please specify valid Web Analytic ID.
+          description: The requested resource was not found. Please specify a valid Web Analytic ID.
           content:
             application/json:
               schema:
