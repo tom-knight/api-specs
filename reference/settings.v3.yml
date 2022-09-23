@@ -1621,7 +1621,7 @@ components:
           description: 'Flag that indicates if Visual Website Optimizer is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         vwo_smartcode:
           type: string
-          description: Visual Website Optimizer Smartcode that is used to connect store to VWO.
+          description: Visual Website Optimizer Smartcode that is used to connect a store to VWO.
     AnalyticFacebookPixel:
       type: object
       title: Facebook Pixel Analytic
