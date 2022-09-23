@@ -7981,12 +7981,17 @@ paths:
                   example: 1
                 ttl:
                   type: number
-                  example: 9999999999999
+                  example: 86400
+                  description: Time-to-live (ttl) is the number of seconds the token is set to exist before being discarded.
+                  minimum: 1
+                  maximum: 2592000
             examples:
               example-1:
                 value:
+                  '0': null
+                  '592': null
                   maxUses: 1
-                  ttl: 9999999999999
+                  ttl: 2
       description: Use the checkout token to display a confirmation page for a guest shopper.
 components:
   schemas:
