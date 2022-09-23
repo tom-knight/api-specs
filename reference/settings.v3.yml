@@ -1545,7 +1545,7 @@ components:
           description: 'Flag that indicates if Google Analytics is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         version:
           type: integer
-          description: Google Analytic version. Corresponds to the connection field that store uses to connect to Google Analytics. Value is 1 when tracking code is used. Value is 2 when property id is used.
+          description: Google Analytic version. Corresponds to the connection field that a store uses to connect to Google Analytics. Value is 1 when using the tracking code. Value is 2 when using the property id.
           enum:
             - 1
             - 2
