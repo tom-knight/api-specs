@@ -207,7 +207,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse404'
         '409':
-          description: Web Analytic was in conflict with another Web Analytic. This can be caused by duplicated unique values (such as ID).
+          description: Web Analytic conflicted with another Web Analytic. Duplicated unique values (such as ID) cause this conflict.
           content:
             application/json:
               schema:
