@@ -80,15 +80,15 @@ paths:
 
         | **Web analytic** | **ID** |
         | ------------- | -------- |
-        | Google Analytics | 1 |
-        | Visual Website Optimizer | 2 |
-        | Facebook Pixel | 3 |
-        | Segment | 4 |
-        | Site Verification Tags | 6 |
-        | Affiliate Conversion Tracking | 7 |
-        | Google Analytics 4 | 8 |
+        | Google Analytics | `1` |
+        | Visual Website Optimizer | `2` |
+        | Facebook Pixel | `3` |
+        | Segment | `4` |
+        | Site Verification Tags | `6` |
+        | Affiliate Conversion Tracking | `7` |
+        | Google Analytics 4 | `8` |
 
-          **Note**: Web analytic ID 5 is no longer in use.      
+          **Note**: Web analytic ID `5` is no longer in use.      
       parameters:
         - name: store_hash
           in: path
@@ -141,15 +141,15 @@ paths:
         
         | **Web analytic** | **ID** |
         | ------------- | -------- |
-        | Google Analytics | 1 |
-        | Visual Website Optimizer | 2 |
-        | Facebook Pixel | 3 |
-        | Segment | 4 |
-        | Site Verification Tags | 6 |
-        | Affiliate Conversion Tracking | 7 |
-        | Google Analytics 4 | 8 |
+        | Google Analytics | `1` |
+        | Visual Website Optimizer | `2` |
+        | Facebook Pixel | `3` |
+        | Segment | `4` |
+        | Site Verification Tags | `6` |
+        | Affiliate Conversion Tracking | `7` |
+        | Google Analytics 4 | `8` |
 
-          **Note**: Web analytic ID 5 is no longer in use.   
+          **Note**: Web analytic ID `5` is no longer in use.   
       parameters:
         - name: store_hash
           in: path
