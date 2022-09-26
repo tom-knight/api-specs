@@ -76,18 +76,17 @@ paths:
       summary: Get a Web Analytic
       description: |-
         Returns a single web analytic for a specified channel. 
+        If the `channel_id` is not set, the endpoint returns the analytic for the global channel.
 
-        - If the `channel_id` is not set, the endpoint returns the analytic for the global channel.
-
-        - | **Web analytic** | **ID** |
-          | ------------- | -------- |
-          | Google Analytics | 1 |
-          | Visual Website Optimizer | 2 |
-          | Facebook Pixel | 3 |
-          | Segment | 4 |
-          | Site Verification Tags | 6 |
-          | Affiliate Conversion Tracking | 7 |
-          | Google Analytics 4 | 8 |
+        | **Web analytic** | **ID** |
+        | ------------- | -------- |
+        | Google Analytics | 1 |
+        | Visual Website Optimizer | 2 |
+        | Facebook Pixel | 3 |
+        | Segment | 4 |
+        | Site Verification Tags | 6 |
+        | Affiliate Conversion Tracking | 7 |
+        | Google Analytics 4 | 8 |
 
           **Note**: Web analytic ID 5 is no longer in use.      
       parameters:
@@ -138,18 +137,17 @@ paths:
         - Web Analytics
       summary: Update a Web Analytic
       description: |-
-        Updates a single Web Analytic for a specified channel. 
-
-        - If `channel_id` is not set, the endpoint updates the analytic for the global channel.
-        - | **Web analytic** | **ID** |
-          | ------------- | -------- |
-          | Google Analytics | 1 |
-          | Visual Website Optimizer | 2 |
-          | Facebook Pixel | 3 |
-          | Segment | 4 |
-          | Site Verification Tags | 6 |
-          | Affiliate Conversion Tracking | 7 |
-          | Google Analytics 4 | 8 |
+        Updates a single Web Analytic for a specified channel. If `channel_id` is not set, the endpoint updates the analytic for the global channel.
+        
+        | **Web analytic** | **ID** |
+        | ------------- | -------- |
+        | Google Analytics | 1 |
+        | Visual Website Optimizer | 2 |
+        | Facebook Pixel | 3 |
+        | Segment | 4 |
+        | Site Verification Tags | 6 |
+        | Affiliate Conversion Tracking | 7 |
+        | Google Analytics 4 | 8 |
 
           **Note**: Web analytic ID 5 is no longer in use.   
       parameters:
