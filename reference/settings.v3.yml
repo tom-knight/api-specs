@@ -82,7 +82,7 @@ paths:
         | ------------- | -------- |
         | Google Analytics | `1` |
         | Visual Website Optimizer | `2` |
-        | Facebook Pixel | `3` |
+        | Meta Pixel | `3` |
         | Segment | `4` |
         | Site Verification Tags | `6` |
         | Affiliate Conversion Tracking | `7` |
@@ -143,7 +143,7 @@ paths:
         | ------------- | -------- |
         | Google Analytics | `1` |
         | Visual Website Optimizer | `2` |
-        | Facebook Pixel | `3` |
+        | Meta Pixel | `3` |
         | Segment | `4` |
         | Site Verification Tags | `6` |
         | Affiliate Conversion Tracking | `7` |
@@ -176,7 +176,7 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/AnalyticGoogle'
                 - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
-                - $ref: '#/components/schemas/AnalyticFacebookPixel'
+                - $ref: '#/components/schemas/AnalyticMetaPixel'
                 - $ref: '#/components/schemas/AnalyticSegment'
                 - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
                 - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
@@ -1447,7 +1447,7 @@ components:
             anyOf:
               - $ref: '#/components/schemas/AnalyticGoogle'
               - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
-              - $ref: '#/components/schemas/AnalyticFacebookPixel'
+              - $ref: '#/components/schemas/AnalyticMetaPixel'
               - $ref: '#/components/schemas/AnalyticSegment'
               - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
               - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
@@ -1504,7 +1504,7 @@ components:
           oneOf:
             - $ref: '#/components/schemas/AnalyticGoogle'
             - $ref: '#/components/schemas/AnalyticVisualWebsiteOptimizer'
-            - $ref: '#/components/schemas/AnalyticFacebookPixel'
+            - $ref: '#/components/schemas/AnalyticMetaPixel'
             - $ref: '#/components/schemas/AnalyticSegment'
             - $ref: '#/components/schemas/AnalyticSiteVerificationTags'
             - $ref: '#/components/schemas/AnalyticAffiliateConversionTracking'
@@ -1620,9 +1620,9 @@ components:
         vwo_smartcode:
           type: string
           description: Visual Website Optimizer Smartcode that is used to connect a store to VWO.
-    AnalyticFacebookPixel:
+    AnalyticMetaPixel:
       type: object
-      title: Facebook Pixel Analytic
+      title: Meta Pixel Analytic
       example:
         id: 3
         channel_id: 1
@@ -1632,7 +1632,7 @@ components:
       properties:
         id:
           type: integer
-          description: ID of the web analytic. `3` for Facebook Pixel.
+          description: ID of the web analytic. `3` for Meta Pixel.
           readOnly: true
         channel_id:
           type: integer
@@ -1646,10 +1646,10 @@ components:
           readOnly: true
         enabled:
           type: boolean
-          description: 'Flag that indicates if Facebook Pixel is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
+          description: 'Flag that indicates if Meta Pixel is [enabled](https://support.bigcommerce.com/s/article/Data-Solutions?language=en_US#web-analytics).'
         pixel_id:
           type: string
-          description: Facebook Pixel ID that is used to connect a store to Facebook Pixel.
+          description: Meta Pixel ID that is used to connect a store to Meta Pixel.
     AnalyticSegment:
       type: object
       title: Segment Analytic
