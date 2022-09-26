@@ -141,7 +141,7 @@ paths:
         Updates a single Web Analytic for a specified channel. 
 
         - If `channel_id` is not set, the endpoint updates the analytic for the global channel.
-        - | Web analytic | ID |
+        - | **Web analytic** | **ID** |
           | ------------- | -------- |
           | Google Analytics | 1 |
           | Visual Website Optimizer | 2 |
