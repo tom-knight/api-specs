@@ -79,7 +79,7 @@ paths:
 
         - If the `channel_id` is not set, the endpoint returns the analytic for the global channel.
 
-        - | Web analytic | ID |
+        - | **Web analytic** | **ID** |
           | ------------- | -------- |
           | Google Analytics | 1 |
           | Visual Website Optimizer | 2 |
