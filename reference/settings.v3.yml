@@ -36,7 +36,7 @@ paths:
       tags:
         - Web Analytics
       summary: Get All Web Analytics
-      description: 'Returns a list of all available Web Analytics data for a specified channel. If `channel_id` is not set, the endpoint returns the analytics for the global channel.'
+      description: 'Returns a list of all available web analytics data for a specified channel. If `channel_id` is not set, the endpoint returns the analytics for the global channel.'
       parameters:
         - name: store_hash
           in: path
@@ -137,7 +137,7 @@ paths:
         - Web Analytics
       summary: Update a Web Analytic
       description: |-
-        Updates a single Web Analytic for a specified channel. If `channel_id` is not set, the endpoint updates the analytic for the global channel.
+        Updates a single web analytic for a specified channel. If `channel_id` is not set, the endpoint updates the analytic for the global channel.
         
         | **Web analytic** | **ID** |
         | ------------- | -------- |
