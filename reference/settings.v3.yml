@@ -75,7 +75,7 @@ paths:
         - Web Analytics
       summary: Get a Web Analytic
       description: |-
-        Returns a single Web Analytic for a specified channel. 
+        Returns a single web analytic for a specified channel. 
 
         - If the `channel_id` is not set, the endpoint returns the analytic for the default channel.
 
