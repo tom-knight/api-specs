@@ -186,7 +186,7 @@ paths:
           description: |-
             Successful operation.
             > #### Note:
-            > - The `200` response body returns a single analytic object. View an individual analytic by clicking the dropdown next to **data**.
+            > - The `200` response body returns a single analytic object. To view the response body schema for a different web analytic, click the dropdown next to **data**.
             > - For Google Analytic, the response includes either `tracking_code` or `property_id` depending on the `version`.
           content:
             application/json:
