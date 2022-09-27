@@ -87,7 +87,9 @@ paths:
       tags:
         - Products
       summary: Get All Products
-      description: Returns a list of **Products**. Optional filter parameters can be passed in.
+      description: |-
+        Returns a list of **Products**. Optional filter parameters can be passed in.
+        You can supply category IDs, but the Channel ID array should remain empty.
       operationId: getProducts
       parameters:
         - name: store_hash
@@ -689,6 +691,9 @@ paths:
         - `date_modified`
         - `calculated_price`
         - `base_variant_id`
+
+        **Usage Notes**
+        You can supply category IDs, but the Channel ID array should remain empty.
       operationId: updateProducts
       parameters:
         - name: store_hash
@@ -713,11 +718,6 @@ paths:
           description: 'Fields to include, in a comma-separated list. The ID and the specified fields will be returned.'
           schema:
             type: string
-        - schema:
-            type: array
-          in: query
-          name: 'channels:in'
-          description: Filter items by channel ID.
       requestBody:
         content:
           application/json:
@@ -1138,7 +1138,7 @@ paths:
       tags:
         - Products
       summary: Create a Product
-      description: |-
+      description: |
         Creates a *Product*. Only one product can be created at a time.
 
         **Required Fields:**
@@ -1159,6 +1159,7 @@ paths:
 
         **Usage Notes**
         * `POST` requests to `/products` accepts a single `video` object; to send an array of video objects, see: `/products/{product_id}/videos`.
+        * You can supply category IDs, but the Channel ID array should remain empty.
       operationId: createProduct
       parameters:
         - name: store_hash
@@ -1183,11 +1184,6 @@ paths:
           description: 'Fields to include, in a comma-separated list. The ID and the specified fields will be returned.'
           schema:
             type: string
-        - schema:
-            type: array
-          in: query
-          name: 'channels:in'
-          description: Filter items by channel ID.
       requestBody:
         content:
           application/json:
@@ -1743,7 +1739,8 @@ paths:
       tags:
         - Products
       summary: Get a Product
-      description: Returns a single *Product*. Optional parameters can be passed in.
+      description: |
+        Returns a single *Product*. Optional parameters can be passed in.
       operationId: getProductById
       parameters:
         - name: product_id
@@ -1794,11 +1791,6 @@ paths:
           schema:
             type: string
             default: application/json
-        - schema:
-            type: array
-          in: query
-          description: Filter items by channel ID.
-          name: 'channels:in'
       responses:
         '200':
           description: ''
@@ -1924,6 +1916,9 @@ paths:
         - date_modified
         - calculated_price
         - base_variant_id
+
+        **Usage Notes**
+        * You can supply category IDs, but the Channel ID array should remain empty.
       operationId: updateProduct
       parameters:
         - name: product_id
@@ -1955,11 +1950,6 @@ paths:
           description: 'Fields to include, in a comma-separated list. The ID and the specified fields will be returned.'
           schema:
             type: string
-        - schema:
-            type: array
-          in: query
-          name: 'channels:in'
-          description: Filter items by channel ID.
       requestBody:
         content:
           application/json:
@@ -24059,6 +24049,7 @@ components:
               id: 0
               product_id: 0
               length: string
+      x-extension-1: null
       properties:
         id:
           type: integer
@@ -24421,8 +24412,10 @@ components:
           example: 80
         channels:
           type: array
+          description: 'An optional field that can be empty, or you can supply a single ID or an array of IDs.'
           items:
             type: number
+            example: 1
         custom_fields:
           type: array
           items:
@@ -24444,7 +24437,6 @@ components:
         - type
         - weight
         - price
-      x-extension-1: null
     metafield_Put:
       title: metafield_Put
       description: Properties for updating metafields.
