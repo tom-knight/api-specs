@@ -867,13 +867,13 @@ paths:
             type: string
         - name: 'variant_id:in'
           in: query
-          description: The ID of the `Variant` whose prices were requested.
+          description: The ID of the `Variant` for which prices were requested.
           schema:
             type: integer
         - name: 'product_id:in'
           in: query
           description: |
-            A comma-separated list of IDs of `Product`s whose prices were requested.
+            A comma-separated list of IDs of `Product`s for which prices were requested.
           schema:
             type: string
         - name: currency
@@ -1684,7 +1684,7 @@ paths:
             type: string
         - name: 'variant_id:in'
           in: query
-          description: The ID of the `Variant` whose prices were requested.
+          description: The ID of the `Variant` for which prices were requested.
           schema:
             type: integer
         - name: Accept
