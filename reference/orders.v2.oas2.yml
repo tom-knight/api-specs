@@ -2050,6 +2050,7 @@ components:
                   bin_picking_number: BIN
                   external_id: null
                   fulfillment_source: ''
+                  Brand: BigCommerce
                   applied_discounts: []
                   product_options: []
                   configurable_fields: []
@@ -2179,6 +2180,7 @@ components:
                   bin_picking_number: ''
                   external_id: null
                   fulfillment_source: ''
+                  Brand: BigCommerce
                   applied_discounts: []
                   product_options: []
                   configurable_fields: []
@@ -2234,6 +2236,7 @@ components:
                   bin_picking_number: ''
                   external_id: {}
                   fulfillment_source: ''
+                  Brand: BigCommerce
                   applied_discounts: []
               product_options:
                 - id: 143
