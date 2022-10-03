@@ -4073,7 +4073,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateConsignmentRequest'
-            examples:
+            example:
               example-1:
                 value:
                   - address:
