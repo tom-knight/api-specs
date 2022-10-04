@@ -106,6 +106,12 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/webhook_Resp'
+        '400':
+          $ref: '#/components/responses/400_BadRequest'
+        '401':
+          $ref: '#/components/responses/401_Unauthorized'
+        '404':
+          $ref: '#/components/responses/404_NotFound'
       description: Return a webhook by ID.
       operationId: getWebhook
       summary: Get a Webhook
@@ -562,7 +568,7 @@ components:
                 title: Unauthorized Access. You do not have permission to make this request.
                 type: /api-docs/getting-started/api-status-codes
     404_NotFound:
-      description: 'If the requested account resource is not found for the franchise, return a 404 Not Found.'
+      description: 'If the requested webhook is not found, return a 404 Not Found.'
       content:
         application/json:
           schema:
@@ -571,7 +577,7 @@ components:
             response:
               value:
                 status: 404
-                title: 'Account with {id} not found'
+                title: 'Webhook with id [{webhook_id}] not found'
                 type: /api-docs/getting-started/api-status-codes
     422_UnprocessableEntity:
       description: This occurs when missing or unacceptable data is passed for one or more fields. Please correct the values for the fields listed in the errors object.
