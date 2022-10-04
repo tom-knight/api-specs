@@ -3819,15 +3819,15 @@ components:
       title: formFields
       type: object
       readOnly: true
-      description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order with the API.
+      description: Read-Only.
       properties:
         name:
-          description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order with the API.
+          description: Read-Only.
           readOnly: true
           type: string
           example: License Id
         value:
-          description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order with the API.
+          description: Read-Only.
           readOnly: true
           type: string
           example: 123BAF
