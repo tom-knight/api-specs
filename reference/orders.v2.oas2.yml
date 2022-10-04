@@ -3649,18 +3649,6 @@ components:
                 type: number
                 example: 2
       x-internal: false
-    billingAddress_Full:
-      allOf:
-        - $ref: '#/components/schemas/billingAddress_Base'
-        - type: object
-          properties:
-            form_fields:
-              type: array
-              items:
-                $ref: '#/components/schemas/formFields'
-      title: billingAddress_Full
-      description: Required to create an order.
-      x-internal: false
     products_Resource:
       title: products_Resource
       type: object
@@ -4079,7 +4067,7 @@ components:
           example: '0.0000'
           type: string
         billing_address:
-          $ref: '#/components/schemas/billingAddress_Full'
+          $ref: '#/components/schemas/billingAddress_Base'
         channel_id:
           description: Shows where the order originated. The channel_id will default to 1.
           example: 1
@@ -4469,7 +4457,13 @@ components:
           type: integer
           example: 7
           description: The staus ID of the order.
-      x-internal: false
+        billing_address:
+          type: object
+          properties:
+            form_fields:
+              type: array
+              items:
+                $ref: '#/components/schemas/formFields'
     orderCustomProduct_Put:
       type: object
       title: orderCustomProduct_Put
