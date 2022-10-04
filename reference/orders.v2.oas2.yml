@@ -1538,7 +1538,7 @@ components:
                   store_default_to_transactional_exchange_rate: '1.0000000000'
                   custom_status: Awaiting Fulfillment
                   customer_locale: en
-                  external_order_id: 'external-order-id'
+                  external_order_id: external-order-id
     ordersCount_Resp:
       description: Order Countr response collection.
       content:
@@ -1755,7 +1755,7 @@ components:
                 store_default_to_transactional_exchange_rate: '1.0000000000'
                 custom_status: Awaiting Payment
                 customer_locale: en
-                external_order_id: 'external-order-id'
+                external_order_id: external-order-id
               Multiple Items:
                 id: 247
                 customer_id: 11
@@ -1847,7 +1847,7 @@ components:
                 store_default_to_transactional_exchange_rate: 1
                 custom_status: Awaiting Fulfillment
                 customer_locale: en
-                external_order_id: 'external-order-id'
+                external_order_id: external-order-id
     orderCouponsCollection_Resp:
       description: ''
       content:
@@ -2739,7 +2739,7 @@ components:
               external_id: null
               external_merchant_id: null
               custom_status: Awaiting Payment
-              external_order_id: 'external-order-id'
+              external_order_id: external-order-id
             type: object
             properties:
               id:
@@ -3088,7 +3088,7 @@ components:
                 description: The customer’s locale.
               external_order_id:
                 type: string
-                example: 'external-order-id'
+                example: external-order-id
                 description: The external id of the order.
   requestBodies: null
   securitySchemes:
@@ -3419,7 +3419,7 @@ components:
         gift_certificate_id:
           type: integer
           example: 52
-          description:  ID of the associated gift certificate.
+          description: ID of the associated gift certificate.
           nullable: true
     orderCount:
       title: orderCount
@@ -4075,7 +4075,7 @@ components:
           example: '0.0000'
           type: string
         base_wrapping_cost:
-          description: 'The value of the base wrapping cost expressed as a floating point number to four decimal places in string format.'
+          description: The value of the base wrapping cost expressed as a floating point number to four decimal places in string format.
           example: '0.0000'
           type: string
         billing_address:
@@ -4234,7 +4234,7 @@ components:
           description: The customer’s locale.
         external_order_id:
           type: string
-          example: 'external-order-id'
+          example: external-order-id
           description: The external id of the order.
         total_ex_tax:
           description: 'Override value for the total, excluding tax. If specified, the field `total_inc_tax` is also required. (Float, Float-As-String, Integer)'
@@ -4474,19 +4474,19 @@ components:
       type: object
       title: orderCustomProduct_Put
       description: |
-       **Usage notes:**
+        **Usage notes:**
 
-       To `add` a custom product to an existing order, don't include `id` in the payload. You must provide a nonempty value for at least one of these fields: `name`, `name_customer`, or `name_merchant`.
-       To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. You cannot change omitted fields.
+        To `add` a custom product to an existing order, don't include `id` in the payload. You must provide a nonempty value for at least one of these fields: `name`, `name_customer`, or `name_merchant`.
+        To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. You cannot change omitted fields.
 
-       Note the following constraints and default field values:
-        - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
-        - `name` and `name_customer` always hold the same value; updating either `name` or `name_customer` will change the value for both of those fields.
-        - If both fields `name` and `name_customer` are present, they must have the same value.
-        - When updating an existing order product, if you omit both fields `name` and `name_customer` from the request, they will not be updated.
-        - When updating an existing order product, if you omit `name_merchant` from the request, it will not be updated.
-        - When adding a product, if you omit `name_merchant`, it will be set to the value of `name` (or `name_customer`).
-        - When adding a new product to an existing order, if you omit both fields `name` and `name_customer`, they will be set to the value of `name_merchant`.
+        Note the following constraints and default field values:
+         - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
+         - `name` and `name_customer` always hold the same value; updating either `name` or `name_customer` will change the value for both of those fields.
+         - If both fields `name` and `name_customer` are present, they must have the same value.
+         - When updating an existing order product, if you omit both fields `name` and `name_customer` from the request, they will not be updated.
+         - When updating an existing order product, if you omit `name_merchant` from the request, it will not be updated.
+         - When adding a product, if you omit `name_merchant`, it will be set to the value of `name` (or `name_customer`).
+         - When adding a new product to an existing order, if you omit both fields `name` and `name_customer`, they will be set to the value of `name_merchant`.
       properties:
         name:
           type: string
@@ -4523,19 +4523,19 @@ components:
     orderCatalogProduct_Put:
       title: orderCatalogProduct_Put
       description: |
-       **Usage notes**
+        **Usage notes**
 
-        To `add` a product to an existing order, don't include `id` in the payload. When adding a product with variants, `product_options` are required.
-        To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. The fields that you omit will not be changed.
-       
-        Note the following constraints and default field values:
-        - `xxx` and `xxx_customer` always hold the same value. Updating either `xxx` or `xxx_customer` will change the value of both fields.
-        - If both fields `xxx` and `xxx_customer` are present, they must have same value.
-        - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
-        - When updating an existing order product without changing the variant, product, or product options, requests that do not contain `xxx_merchant` will fail.
-        - When updating an existing order product, requests that do not contain both fields `xxx` and `xxx_customer` will fail.
-        - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer, and `xxx_merchant`. If `xxx_merchant` is omitted, it will default to have the catalog value.
-        - If both fields `xxx` and `xxx_customer` are omitted from the request, they will default to the catalog value.
+         To `add` a product to an existing order, don't include `id` in the payload. When adding a product with variants, `product_options` are required.
+         To `update` an order product line, `id` is required. The payload should only contain the fields that need to be updated. The fields that you omit will not be changed.
+
+         Note the following constraints and default field values:
+         - `xxx` and `xxx_customer` always hold the same value. Updating either `xxx` or `xxx_customer` will change the value of both fields.
+         - If both fields `xxx` and `xxx_customer` are present, they must have same value.
+         - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
+         - When updating an existing order product without changing the variant, product, or product options, requests that do not contain `xxx_merchant` will fail.
+         - When updating an existing order product, requests that do not contain both fields `xxx` and `xxx_customer` will fail.
+         - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer, and `xxx_merchant`. If `xxx_merchant` is omitted, it will default to have the catalog value.
+         - If both fields `xxx` and `xxx_customer` are omitted from the request, they will default to the catalog value.
       allOf:
         - type: object
           properties:
